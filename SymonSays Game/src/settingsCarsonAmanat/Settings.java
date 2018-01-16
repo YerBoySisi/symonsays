@@ -1,7 +1,6 @@
 package settingsCarsonAmanat;
 
 import guiTeacher.GUIApplication;
-import guiTeacher.userInterfaces.Screen;
 
 public class Settings extends GUIApplication{
 
