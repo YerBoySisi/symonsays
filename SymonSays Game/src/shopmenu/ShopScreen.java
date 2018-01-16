@@ -18,8 +18,8 @@ public class ShopScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		
-		TextArea x = new TextArea(150,100,getWidth()/2,getHeight()/2,"MERCHANT");
-		Button buy = new Button(100,100,0,0,"Buy",new Action() {
+		TextArea x = new TextArea(150,100,50,50,"MERCHANT");
+		Button buy = new Button(100,100,50,50,"Buy",new Action() {
 			
 			@Override
 			public void act() {
@@ -28,7 +28,7 @@ public class ShopScreen extends ClickableScreen {
 		});
 		viewObjects.add(buy);
 		
-		Button sell = new Button(100,100,0,0,"Sell",new Action() {
+		Button sell = new Button(100,100,50,50,"Sell",new Action() {
 			
 			@Override
 			public void act() {
@@ -38,7 +38,7 @@ public class ShopScreen extends ClickableScreen {
 	
 		viewObjects.add(sell);
 		
-		Button upgrade = new Button(100,100,0,0,"Upgrade",new Action() {
+		Button upgrade = new Button(100,100,50,50,"Upgrade",new Action() {
 			
 			@Override
 			public void act() {
@@ -47,7 +47,7 @@ public class ShopScreen extends ClickableScreen {
 		});
 		
 		viewObjects.add(upgrade);
-		Button back = new Button(100,100,0,0,"Back",new Action() {
+		Button back = new Button(100,100,50,50,"Back",new Action() {
 			
 			@Override
 			public void act() {
