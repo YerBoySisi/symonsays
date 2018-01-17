@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.awt.Color;
 import java.util.List;
 
-
-
+import creditsCarsonAmanat.Credits;
 import guiTeacher.components.Action;
+import guiTeacher.components.Button;
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.ClickableScreen;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class SettingsScreen extends ClickableScreen implements Runnable{
+public class SettingsScreen extends FullFunctionScreen implements Runnable{
 	public ArrayList<MoveInterfaceAmanat> array;
 
 
@@ -39,61 +40,19 @@ public class SettingsScreen extends ClickableScreen implements Runnable{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		array = new ArrayList<MoveInterfaceAmanat>();
-		oldButton = -1;
-		allButtons = new ButtonInterfaceAmanat[5];
-		colors = new Color[5];
-		colors[0] = Color.BLACK;
-		colors[1] = Color.PINK;
-		colors[2] = Color.ORANGE;
-		colors[3] = Color.MAGENTA;
-		colors[4] = Color.CYAN;
-
-		input = true;
-		displayRound = new TextLabel(200,200,400,200,"How's Your Memory?");
-		viewObjects.add(displayRound);
-
-		for (int i = 0;i <allButtons.length;i++) {
-
-			final ButtonInterfaceAmanat button = getButton(i*150+150,350,150,100);
-			allButtons[i] = button;
-			button.setColor(colors[i]);
-			button.setAction(new Action() {
-
-				@Override
-				public void act() {
-					if (input) {
-						Thread light  = new Thread(new Runnable() {
-
-							@Override
-							public void run() {
-								button.highlight();
-								input = false;
-								try {
-									Thread.sleep(800);
-								}catch(InterruptedException e ) {
-									e.printStackTrace();
-								}
-								input = true;
-								button.dim();
-							}
-						});
-						light.start();
-					}
-
-				}
-			});
+		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
+		Button credit = new Button(150,100,150,200,"Credits",new Action() {
+			
+			@Override
+			public void act() {
+				Settings.sample.setScreen(Credits.credits);
+			}
+		});
+		for(int i = 0; i < 10; i++){
+			viewObjects.add(new Comet(getWidth(), getHeight()));
 		}
-
-		for (int i = 0;i <allButtons.length;i++) {
-			System.out.println(allButtons[i]);
-			viewObjects.add(allButtons[i]);
-
+		viewObjects.add(credit);
 		}
-	}
-	private ButtonInterfaceAmanat getButton(int x, int y, int w, int h) {
-		ButtonAmanat button = new ButtonAmanat(x,y,w,h,"",null);
-		return button;
-	}
+	
 
 }
