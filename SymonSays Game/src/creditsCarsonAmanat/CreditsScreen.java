@@ -21,11 +21,11 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		TextLabel title = new TextLabel(200, 20, 200, 100, "Credits");
+		TextLabel title = new TextLabel(350, 20, 200, 100, "Credits");
 		viewObjects.add(title);
 		//Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "resources/earth.jpg");
 		//viewObjects.add(background);
-		ScrollingText s = new ScrollingText(getHeight());
+		ScrollingText s = new ScrollingText(50);
 		viewObjects.add(s);
 	}
 
