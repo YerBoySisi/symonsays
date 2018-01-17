@@ -1,8 +1,15 @@
 package bossSelect;
 
-import guiTeacher.GUIApplication;
+import java.awt.Color;
+import java.util.List;
 
-public class SelectScreen extends GUIApplication {
+
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
+import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.FullFunctionScreen;
+
+public class SelectScreen extends FullFunctionScreen {
 	
 	private String name;
 	private String link;
@@ -14,15 +21,22 @@ public class SelectScreen extends GUIApplication {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public void initScreen() {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	
+	public void initAllObjects(List<Visible> viewObjects) {
+		
+		Button bossButton = new Button(20, 20, 300, 100, "Leviathan", new Action() {
+			
+			
+			public void act() {
+				name = "Leviathan";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		bossButton.setForeground(Color.BLACK);
+		bossButton.update();
+		viewObjects.add(bossButton);
 	}
 
 }
