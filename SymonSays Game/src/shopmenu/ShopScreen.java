@@ -73,7 +73,7 @@ public class ShopScreen extends FullFunctionScreen {
 		
 		try {
 			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(30f);
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(20f);
 			StyledComponent.setBaseFont(font);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
