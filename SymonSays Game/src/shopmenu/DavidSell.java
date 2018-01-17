@@ -1,5 +1,5 @@
 package shopmenu;
 
-public class DavidBuy {
+public class DavidSell {
 
 }

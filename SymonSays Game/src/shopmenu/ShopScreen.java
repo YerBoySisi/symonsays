@@ -12,7 +12,7 @@ public class ShopScreen extends ClickableScreen {
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		setVisible(true);
 	}
 
 	@Override
@@ -38,15 +38,6 @@ public class ShopScreen extends ClickableScreen {
 	
 		viewObjects.add(sell);
 		
-		Button upgrade = new Button(100,100,50,50,"Upgrade",new Action() {
-			
-			@Override
-			public void act() {
-			
-			}
-		});
-		
-		viewObjects.add(upgrade);
 		Button back = new Button(100,100,50,50,"Back",new Action() {
 			
 			@Override
