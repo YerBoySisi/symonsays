@@ -11,6 +11,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class SelectScreen extends FullFunctionScreen {
 	
+	
 	private String name;
 	private String link;
 	private int level;
@@ -24,19 +25,60 @@ public class SelectScreen extends FullFunctionScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		
-		Button bossButton = new Button(20, 20, 300, 100, "Leviathan", new Action() {
-			
-			
+		Button boss1Button = new Button(20, 20, 100, 100, "Boss 1", new Action() {
 			public void act() {
-				name = "Leviathan";
+				name = "Boss 1";
 				link = "";
 				level = 5;
 				levelRec = 1;
 			}
 		});
-		bossButton.setForeground(Color.BLACK);
-		bossButton.update();
-		viewObjects.add(bossButton);
+		Button boss2Button = new Button(20, 20, 100, 100, "Boss 2", new Action() {
+			public void act() {
+				name = "Boss 2";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		Button boss3Button = new Button(20, 20, 100, 100, "Boss 3", new Action() {
+			public void act() {
+				name = "Boss 3";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		Button boss4Button = new Button(20, 20, 100, 100, "Boss 4", new Action() {
+			public void act() {
+				name = "Boss 4";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		Button boss5Button = new Button(20, 20, 100, 100, "Boss 5", new Action() {
+			public void act() {
+				name = "Boss 5";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		Button boss6Button = new Button(20, 20, 100, 100, "Boss 6", new Action() {
+			public void act() {
+				name = "Boss 6";
+				link = "";
+				level = 5;
+				levelRec = 1;
+			}
+		});
+		viewObjects.add(boss1Button);
+		viewObjects.add(boss2Button);
+		viewObjects.add(boss3Button);
+		viewObjects.add(boss4Button);
+		viewObjects.add(boss5Button);
+		viewObjects.add(boss6Button);
 	}
 
 }
