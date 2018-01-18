@@ -1,5 +1,6 @@
 package shopmenu;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.util.List;
@@ -48,7 +49,6 @@ public class ShopScreen extends FullFunctionScreen {
 	
 		viewObjects.add(sell);
 		
-		Button back = new Button(100,100,50,50,"Back",new Action() {
 		Button upgrade = new Button(250,450,200,50,"Upgrade",new Action() {
 			
 			@Override
@@ -58,12 +58,7 @@ public class ShopScreen extends FullFunctionScreen {
 			}
 		});
 			
-			@Override
-			public void act() {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+			
 		viewObjects.add(upgrade);
 		Button back = new Button(450,450,100,50,"Back",new Action() {
 
@@ -72,14 +67,8 @@ public class ShopScreen extends FullFunctionScreen {
 			public void act() {
 			
 			}
-		}
-
-
-		@Override
-		public void act() {
-			// TODO Auto-generated method stub
-			
 		});
+
 		
 		viewObjects.add(back);
 

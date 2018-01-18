@@ -20,7 +20,6 @@ public class ShopMain extends GUIApplication {
 	public void initScreen() {
 		s1 = new ShopScreen(getWidth(), getHeight());
 		setScreen(s1);
-		
 	}
 
 }
