@@ -2,6 +2,7 @@ package creditsCarsonAmanat;
 
 import java.util.List;
 
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
@@ -21,11 +22,12 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
-		TextLabel title = new TextLabel(350, 20, 200, 100, "Credits");
+		TextLabel title = new TextLabel(20, 20, 200, 100, "Credits");
+		
 		viewObjects.add(title);
-		//Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "resources/earth.jpg");
-		//viewObjects.add(background);
-		ScrollingText s = new ScrollingText(50);
+		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "resources/earth.jpg");
+		viewObjects.add(background);
+		ScrollingText s = new ScrollingText(-300);
 		viewObjects.add(s);
 	}
 

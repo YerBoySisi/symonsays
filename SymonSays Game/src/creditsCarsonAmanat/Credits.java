@@ -14,7 +14,7 @@ public class Credits extends GUIApplication{
 	}
 
 	public static void main(String[] args){
-		sample = new Credits(800, 550);
+		sample = new Credits(1400, 780);
 		Thread go = new Thread(sample);
 		go.start();
 	}
@@ -23,5 +23,4 @@ public class Credits extends GUIApplication{
 		credits = new CreditsScreen(getWidth(), getHeight());
 		setScreen(credits);		
 	}
-
 }
