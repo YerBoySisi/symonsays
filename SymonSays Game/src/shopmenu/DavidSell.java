@@ -12,6 +12,8 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class DavidSell extends FullFunctionScreen {
+	
+	private TextArea title;
 
 	public DavidSell(int width, int height) {
 		super(width, height);
@@ -20,7 +22,9 @@ public class DavidSell extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		TextArea title = new TextArea(300,50,300,50,"MERCHANT");
+		title.setTextColor(Color.WHITE);
+		title = new TextArea(300,50,300,50,"MERCHANT");
+		title.update();
 		TextArea desc = new TextArea(350,100,300,100,"USED TO INCREASE DEFENSE");
 		TextArea quant = new TextArea(270,125,300,100,"x10");
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));

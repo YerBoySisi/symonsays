@@ -5,8 +5,8 @@ import shopUpgrade.UpgradeScreen;
 
 public class ShopMain extends GUIApplication {
 	
-	 static ShopMain s1;
-	 static ShopScreen s2;
+	 public static ShopMain s1;
+	 public static ShopScreen s2;
 	 static RickyBuy s3;
 	 static DavidSell s4;
 	 static UpgradeScreen s5;
