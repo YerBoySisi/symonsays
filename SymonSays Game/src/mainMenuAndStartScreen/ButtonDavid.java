@@ -1,17 +1,27 @@
 package mainMenuAndStartScreen;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.io.File;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.StyledComponent;
 
 public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 
 	private Color color;
 	private Action action;
+	private int xCord;
+	private int yCord;
+	private String text;
 	
 	public ButtonDavid(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, action);
+		this.xCord = x;
+		this.yCord = y;
+		this.text = text;
 	}
 
 	@Override
@@ -38,4 +48,17 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 		update();
 	}
 
+	public void drawImage(Graphics2D g) {
+		g.setColor(Color.WHITE);
+		try {
+			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(36f);
+			StyledComponent.setBaseFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		g.drawLine(getX(),getY() ,getX()+20 ,getY()+5);
+		g.drawString(text, getX(), getY());
+	}
 }

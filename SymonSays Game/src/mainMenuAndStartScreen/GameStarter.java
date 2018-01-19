@@ -1,6 +1,10 @@
 package mainMenuAndStartScreen;
 
+import java.awt.Font;
+import java.io.File;
+
 import guiTeacher.GUIApplication;
+import guiTeacher.components.StyledComponent;
 
 public class GameStarter extends GUIApplication{
 
