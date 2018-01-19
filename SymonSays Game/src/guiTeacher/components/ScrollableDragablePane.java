@@ -27,24 +27,45 @@ import guiTeacher.interfaces.Visible;
 
 public class ScrollableDragablePane extends ScrollablePane implements Dragable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7385356776889391283L;
 	protected Dragable dragItem;
 	
+	/**
+	 * 
+	 * @param focusController - the containing FocusController (usually a Screen)
+	 * @param x - the x-coordinate within the container
+	 * @param y - the y-coordinate within the container
+	 * @param w - the width of the Pane
+	 * @param h - the height of the Pane
+	 */
 	public ScrollableDragablePane(FocusController focusController, int x, int y, int w, int h) {
 		super(focusController, x, y, w, h);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * 
+	 * @param focusController - the containing FocusController (usually a Screen)
+	 * @param initWithObjects - any objects this Pane is instantiated with
+	 * @param x - the x-coordinate within the container
+	 * @param y - the y-coordinate within the container
+	 * @param w - the width of the Pane
+	 * @param h - the height of the Pane
+	 */
 	public ScrollableDragablePane(FocusController focusController, ArrayList<Visible> initWithObjects, int x, int y,
 			int w, int h) {
 		super(focusController, initWithObjects, x, y, w, h);
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScrollableDragablePane(FocusController focusController, Component container,
-			ArrayList<Visible> initWithObjects, int x, int y, int w, int h) {
-		super(focusController, container, initWithObjects, x, y, w, h);
-		// TODO Auto-generated constructor stub
-	}
+//	public ScrollableDragablePane(FocusController focusController, Component container,
+//			ArrayList<Visible> initWithObjects, int x, int y, int w, int h) {
+//		super(focusController, container, initWithObjects, x, y, w, h);
+//		// TODO Auto-generated constructor stub
+//	}
 	
 	@Override
 	public boolean setStart(int x, int y) {
