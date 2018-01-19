@@ -34,7 +34,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-			 System.out.println("Buy");
+			 ShopMain.s1.setScreen(ShopMain.s3);
 			}
 		});
 		viewObjects.add(buy);
@@ -43,7 +43,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-			
+				 ShopMain.s1.setScreen(ShopMain.s4);
 			}
 		});
 	
@@ -53,7 +53,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				 ShopMain.s1.setScreen(ShopMain.s5);
 				
 			}
 		});
@@ -65,7 +65,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-			
+				 ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
 
