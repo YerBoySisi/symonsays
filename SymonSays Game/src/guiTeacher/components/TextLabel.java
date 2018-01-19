@@ -23,7 +23,6 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 
-import guiTeacher.Utilities;
 import guiTeacher.interfaces.TextComponent;
 
 /**

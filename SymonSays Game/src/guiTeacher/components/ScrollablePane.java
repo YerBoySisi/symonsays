@@ -39,6 +39,10 @@ import guiTeacher.userInterfaces.ComponentContainer;
 public class ScrollablePane extends ComponentContainer implements Clickable, Scrollable{
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2789303994753621508L;
+	/**
 	 * margin at end of scroll pane
 	 */
 	public static final int X_MARGIN =5;
