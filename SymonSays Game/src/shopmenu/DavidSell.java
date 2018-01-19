@@ -24,7 +24,6 @@ public class DavidSell extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		title.setTextColor(Color.WHITE);
 		title = new TextArea(300,50,300,50,"MERCHANT");
-		title.update();
 		TextArea desc = new TextArea(350,100,300,100,"USED TO INCREASE DEFENSE");
 		TextArea quant = new TextArea(270,125,300,100,"x10");
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));

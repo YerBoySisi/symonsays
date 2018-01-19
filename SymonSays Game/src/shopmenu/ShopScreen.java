@@ -17,6 +17,8 @@ import guiTeacher.userInterfaces.ClickableScreen;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class ShopScreen extends FullFunctionScreen {
+	
+	private TextArea title;
 
 	public ShopScreen(int width, int height) {
 		super(width, height);
@@ -27,6 +29,7 @@ public class ShopScreen extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		
 		setCustomFont();
+		title.setTextColor(Color.WHITE);
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));
 		TextArea title = new TextArea(300,50,300,50,"MERCHANT");
 		viewObjects.add(title);
