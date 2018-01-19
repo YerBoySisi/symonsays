@@ -20,6 +20,11 @@ package guiTeacher.components;
 
 import java.awt.Graphics2D;
 
+/**
+ * MovingComponent is a Component that is Runnable. While running, the Component moves according to it velocity vectors, vx and vy. Note that, to change the movement of a MovingComponent, a subclass should override the checkBehaviors method.
+ * @author bnockles
+ *
+ */
 public abstract class MovingComponent extends Component implements Runnable{
 	private long moveTime; //time when the image last moved
 	private double vx; //the horizontal velocity
@@ -30,6 +35,13 @@ public abstract class MovingComponent extends Component implements Runnable{
 
 	public static final int REFRESH_RATE = 20;
 
+	/**
+	 * 
+	 * @param x x-coordinate within container
+	 * @param y y-coordinate within container
+	 * @param w width
+	 * @param h height
+	 */
 	public MovingComponent(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		posx = x;
@@ -119,13 +131,13 @@ public abstract class MovingComponent extends Component implements Runnable{
 	}
 	
 	/** 
-	 * for demonstration purposes only. Make abstract
+	 * draws this MovingComponent's image
 	 * @param g
 	 */
 	public abstract void drawImage(Graphics2D g);
 	
 	/**
-	 * For demonstration purposes only. Make abstract
+	 * This method is called every time this MovingComponent is updated. Implement this method to change behaviors of this object as it moves (for example, changing its vY once its position has reached a certain y-value)
 	 */
 	public abstract void checkBehaviors();
 //		if(posy+vy > 300){

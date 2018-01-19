@@ -18,17 +18,20 @@
  *******************************************************************************/
 package guiTeacher;
 
-import java.awt.Graphics;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import guiTeacher.userInterfaces.ComponentContainer;
 import guiTeacher.userInterfaces.Screen;
 import guiTeacher.userInterfaces.Transition;
 
+/**
+ * This is the quintessential class for the Application engine. It is the window in which the GUI is viewed 
+ * @author bnockles
+ *
+ */
 public abstract class GUIApplication extends JFrame implements Runnable, ComponentListener{
 
 	/**
@@ -41,7 +44,11 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 	
 
 
-
+/**
+ * 
+ * @param width initial width of the Window
+ * @param height initial height of the Window
+ */
 	public GUIApplication(int width, int height){
 		super();
 		scaleWithWindow = true;
@@ -54,9 +61,15 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 	}
 
 
-
+/**
+ * Called by the constructor, this must instantiate a Screen that will be the content for the Frame
+ */
 	public abstract void initScreen();
 
+	/**
+	 * 
+	 * @param screen the destination Screen
+	 */
 	public void setScreen(Screen screen) {
 		removeListeners();
 		currentScreen = screen;
@@ -67,6 +80,11 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 		addListeners();
 	}
 
+	/**
+	 * 
+	 * @param screen the destination Screen
+	 * @param t the transition that will occur between the current Screen and the destination Screen 
+	 */
 	public void setScreen(Screen screen, Transition t) {
 		removeListeners();
 		ComponentContainer oldScreen = currentScreen;
@@ -96,7 +114,9 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 		}
 	}
 
-
+/**
+ * Automatically updates this Screen every 30 milliseconds
+ */
 	public void run() {
 		long updateTime;
 		long timeAfterUpdate;
@@ -115,6 +135,9 @@ public abstract class GUIApplication extends JFrame implements Runnable, Compone
 	}
 
 
+	/**
+	 * automatically called when this Window is resized. Note that the contained Screen will always match the dimensions of this Window
+	 */
 	public void resize(int w, int h){
 		if (!currentScreen.isFixedSize()){
 			currentScreen.resize(w, h);
