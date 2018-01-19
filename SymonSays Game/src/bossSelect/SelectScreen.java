@@ -25,7 +25,7 @@ public class SelectScreen extends FullFunctionScreen {
 	
 	public void initAllObjects(List<Visible> viewObjects) {
 		
-		Button boss1Button = new Button(20, 20, 100, 100, "Boss 1", new Action() {
+		Button boss1Button = new Button(20, 20, 75, 75, "Boss 1", new Action() {
 			public void act() {
 				name = "Boss 1";
 				link = "";
@@ -33,7 +33,7 @@ public class SelectScreen extends FullFunctionScreen {
 				levelRec = 1;
 			}
 		});
-		Button boss2Button = new Button(20, 20, 100, 100, "Boss 2", new Action() {
+		Button boss2Button = new Button(20, 20, 75, 75, "Boss 2", new Action() {
 			public void act() {
 				name = "Boss 2";
 				link = "";
@@ -41,7 +41,7 @@ public class SelectScreen extends FullFunctionScreen {
 				levelRec = 1;
 			}
 		});
-		Button boss3Button = new Button(20, 20, 100, 100, "Boss 3", new Action() {
+		Button boss3Button = new Button(20, 20, 75, 75, "Boss 3", new Action() {
 			public void act() {
 				name = "Boss 3";
 				link = "";
@@ -49,7 +49,7 @@ public class SelectScreen extends FullFunctionScreen {
 				levelRec = 1;
 			}
 		});
-		Button boss4Button = new Button(20, 20, 100, 100, "Boss 4", new Action() {
+		Button boss4Button = new Button(20, 20, 75, 75, "Boss 4", new Action() {
 			public void act() {
 				name = "Boss 4";
 				link = "";
@@ -57,7 +57,7 @@ public class SelectScreen extends FullFunctionScreen {
 				levelRec = 1;
 			}
 		});
-		Button boss5Button = new Button(20, 20, 100, 100, "Boss 5", new Action() {
+		Button boss5Button = new Button(20, 20, 75, 75, "Boss 5", new Action() {
 			public void act() {
 				name = "Boss 5";
 				link = "";
@@ -65,7 +65,7 @@ public class SelectScreen extends FullFunctionScreen {
 				levelRec = 1;
 			}
 		});
-		Button boss6Button = new Button(20, 20, 100, 100, "Boss 6", new Action() {
+		Button boss6Button = new Button(20, 20, 75, 75, "Boss 6", new Action() {
 			public void act() {
 				name = "Boss 6";
 				link = "";
