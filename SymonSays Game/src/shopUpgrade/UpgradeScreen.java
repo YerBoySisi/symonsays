@@ -23,16 +23,28 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	public UpgradeScreen(int width, int height) {
 		super(width, height);
-		setVisible(true);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		title = new TextLabel(400,50,100,50,"Upgrades");
+		Graphic background = new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg");
+		background.resize(800, 550);
+		viewObjects.add(background);
 		title.setTextColor(Color.WHITE);
+		title = new TextLabel(300,50,300,50,"Upgrades");
+		title.setBodyAlign(0);
 		viewObjects.add(title);
-		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));
+		upgradeName = new TextLabel(100,100,200,50, "Riposte");
+		upgradeName.setBodyAlign(0);
+		viewObjects.add(upgradeName);
+		upgradeName = new TextLabel(300,100,200,50, "Regeneration");
+		upgradeName.setBodyAlign(0);
+		viewObjects.add(upgradeName);
+		upgradeName = new TextLabel(500,100,200,50, "Agility");
+		upgradeName.setBodyAlign(0);
+		viewObjects.add(upgradeName);
+		backButton.setTextColor(Color.WHITE);
 		backButton = new Button(0,20,100,50,"Back", new Action() {
 
 			@Override
