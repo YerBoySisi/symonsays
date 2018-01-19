@@ -15,12 +15,16 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 	private Action action;
 	private int xCord;
 	private int yCord;
+	private int width;
+	private int height;
 	private String text;
 	
 	public ButtonDavid(int x, int y, int w, int h, String text, Action action) {
 		super(x, y, w, h, text, action);
 		this.xCord = x;
 		this.yCord = y;
+		this.width = w;
+		this.height = h;
 		this.text = text;
 	}
 
@@ -48,6 +52,8 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 		update();
 	}
 
+	
+	
 	public void drawImage(Graphics2D g) {
 		g.setColor(Color.WHITE);
 		try {
@@ -58,7 +64,7 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		g.drawLine(getX(),getY() ,getX()+20 ,getY()+5);
-		g.drawString(text, getX(), getY());
+		g.drawLine(xCord, yCord+height, xCord, yCord+5);;
+		g.drawString(text, xCord, yCord);
 	}
 }
