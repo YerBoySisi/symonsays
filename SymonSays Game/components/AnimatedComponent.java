@@ -20,8 +20,6 @@ package guiTeacher.components;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.awt.image.RasterFormatException;
 import java.io.File;
 import java.io.IOException;
