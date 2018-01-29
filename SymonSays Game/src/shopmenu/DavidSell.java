@@ -26,7 +26,7 @@ public class DavidSell extends FullFunctionScreen {
 		title = new TextArea(300,50,300,50,"MERCHANT");
 		TextArea desc = new TextArea(350,100,300,100,"USED TO INCREASE DEFENSE");
 		TextArea quant = new TextArea(270,125,300,100,"x10");
-		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));
+		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		viewObjects.add(new Graphic(200, 100, 75,75,"shopUpgradeResources/test.png"));
 		viewObjects.add(title);
 		viewObjects.add(desc);
@@ -42,7 +42,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		
-
+	
 		viewObjects.add(back);
 		
 		Button buyH = new Button(500, 120, 50, 50, "Sell", new Action() {

@@ -30,7 +30,7 @@ public class ShopScreen extends FullFunctionScreen {
 		
 		setCustomFont();
 		title.setTextColor(Color.WHITE);
-		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg"));
+		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		TextArea title = new TextArea(300,50,300,50,"MERCHANT");
 		viewObjects.add(title);
 		Button buy = new Button(50,450,100,50,"Buy",new Action() {
@@ -49,9 +49,7 @@ public class ShopScreen extends FullFunctionScreen {
 				 ShopMain.s1.setScreen(ShopMain.s4);
 			}
 		});
-	
 		viewObjects.add(sell);
-		
 		Button upgrade = new Button(250,450,200,50,"Upgrade",new Action() {
 			
 			@Override
