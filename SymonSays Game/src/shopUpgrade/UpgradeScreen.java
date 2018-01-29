@@ -28,8 +28,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		Graphic background = new Graphic(0, 0, getWidth(),getHeight(),"shopUpgradeResources/bgrnd.jpg");
-		background.resize(800, 550);
+		Graphic background = new Graphic(0, 0, getWidth() * 2,getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		title.setTextColor(Color.WHITE);
 		title = new TextLabel(300,50,300,50,"Upgrades");
