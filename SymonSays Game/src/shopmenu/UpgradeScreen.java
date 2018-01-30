@@ -1,4 +1,4 @@
-package shopUpgrade;
+package shopmenu;
 
 import java.awt.Color;
 import java.util.List;
@@ -10,7 +10,6 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import shopmenu.ShopMain;
 
 public class UpgradeScreen extends FullFunctionScreen {
 	

@@ -1,7 +1,6 @@
 package shopmenu;
 
 import guiTeacher.GUIApplication;
-import shopUpgrade.UpgradeScreen;
 
 public class ShopMain extends GUIApplication {
 	
