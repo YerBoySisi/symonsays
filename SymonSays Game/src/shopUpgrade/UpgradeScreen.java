@@ -28,7 +28,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		Graphic background = new Graphic(0, 0, getWidth() * 2,getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
+		Graphic background = new Graphic(0, 0, getWidth(), getHeight(),"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		title.setTextColor(Color.WHITE);
 		title = new TextLabel(300,50,300,50,"Upgrades");
@@ -40,6 +40,8 @@ public class UpgradeScreen extends FullFunctionScreen {
 		upgradeName = new TextLabel(300,100,200,50, "Regeneration");
 		upgradeName.setBodyAlign(0);
 		viewObjects.add(upgradeName);
+		Graphic icon = new Graphic(295,100,25,25,"shopUpgradeResources/heal.png");
+		viewObjects.add(icon);
 		upgradeName = new TextLabel(500,100,200,50, "Agility");
 		upgradeName.setBodyAlign(0);
 		viewObjects.add(upgradeName);

@@ -17,7 +17,7 @@ public class ShopMain extends GUIApplication {
 		setVisible(true);
 	}
 	public static void main(String[] args) {
-		s1 = new ShopMain(800, 550);
+		s1 = new ShopMain(1400, 780);
 		Thread runner = new Thread(s1);
 		runner.start();
 	}
