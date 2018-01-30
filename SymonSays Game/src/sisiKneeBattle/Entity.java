@@ -36,8 +36,6 @@ public abstract class Entity extends AnimatedComponent {
 		
 		int dmg = 0;
 		
-		
-		
 	}
 	
 	public void setHP(int x) {

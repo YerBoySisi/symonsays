@@ -25,7 +25,7 @@ public class BattleScreen extends ClickableScreen {
 	//element constants
 	public static final int BLAZE = 0; public static final int AQUA = 1; 
 	public static final int TERRA = 2; public static final int GUST = 3;
-	public static final int HOLY = 4; public static final int DARK = 5;
+	public static final int HOLY = 4; public static final int UNHOLY = 5;
 	public static final int SYMON = 777;
 	
 	

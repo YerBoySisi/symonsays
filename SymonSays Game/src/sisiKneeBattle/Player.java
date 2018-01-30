@@ -20,5 +20,11 @@ public class Player extends Entity {
 		weakness = weak;
 		
 	}
+	
+	public void useItem(Object i) {
+		
+		
+		
+	}
 
 }
