@@ -10,7 +10,7 @@ public class Credits extends GUIApplication{
 	
 	public Credits(int width, int height) {
 		super(width, height);
-		setVisible(true);	
+		setVisible(true);
 	}
 
 	public static void main(String[] args){
@@ -21,6 +21,6 @@ public class Credits extends GUIApplication{
 	
 	public void initScreen() {
 		credits = new CreditsScreen(getWidth(), getHeight());
-		setScreen(credits);		
+		setScreen(credits);
 	}
 }
