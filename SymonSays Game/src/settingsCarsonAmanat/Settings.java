@@ -1,14 +1,12 @@
 package settingsCarsonAmanat;
 
-import java.io.File;
-
 import creditsCarsonAmanat.Credits;
 import guiTeacher.GUIApplication;
 
 public class Settings extends GUIApplication{
 
-	public static Settings sample;
-	public static SettingsScreen symon;
+	public static Settings symon;
+	public static SettingsScreen screen;
 	public static Credits credits;
 	
 	public Settings(int width, int height) {
@@ -16,16 +14,17 @@ public class Settings extends GUIApplication{
 		setVisible(true);	}
 
 	public static void main(String[] args){
-		sample = new Settings(500, 350);
-		Thread go = new Thread(sample);
+		symon = new Settings(500, 350);
+		Thread go = new Thread(symon);
 		go.start();
 		
 		
 	}
 	@Override
 	public void initScreen() {
-		symon = new SettingsScreen(getWidth(), getHeight());
-		setScreen(symon);		
+		screen = new SettingsScreen(getWidth(), getHeight());
+		credits = new Credits(getWidth(), getHeight());
+		setScreen(screen);		
 	}
 
 }
