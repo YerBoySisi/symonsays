@@ -27,25 +27,24 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		Graphic background = new Graphic(0, 0, getWidth(), getHeight(),"shopUpgradeResources/bgrnd.jpg");
+		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		title.setTextColor(Color.WHITE);
-		title = new TextLabel(300,50,300,50,"Upgrades");
+		title = new TextLabel(600, 50, 200, 50, "Upgrades");
 		title.setBodyAlign(0);
 		viewObjects.add(title);
-		upgradeName = new TextLabel(100,100,200,50, "Riposte");
-		upgradeName.setBodyAlign(0);
+		upgradeName = new TextLabel(150, 100, 200, 50, "Riposte");
 		viewObjects.add(upgradeName);
-		upgradeName = new TextLabel(300,100,200,50, "Regeneration");
-		upgradeName.setBodyAlign(0);
+		upgradeName = new TextLabel(600, 100, 200, 50, "Regeneration");
 		viewObjects.add(upgradeName);
-		Graphic icon = new Graphic(295,100,25,25,"shopUpgradeResources/heal.png");
+		Graphic icon2 = new Graphic(595, 100, 25, 25,"shopUpgradeResources/heal.png");
+		viewObjects.add(icon2);
+		upgradeName = new TextLabel(1050, 100, 100, 50, "Agility");
+		viewObjects.add(upgradeName);
+		Graphic icon = new Graphic(1035, 100, 25, 25,"shopUpgradeResources/agility.png");
 		viewObjects.add(icon);
-		upgradeName = new TextLabel(500,100,200,50, "Agility");
-		upgradeName.setBodyAlign(0);
-		viewObjects.add(upgradeName);
 		backButton.setTextColor(Color.WHITE);
-		backButton = new Button(0,20,100,50,"Back", new Action() {
+		backButton = new Button(0, 20, 100, 50, "Back", new Action() {
 
 			@Override
 			public void act() {
