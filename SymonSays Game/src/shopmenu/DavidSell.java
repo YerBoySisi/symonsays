@@ -17,7 +17,7 @@ public class DavidSell extends FullFunctionScreen {
 
 	public DavidSell(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stubx
 	}
 
 	@Override
