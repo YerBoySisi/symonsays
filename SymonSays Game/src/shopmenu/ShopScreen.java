@@ -31,9 +31,9 @@ public class ShopScreen extends FullFunctionScreen {
 		setCustomFont();
 		title.setTextColor(Color.WHITE);
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
-		TextArea title = new TextArea(300,50,300,50,"MERCHANT");
+		TextArea title = new TextArea(600,50,300,50,"MERCHANT");
 		viewObjects.add(title);
-		Button buy = new Button(50,450,100,50,"Buy",new Action() {
+		Button buy = new Button(50,650,100,50,"Buy",new Action() {
 			
 			@Override
 			public void act() {
@@ -42,7 +42,7 @@ public class ShopScreen extends FullFunctionScreen {
 		});
 		viewObjects.add(buy);
 		
-		Button sell = new Button(150,450,100,50,"Sell",new Action() {
+		Button sell = new Button(250,650,100,50,"Sell",new Action() {
 			
 			@Override
 			public void act() {
@@ -50,7 +50,7 @@ public class ShopScreen extends FullFunctionScreen {
 			}
 		});
 		viewObjects.add(sell);
-		Button upgrade = new Button(250,450,200,50,"Upgrade",new Action() {
+		Button upgrade = new Button(450,650,200,50,"Upgrade",new Action() {
 			
 			@Override
 			public void act() {
@@ -61,7 +61,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			
 		viewObjects.add(upgrade);
-		Button back = new Button(450,450,100,50,"Back",new Action() {
+		Button back = new Button(750,650,200,50,"Back",new Action() {
 
 			
 			@Override
@@ -79,7 +79,7 @@ public class ShopScreen extends FullFunctionScreen {
 		
 		try {
 			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(20f);
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
 			StyledComponent.setBaseFont(font);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
