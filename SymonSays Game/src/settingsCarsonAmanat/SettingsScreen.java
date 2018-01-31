@@ -2,6 +2,8 @@ package settingsCarsonAmanat;
 
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JSlider;
@@ -17,7 +19,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public ArrayList<MoveInterfaceAmanat> array;
-
+	public Button volumeSlider;
+	public Button volumeRect;
 
 	public ButtonInterfaceAmanat[] allButtons;
 
@@ -25,10 +28,7 @@ public class SettingsScreen extends FullFunctionScreen{
 	Color[] colors;
 
 	public TextLabel displayRound;
-
-
-	private JSlider slider;
-
+	private Graphics g;
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
@@ -51,16 +51,32 @@ public class SettingsScreen extends FullFunctionScreen{
 			public void act() {
 			}
 		});
-		//slider = new JSlider(0,100,100);
-		//slider.setMajorTickSpacing(10);
-		//slider.setMinorTickSpacing(1);
-		//slider.setPaintTicks(true);
-		//slider.setPaintLabels(true);
-		//viewObjects.add(slider);
+		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
+		volumeRect = new Button(80, 80, 800, 100, "", Color.BLACK, new Action() {
+			
+			@Override
+			public void act() {
+				  mouseReleased(getX());
+					
+				
+			}
+		});
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
+		viewObjects.add(volumeSlider);
 
+
+	}
+	
+	public void mouseDragged(MouseEvent m) {
+		super.mouseDragged(m);
+		if(volumeSlider.getX()>99) 
+		volumeSlider.setX(m.getX());
+		if(volumeSlider.getX()<100)
+			volumeSlider.setX(100);
+		if(getY()==100) 
+		volumeSlider.setY(m.getY());
 	}
 
 }
