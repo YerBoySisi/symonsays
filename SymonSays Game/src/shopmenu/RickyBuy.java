@@ -14,12 +14,7 @@ import guiTeacher.userInterfaces.ClickableScreen;
 public class RickyBuy extends ClickableScreen {
 
 	public static final int COST = 200;
-	private int quantityOwned;
-	private Button minus;
-	private Button plus;
-	private Button buy;
 	private Button back;
-	private TextLabel desc;
 	private TextLabel youown;
 	
 	public RickyBuy(int width, int height) {
@@ -30,15 +25,14 @@ public class RickyBuy extends ClickableScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
-		back = new Button(0,20,125,50,"Back",Color.BLUE, new Action() {
+		back = new Button(0,20,125,50,"Back",new Action() {
 			
 			@Override
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
-		//back.setForeground(Color.BLACK);
-		//back.update();
+		back.setForeground(Color.BLUE);
 		viewObjects.add(back);
 		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
 		viewObjects.add(title);
@@ -54,7 +48,50 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(desc2);
 		viewObjects.add(desc3);
 		viewObjects.add(desc4);
-
+		Button buyDef = new Button(900,175,100,100,"Buy", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(buyDef);
+		buyDef.setForeground(Color.GRAY);
+		
+		Button buyHP = new Button(900,300,100,100,"Buy", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(buyHP);
+		buyHP.setForeground(Color.GRAY);
+		
+		Button buyDodge = new Button(900,425,100,100,"Buy", new Action() {
+			
+			@Override
+			public void act() {
+			
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(buyDodge);
+		buyDodge.setForeground(Color.GRAY);
+		
+		Button buyAtk = new Button(900,550,100,100,"Buy", new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		viewObjects.add(buyAtk);
+		buyAtk.setForeground(Color.GRAY);
 	}
 
 

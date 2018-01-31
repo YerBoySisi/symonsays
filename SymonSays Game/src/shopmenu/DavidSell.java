@@ -57,7 +57,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		
-	
+		back.setForeground(Color.BLUE);
 		viewObjects.add(back);
 		
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
@@ -65,33 +65,28 @@ public class DavidSell extends FullFunctionScreen {
 				
 			}
 		});
+		buyH.setForeground(Color.BLUE);
 		viewObjects.add(buyH);
 		Button buyS = new Button(900, 300, 100, 100, "Sell", new Action() {
 			public void act() {
 				
 			}
 		});
+		buyS.setForeground(Color.BLUE);
 		viewObjects.add(buyS);
 		Button buyR = new Button(900, 425, 100, 100, "Sell", new Action() {
 			public void act() {
 			
 			}
 		});
+		buyR.setForeground(Color.BLUE);
 		viewObjects.add(buyR);
 		Button buyHM = new Button(900, 525, 100, 100, "Sell", new Action() {
 			public void act() {
 				
 			}
 		});
+		buyHM.setForeground(Color.BLUE);
 		viewObjects.add(buyHM);
-		
-        
-		
-		
-		
-		
-		
 	}
-
-
 }

@@ -40,6 +40,7 @@ public class ShopScreen extends FullFunctionScreen {
 			 ShopMain.s1.setScreen(ShopMain.s3);
 			}
 		});
+		buy.setForeground(Color.white);
 		viewObjects.add(buy);
 		
 		Button sell = new Button(250,650,100,50,"Sell",new Action() {
@@ -49,6 +50,7 @@ public class ShopScreen extends FullFunctionScreen {
 				 ShopMain.s1.setScreen(ShopMain.s4);
 			}
 		});
+		sell.setForeground(Color.white);
 		viewObjects.add(sell);
 		Button upgrade = new Button(450,650,200,50,"Upgrade",new Action() {
 			
@@ -59,7 +61,7 @@ public class ShopScreen extends FullFunctionScreen {
 			}
 		});
 			
-			
+		upgrade.setForeground(Color.white);
 		viewObjects.add(upgrade);
 		Button back = new Button(750,650,200,50,"Back",new Action() {
 
@@ -70,7 +72,7 @@ public class ShopScreen extends FullFunctionScreen {
 			}
 		});
 
-		
+		back.setForeground(Color.white);
 		viewObjects.add(back);
 
 		
