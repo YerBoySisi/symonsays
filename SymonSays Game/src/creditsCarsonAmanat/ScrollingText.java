@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.io.File;
+import java.util.ArrayList;
 
 import guiTeacher.components.MovingComponent;
 
 public class ScrollingText extends MovingComponent{
 
 	private int spanHeight;
+	public ArrayList<ScrollingText> list;
 
 	public ScrollingText(int spanHeight) {
 		super(0, spanHeight, 1400, 780);
@@ -21,7 +23,7 @@ public class ScrollingText extends MovingComponent{
 
 	@Override
 	public void drawImage(Graphics2D g) {
-		g.setColor(Color.white);
+		g.setColor(Color.WHITE);
 		try {
 			File fontFile = new File("resources/BankGothic Bold.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -48,7 +50,7 @@ public class ScrollingText extends MovingComponent{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		g.drawString("cool.jpg", 400, 50);
+		g.drawString("cool", 400, 0);
 	}
 
 	@Override

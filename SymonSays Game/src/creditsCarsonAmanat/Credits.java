@@ -7,6 +7,7 @@ public class Credits extends GUIApplication{
 	private static final long serialVersionUID = 1L;
 	public static Credits sample;
 	public static CreditsScreen credits;
+
 	
 	public Credits(int width, int height) {
 		super(width, height);
