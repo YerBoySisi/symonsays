@@ -54,14 +54,6 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 	
 	
 	public void drawImage(Graphics2D g) {
-		try {
-			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-			Font baseFont=font.deriveFont(36f);
-			StyledComponent.setBaseFont(baseFont);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		g.setColor(color);
 	//	g.drawLine(xCord, yCord+height, xCord, yCord+5);;
 		g.drawString(text, xCord, yCord);;
