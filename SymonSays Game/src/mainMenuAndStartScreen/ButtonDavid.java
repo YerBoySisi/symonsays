@@ -19,7 +19,7 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 	private int height;
 	private String text;
 	
-	public ButtonDavid(int x, int y, int w, int h, String text, Action action) {
+	public ButtonDavid(int x, int y, int w, int h,  String text, Action action) {
 		super(x, y, w, h, text, action);
 		this.xCord = x;
 		this.yCord = y;
@@ -30,13 +30,13 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 
 	@Override
 	public void dim() {
-		this.setBackground(this.color);
+		this.setBackground(Color.GRAY);
 		update();
 	}
 
 	@Override
 	public void highlight() {
-		this.setBackground(Color.WHITE);
+		this.setBackground(color.GRAY);
 		update();
 	}
 
@@ -47,7 +47,6 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 
 	@Override
 	public void setColor(Color c) {
-		color = c;
 		this.setBackground(c);
 		update();
 	}
@@ -55,7 +54,6 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 	
 	
 	public void drawImage(Graphics2D g) {
-		g.setColor(Color.WHITE);
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -64,7 +62,8 @@ public class ButtonDavid extends Button implements ButtonInterfaceDavid{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		g.drawLine(xCord, yCord+height, xCord, yCord+5);;
-		g.drawString(text, xCord, yCord);
+		g.setColor(color);
+	//	g.drawLine(xCord, yCord+height, xCord, yCord+5);;
+		g.drawString(text, xCord, yCord);;
 	}
 }

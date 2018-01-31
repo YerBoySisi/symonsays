@@ -1,5 +1,6 @@
 package mainMenuAndStartScreen;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.util.List;
@@ -18,6 +19,19 @@ public class MainMenuScreen extends FullFunctionScreen{
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		try {
+			File fontFile = new File("resources/orbitron-medium.otf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(36f);
+			StyledComponent.setBaseFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		TextLabel title = new TextLabel(20,20,300,100,"Symon Says");
+		Graphic background = new Graphic(0,0, getWidth(),getHeight(),"resources/earth.jpg");
+		title.setForeground(Color.WHITE);
+		//viewObjects.add(background);
+		viewObjects.add(title);
+		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 			Font baseFont=font.deriveFont(36f);
@@ -25,16 +39,13 @@ public class MainMenuScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TextLabel title = new TextLabel(20,20,200,100,"Symon Says");
-		Graphic background = new Graphic(0,0, getWidth(),getHeight(),"resources/earth.jpg");
-		viewObjects.add(background);
-		viewObjects.add(title);
-		ButtonDavid startGameButton = new ButtonDavid(20,200 , 100,50 ,"Back",new Action() {
+		ButtonDavid startGameButton = new ButtonDavid(20,200 ,100,50,"Back",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.startScreen);
 			}
 		}); 
+		startGameButton.setForeground(Color.gray);
 		viewObjects.add(startGameButton);
 	}
 
