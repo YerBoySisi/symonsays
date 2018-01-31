@@ -1,5 +1,6 @@
 package sisiKneeBattle;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,8 +61,33 @@ public class BattleScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		
+		playerHP = new ProgressBar(10,100,200,50);
+		playerHP.setBarColor(Color.RED);
+		playerHP.setIncompleteColor(Color.BLACK);
+		playerHP.setVisible(true);
+		viewObjects.add(playerHP);
 		
-
+		mp = new ProgressBar(10,160,200,50);
+		mp.setBarColor(Color.BLUE);
+		mp.setIncompleteColor(Color.BLACK);
+		mp.setVisible(true);
+		viewObjects.add(mp);
+		
+		xp = new ProgressBar(10,220,200,50);
+		xp.setBarColor(Color.GRAY);
+		xp.setIncompleteColor(Color.BLACK);
+		xp.setVisible(true);
+		viewObjects.add(xp);
+		
+		bossHP = new ProgressBar(510,100,200,50);
+		bossHP.setBarColor(Color.CYAN);
+		bossHP.setIncompleteColor(Color.BLACK);
+		bossHP.setVisible(true);
+		viewObjects.add(bossHP);
+		
+		turnInfo = new TextArea(400,100,400,60,"Test");
+		turnInfo.setVisible(true);
+		viewObjects.add(turnInfo);
 	}
 
 }
