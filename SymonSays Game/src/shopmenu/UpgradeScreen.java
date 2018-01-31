@@ -7,6 +7,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -14,11 +15,11 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class UpgradeScreen extends FullFunctionScreen {
 	
 	private Button backButton;
-	private Button upgradeButton;
 	private TextArea upgradeDescription;
-	private TextLabel upgradeName;
+	private TextLabel upgradeName1;
+	private TextLabel upgradeName2;
+	private TextLabel upgradeName3;
 	private TextLabel title;
-	private int upgradePoints;
 
 	public UpgradeScreen(int width, int height) {
 		super(width, height);
@@ -29,21 +30,73 @@ public class UpgradeScreen extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
-		title.setTextColor(Color.WHITE);
-		title = new TextLabel(600, 50, 200, 50, "Upgrades");
-		title.setBodyAlign(0);
+		//title.setTextColor(Color.BLUE);
+		title = new TextLabel(550, 50, 200, 50, "Upgrades");
 		viewObjects.add(title);
-		upgradeName = new TextLabel(150, 100, 200, 50, "Riposte");
-		viewObjects.add(upgradeName);
-		upgradeName = new TextLabel(600, 100, 200, 50, "Regeneration");
-		viewObjects.add(upgradeName);
-		Graphic icon2 = new Graphic(595, 100, 25, 25,"shopUpgradeResources/heal.png");
-		viewObjects.add(icon2);
-		upgradeName = new TextLabel(1050, 100, 100, 50, "Agility");
-		viewObjects.add(upgradeName);
-		Graphic icon = new Graphic(1035, 100, 25, 25,"shopUpgradeResources/agility.png");
+		upgradeName1 = new TextLabel(150, 100, 200, 50, "Riposte");
+		viewObjects.add(upgradeName1);
+		Graphic icon = new Graphic(110, 105, 40, 40,"shopUpgradeResources/riposte.png");
 		viewObjects.add(icon);
-		backButton.setTextColor(Color.WHITE);
+		upgradeName2 = new TextLabel(550, 100, 270, 50, "Regeneration");
+		upgradeName2.setForeground(Color.GREEN);
+		viewObjects.add(upgradeName2);
+		Graphic icon2 = new Graphic(515, 110, 30, 30,"shopUpgradeResources/heal.png");
+		viewObjects.add(icon2);
+		upgradeName3 = new TextLabel(1100, 100, 150, 50, "Agility");
+		viewObjects.add(upgradeName3);
+		Graphic icon3 = new Graphic(1070, 110, 30, 30,"shopUpgradeResources/agility.png");
+		viewObjects.add(icon3);
+		for(int i = 1; i < 4; i++) {
+			TextArea upgradeDescription = new TextArea(100, 175 * i, 300, 300, "+ " + i * 5 + "% chance to attack again");
+			viewObjects.add(upgradeDescription);
+			TextLabel upgradeCost = new TextLabel(100, 100 + 175 * i, 300, 50, 50 * i + "UP");
+			viewObjects.add(upgradeCost);
+			Button upgradeButton = new Button(200, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+			upgradeButton.setForeground(Color.WHITE);
+			viewObjects.add(upgradeButton);
+		}
+		for(int i = 1; i < 4; i++) {
+			TextArea upgradeDescription = new TextArea(550, 175 * i, 300, 300, "Heal " + i * 50 + "HP every turn");
+			viewObjects.add(upgradeDescription);
+			TextLabel upgradeCost = new TextLabel(550, 100 + 175 * i, 300, 50, 40 * i + "UP");
+			viewObjects.add(upgradeCost);
+			Button upgradeButton = new Button(650, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+			upgradeButton.setForeground(Color.WHITE);
+			viewObjects.add(upgradeButton);
+		}
+		for(int i = 1; i < 4; i++) {
+			TextArea upgradeDescription = new TextArea(1000, 175 * i, 350, 300, "+ " + i * 2 + "% chance to dodge an attack");
+			viewObjects.add(upgradeDescription);
+			TextLabel upgradeCost = new TextLabel(1000, 100 + 175 * i, 300, 50, 30 * i + "UP");
+			viewObjects.add(upgradeCost);
+			Button upgradeButton = new Button(1100, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+			upgradeButton.setForeground(Color.WHITE);
+			viewObjects.add(upgradeButton);
+		}
 		backButton = new Button(0, 20, 100, 50, "Back", new Action() {
 
 			@Override
@@ -52,6 +105,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 			
 		});
+		backButton.setForeground(Color.WHITE);
 		viewObjects.add(backButton);
 	}
 
