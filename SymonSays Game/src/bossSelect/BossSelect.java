@@ -17,7 +17,7 @@ public class BossSelect extends GUIApplication {
 	}
 
 	public static void main(String[] args) {
-		BossSelect sample = new BossSelect(800, 550);
+		BossSelect sample = new BossSelect(1400, 780);
 		Thread go = new Thread(sample);
 		go.start();
 	}
