@@ -23,7 +23,7 @@ public class Inventory {
 	public Inventory() {
 		itemlist =  new ArrayList<Items>();
 		this.currency = 1000;
-		itemlist.add(new Items("Def"));
+
 		
 	}
 }
