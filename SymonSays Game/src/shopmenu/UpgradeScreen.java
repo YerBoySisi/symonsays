@@ -1,6 +1,7 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -15,11 +16,13 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 public class UpgradeScreen extends FullFunctionScreen {
 	
 	private Button backButton;
-	private TextArea upgradeDescription;
 	private TextLabel upgradeName1;
 	private TextLabel upgradeName2;
 	private TextLabel upgradeName3;
 	private TextLabel title;
+	private TextLabel pointsDisplay;
+	private int upgradePoints = 0;
+	private ArrayList<Button> buttons;
 
 	public UpgradeScreen(int width, int height) {
 		super(width, height);
@@ -51,52 +54,21 @@ public class UpgradeScreen extends FullFunctionScreen {
 			viewObjects.add(upgradeDescription);
 			TextLabel upgradeCost = new TextLabel(100, 100 + 175 * i, 300, 50, 50 * i + "UP");
 			viewObjects.add(upgradeCost);
-			Button upgradeButton = new Button(200, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
-
-				@Override
-				public void act() {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
-			upgradeButton.setForeground(Color.WHITE);
-			viewObjects.add(upgradeButton);
 		}
 		for(int i = 1; i < 4; i++) {
 			TextArea upgradeDescription = new TextArea(550, 175 * i, 300, 300, "Heal " + i * 50 + "HP every turn");
 			viewObjects.add(upgradeDescription);
 			TextLabel upgradeCost = new TextLabel(550, 100 + 175 * i, 300, 50, 40 * i + "UP");
 			viewObjects.add(upgradeCost);
-			Button upgradeButton = new Button(650, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
-
-				@Override
-				public void act() {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
-			upgradeButton.setForeground(Color.WHITE);
-			viewObjects.add(upgradeButton);
 		}
 		for(int i = 1; i < 4; i++) {
 			TextArea upgradeDescription = new TextArea(1000, 175 * i, 350, 300, "+ " + i * 2 + "% chance to dodge an attack");
 			viewObjects.add(upgradeDescription);
 			TextLabel upgradeCost = new TextLabel(1000, 100 + 175 * i, 300, 50, 30 * i + "UP");
 			viewObjects.add(upgradeCost);
-			Button upgradeButton = new Button(1100, 100 + 175 * i, 300, 50, "Upgrade", new Action() {
-
-				@Override
-				public void act() {
-					// TODO Auto-generated method stub
-					
-				}
-				
-			});
-			upgradeButton.setForeground(Color.WHITE);
-			viewObjects.add(upgradeButton);
 		}
+		pointsDisplay = new TextColoredLabel(1200, 20, 200, 50, "UP: " + upgradePoints, Color.YELLOW, Color.CYAN);
+		viewObjects.add(pointsDisplay);
 		backButton = new Button(0, 20, 100, 50, "Back", new Action() {
 
 			@Override
@@ -105,8 +77,47 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 			
 		});
-		backButton.setForeground(Color.WHITE);
+		backButton.setForeground(Color.BLUE);
 		viewObjects.add(backButton);
+		addButtons();
+		for(Button b: buttons) {
+			viewObjects.add(b);
+		}
+	}
+	
+	public void addButtons() {
+		buttons = new ArrayList<Button>();
+		for(int i = 1; i <= 3; i++) {
+			for(int j = 1; j <= 3; j++) {
+				Button b = new Button(250 + 450 * (i - 1), 100 + 175 * j, 200, 50, "Upgrade", Color.GREEN, new Action() {
+
+					@Override
+					public void act() {
+						
+					}
+					
+				});
+				if(j != 1) {
+					b.setEnabled(false);
+					b.setBackground(Color.RED);
+				}
+				buttons.add(b);
+			}
+		}
+	}
+	
+	public void setButtonActions() {
+		for(Button b: buttons) {
+			b.setAction(new Action() {
+
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					
+				}
+				
+			});
+		}
 	}
 
 }
