@@ -62,13 +62,13 @@ public class BattleScreen extends ClickableScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		
 		playerHP = new ProgressBar(10,100,200,50);
-		playerHP.setBarColor(Color.RED);
+		playerHP.setBarColor(Color.GREEN);
 		playerHP.setIncompleteColor(Color.BLACK);
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
 		mp = new ProgressBar(10,160,200,50);
-		mp.setBarColor(Color.BLUE);
+		mp.setBarColor(Color.CYAN);
 		mp.setIncompleteColor(Color.BLACK);
 		mp.setVisible(true);
 		viewObjects.add(mp);
@@ -80,7 +80,7 @@ public class BattleScreen extends ClickableScreen {
 		viewObjects.add(xp);
 		
 		bossHP = new ProgressBar(510,100,200,50);
-		bossHP.setBarColor(Color.CYAN);
+		bossHP.setBarColor(Color.RED);
 		bossHP.setIncompleteColor(Color.BLACK);
 		bossHP.setVisible(true);
 		viewObjects.add(bossHP);
@@ -88,6 +88,13 @@ public class BattleScreen extends ClickableScreen {
 		turnInfo = new TextArea(400,100,400,60,"Test");
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
+		
+	}
+	
+	public void calculateDamage(Entity atkr, Attack a, Entity e) {
+		
+		
+		
 	}
 
 }
