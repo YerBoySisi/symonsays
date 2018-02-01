@@ -7,7 +7,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextLabel;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
@@ -15,7 +15,8 @@ public class RickyBuy extends ClickableScreen {
 
 	public static final int COST = 200;
 	private Button back;
-	private TextLabel youown;
+	private int coins = 200;
+	private TextColoredLabel numOfCoins;
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
@@ -97,9 +98,19 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
-		viewObjects.add(new Graphic(1325, 25, 50 , 50,"shopUpgradeResources/coin.png"));
-	}
+		
+		numOfCoins = new TextColoredLabel(1200,20,200,50, "" + coins,null,Color.ORANGE);
+		viewObjects.add(numOfCoins);
+		if(inBetween(100,1000,coins)) {
+			numOfCoins.setX(1300);
+		}
+		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
+		
+		}
 
+	public boolean inBetween(int left,int right, int number) {
+		return number > left && number < right; 
+		}
 
 
 }
