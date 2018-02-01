@@ -21,15 +21,15 @@ public class MainMenuScreen extends FullFunctionScreen{
 		try {
 			File fontFile = new File("resources/orbitron-medium.otf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-			Font baseFont=font.deriveFont(36f);
+			Font baseFont=font.deriveFont(48f);
 			StyledComponent.setBaseFont(baseFont);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TextLabel title = new TextLabel(20,20,300,100,"Symon Says");
+		TextLabel title = new TextLabel(20,20,500,100,"Symon Says");
 		Graphic background = new Graphic(0,0, getWidth(),getHeight(),"resources/earth.jpg");
-		title.setForeground(Color.WHITE);
-		//viewObjects.add(background);
+		title.setCustomTextColor(Color.white);
+		viewObjects.add(background);
 		viewObjects.add(title);
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
@@ -39,14 +39,21 @@ public class MainMenuScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ButtonDavid startGameButton = new ButtonDavid(20,200 ,100,50,"Back",new Action() {
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.white,"Back",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.startScreen);
 			}
+		});
+		
+		ButtonDavid startGameButton = new ButtonDavid(200,680,250,Color.white,"Select Boss",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.selectScreen);
+			}
 		}); 
-		startGameButton.setForeground(Color.gray);
 		viewObjects.add(startGameButton);
+		viewObjects.add(backButton);
 	}
 
 }

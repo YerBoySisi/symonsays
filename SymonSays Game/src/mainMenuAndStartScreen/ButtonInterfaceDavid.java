@@ -12,9 +12,5 @@ public interface ButtonInterfaceDavid extends Clickable{
 	
 	void highlight();
 	
-	void setAction(Action action);
-	
 	void setColor(Color c);
-	
-	void drawImage(Graphics2D g);
 }
