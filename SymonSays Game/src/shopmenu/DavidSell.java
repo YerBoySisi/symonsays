@@ -1,6 +1,7 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.util.Collections;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -10,6 +11,8 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import inv.Inventory;
+import inv.Items;
 
 public class DavidSell extends FullFunctionScreen {
 	
@@ -17,7 +20,7 @@ public class DavidSell extends FullFunctionScreen {
 
 	public DavidSell(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stubx
+		// TODO Auto-generated constructor 
 	}
 
 	@Override
@@ -37,6 +40,8 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(new Graphic(420, 250, 75,75,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(420, 400, 75,75,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(420, 500, 75,75,"shopUpgradeResources/strength.png"));
+		viewObjects.add(new Graphic(1325, 25, 50 , 50,"shopUpgradeResources/coin.png"));
+		TextArea currency = new TextArea(1225,25,100,100,"500");
 		viewObjects.add(title);
 		viewObjects.add(desc1);
 		viewObjects.add(quant1);
@@ -46,6 +51,7 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(quant3);
 		viewObjects.add(desc4);
 		viewObjects.add(quant4);
+		viewObjects.add(currency);
 		
 		
 		Button back = new Button(0,10,200,200,"Back",new Action() {
@@ -62,7 +68,7 @@ public class DavidSell extends FullFunctionScreen {
 		
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
 			public void act() {
-				
+
 			}
 		});
 		buyH.setForeground(Color.BLUE);
