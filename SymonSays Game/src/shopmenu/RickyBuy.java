@@ -48,7 +48,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(desc2);
 		viewObjects.add(desc3);
 		viewObjects.add(desc4);
-		Button buyDef = new Button(900,175,100,100,"Buy", new Action() {
+		Button buyDef = new Button(900,200,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -59,7 +59,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(buyDef);
 		buyDef.setForeground(Color.GRAY);
 		
-		Button buyHP = new Button(900,300,100,100,"Buy", new Action() {
+		Button buyHP = new Button(900,325,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -70,7 +70,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(buyHP);
 		buyHP.setForeground(Color.GRAY);
 		
-		Button buyDodge = new Button(900,425,100,100,"Buy", new Action() {
+		Button buyDodge = new Button(900,450,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -82,11 +82,12 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(buyDodge);
 		buyDodge.setForeground(Color.GRAY);
 		
-		Button buyAtk = new Button(900,550,100,100,"Buy", new Action() {
+		Button buyAtk = new Button(900,575,100,50,"Buy", Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
 				// TODO Auto-generated method stub
+				
 				
 			}
 		});
@@ -96,7 +97,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
-		
+		viewObjects.add(new Graphic(1325, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 	}
 
 
