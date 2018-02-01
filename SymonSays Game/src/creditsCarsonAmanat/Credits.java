@@ -8,7 +8,7 @@ public class Credits extends GUIApplication{
 	public static Credits sample;
 	public static CreditsScreen credits;
 
-	
+
 	public Credits(int width, int height) {
 		super(width, height);
 		setVisible(true);
@@ -19,7 +19,7 @@ public class Credits extends GUIApplication{
 		Thread go = new Thread(sample);
 		go.start();
 	}
-	
+
 	public void initScreen() {
 		credits = new CreditsScreen(getWidth(), getHeight());
 		setScreen(credits);

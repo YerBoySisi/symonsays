@@ -16,9 +16,9 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		Thread app = new Thread(this);
 		app.start();
 	}
-	
+
 	public void run() {
-		
+
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -26,7 +26,7 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(background);
 		TextLabel title = new TextLabel(20, 20, 200, 100, "Credits");
 		viewObjects.add(title);
-		ScrollingText s = new ScrollingText(-600);
+		ScrollingText s = new ScrollingText(-700);
 		viewObjects.add(s);
 	}
 
