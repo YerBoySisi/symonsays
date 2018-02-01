@@ -92,6 +92,11 @@ public class RickyBuy extends ClickableScreen {
 		});
 		viewObjects.add(buyAtk);
 		buyAtk.setForeground(Color.GRAY);
+		viewObjects.add(new Graphic(400, 150, 100, 100,"shopUpgradeResources/test.png"));
+		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
+		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
+		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
+		
 	}
 
 
