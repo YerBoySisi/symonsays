@@ -15,8 +15,8 @@ public class RickyBuy extends ClickableScreen {
 
 	public static final int COST = 200;
 	private Button back;
-	private int coins = 200;
-	private TextColoredLabel numOfCoins;
+	private int coins;
+	private TextArea numOfCoins;
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
@@ -98,19 +98,27 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
-		
-		numOfCoins = new TextColoredLabel(1200,20,200,50, "" + coins,null,Color.ORANGE);
+		coins = 0;
+		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
+		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
-		if(inBetween(100,1000,coins)) {
+		if(coins >= 0 && coins < 10) {
 			numOfCoins.setX(1300);
+		}
+		if(coins >= 10 && coins < 100) {
+			numOfCoins.setX(1275);
+		}
+		if(coins >= 100 && coins < 1000) {
+			numOfCoins.setX(1250);
+		}
+		if(coins >= 1000 && coins < 10000) {
+			numOfCoins.setX(1225);
 		}
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 		
 		}
 
-	public boolean inBetween(int left,int right, int number) {
-		return number > left && number < right; 
-		}
+
 
 
 }
