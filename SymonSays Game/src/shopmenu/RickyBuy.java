@@ -35,8 +35,11 @@ public class RickyBuy extends ClickableScreen {
 		});
 		back.setForeground(Color.BLUE);
 		viewObjects.add(back);
+		
 		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
+		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
+		
 		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
@@ -45,6 +48,7 @@ public class RickyBuy extends ClickableScreen {
 			TextArea multiplier = new TextArea(500,150 + i*125,300,100,"x10");
 			viewObjects.add(multiplier);
 		}
+		
 		viewObjects.add(desc1);
 		viewObjects.add(desc2);
 		viewObjects.add(desc3);
@@ -98,27 +102,29 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
-		coins = 0;
+		
+		/*Test*/coins = 20;
+		
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
-		if(coins >= 0 && coins < 10) {
-			numOfCoins.setX(1300);
-		}
-		if(coins >= 10 && coins < 100) {
-			numOfCoins.setX(1275);
-		}
-		if(coins >= 100 && coins < 1000) {
-			numOfCoins.setX(1250);
-		}
-		if(coins >= 1000 && coins < 10000) {
-			numOfCoins.setX(1225);
-		}
+		inBetween();
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 		
 		}
-
-
-
-
+	
+		public void inBetween() {
+			if(coins >= 0 && coins < 10) {
+				numOfCoins.setX(1300);
+			}
+			else if(coins >= 10 && coins < 100) {
+				numOfCoins.setX(1275);
+			}
+			else if(coins >= 100 && coins < 1000) {
+				numOfCoins.setX(1250);
+			}
+			else if(coins >= 1000 && coins < 10000) {
+				numOfCoins.setX(1225);
+			}
+		}
 }
