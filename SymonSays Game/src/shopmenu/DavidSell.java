@@ -53,7 +53,7 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(desc4);
 		viewObjects.add(quant4);
 		viewObjects.add(currency);
-		
+		//hahaha
 		
 		Button back = new Button(0,20,125,50,"Back",new Action() {
 
