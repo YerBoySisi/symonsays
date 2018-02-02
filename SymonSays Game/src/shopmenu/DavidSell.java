@@ -41,7 +41,8 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(new Graphic(420, 400, 75,75,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(420, 500, 75,75,"shopUpgradeResources/strength.png"));
 		viewObjects.add(new Graphic(1325, 25, 50 , 50,"shopUpgradeResources/coin.png"));
-		TextArea currency = new TextArea(1225,25,100,100,"500");
+		TextArea currency = new TextArea(1155,25,150,150,"1500");
+		currency.setCustomTextColor(Color.orange);
 		viewObjects.add(title);
 		viewObjects.add(desc1);
 		viewObjects.add(quant1);
@@ -54,7 +55,7 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(currency);
 		
 		
-		Button back = new Button(0,10,200,200,"Back",new Action() {
+		Button back = new Button(0,20,125,50,"Back",new Action() {
 
 			
 			@Override
@@ -63,36 +64,40 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		
-		back.setForeground(Color.BLUE);
+		back.setForeground(Color.WHITE);
 		viewObjects.add(back);
 		
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
 			public void act() {
-
+				ShopMain.inventory.itemlist.add(new Items("Def"));
+				int occurences = Collections.frequency(ShopMain.inventory.itemlist, new Items("Def"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+100);
+				System.out.println(ShopMain.inventory.getCurrency());
+				System.out.println(occurences);
 			}
 		});
-		buyH.setForeground(Color.BLUE);
+		buyH.setForeground(Color.GRAY);
 		viewObjects.add(buyH);
 		Button buyS = new Button(900, 300, 100, 100, "Sell", new Action() {
 			public void act() {
 				
 			}
 		});
-		buyS.setForeground(Color.BLUE);
+		buyS.setForeground(Color.GRAY);
 		viewObjects.add(buyS);
 		Button buyR = new Button(900, 425, 100, 100, "Sell", new Action() {
 			public void act() {
 			
 			}
 		});
-		buyR.setForeground(Color.BLUE);
+		buyR.setForeground(Color.GRAY);
 		viewObjects.add(buyR);
 		Button buyHM = new Button(900, 525, 100, 100, "Sell", new Action() {
 			public void act() {
 				
 			}
 		});
-		buyHM.setForeground(Color.BLUE);
+		buyHM.setForeground(Color.GRAY);
 		viewObjects.add(buyHM);
 	}
 }

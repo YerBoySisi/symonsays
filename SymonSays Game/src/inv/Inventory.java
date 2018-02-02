@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Inventory {
 	
-	public static ArrayList<Items> itemlist;
+	public ArrayList<Items> itemlist;
 	private int currency;
    
 	public int getCurrency() {

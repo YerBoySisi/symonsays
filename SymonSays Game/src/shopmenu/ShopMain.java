@@ -1,6 +1,8 @@
 package shopmenu;
 
 import guiTeacher.GUIApplication;
+import inv.Inventory;
+import inv.Items;
 
 public class ShopMain extends GUIApplication {
 	
@@ -9,6 +11,7 @@ public class ShopMain extends GUIApplication {
 	 static RickyBuy s3;
 	 static DavidSell s4;
 	 static UpgradeScreen s5;
+	 public static Inventory inventory;
 	
 
 	public ShopMain(int width, int height) {
@@ -17,6 +20,7 @@ public class ShopMain extends GUIApplication {
 	}
 	public static void main(String[] args) {
 		s1 = new ShopMain(1400, 780);
+		inventory = new Inventory();
 		Thread runner = new Thread(s1);
 		runner.start();
 	}
