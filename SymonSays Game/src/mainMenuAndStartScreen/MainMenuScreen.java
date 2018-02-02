@@ -8,7 +8,6 @@ import java.util.List;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-import holiday.HolidayCard;
 
 public class MainMenuScreen extends FullFunctionScreen{
 
@@ -28,7 +27,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 		}
 		TextLabel title = new TextLabel(20,20,500,100,"Symon Says");
 		Graphic background = new Graphic(0,0, getWidth(),getHeight(),"resources/earth.jpg");
-		title.setCustomTextColor(Color.white);
+		title.setCustomTextColor(Color.lightGray);
 		viewObjects.add(background);
 		viewObjects.add(title);
 		try {
@@ -39,14 +38,14 @@ public class MainMenuScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.white,"Back",new Action() {
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.startScreen);
 			}
 		});
 		
-		ButtonDavid startGameButton = new ButtonDavid(200,680,250,Color.white,"Select Boss",new Action() {
+		ButtonDavid startGameButton = new ButtonDavid(200,680,250,Color.lightGray,"Select Boss",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.selectScreen);

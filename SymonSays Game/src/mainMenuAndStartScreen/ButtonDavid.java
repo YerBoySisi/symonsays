@@ -33,7 +33,7 @@ public class ButtonDavid extends Button{
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		if(color != null) {
-		Color c = hovered? Utilities.lighten(color, .4f): color;
+		Color c = hovered? Utilities.lighten(color, .6f): color;
 		g.setColor(c);
 		g.setStroke(new BasicStroke(_THICKNESS));
 		g.drawLine(0,_THICKNESS, getWidth(), _THICKNESS);
