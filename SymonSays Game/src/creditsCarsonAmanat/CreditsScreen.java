@@ -26,7 +26,7 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(background);
 		TextLabel title = new TextLabel(20, 20, 200, 100, "Credits");
 		viewObjects.add(title);
-		ScrollingText s = new ScrollingText(-700);
+		ScrollingText s = new ScrollingText(-800);
 		viewObjects.add(s);
 	}
 
