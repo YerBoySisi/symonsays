@@ -80,6 +80,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 		backButton.setForeground(Color.BLUE);
 		viewObjects.add(backButton);
 		addButtons();
+		setButtonActions();
 		for(Button b: buttons) {
 			viewObjects.add(b);
 		}
@@ -100,6 +101,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 				if(j != 1) {
 					b.setEnabled(false);
 					b.setBackground(Color.RED);
+					b.update();
 				}
 				buttons.add(b);
 			}
@@ -112,8 +114,16 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 				@Override
 				public void act() {
-					// TODO Auto-generated method stub
-					
+					b.setEnabled(false);
+					b.setBackground(null);
+					b.setText("");
+					b.update();
+					if((buttons.indexOf(b) + 1) % 3 != 0) {
+						Button nextButton = buttons.get(buttons.indexOf(b) + 1);
+						nextButton.setEnabled(true);
+						nextButton.setBackground(Color.GREEN);
+						nextButton.update();
+					}
 				}
 				
 			});
