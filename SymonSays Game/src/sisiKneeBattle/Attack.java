@@ -2,22 +2,20 @@ package sisiKneeBattle;
 
 import guiTeacher.components.AnimatedComponent;
 
-public abstract class Attack extends AnimatedComponent {
+public class Attack extends AnimatedComponent {
 	
 	protected String name;
 	protected int damage;
 	protected int type;
 	protected int element;
-	protected int castTime;
 
-	public Attack(String nam, int x, int y, int w, int h, int dmg, int typ, int ele, int ct) {
+	public Attack(String nam, int x, int y, int w, int h, int dmg, int typ, int ele) {
 		
 		super(x, y, w, h);
 		name = nam;
 		damage = dmg;
 		type = typ;
 		element = ele;
-		castTime = ct;
 		
 	}
 	
@@ -42,12 +40,6 @@ public abstract class Attack extends AnimatedComponent {
 	public int getElement() {
 		
 		return element;
-		
-	}
-
-	public int getCastTime() {
-		
-		return castTime;
 		
 	}
 	

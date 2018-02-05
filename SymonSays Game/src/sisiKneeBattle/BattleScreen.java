@@ -20,15 +20,6 @@ public class BattleScreen extends ClickableScreen {
 	private static final int ITEM_MENU = 2;
 	private static final int FLEE_MENU = 3;
 	
-	//attack type constants
-	public static final int PHYSICAL = 0; public static final int SPECIAL = 1;
-	
-	//element constants
-	public static final int BLAZE = 0; public static final int AQUA = 1; 
-	public static final int TERRA = 2; public static final int GUST = 3;
-	public static final int HOLY = 4; public static final int UNHOLY = 5;
-	public static final int SYMON = 777;
-	
 	
 	//menu buttons
 	private static final ImageTextButton[] battleMenu = 
