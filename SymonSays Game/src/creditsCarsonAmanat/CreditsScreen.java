@@ -1,11 +1,15 @@
 package creditsCarsonAmanat;
 
+import java.awt.Color;
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
+import mainMenuAndStartScreen.ButtonDavid;
 
 public class CreditsScreen extends ClickableScreen implements Runnable{
 
@@ -28,6 +32,18 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(title);
 		ScrollingText s = new ScrollingText(-800);
 		viewObjects.add(s);
+		ButtonDavid settingsButton = new ButtonDavid(50, 680, 200, Color.WHITE, "Settings", new Action() {
+			public void act() {
+				Credits.sample.setScreen(Credits.settings);
+			}
+		});
+		viewObjects.add(settingsButton);
+		ButtonDavid mainMenuButton = new ButtonDavid(50, 630, 200, Color.WHITE, "Main Menu", new Action() {
+			public void act() {
+				Credits.sample.setScreen(Credits.mainMenu);
+			}
+		});
+		viewObjects.add(mainMenuButton);
 	}
-
+	
 }
