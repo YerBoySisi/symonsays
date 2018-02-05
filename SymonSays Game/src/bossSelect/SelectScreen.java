@@ -39,7 +39,7 @@ public class SelectScreen extends FullFunctionScreen {
 		initValues();
 		StyledComponent.setButtonOutline(true);
 		StyledComponent.setActiveBorderColor(Color.white);
-		BossButton boss1Button = new BossButton(20, y, wh, wh, "Boss 1", new Action() {
+		BackStartButton boss1Button = new BackStartButton(20, y, wh, wh, "Boss 1", new Action() {
 			public void act() {
 				name = "Boss 1";
 				link = "resources/Dragon.jpg";
@@ -51,7 +51,7 @@ public class SelectScreen extends FullFunctionScreen {
 				viewObjects.remove(1);
 			}
 		});
-		Button boss2Button = new BossButton(140, y, wh, wh, "Boss 2", new Action() {
+		Button boss2Button = new BackStartButton(140, y, wh, wh, "Boss 2", new Action() {
 			public void act() {
 				name = "Boss 2";
 				link = "resources/Xeno.jpg";
@@ -63,7 +63,7 @@ public class SelectScreen extends FullFunctionScreen {
 				viewObjects.remove(1);
 			}
 		});
-		Button boss3Button = new BossButton(260, y, wh, wh, "Boss 3", new Action() {
+		Button boss3Button = new BackStartButton(260, y, wh, wh, "Boss 3", new Action() {
 			public void act() {
 				name = "Boss 3";
 				link = "resources/Ghaul.jpg";
@@ -75,7 +75,7 @@ public class SelectScreen extends FullFunctionScreen {
 				viewObjects.remove(1);
 			}
 		});
-		Button boss4Button = new BossButton(380, y, wh, wh, "Boss 4", new Action() {
+		Button boss4Button = new BackStartButton(380, y, wh, wh, "Boss 4", new Action() {
 			public void act() {
 				name = "Boss 4";
 				link = "";
@@ -87,7 +87,7 @@ public class SelectScreen extends FullFunctionScreen {
 				viewObjects.remove(1);
 			}
 		});
-		Button boss5Button = new BossButton(500, y, wh, wh, "Boss 5", new Action() {
+		Button boss5Button = new BackStartButton(500, y, wh, wh, "Boss 5", new Action() {
 			public void act() {
 				name = "Boss 5";
 				link = "";
@@ -99,7 +99,7 @@ public class SelectScreen extends FullFunctionScreen {
 				viewObjects.remove(1);
 			}
 		});
-		Button boss6Button = new BossButton(620, y, wh, wh, "Boss 6", new Action() {
+		Button boss6Button = new BackStartButton(620, y, wh, wh, "Boss 6", new Action() {
 			public void act() {
 				name = "Boss 6";
 				link = "";
