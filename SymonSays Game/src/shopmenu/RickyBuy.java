@@ -15,8 +15,18 @@ public class RickyBuy extends ClickableScreen {
 
 	public static final int COST = 200;
 	private Button back;
+	private Button buyDef;
+	private Button buyHP;
+	private Button buyAtk;
+	private Button buyDodge;
+	
 	private int coins;
+	private int def;
+	private int hp;
+	private int dodge;
+	private int atk;
 	private TextArea numOfCoins;
+	
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
@@ -53,47 +63,68 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(desc2);
 		viewObjects.add(desc3);
 		viewObjects.add(desc4);
-		Button buyDef = new Button(900,200,100,50,"Buy",Color.GREEN, new Action() {
+		
+		buyDef = new Button(900,200,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+				buyDef.setEnabled(true);
+				if (coins >= COST) {
+					coins -= COST;
+					def++;
+				}
+				buyDef.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyDef);
 		buyDef.setForeground(Color.GRAY);
 		
-		Button buyHP = new Button(900,325,100,50,"Buy",Color.GREEN, new Action() {
+		buyHP = new Button(900,325,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
+			buyHP.setEnabled(true);
+			while(hp < 10) {	
+					if (coins >= COST) {
+						coins -= COST;
+						hp++;
+					}
+				}
+			buyHP.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyHP);
 		buyHP.setForeground(Color.GRAY);
 		
-		Button buyDodge = new Button(900,450,100,50,"Buy",Color.GREEN, new Action() {
+		buyDodge = new Button(900,450,100,50,"Buy",Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
-			
-				// TODO Auto-generated method stub
-				
+				buyDodge.setEnabled(true);
+				while(hp < 10) {
+					if (coins >= COST) {
+						coins -= COST;
+						dodge++;
+					}
+				}
+				buyDodge.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyDodge);
 		buyDodge.setForeground(Color.GRAY);
 		
-		Button buyAtk = new Button(900,575,100,50,"Buy", Color.GREEN, new Action() {
-			
+		buyAtk = new Button(900,575,100,50,"Buy", Color.GREEN, new Action() {
+
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-				
-				
+				buyAtk.setEnabled(true);
+				while(hp < 10) {
+					if (coins >= COST) {
+						coins -= COST;
+						atk++;
+					}
+				}
+				buyAtk.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyAtk);
