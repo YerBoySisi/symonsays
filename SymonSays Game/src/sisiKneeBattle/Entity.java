@@ -78,6 +78,7 @@ public abstract class Entity extends AnimatedComponent {
 				}
 				
 				dmgMultipliers.add(1.0);
+				dmgMultipliers.add(1.0);
 				
 				return;
 			
