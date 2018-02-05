@@ -1,12 +1,15 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
@@ -33,23 +36,25 @@ public class UpgradeScreen extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
-		//title.setTextColor(Color.BLUE);
-		title = new TextLabel(600, 50, 200, 50, "Upgrades");
+		setOrbitron();
+		title = new TextLabel(600, 50, 250, 50, "UPGRADES");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
-		upgradeName1 = new TextLabel(150, 100, 200, 50, "Riposte");
+		upgradeName1 = new TextLabel(200, 100, 200, 50, "Riposte");
 		viewObjects.add(upgradeName1);
-		Graphic icon = new Graphic(110, 105, 40, 40,"shopUpgradeResources/riposte.png");
+		Graphic icon = new Graphic(160, 105, 40, 40,"shopUpgradeResources/riposte.png");
 		viewObjects.add(icon);
 		upgradeName2 = new TextLabel(600, 100, 270, 50, "Regeneration");
 		upgradeName2.setForeground(Color.GREEN);
 		viewObjects.add(upgradeName2);
 		Graphic icon2 = new Graphic(565, 110, 30, 30,"shopUpgradeResources/heal.png");
 		viewObjects.add(icon2);
-		upgradeName3 = new TextLabel(1100, 100, 150, 50, "Agility");
+		upgradeName3 = new TextLabel(1150, 100, 150, 50, "Agility");
 		viewObjects.add(upgradeName3);
-		Graphic icon3 = new Graphic(1070, 110, 30, 30,"shopUpgradeResources/agility.png");
+		Graphic icon3 = new Graphic(1120, 110, 30, 30,"shopUpgradeResources/agility.png");
 		viewObjects.add(icon3);
+		setBankGothic();
+		addBackgrounds(viewObjects);
 		addDescriptions(viewObjects);
 		setUpgradePoints(300);
 		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + getUpgradePoints());
@@ -72,6 +77,24 @@ public class UpgradeScreen extends FullFunctionScreen {
 		}
 	}
 	
+	private void addBackgrounds(List<Visible> viewObjects) {
+		for(int i = 1; i <= 3; i++) {
+			for(int j = 1; j <= 3; j++) {
+				Button b = new Button(100 + 450 * (i - 1), 175 * j, 370, 160, "", new Color(0,60,0) , new Action() {
+
+					@Override
+					public void act() {
+						// TODO Auto-generated method stub
+						
+					}
+					
+				});
+				b.setEnabled(false);
+				viewObjects.add(b);
+			}
+		};
+	}
+
 	public void addButtons() {
 		buttons = new ArrayList<Button>();
 		for(int i = 1; i <= 3; i++) {
@@ -127,13 +150,13 @@ public class UpgradeScreen extends FullFunctionScreen {
 				String desc = "";
 				int cost = 50 - 10 * i;
 				if(i == 0) {
-					desc = "+ " + j * 5 + "% chance to attack again";
+					desc = "+" + j * 5 + "% chance to attack again";
 				}
 				if(i == 1) {
 					desc = "Heal " + j * 50 + "HP every turn";
 				}
 				if(i == 2) {
-					desc = "+ " + j * 2 + "% chance to dodge an attack";
+					desc = "+" + j * 2 + "% chance to dodge an attack";
 				}
 				TextArea upgradeDescription = new TextArea(100 + 450 * i, 175 * j, 350, 300, desc);
 				viewObjects.add(upgradeDescription);
@@ -151,6 +174,28 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	public void setUpgradePoints(int upgradePoints) {
 		this.upgradePoints = upgradePoints;
+	}
+	
+	public void setOrbitron() {
+		try {
+			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+			StyledComponent.setBaseFont(font);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setBankGothic() {
+		try {
+			File fontFile = new File("resources//bankgothic_medium_bt.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+			StyledComponent.setBaseFont(font);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
