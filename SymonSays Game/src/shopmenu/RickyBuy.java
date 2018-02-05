@@ -72,6 +72,8 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST) {
 					coins -= COST;
 					def++;
+					System.out.println("Defense");
+
 				}
 				buyDef.setEnabled(false);
 			}
@@ -88,6 +90,8 @@ public class RickyBuy extends ClickableScreen {
 					if (coins >= COST) {
 						coins -= COST;
 						hp++;
+						System.out.println("HP");
+
 					}
 				}
 			buyHP.setEnabled(false);
@@ -105,6 +109,7 @@ public class RickyBuy extends ClickableScreen {
 					if (coins >= COST) {
 						coins -= COST;
 						dodge++;
+						System.out.println("Dodge");
 					}
 				}
 				buyDodge.setEnabled(false);
@@ -122,6 +127,8 @@ public class RickyBuy extends ClickableScreen {
 					if (coins >= COST) {
 						coins -= COST;
 						atk++;
+						System.out.println("Attack");
+
 					}
 				}
 				buyAtk.setEnabled(false);
@@ -134,8 +141,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		/*Test*/coins = 20;
-		
+		coins = 2000;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
