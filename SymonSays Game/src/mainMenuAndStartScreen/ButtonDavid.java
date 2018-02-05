@@ -1,70 +1,45 @@
 package mainMenuAndStartScreen;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.io.File;
 
+import guiTeacher.Utilities;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.StyledComponent;
 
-public class ButtonDavid extends Button implements ButtonInterfaceDavid{
+public class ButtonDavid extends Button{
 
 	private Color color;
 	private Action action;
-	private int xCord;
-	private int yCord;
-	private int width;
-	private int height;
-	private String text;
+	private static final int _THICKNESS = 5;
 	
-	public ButtonDavid(int x, int y, int w, int h, String text, Action action) {
-		super(x, y, w, h, text, action);
-		this.xCord = x;
-		this.yCord = y;
-		this.width = w;
-		this.height = h;
-		this.text = text;
-	}
-
-	@Override
-	public void dim() {
-		this.setBackground(this.color);
+	public ButtonDavid(int x, int y, int w,Color color,  String text, Action action) {
+		super(x, y, w, 50, text, action);
+		this.color = color;
 		update();
 	}
 
-	@Override
-	public void highlight() {
-		this.setBackground(Color.WHITE);
-		update();
-	}
-
-	@Override
 	public void setAction(Action action) {
 		this.action = action;
 	}
-
-	@Override
-	public void setColor(Color c) {
-		color = c;
-		this.setBackground(c);
-		update();
-	}
-
 	
-	
-	public void drawImage(Graphics2D g) {
-		g.setColor(Color.WHITE);
-		try {
-			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-			Font baseFont=font.deriveFont(36f);
-			StyledComponent.setBaseFont(baseFont);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public void drawButton(Graphics2D g, boolean hovered) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		if(color != null) {
+		Color c = hovered? Utilities.lighten(color, .6f): color;
+		g.setColor(c);
+		g.setStroke(new BasicStroke(_THICKNESS));
+		g.drawLine(0,_THICKNESS, getWidth(), _THICKNESS);
 		}
-		g.drawLine(xCord, yCord+height, xCord, yCord+5);;
-		g.drawString(text, xCord, yCord);
+		FontMetrics fm = g.getFontMetrics();
+		int textWidth = fm.stringWidth(getText());
+		g.drawString(getText(), (getWidth()-textWidth)/2, _THICKNESS+fm.getHeight());
 	}
 }
