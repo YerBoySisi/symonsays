@@ -90,11 +90,5 @@ public class BattleScreen extends ClickableScreen {
 		viewObjects.add(turnInfo);
 		
 	}
-	
-	public void calculateDamage(Entity atkr, Attack a, Entity e) {
-		
-		
-		
-	}
 
 }
