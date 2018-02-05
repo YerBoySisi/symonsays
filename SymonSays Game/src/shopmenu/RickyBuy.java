@@ -69,13 +69,18 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyDef.setEnabled(true);
-				if (coins >= COST) {
-					coins -= COST;
-					def++;
-					System.out.println("Defense");
-
+				if (coins >= COST && def < 10) {
+						coins -= COST;
+						def++;
+						System.out.println(def + ". Defense");
+						numOfCoins.setText(Integer.toString(coins));
+						inBetween();
+					if(def == 10) {
+						buyDef.setEnabled(false);
+						buyDef.setBackground(Color.RED);
+						buyDef.update();
+					}
 				}
-				buyDef.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyDef);
@@ -85,18 +90,22 @@ public class RickyBuy extends ClickableScreen {
 			
 			@Override
 			public void act() {
-			buyHP.setEnabled(true);
-			while(hp < 10) {	
-					if (coins >= COST) {
+				buyHP.setEnabled(true);
+				if (coins >= COST && hp < 10) {
 						coins -= COST;
 						hp++;
-						System.out.println("HP");
-
+						System.out.println(hp + ". HP");
+						numOfCoins.setText(Integer.toString(coins));
+						inBetween();
+					if(hp == 10) {
+						buyHP.setEnabled(false);
+						buyHP.setBackground(Color.RED);
+						buyHP.update();
 					}
 				}
-			buyHP.setEnabled(false);
 			}
 		});
+		
 		viewObjects.add(buyHP);
 		buyHP.setForeground(Color.GRAY);
 		
@@ -104,15 +113,19 @@ public class RickyBuy extends ClickableScreen {
 			
 			@Override
 			public void act() {
-				buyDodge.setEnabled(true);
-				while(hp < 10) {
-					if (coins >= COST) {
+				buyAtk.setEnabled(true);
+				if (coins >= COST && dodge < 10) {
 						coins -= COST;
 						dodge++;
-						System.out.println("Dodge");
+						System.out.println(dodge + ". Dodge");
+						numOfCoins.setText(Integer.toString(coins));
+						inBetween();
+					if(dodge== 10) {
+						buyDodge.setEnabled(false);
+						buyDodge.setBackground(Color.RED);
+						buyDodge.update();
 					}
 				}
-				buyDodge.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyDodge);
@@ -123,15 +136,18 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyAtk.setEnabled(true);
-				while(hp < 10) {
-					if (coins >= COST) {
+				if (coins >= COST && atk < 10) {
 						coins -= COST;
 						atk++;
-						System.out.println("Attack");
-
+						System.out.println(atk + ". Attack");
+						numOfCoins.setText(Integer.toString(coins));
+						inBetween();
+						if(atk == 10) {
+							buyAtk.setEnabled(false);
+							buyAtk.setBackground(Color.RED);
+							buyAtk.update();
+						}
 					}
-				}
-				buyAtk.setEnabled(false);
 			}
 		});
 		viewObjects.add(buyAtk);
@@ -141,7 +157,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 2000;
+		coins = 20000;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
@@ -162,6 +178,9 @@ public class RickyBuy extends ClickableScreen {
 			}
 			else if(coins >= 1000 && coins < 10000) {
 				numOfCoins.setX(1225);
+			}
+			else if(coins >= 10000 && coins < 100000) {
+				numOfCoins.setX(1200);
 			}
 		}
 }
