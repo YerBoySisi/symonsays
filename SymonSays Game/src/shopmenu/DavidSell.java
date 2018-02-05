@@ -1,6 +1,7 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -69,11 +70,13 @@ public class DavidSell extends FullFunctionScreen {
 		
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
 			public void act() {
-				ShopMain.inventory.itemlist.add(new Items("Def"));
-				int occurences = Collections.frequency(ShopMain.inventory.itemlist, new Items("Def"));
+				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
+				iteml.add(new Items("Def"));
+				//int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+100);
 				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println(occurences);
+				System.out.println("The Number of this item is: " + Collections.frequency(iteml, new Items("Def")));
+			  
 			}
 		});
 		buyH.setForeground(Color.GRAY);
@@ -99,5 +102,18 @@ public class DavidSell extends FullFunctionScreen {
 		});
 		buyHM.setForeground(Color.GRAY);
 		viewObjects.add(buyHM);
+	}
+	
+	public int countOccurences(ArrayList<Items> list, Items x) {
+		int count = 0;
+		for (int i = 0; i < list.size(); i++) { 		      
+	          	if(list.get(i)== x) {
+	          		System.out.println(list.get(i));
+	          		System.out.println(x);
+	          		count++;
+	          	}
+	      }   
+		return count;
+		
 	}
 }
