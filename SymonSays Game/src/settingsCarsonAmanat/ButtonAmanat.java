@@ -1,20 +1,25 @@
 package settingsCarsonAmanat;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.StyledComponent;
 
-public class ButtonAmanat extends Button implements ButtonInterfaceAmanat{
+public class ButtonAmanat extends Button {
 	private Action action;
 	private Color color;
-	public ButtonAmanat(int x, int y, int w, int h, String text, Object object) {
+	public ButtonAmanat(int x, int y, int w, int h, String text, Action action) {
 
 		super(x, y, w, h, "", null);
 		update();
 	}
 
-	@Override
 	public void setColor(Color c) {
 		color = c;
 		this.setBackground(c);
@@ -35,7 +40,11 @@ public class ButtonAmanat extends Button implements ButtonInterfaceAmanat{
 		update();
 	}
 	public void act() {
-		this.action.act();
+		this.act();
 
+	}
+	public void drawImage(Graphics2D g) {
+		Image Gear = Toolkit.getDefaultToolkit().getImage("resources/gear.png"); 
+		
 	}
 }
