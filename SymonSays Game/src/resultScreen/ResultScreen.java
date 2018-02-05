@@ -1,11 +1,12 @@
-package resultScreen;
+ package resultScreen;
 
 import java.util.List;
 
+import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
-public class ResultScreen extends FullFunctionScreen implements ShareableInfoNabeel  {
+public class ResultScreen extends FullFunctionScreen {
 	public String bossName;
 	public int bossLVL;
 	
@@ -14,12 +15,13 @@ public class ResultScreen extends FullFunctionScreen implements ShareableInfoNab
 		// TODO Auto-generated constructor stub
 	}
 	public void defineValues() {
-		bossName =  BossName;
-		bossLVL =  bossLVL1;
+		//bossName = ;
+		//bossLVL =  ;
 	}
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		// TODO Auto-generated method stub
+		Graphic back = new Graphic(0 , 0, getWidth()/2, getHeight(), "resources/drag.jpeg");
+		viewObjects.add(back);
 		
 	}
 

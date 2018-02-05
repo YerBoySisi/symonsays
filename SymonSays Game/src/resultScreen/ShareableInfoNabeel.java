@@ -1,8 +1,9 @@
 package resultScreen;
 
 public interface ShareableInfoNabeel {
-	String BossName;
-	int bossLVL1;
-	boolean conclusion;// true if player jwon, false if player lost
+	String bossName();// returns bosses name
+	boolean determineWinner();// true if player won and false if the cpu wins
+	
+	
 	
 }
