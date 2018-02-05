@@ -15,7 +15,7 @@ public class ButtonAmanat extends Button {
 	private Action action;
 	private Color color;
 	private Graphics2D g;
-	private Image Gear;
+	public static Image Gear;
     Graphics2D g2 = (Graphics2D) g;
 
 	public ButtonAmanat(int x, int y, int w, int h, Image image, Action action) {
