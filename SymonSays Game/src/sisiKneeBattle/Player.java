@@ -5,9 +5,9 @@ public class Player extends Entity {
 	private int mp;
 	private int xp;
 	
-	public Player(int x, int y, int w, int h) {
+	public Player() {
 		
-		super(x, y, w, h);
+		super(null, 0, 0, 0, 0, 0, 0);
 		
 	}
 	

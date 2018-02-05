@@ -2,16 +2,17 @@ package sisiKneeBattle;
 
 import guiTeacher.components.AnimatedComponent;
 
-public class Attack extends AnimatedComponent {
+public class Attack {
 	
 	protected String name;
 	protected int damage;
 	protected int type;
 	protected int element;
+	
+	protected AnimatedComponent[] sprite;
 
-	public Attack(String nam, int x, int y, int w, int h, int dmg, int typ, int ele) {
+	public Attack(String nam, int dmg, int typ, int ele) {
 		
-		super(x, y, w, h);
 		name = nam;
 		damage = dmg;
 		type = typ;

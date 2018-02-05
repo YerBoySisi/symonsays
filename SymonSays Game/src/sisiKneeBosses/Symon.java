@@ -2,9 +2,9 @@ package sisiKneeBosses;
 
 public class Symon extends Boss {
 
-	public Symon(int x, int y, int w, int h) {
+	public Symon() {
 		
-		super(x, y, w, h);
+		super(null, 0, 0, 0, 0, 0, 0);
 		
 	}
 

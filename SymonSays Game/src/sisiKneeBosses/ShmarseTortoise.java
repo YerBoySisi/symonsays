@@ -2,9 +2,9 @@ package sisiKneeBosses;
 
 public class ShmarseTortoise extends Boss {
 
-	public ShmarseTortoise(int x, int y, int w, int h) {
+	public ShmarseTortoise() {
 		
-		super(x, y, w, h);
+		super(null, 0, 0, 0, 0, 0, 0);
 		
 	}
 

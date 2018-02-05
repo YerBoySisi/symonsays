@@ -4,11 +4,19 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.ImageTextButton;
 import guiTeacher.components.ProgressBar;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
+import sisiKneeBosses.Boss;
+import sisiKneeBosses.DragonMech;
+import sisiKneeBosses.GundamShark;
+import sisiKneeBosses.ShmarseTortoise;
+import sisiKneeBosses.SimonBelmont;
+import sisiKneeBosses.SuperSoldier;
+import sisiKneeBosses.Symon;
 
 public class BattleScreen extends ClickableScreen {
 	
@@ -42,6 +50,18 @@ public class BattleScreen extends ClickableScreen {
 	private ProgressBar xp;
 	private ProgressBar bossHP;
 	private TextArea turnInfo;
+	
+	//Entities
+	private Player player;
+	
+	private SuperSoldier ssold;
+	private GundamShark gshark;
+	private DragonMech dmech;
+	private ShmarseTortoise stort;
+	private SimonBelmont sbelm;
+	private Symon symon;
+	
+	private final Boss[] boss = {ssold, gshark, dmech, stort, sbelm, symon};
 
 	public BattleScreen(int width, int height) {
 		
@@ -79,6 +99,14 @@ public class BattleScreen extends ClickableScreen {
 		turnInfo = new TextArea(400,100,400,60,"Test");
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
+		
+		//player = Player.getSprite();
+		//player.setVisible(true);
+		//viewObjects.add(player);
+		
+		//boss = DragonMech.getSprite();
+		//boss.setVisible(true);
+		//viewObjects.add(boss);
 		
 	}
 

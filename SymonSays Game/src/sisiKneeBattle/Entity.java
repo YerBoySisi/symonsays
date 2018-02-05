@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.TextArea;
 
-public abstract class Entity extends AnimatedComponent {
+public abstract class Entity {
+	
+	//sprite constants
+	public static final int IDLE_SPRITE = 0; public static final int ATTACK_SPRITE = 1; 
+	public static final int SPELL_SPRITE = 2; public static final int DAMAGE_SPRITE = 3;
 	
 	//attack type constants
 	public static final int BLUNT = 0; public static final int SLASH = 1; public static final int PIERCE = 2;
@@ -21,27 +25,30 @@ public abstract class Entity extends AnimatedComponent {
 	public static final double WEAKNESS_MULTIPLIER = 2;
 	public static ArrayList<Double> dmgMultipliers;
 	
+	protected String name;
 	protected int hp;
+	protected int maxHP;
 	protected int power;
 	protected int defense;
 	protected int weakness;
 	protected int level;
+	protected int xp;
 	protected TextArea dmgIndicator;
+	
+	protected AnimatedComponent[] sprite;
 	
 	protected ArrayList<Attack> attacks;
 	
-	public Entity(int x, int y, int w, int h) {
+	public Entity(String nam, int hp, int pow, int def, int weak, int lvl, int xp) {
 		
-		super(x, y, w, h);
-		
-	}
-	
-	public void setStats(int hp, int pow, int def, int weak) {
-		
+		name = nam;
 		this.hp = hp;
+		maxHP = hp;
 		power = pow;
 		defense = def;
 		weakness = weak;
+		level = lvl;
+		this.xp = xp;
 		
 	}
 	
@@ -62,15 +69,13 @@ public abstract class Entity extends AnimatedComponent {
 		int dmg = 0;
 		double mult = dmgMultipliers.get((int)(Math.random() * dmgMultipliers.size()));
 		
-		dmg = a.damage - (int)Math.round(e.defense-1 / atkr.power);
+		dmg = a.damage - (int)Math.round((e.defense-1) / atkr.power);
 		
 		if(a.getType() == e.weakness) {
 			return (int)(Math.round(dmg * mult) * WEAKNESS_MULTIPLIER);
 		} else {
 			return (int)Math.round(dmg * mult);
 		}
-		
-		
 		
 	}
 	
@@ -133,6 +138,60 @@ public abstract class Entity extends AnimatedComponent {
 		dmgMultipliers.add(1.1);
 		dmgMultipliers.add(1.1);
 		dmgMultipliers.add(1.3);
+		
+	}
+	
+	public int getHP() {
+		
+		return hp;
+		
+	}
+	
+	public int getMaxHP() {
+		
+		return maxHP;
+		
+	}
+	
+	public int getXP() {
+		
+		return xp;
+		
+	}
+	
+	public int getLevel() {
+		
+		return level;
+		
+	}
+	
+	public String getName() {
+		
+		return name;
+		
+	}
+	 
+	public AnimatedComponent getIdleSprite() {
+		
+		return sprite[IDLE_SPRITE];
+		
+	}
+	
+	public AnimatedComponent getAttackSprite() {
+		
+		return sprite[ATTACK_SPRITE];
+		
+	}
+	
+	public AnimatedComponent getSpellprite() {
+		
+		return sprite[SPELL_SPRITE];
+		
+	}
+	
+	public AnimatedComponent getDamageSprite() {
+		
+		return sprite[DAMAGE_SPRITE];
 		
 	}
 
