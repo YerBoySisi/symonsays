@@ -8,7 +8,6 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextColoredLabel;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -102,21 +101,18 @@ public class UpgradeScreen extends FullFunctionScreen {
 				@Override
 				public void act() {
 					if(getUpgradePoints() >= costs[buttons.indexOf(b)]) {
-						System.out.print(costs[buttons.indexOf(b)]);
-						setUpgradePoints(getUpgradePoints() - 40);
+						setUpgradePoints(getUpgradePoints() - costs[buttons.indexOf(b)]);
 						pointsDisplay.setText("UP: " + getUpgradePoints());
-					}
-					//setUpgradePoints(getUpgradePoints() - 40);
-					//pointsDisplay.setText("UP: " + getUpgradePoints());
-					b.setEnabled(false);
-					b.setBackground(null);
-					b.setText("");
-					b.update();
-					if((buttons.indexOf(b) + 1) % 3 != 0) {
-						Button nextButton = buttons.get(buttons.indexOf(b) + 1);
-						nextButton.setEnabled(true);
-						nextButton.setBackground(Color.GREEN);
-						nextButton.update();
+						b.setEnabled(false);
+						b.setBackground(null);
+						b.setText("");
+						b.update();
+						if((buttons.indexOf(b) + 1) % 3 != 0) {
+							Button nextButton = buttons.get(buttons.indexOf(b) + 1);
+							nextButton.setEnabled(true);
+							nextButton.setBackground(Color.GREEN);
+							nextButton.update();
+						}
 					}
 				}
 				
@@ -125,6 +121,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 	}
 	
 	public void addDescriptions(List<Visible> viewObjects) {
+		costs = new int[9];
 		for(int i = 0; i < 3; i++) {
 			for(int j = 1; j <= 3; j++) {
 				String desc = "";
@@ -143,7 +140,6 @@ public class UpgradeScreen extends FullFunctionScreen {
 				TextLabel upgradeCost = new TextLabel(100 + 450 * i, 100 + 175 * j, 300, 50, cost * j + "UP");
 				upgradeCost.setCustomTextColor(Color.CYAN);
 				viewObjects.add(upgradeCost);
-				costs = new int[9];
 				costs[i * 3 + (j - 1)] = cost * j;
 			}
 		}
