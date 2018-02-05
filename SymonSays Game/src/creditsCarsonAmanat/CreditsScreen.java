@@ -32,13 +32,13 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(title);
 		ScrollingText s = new ScrollingText(-800);
 		viewObjects.add(s);
-		ButtonDavid settingsButton = new ButtonDavid(50, 680, 200, Color.WHITE, "Settings", new Action() {
+		ButtonDavid settingsButton = new ButtonDavid(50, 680, 250, Color.WHITE, "Settings", new Action() {
 			public void act() {
 				Credits.sample.setScreen(Credits.settings);
 			}
 		});
 		viewObjects.add(settingsButton);
-		ButtonDavid mainMenuButton = new ButtonDavid(50, 630, 200, Color.WHITE, "Main Menu", new Action() {
+		ButtonDavid mainMenuButton = new ButtonDavid(50, 630, 250, Color.WHITE, "Main Menu", new Action() {
 			public void act() {
 				Credits.sample.setScreen(Credits.mainMenu);
 			}
