@@ -56,8 +56,17 @@ public class SettingsScreen extends FullFunctionScreen{
 			
 			@Override
 			public void act() {
-				  mouseReleased(getX());
 					
+				
+			}
+			
+		});
+		Button settingGear = new ButtonAmanat(400, 400, 200, 200, "", new Action() {
+			
+			@Override
+			public void act() {
+				Settings.symon.setScreen(Settings.screen);
+
 				
 			}
 		});
@@ -65,7 +74,7 @@ public class SettingsScreen extends FullFunctionScreen{
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
-
+		viewObjects.add(settingGear);
 
 	}
 	
