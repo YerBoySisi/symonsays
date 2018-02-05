@@ -14,7 +14,11 @@ import guiTeacher.components.StyledComponent;
 public class ButtonAmanat extends Button {
 	private Action action;
 	private Color color;
-	public ButtonAmanat(int x, int y, int w, int h, String text, Action action) {
+	private Graphics2D g;
+	private Image Gear;
+    Graphics2D g2 = (Graphics2D) g;
+
+	public ButtonAmanat(int x, int y, int w, int h, Image image, Action action) {
 
 		super(x, y, w, h, "", null);
 		update();
@@ -40,11 +44,13 @@ public class ButtonAmanat extends Button {
 		update();
 	}
 	public void act() {
-		this.act();
+		Settings.symon.setScreen(Settings.screen);
+		
 
 	}
 	public void drawImage(Graphics2D g) {
-		Image Gear = Toolkit.getDefaultToolkit().getImage("resources/gear.png"); 
-		
+		Gear = Toolkit.getDefaultToolkit().getImage("resources/gear.png"); 
+		g2.drawImage(Gear, 10, 10, null );
+
 	}
 }

@@ -52,7 +52,7 @@ public class SettingsScreen extends FullFunctionScreen{
 			}
 		});
 		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
-		volumeRect = new Button(80, 80, 800, 100, "", Color.BLACK, new Action() {
+		volumeRect = new Button(80, 80, 200, 100, "", Color.BLACK, new Action() {
 			
 			@Override
 			public void act() {
@@ -61,7 +61,7 @@ public class SettingsScreen extends FullFunctionScreen{
 			}
 			
 		});
-		Button settingGear = new ButtonAmanat(400, 400, 200, 200, "", new Action() {
+		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 200, 200, ButtonAmanat.Gear, new Action() {
 			
 			@Override
 			public void act() {
