@@ -17,7 +17,7 @@ public class ScrollingText extends MovingComponent{
 	public ScrollingText(int spanHeight) {
 		super(0, spanHeight, 1400, 780);
 		this.setSpanHeight(getHeight());
-		setVy(3);
+		setVy(4);
 		Thread go = new Thread(this);
 		go.start();
 	}
