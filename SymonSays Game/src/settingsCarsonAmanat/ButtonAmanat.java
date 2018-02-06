@@ -8,8 +8,6 @@ import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.File;
 
-import javax.swing.ImageIcon;
-
 import guiTeacher.Utilities;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
@@ -22,7 +20,7 @@ public class ButtonAmanat extends Button {
 	public static Image Gear;
     Graphics2D g2 = (Graphics2D) g;
 
-	public ButtonAmanat(int x, int y, int w, int h, ImageIcon gearIcon) {
+	public ButtonAmanat(int x, int y, int w, int h, Image image) {
 
 		super(x, y, w, h, "", null);
 		update();
