@@ -1,20 +1,23 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
+import mainMenuAndStartScreen.ButtonDavid;
 
 public class RickyBuy extends ClickableScreen {
 
+	private static final long serialVersionUID = 1777676794745848898L;
 	public static final int COST = 200;
-	private Button back;
 	private Button buyDef;
 	private Button buyHP;
 	private Button buyAtk;
@@ -34,18 +37,21 @@ public class RickyBuy extends ClickableScreen {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		setOrbitron();
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
-		back = new Button(0,20,125,50,"Back",new Action() {
+		setCustomFont();
+		
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
-			@Override
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
-		back.setForeground(Color.BLUE);
-		viewObjects.add(back);
-		
+			
+		//back.setForeground(Color.BLUE);
+		viewObjects.add(backButton);
+		setOrbitron();
 		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
@@ -102,7 +108,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && hp < 10) {
 						coins -= COST;
 						hp++;
-						System.out.println(hp + ". HP");
+						//System.out.println(hp + ". HP");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierHP.setText("x"+Integer.toString(hp));
@@ -126,7 +132,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && dodge < 10) {
 						coins -= COST;
 						dodge++;
-						System.out.println(dodge + ". Dodge");
+						//System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierDodge.setText("x"+Integer.toString(dodge));
@@ -149,7 +155,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && atk < 10) {
 						coins -= COST;
 						atk++;
-						System.out.println(atk + ". Attack");
+						//System.out.println(atk + ". Attack");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierAtk.setText("x"+Integer.toString(atk));
@@ -168,7 +174,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 8000;
+		coins = 11;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
@@ -177,18 +183,52 @@ public class RickyBuy extends ClickableScreen {
 		
 		}
 	
+		private void setOrbitron() {
+			try {
+				File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+				StyledComponent.setBaseFont(font);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+	}
+		private void setCustomFont(){
+			
+			try {
+				File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+				StyledComponent.setBaseFont(font);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 		public void inBetween() {
 			if(coins >= 0 && coins < 10) {
-				numOfCoins.setX(1300);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1300);
+				}
+				else numOfCoins.setX(1310);
 			}
 			else if(coins >= 10 && coins < 100) {
-				numOfCoins.setX(1275);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1275);
+				}
+				else numOfCoins.setX(1285);
 			}
 			else if(coins >= 100 && coins < 1000) {
-				numOfCoins.setX(1250);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1250);
+				}
+				else numOfCoins.setX(1260);
 			}
 			else if(coins >= 1000 && coins < 10000) {
-				numOfCoins.setX(1225);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1225);
+				}
+				else numOfCoins.setX(1235);
 			}
 			else if(coins >= 10000 && coins < 100000) {
 				numOfCoins.setX(1200);
