@@ -12,11 +12,12 @@ import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
+import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class RickyBuy extends ClickableScreen {
 
 	public static final int COST = 200;
-	private Button back;
 	private Button buyDef;
 	private Button buyHP;
 	private Button buyAtk;
@@ -39,16 +40,18 @@ public class RickyBuy extends ClickableScreen {
 		setOrbitron();
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
-		back = new Button(0,20,125,50,"Back",new Action() {
+		setCustomFont();
+		
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
-			@Override
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
-		back.setForeground(Color.BLUE);
-		viewObjects.add(back);
-		
+			
+		//back.setForeground(Color.BLUE);
+		viewObjects.add(backButton);
+		setOrbitron();
 		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
@@ -190,6 +193,17 @@ public class RickyBuy extends ClickableScreen {
 				e.printStackTrace();
 			}		
 	}
+		private void setCustomFont(){
+			
+			try {
+				File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+				StyledComponent.setBaseFont(font);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		public void inBetween() {
 			if(coins >= 0 && coins < 10) {
