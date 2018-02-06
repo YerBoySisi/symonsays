@@ -60,7 +60,7 @@ public class ScrollingText extends MovingComponent{
 	public void setSpanHeight(int spanHeight) {
 		this.spanHeight = spanHeight;
 	}
-	
+
 	public void setList(ArrayList<String> list, String[] arr) {
 		for(int i = 0; i < arr.length; i++) {
 			list.add(arr[i]);

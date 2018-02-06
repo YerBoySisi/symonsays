@@ -37,5 +37,4 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		});
 		viewObjects.add(mainMenuButton);
 	}
-	
 }
