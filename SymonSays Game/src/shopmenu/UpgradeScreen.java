@@ -37,21 +37,21 @@ public class UpgradeScreen extends FullFunctionScreen {
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		setOrbitron();
-		title = new TextLabel(600, 50, 250, 50, "UPGRADES");
+		title = new TextLabel(550, 50, 250, 50, "UPGRADES");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
-		upgradeName1 = new TextLabel(200, 100, 200, 50, "Riposte");
+		upgradeName1 = new TextLabel(150, 100, 200, 50, "Riposte");
 		viewObjects.add(upgradeName1);
-		Graphic icon = new Graphic(160, 105, 40, 40,"shopUpgradeResources/riposte.png");
+		Graphic icon = new Graphic(110, 105, 40, 40,"shopUpgradeResources/riposte.png");
 		viewObjects.add(icon);
-		upgradeName2 = new TextLabel(600, 100, 270, 50, "Regeneration");
+		upgradeName2 = new TextLabel(550, 100, 270, 50, "Regeneration");
 		upgradeName2.setForeground(Color.GREEN);
 		viewObjects.add(upgradeName2);
-		Graphic icon2 = new Graphic(565, 110, 30, 30,"shopUpgradeResources/heal.png");
+		Graphic icon2 = new Graphic(515, 110, 30, 30,"shopUpgradeResources/heal.png");
 		viewObjects.add(icon2);
-		upgradeName3 = new TextLabel(1150, 100, 150, 50, "Agility");
+		upgradeName3 = new TextLabel(1100, 100, 150, 50, "Agility");
 		viewObjects.add(upgradeName3);
-		Graphic icon3 = new Graphic(1120, 110, 30, 30,"shopUpgradeResources/agility.png");
+		Graphic icon3 = new Graphic(1070, 110, 30, 30,"shopUpgradeResources/agility.png");
 		viewObjects.add(icon3);
 		setBankGothic();
 		addBackgrounds(viewObjects);
@@ -78,9 +78,10 @@ public class UpgradeScreen extends FullFunctionScreen {
 	}
 	
 	private void addBackgrounds(List<Visible> viewObjects) {
+		Color[] colors = {new Color (60,0,0), new Color (0,60,0), new Color (0,0,60)};
 		for(int i = 1; i <= 3; i++) {
 			for(int j = 1; j <= 3; j++) {
-				Button b = new Button(100 + 450 * (i - 1), 175 * j, 370, 160, "", new Color(0,60,0) , new Action() {
+				Button b = new Button(50 + 450 * (i - 1), 175 * j, 370, 160, "", colors[i - 1] , new Action() {
 
 					@Override
 					public void act() {
@@ -99,7 +100,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 		buttons = new ArrayList<Button>();
 		for(int i = 1; i <= 3; i++) {
 			for(int j = 1; j <= 3; j++) {
-				Button b = new Button(250 + 450 * (i - 1), 100 + 175 * j, 200, 50, "Upgrade", Color.GREEN, new Action() {
+				Button b = new Button(200 + 450 * (i - 1), 100 + 175 * j, 200, 50, "Upgrade", Color.GREEN, new Action() {
 
 					@Override
 					public void act() {
@@ -158,9 +159,9 @@ public class UpgradeScreen extends FullFunctionScreen {
 				if(i == 2) {
 					desc = "+" + j * 2 + "% chance to dodge an attack";
 				}
-				TextArea upgradeDescription = new TextArea(100 + 450 * i, 175 * j, 350, 300, desc);
+				TextArea upgradeDescription = new TextArea(50 + 450 * i, 175 * j, 350, 300, desc);
 				viewObjects.add(upgradeDescription);
-				TextLabel upgradeCost = new TextLabel(100 + 450 * i, 100 + 175 * j, 300, 50, cost * j + "UP");
+				TextLabel upgradeCost = new TextLabel(50 + 450 * i, 100 + 175 * j, 300, 50, cost * j + "UP");
 				upgradeCost.setCustomTextColor(Color.CYAN);
 				viewObjects.add(upgradeCost);
 				costs[i * 3 + (j - 1)] = cost * j;
