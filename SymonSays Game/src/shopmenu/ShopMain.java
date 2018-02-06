@@ -26,6 +26,7 @@ public class ShopMain extends GUIApplication {
 		Thread runner = new Thread(s1);
 		runner.start();
 	}
+	//LUL
 
 	@Override
 	public void initScreen() {
