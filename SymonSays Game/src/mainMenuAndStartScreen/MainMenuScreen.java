@@ -17,6 +17,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+	//	TestPane pane = new TestPane(this,0,0,300,200);
 		try {
 			File fontFile = new File("resources/orbitron-medium.otf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -45,12 +46,29 @@ public class MainMenuScreen extends FullFunctionScreen{
 			}
 		});
 		
+		ButtonDavid shopButton = new ButtonDavid(500,680,100,Color.lightGray,"Shop",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.shopScreen);
+			}
+		});
+		
+		ButtonDavid upgradeButton = new ButtonDavid(650,680,180,Color.lightGray,"Upgrade",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.upgradeScreen);
+			}
+		});
 		ButtonDavid startGameButton = new ButtonDavid(200,680,250,Color.lightGray,"Select Boss",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.selectScreen);
 			}
 		}); 
+		//pane.update();
+	//	viewObjects.add(pane);
+		viewObjects.add(upgradeButton);
+		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
 		viewObjects.add(backButton);
 	}
