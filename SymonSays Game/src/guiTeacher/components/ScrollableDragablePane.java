@@ -27,6 +27,10 @@ import guiTeacher.interfaces.Visible;
 
 public class ScrollableDragablePane extends ScrollablePane implements Dragable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7385356776889391283L;
 	protected Dragable dragItem;
 	
 	/**

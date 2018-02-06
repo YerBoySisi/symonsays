@@ -1,5 +1,6 @@
 package guiTeacher.components;
 
+
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import guiTeacher.interfaces.Clickable;
 import guiTeacher.interfaces.FocusController;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ComponentContainer;
+
 import guiTeacher.userInterfaces.Screen;
 
 /**
@@ -18,6 +20,9 @@ import guiTeacher.userInterfaces.Screen;
  *
  */
 public class Pane extends ComponentContainer implements Clickable {
+
+
+	private static final long serialVersionUID = -80459046241229108L;
 
 	protected ArrayList<Clickable> clickables;
 	protected BufferedImage contentImage;
