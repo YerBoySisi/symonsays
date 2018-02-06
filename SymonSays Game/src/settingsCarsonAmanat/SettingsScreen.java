@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JSlider;
 
 import creditsCarsonAmanat.Credits;
@@ -45,6 +46,7 @@ public class SettingsScreen extends FullFunctionScreen{
 				Settings.symon.setScreen(Credits.credits);
 			}
 		});
+		ImageIcon gearIcon = createImageIcon("resources/gear.png");
 		Button exit = new Button(300,250,100,50,"Exit",Color.GRAY,new Action() {
 
 			@Override
@@ -61,13 +63,17 @@ public class SettingsScreen extends FullFunctionScreen{
 			}
 			
 		});
-		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 200, 200, ButtonAmanat.Gear);
+		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 120, 120, gearIcon);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
 		viewObjects.add(settingGear);
 
+	}
+	
+	public static ImageIcon createImageIcon(String path) {
+	    return new ImageIcon("resources/gear.png");
 	}
 	
 	public void mouseDragged(MouseEvent m) {
