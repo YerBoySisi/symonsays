@@ -45,7 +45,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss1Button = new Button(20, y, wh, wh, "Boss 1", new Action() {
 			public void act() {
 				name = "Boss 1";
-				link = "resources/Dragon.jpg";
+				link = "resources/Ridley.png";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -160,7 +160,7 @@ public class SelectScreen extends FullFunctionScreen {
 		wh = 100;
 		y = getHeight() / 15;
 		name = "Boss 1";
-		link = "resources/Dragon.jpg";
+		link = "resources/Ridley.png";
 		level = 5;
 		levelRec = 1;
 		
