@@ -1,13 +1,15 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 
@@ -34,6 +36,7 @@ public class RickyBuy extends ClickableScreen {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		setOrbitron();
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		back = new Button(0,20,125,50,"Back",new Action() {
@@ -102,7 +105,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && hp < 10) {
 						coins -= COST;
 						hp++;
-						System.out.println(hp + ". HP");
+						//System.out.println(hp + ". HP");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierHP.setText("x"+Integer.toString(hp));
@@ -126,7 +129,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && dodge < 10) {
 						coins -= COST;
 						dodge++;
-						System.out.println(dodge + ". Dodge");
+						//System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierDodge.setText("x"+Integer.toString(dodge));
@@ -149,7 +152,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && atk < 10) {
 						coins -= COST;
 						atk++;
-						System.out.println(atk + ". Attack");
+						//System.out.println(atk + ". Attack");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierAtk.setText("x"+Integer.toString(atk));
@@ -177,6 +180,17 @@ public class RickyBuy extends ClickableScreen {
 		
 		}
 	
+		private void setOrbitron() {
+			try {
+				File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+				StyledComponent.setBaseFont(font);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+	}
+
 		public void inBetween() {
 			if(coins >= 0 && coins < 10) {
 				numOfCoins.setX(1300);

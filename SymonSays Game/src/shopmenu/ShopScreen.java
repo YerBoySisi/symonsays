@@ -15,6 +15,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import mainMenuAndStartScreen.ButtonDavid;
 
 public class ShopScreen extends FullFunctionScreen {
 	
@@ -33,17 +34,16 @@ public class ShopScreen extends FullFunctionScreen {
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		TextArea title = new TextArea(600,50,300,50,"MERCHANT");
 		viewObjects.add(title);
-		Button buy = new Button(50,650,100,50,"Buy",new Action() {
+		ButtonDavid buy = new ButtonDavid(50,650,100,Color.LIGHT_GRAY,"Buy",new Action() {
 			
 			@Override
 			public void act() {
 			 ShopMain.s1.setScreen(ShopMain.s3);
 			}
 		});
-		buy.setForeground(Color.white);
-		viewObjects.add(buy);
+		buy.setForeground(Color.white);		viewObjects.add(buy);
 		
-		Button sell = new Button(250,650,100,50,"Sell",new Action() {
+		ButtonDavid sell = new ButtonDavid(250,650,100,Color.LIGHT_GRAY,"Sell",new Action() {
 			
 			@Override
 			public void act() {
@@ -52,7 +52,7 @@ public class ShopScreen extends FullFunctionScreen {
 		});
 		sell.setForeground(Color.white);
 		viewObjects.add(sell);
-		Button upgrade = new Button(450,650,200,50,"Upgrade",new Action() {
+		ButtonDavid upgrade = new ButtonDavid(450,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
 			
 			@Override
 			public void act() {
@@ -63,7 +63,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 		upgrade.setForeground(Color.white);
 		viewObjects.add(upgrade);
-		Button back = new Button(750,650,200,50,"Back",new Action() {
+		ButtonDavid back = new ButtonDavid(750,650,200,Color.LIGHT_GRAY,"Back",new Action() {
 
 			
 			@Override
@@ -80,7 +80,7 @@ public class ShopScreen extends FullFunctionScreen {
 	private void setCustomFont(){
 		
 		try {
-			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
+			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
 			StyledComponent.setBaseFont(font);
 		} catch (Exception e) {

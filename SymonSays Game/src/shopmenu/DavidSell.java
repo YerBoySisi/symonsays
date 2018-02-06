@@ -37,11 +37,11 @@ public class DavidSell extends FullFunctionScreen {
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
 		TextArea quant4 = new TextArea(500,525,300,100,"x10");
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
-		viewObjects.add(new Graphic(420, 150, 75,75,"shopUpgradeResources/test.png"));
-		viewObjects.add(new Graphic(420, 250, 75,75,"shopUpgradeResources/health.png"));
-		viewObjects.add(new Graphic(420, 400, 75,75,"shopUpgradeResources/speed.png"));
-		viewObjects.add(new Graphic(420, 500, 75,75,"shopUpgradeResources/strength.png"));
-		viewObjects.add(new Graphic(1325, 25, 50 , 50,"shopUpgradeResources/coin.png"));
+		viewObjects.add(new Graphic(420, 150, 100,100,"shopUpgradeResources/test.png"));
+		viewObjects.add(new Graphic(420, 250, 100,100,"shopUpgradeResources/health.png"));
+		viewObjects.add(new Graphic(420, 400, 100,100,"shopUpgradeResources/speed.png"));
+		viewObjects.add(new Graphic(420, 500, 100,100,"shopUpgradeResources/strength.png"));
+		viewObjects.add(new Graphic(1325, 25, 50, 50,"shopUpgradeResources/coin.png"));
 		TextArea currency = new TextArea(1155,25,150,150,"1500");
 		currency.setCustomTextColor(Color.orange);
 		viewObjects.add(title);
