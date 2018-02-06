@@ -7,12 +7,12 @@ import inv.Items;
 
 public class ShopMain extends GUIApplication {
 	
-	 public static ShopMain s1;
-	 public static ShopScreen s2;
-	 static RickyBuy s3;
-	 static DavidSell s4;
-	 static UpgradeScreen s5;
-	 public static Inventory inventory;
+	public static ShopMain s1;
+	public static ShopScreen s2;
+	static RickyBuy s3;
+	static DavidSell s4;
+	static UpgradeScreen s5;
+	public static Inventory inventory;
 	
 
 	public ShopMain(int width, int height) {

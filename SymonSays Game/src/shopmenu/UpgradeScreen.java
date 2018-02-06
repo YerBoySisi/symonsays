@@ -14,17 +14,23 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import mainMenuAndStartScreen.ButtonDavid;
 
 public class UpgradeScreen extends FullFunctionScreen {
 	
-	private Button backButton;
+	private ButtonDavid backButton;
+	private ButtonDavid nextButton;
 	private TextLabel upgradeName1;
 	private TextLabel upgradeName2;
 	private TextLabel upgradeName3;
 	private TextLabel title;
 	private TextLabel pointsDisplay;
 	private int upgradePoints;
-	private ArrayList<Button> buttons;
+	private ArrayList<Button> buttons1;
+	private ArrayList<Button> buttons2;
+	private Upgrade riposte = new Upgrade(5, 50, "% chance to attack again");
+	private Upgrade regeneration = new Upgrade(50, 40, "HP healed each turn");
+	private Upgrade agility = new Upgrade(2, 30, "% chance to dodge an attack");
 	private int[] costs;
 
 	public UpgradeScreen(int width, int height) {
@@ -34,6 +40,8 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		StyledComponent.setButtonOutline(true);
+		StyledComponent.setActiveBorderColor(Color.WHITE);
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
 		setOrbitron();
@@ -60,7 +68,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + getUpgradePoints());
 		pointsDisplay.setCustomTextColor(Color.CYAN);
 		viewObjects.add(pointsDisplay);
-		backButton = new Button(0, 20, 100, 50, "Back", new Action() {
+		backButton = new ButtonDavid(30, 700, 100, Color.LIGHT_GRAY, "Back", new Action() {
 
 			@Override
 			public void act() {
@@ -68,20 +76,27 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 			
 		});
-		backButton.setForeground(Color.BLUE);
 		viewObjects.add(backButton);
-		addButtons();
+		addbuttons1();
 		setButtonActions();
-		for(Button b: buttons) {
+		for(Button b: buttons1) {
 			viewObjects.add(b);
 		}
+		/*nextButton = new ButtonDavid(1200, 700, 100, Color.LIGHT_GRAY, "Next", new Action() {
+
+			@Override
+			public void act() {
+				ShopMain.s1.setScreen(ShopMain.s2);
+			}
+			
+		});
+		viewObjects.add(nextButton);*/
 	}
 	
 	private void addBackgrounds(List<Visible> viewObjects) {
-		Color[] colors = {new Color (60,0,0), new Color (0,60,0), new Color (0,0,60)};
-		for(int i = 1; i <= 3; i++) {
+		for(int i = 0; i < 3; i++) {
 			for(int j = 1; j <= 3; j++) {
-				Button b = new Button(50 + 450 * (i - 1), 175 * j, 370, 160, "", colors[i - 1] , new Action() {
+				Button b = new Button(50 + 450 * i, 175 * j, 370, 160, "", new Action() {
 
 					@Override
 					public void act() {
@@ -96,8 +111,8 @@ public class UpgradeScreen extends FullFunctionScreen {
 		};
 	}
 
-	public void addButtons() {
-		buttons = new ArrayList<Button>();
+	public void addbuttons1() {
+		buttons1 = new ArrayList<Button>();
 		for(int i = 1; i <= 3; i++) {
 			for(int j = 1; j <= 3; j++) {
 				Button b = new Button(200 + 450 * (i - 1), 100 + 175 * j, 200, 50, "Upgrade", Color.GREEN, new Action() {
@@ -113,33 +128,32 @@ public class UpgradeScreen extends FullFunctionScreen {
 					b.setBackground(Color.RED);
 					b.update();
 				}
-				buttons.add(b);
+				buttons1.add(b);
 			}
 		}
 	}
 	
 	public void setButtonActions() {
-		for(Button b: buttons) {
+		for(Button b: buttons1) {
 			b.setAction(new Action() {
 
 				@Override
 				public void act() {
-					if(getUpgradePoints() >= costs[buttons.indexOf(b)]) {
-						setUpgradePoints(getUpgradePoints() - costs[buttons.indexOf(b)]);
+					if(getUpgradePoints() >= costs[buttons1.indexOf(b)]) {
+						setUpgradePoints(getUpgradePoints() - costs[buttons1.indexOf(b)]);
 						pointsDisplay.setText("UP: " + getUpgradePoints());
 						b.setEnabled(false);
-						b.setBackground(null);
-						b.setText("");
+						b.setBackground(Color.WHITE);
+						b.setText("Upgraded");
 						b.update();
-						if((buttons.indexOf(b) + 1) % 3 != 0) {
-							Button nextButton = buttons.get(buttons.indexOf(b) + 1);
+						if((buttons1.indexOf(b) + 1) % 3 != 0) {
+							Button nextButton = buttons1.get(buttons1.indexOf(b) + 1);
 							nextButton.setEnabled(true);
 							nextButton.setBackground(Color.GREEN);
 							nextButton.update();
 						}
 					}
 				}
-				
 			});
 		}
 	}
