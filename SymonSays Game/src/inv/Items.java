@@ -9,12 +9,12 @@ import guiTeacher.interfaces.Clickable;
 public class Items  {
 	
 	private String itemN;
-	private int amount;
+	private int cost;
 	
 
-	public Items(String name) {
+	public Items(String name,int cost) {
 		this.itemN = name;
-		this.amount = amount;
+		
 	}
 	public String toString() {
 		return itemN + ", "+ amount;

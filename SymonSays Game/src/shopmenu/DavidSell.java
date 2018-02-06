@@ -72,10 +72,11 @@ public class DavidSell extends FullFunctionScreen {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.add(new Items("Def"));
-				//int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+100);
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
 				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println("The Number of this item is: " + Collections.frequency(iteml, new Items("Def")));
+				//System.out.println("The Number of this item is: " + Collections.frequency(iteml, new Items("Def")));
+				System.out.println(count);
 			  
 			}
 		});
@@ -107,9 +108,8 @@ public class DavidSell extends FullFunctionScreen {
 	public int countOccurences(ArrayList<Items> list, Items x) {
 		int count = 0;
 		for (int i = 0; i < list.size(); i++) { 		      
-	          	if(list.get(i)== x) {
-	          		System.out.println(list.get(i));
-	          		System.out.println(x);
+	          	if(x.equals(list.get(i))) {
+	          		
 	          		count++;
 	          	}
 	      }   

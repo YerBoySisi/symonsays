@@ -22,6 +22,7 @@ public class ShopMain extends GUIApplication {
 	public static void main(String[] args) {
 		s1 = new ShopMain(1400, 780);
 		inventory = new Inventory();
+		ShopMain.inventory.itemlist.add(new Items("Def"));
 		Thread runner = new Thread(s1);
 		runner.start();
 	}
