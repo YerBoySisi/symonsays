@@ -49,6 +49,8 @@ public class BattleScreen extends ClickableScreen {
 	private ProgressBar mp;
 	private ProgressBar xp;
 	private ProgressBar bossHP;
+	private AnimatedComponent playerDisplay;
+	private AnimatedComponent bossDisplay;
 	private TextArea turnInfo;
 	
 	//Entities
@@ -61,7 +63,8 @@ public class BattleScreen extends ClickableScreen {
 	private SimonBelmont sbelm;
 	private Symon symon;
 	
-	private final Boss[] boss = {ssold, gshark, dmech, stort, sbelm, symon};
+	private final Boss[] bossList = {ssold, gshark, dmech, stort, sbelm, symon};
+	private Boss boss;
 
 	public BattleScreen(int width, int height) {
 		
@@ -84,13 +87,13 @@ public class BattleScreen extends ClickableScreen {
 		mp.setVisible(true);
 		viewObjects.add(mp);
 		
-		xp = new ProgressBar(10,220,200,50);
+		xp = new ProgressBar(10,220,10,100);
 		xp.setBarColor(Color.GRAY);
 		xp.setIncompleteColor(Color.BLACK);
 		xp.setVisible(true);
 		viewObjects.add(xp);
 		
-		bossHP = new ProgressBar(510,100,200,50);
+		bossHP = new ProgressBar(510,100,1000,50);
 		bossHP.setBarColor(Color.RED);
 		bossHP.setIncompleteColor(Color.BLACK);
 		bossHP.setVisible(true);
@@ -100,13 +103,20 @@ public class BattleScreen extends ClickableScreen {
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
 		
-		//player = Player.getSprite();
-		//player.setVisible(true);
-		//viewObjects.add(player);
+		playerDisplay = player.getIdleSprite();
+		playerDisplay.setVisible(true);
+		viewObjects.add(playerDisplay);
 		
-		//boss = DragonMech.getSprite();
-		//boss.setVisible(true);
-		//viewObjects.add(boss);
+		setBoss(0);
+		bossDisplay = boss.getIdleSprite();
+		bossDisplay.setVisible(true);
+		viewObjects.add(bossDisplay);
+		
+	}
+	
+	public void setBoss(int stage) {
+		
+		boss = bossList[stage];
 		
 	}
 

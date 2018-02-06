@@ -1,22 +1,20 @@
 package mainMenuAndStartScreen;
 
-import guiTeacher.GUIApplication;
+import java.util.List;
 
-public class StartScreen extends GUIApplication{
+import guiTeacher.components.Graphic;
+import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 
-	public StartScreen(int width, int length) {
-		super(width,length);
-	}
+public class StartScreen extends FullFunctionScreen{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public StartScreen(int width, int height) {
+		super(width, height);
 	}
 
 	@Override
-	public void initScreen() {
-		// TODO Auto-generated method stub
-		
+	public void initAllObjects(List<Visible> viewObjects) {
+		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 	}
-
+	
 }
