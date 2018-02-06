@@ -2,9 +2,7 @@ package creditsCarsonAmanat;
 
 import java.awt.Color;
 import java.util.List;
-
 import guiTeacher.components.Action;
-import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
@@ -32,13 +30,7 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(title);
 		ScrollingText s = new ScrollingText(-800);
 		viewObjects.add(s);
-		ButtonDavid settingsButton = new ButtonDavid(50, 680, 250, Color.WHITE, "Settings", new Action() {
-			public void act() {
-				Credits.sample.setScreen(Credits.settings);
-			}
-		});
-		viewObjects.add(settingsButton);
-		ButtonDavid mainMenuButton = new ButtonDavid(50, 630, 250, Color.WHITE, "Main Menu", new Action() {
+		ButtonDavid mainMenuButton = new ButtonDavid(10, 680, 250, Color.WHITE, "Main Menu", new Action() {
 			public void act() {
 				Credits.sample.setScreen(Credits.mainMenu);
 			}
