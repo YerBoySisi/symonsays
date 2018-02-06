@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.io.File;
 
+import guiTeacher.Utilities;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.StyledComponent;
@@ -18,39 +20,17 @@ public class ButtonAmanat extends Button {
 	public static Image Gear;
     Graphics2D g2 = (Graphics2D) g;
 
-	public ButtonAmanat(int x, int y, int w, int h, Image image, Action action) {
+	public ButtonAmanat(int x, int y, int w, int h, Image image) {
 
 		super(x, y, w, h, "", null);
 		update();
 	}
-
-	public void setColor(Color c) {
-		color = c;
-		this.setBackground(c);
-		update();
-	} 
-
-	@Override
-	public void setAction(Action a) {
-		this.action = a;
-	}
-
-	public void dim() {
-		this.setBackground(this.color);
-		update();
-	}
-	public void highlight() {
-		this.setBackground(Color.WHITE);
-		update();
-	}
-	public void act() {
-		Settings.symon.setScreen(Settings.screen);
-		
-
-	}
-	public void drawImage(Graphics2D g) {
-		Gear = Toolkit.getDefaultToolkit().getImage("resources/gear.png"); 
-		g2.drawImage(Gear, 10, 10, null );
-
+	public void drawButton(Graphics2D g, boolean hovered) {
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		if(color != null) {
+		Color c = hovered? Utilities.lighten(color, .6f): color;
+		g.setColor(c);
+		}
 	}
 }

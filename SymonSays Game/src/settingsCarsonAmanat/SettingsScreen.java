@@ -61,15 +61,7 @@ public class SettingsScreen extends FullFunctionScreen{
 			}
 			
 		});
-		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 200, 200, ButtonAmanat.Gear, new Action() {
-			
-			@Override
-			public void act() {
-				Settings.symon.setScreen(Settings.screen);
-
-				
-			}
-		});
+		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 200, 200, ButtonAmanat.Gear);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
