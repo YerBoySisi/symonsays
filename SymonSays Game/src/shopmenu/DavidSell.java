@@ -71,8 +71,8 @@ public class DavidSell extends FullFunctionScreen {
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.add(new Items("Def"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
+				iteml.add(new Items("Def","100"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def","100"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
 				System.out.println(ShopMain.inventory.getCurrency());
 				//System.out.println("The Number of this item is: " + Collections.frequency(iteml, new Items("Def")));

@@ -14,10 +14,22 @@ public class Items  {
 
 	public Items(String name,int cost) {
 		this.itemN = name;
-		
+	    this.cost = cost;
 	}
 	public String toString() {
-		return itemN + ", "+ amount;
+		return itemN + ", "+ cost;
+	}
+	public String getItemN() {
+		return itemN;
+	}
+	public void setItemN(String itemN) {
+		this.itemN = itemN;
+	}
+	public String getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 
 

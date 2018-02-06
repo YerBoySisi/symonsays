@@ -12,15 +12,15 @@ public class test {
         
         
         ArrayList<Items> itemL = new ArrayList<Items>();
-        itemL.add(new Items("001"));
-        itemL.add(new Items("002"));
-        itemL.add(new Items("Def"));
-        itemL.add(new Items("Def"));
-        itemL.add(new Items("004"));
-        itemL.add(new Items("Def"));
+        itemL.add(new Items("001","100"));
+        itemL.add(new Items("002","100"));
+        itemL.add(new Items("Def","100"));
+        itemL.add(new Items("Def","100"));
+        itemL.add(new Items("004","100"));
+        itemL.add(new Items("Def","100"));
  
         //Get the occurrence of "new Employee("003", "Sahana")" from empLists
-        int itemCount = Collections.frequency(itemL, new Items("001"));
-        System.out.println("Count of sahana is : " +itemCount);
+        int itemCount = Collections.frequency(itemL, new Items("Def","100"));
+        System.out.println("Count of this item is : " +itemCount);
 	}
 }

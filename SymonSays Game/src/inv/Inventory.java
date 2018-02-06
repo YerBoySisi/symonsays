@@ -18,8 +18,8 @@ public class Inventory {
 
 	public Inventory() {
 		itemlist =  new ArrayList<Items>();
-		itemlist.add(new Items("Def"));
-		itemlist.add(new Items("Def"));
+		itemlist.add(new Items("Def",100));
+		itemlist.add(new Items("Def",100));
 		this.currency = 1000;
 
 		
