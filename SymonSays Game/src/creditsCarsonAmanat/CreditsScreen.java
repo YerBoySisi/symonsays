@@ -20,7 +20,7 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 	}
 
 	public void run() {
-
+			
 	}
 
 	public void initAllObjects(List<Visible> viewObjects) {
