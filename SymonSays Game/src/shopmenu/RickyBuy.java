@@ -13,10 +13,10 @@ import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
 
 public class RickyBuy extends ClickableScreen {
 
+	private static final long serialVersionUID = 1777676794745848898L;
 	public static final int COST = 200;
 	private Button buyDef;
 	private Button buyHP;
@@ -174,7 +174,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 8000;
+		coins = 11;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
@@ -207,16 +207,28 @@ public class RickyBuy extends ClickableScreen {
 
 		public void inBetween() {
 			if(coins >= 0 && coins < 10) {
-				numOfCoins.setX(1300);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1300);
+				}
+				else numOfCoins.setX(1310);
 			}
 			else if(coins >= 10 && coins < 100) {
-				numOfCoins.setX(1275);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1275);
+				}
+				else numOfCoins.setX(1285);
 			}
 			else if(coins >= 100 && coins < 1000) {
-				numOfCoins.setX(1250);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1250);
+				}
+				else numOfCoins.setX(1260);
 			}
 			else if(coins >= 1000 && coins < 10000) {
-				numOfCoins.setX(1225);
+				if(coins % 10 != 1) {
+					numOfCoins.setX(1225);
+				}
+				else numOfCoins.setX(1235);
 			}
 			else if(coins >= 10000 && coins < 100000) {
 				numOfCoins.setX(1200);
