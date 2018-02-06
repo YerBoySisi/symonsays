@@ -3,6 +3,7 @@ package mainMenuAndStartScreen;
 import java.awt.Font;
 import java.io.File;
 
+import bossSelect.SelectScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 
@@ -11,6 +12,7 @@ public class GameStarter extends GUIApplication{
 	public static StartScreen startScreen;
 	public static MainMenuScreen mainMenuScreen;
 	public static GameStarter start;
+	public static SelectScreen selectScreen;
 	
 	public GameStarter(int width, int height) {
 		super(width, height);
@@ -26,7 +28,8 @@ public class GameStarter extends GUIApplication{
 	public void initScreen() {
 		startScreen = new StartScreen(getWidth(),getHeight());
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
-		setScreen(mainMenuScreen);
+		selectScreen = new SelectScreen(getWidth(),getHeight());
+		setScreen(startScreen);
 	}
 
 }
