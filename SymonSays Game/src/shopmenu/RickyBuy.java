@@ -54,10 +54,18 @@ public class RickyBuy extends ClickableScreen {
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
-		for(int i = 0; i < 4; i++) {
-			TextArea multiplier = new TextArea(500,150 + i*125,300,100,"x10");
-			viewObjects.add(multiplier);
-		}
+		
+		TextArea multiplierDef = new TextArea(500,150,300,100,"x"+Integer.toString(def));
+		viewObjects.add(multiplierDef);
+		
+		TextArea multiplierHP = new TextArea(500,275,300,100,"x"+Integer.toString(hp));
+		viewObjects.add(multiplierHP);
+		
+		TextArea multiplierDodge = new TextArea(500,400,300,100,"x"+Integer.toString(dodge));
+		viewObjects.add(multiplierDodge);
+		
+		TextArea multiplierAtk = new TextArea(500,525,300,100,"x"+Integer.toString(atk));
+		viewObjects.add(multiplierAtk);
 		
 		viewObjects.add(desc1);
 		viewObjects.add(desc2);
@@ -72,9 +80,9 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && def < 10) {
 						coins -= COST;
 						def++;
-						System.out.println(def + ". Defense");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
+						multiplierDef.setText("x"+Integer.toString(def));
 					if(def == 10) {
 						buyDef.setEnabled(false);
 						buyDef.setBackground(Color.RED);
@@ -97,6 +105,7 @@ public class RickyBuy extends ClickableScreen {
 						System.out.println(hp + ". HP");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
+						multiplierHP.setText("x"+Integer.toString(hp));
 					if(hp == 10) {
 						buyHP.setEnabled(false);
 						buyHP.setBackground(Color.RED);
@@ -120,6 +129,7 @@ public class RickyBuy extends ClickableScreen {
 						System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
+						multiplierDodge.setText("x"+Integer.toString(dodge));
 					if(dodge== 10) {
 						buyDodge.setEnabled(false);
 						buyDodge.setBackground(Color.RED);
@@ -142,6 +152,7 @@ public class RickyBuy extends ClickableScreen {
 						System.out.println(atk + ". Attack");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
+						multiplierAtk.setText("x"+Integer.toString(atk));
 						if(atk == 10) {
 							buyAtk.setEnabled(false);
 							buyAtk.setBackground(Color.RED);
@@ -157,7 +168,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 20000;
+		coins = 8000;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
