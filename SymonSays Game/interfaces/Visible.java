@@ -21,9 +21,7 @@ package guiTeacher.interfaces;
 import java.awt.image.BufferedImage;
 
 import guiTeacher.components.AnimatedComponent;
-
 import guiTeacher.components.Component;
-
 
 /**
  * Everything that can be shown within a window must implement this interface
