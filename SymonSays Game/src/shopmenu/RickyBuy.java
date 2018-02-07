@@ -18,21 +18,30 @@ public class RickyBuy extends ClickableScreen {
 
 	private static final long serialVersionUID = 1777676794745848898L;
 	public static final int COST = 200;
+	
 	private Button buyDef;
 	private Button buyHP;
 	private Button buyAtk;
 	private Button buyDodge;
 	
 	private int coins;
+	private TextArea numOfCoins;
+	
 	private int def;
 	private int hp;
 	private int dodge;
 	private int atk;
-	private TextArea numOfCoins;
-	
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
+	}
+	
+	public int getCoins() {
+		return coins;
+	}
+
+	public void setCoins(int coins) {
+		this.coins = coins;
 	}
 	
 	@Override
@@ -42,14 +51,13 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(background);
 		setCustomFont();
 		
-		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.LIGHT_GRAY,"Back",new Action() {
 			
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
 			
-		//back.setForeground(Color.BLUE);
 		viewObjects.add(backButton);
 		setOrbitron();
 		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
@@ -108,7 +116,6 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && hp < 10) {
 						coins -= COST;
 						hp++;
-						//System.out.println(hp + ". HP");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
 						multiplierHP.setText("x"+Integer.toString(hp));
@@ -128,7 +135,7 @@ public class RickyBuy extends ClickableScreen {
 			
 			@Override
 			public void act() {
-				buyAtk.setEnabled(true);
+				buyDodge.setEnabled(true);
 				if (coins >= COST && dodge < 10) {
 						coins -= COST;
 						dodge++;
@@ -174,7 +181,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 11;
+		coins = 10001;
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
@@ -189,7 +196,6 @@ public class RickyBuy extends ClickableScreen {
 				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
 				StyledComponent.setBaseFont(font);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 	}
@@ -200,7 +206,6 @@ public class RickyBuy extends ClickableScreen {
 				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
 				StyledComponent.setBaseFont(font);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
