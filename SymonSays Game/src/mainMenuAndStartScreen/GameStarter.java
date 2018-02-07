@@ -6,6 +6,7 @@ import java.io.File;
 import bossSelect.SelectScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import sisiKneeBattle.BattleScreen;
 
 public class GameStarter extends GUIApplication{
 	
@@ -13,6 +14,7 @@ public class GameStarter extends GUIApplication{
 	public static MainMenuScreen mainMenuScreen;
 	public static GameStarter start;
 	public static SelectScreen selectScreen;
+	public static BattleScreen battleScreen;
 	
 	public GameStarter(int width, int height) {
 		super(width, height);
@@ -29,7 +31,8 @@ public class GameStarter extends GUIApplication{
 		startScreen = new StartScreen(getWidth(),getHeight());
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
 		selectScreen = new SelectScreen(getWidth(),getHeight());
-		setScreen(startScreen);
+		battleScreen = new BattleScreen(getWidth(),getHeight());
+		setScreen(battleScreen);
 	}
 
 }

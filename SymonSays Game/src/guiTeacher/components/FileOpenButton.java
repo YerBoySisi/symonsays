@@ -14,7 +14,7 @@ import guiTeacher.userInterfaces.FileLoader;
  * @author bnockles
  *
  */
-public class FileOpenButton extends ImageTextButton {
+public class FileOpenButton extends ButtonDavid {
 
 	/**
 	 * 
