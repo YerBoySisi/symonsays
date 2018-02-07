@@ -17,7 +17,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
 
 public class UpgradeScreen extends FullFunctionScreen {
-	
+
 	private ButtonDavid backButton;
 	private ButtonDavid nextButton;
 	private TextLabel upgradeName1;
@@ -84,7 +84,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
 			}
-			
+
 		});
 		viewObjects.add(backButton);
 		addbuttons1();
@@ -98,17 +98,19 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 			@Override
 			public void act() {
-				addBackgrounds(viewObjects);
-				addDescriptions2(viewObjects);
-				for(Button b: buttons2) {
-					viewObjects.add(b);
+				if(front){
+					addBackgrounds(viewObjects);
+					addDescriptions2(viewObjects);
+					for(Button b: buttons2) {
+						viewObjects.add(b);
+					}
 				}
 			}
-			
+
 		});
 		viewObjects.add(nextButton);*/
 	}
-	
+
 	private void addBackgrounds(List<Visible> viewObjects) {
 		for(int i = 0; i < 3; i++) {
 			for(int j = 1; j <= 3; j++) {
@@ -117,9 +119,9 @@ public class UpgradeScreen extends FullFunctionScreen {
 					@Override
 					public void act() {
 						// TODO Auto-generated method stub
-						
+
 					}
-					
+
 				});
 				b.setEnabled(false);
 				viewObjects.add(b);
@@ -135,9 +137,9 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 					@Override
 					public void act() {
-						
+
 					}
-					
+
 				});
 				if(j != 1) {
 					b.setEnabled(false);
@@ -148,7 +150,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 		}
 	}
-	
+
 	public void addbuttons2() {
 		buttons2 = new ArrayList<Button>();
 		for(int i = 1; i <= 3; i++) {
@@ -157,9 +159,9 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 					@Override
 					public void act() {
-						
+
 					}
-					
+
 				});
 				if(j != 1) {
 					b.setEnabled(false);
@@ -170,7 +172,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 		}
 	}
-	
+
 	public void setButton1Actions() {
 		for(Button b: buttons1) {
 			b.setAction(new Action() {
@@ -195,7 +197,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			});
 		}
 	}
-	
+
 	public void setButton2Actions() {
 		for(Button b: buttons2) {
 			b.setAction(new Action() {
@@ -220,7 +222,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			});
 		}
 	}
-	
+
 	public void addDescriptions1(List<Visible> viewObjects) {
 		createUpgradeList1();
 		costs1 = new int[9];
@@ -237,7 +239,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 		}
 	}
-	
+
 	public void createUpgradeList1() {
 		riposte = new Upgrade(5, 50, "% chance to attack again");
 		regeneration = new Upgrade(50, 40, "HP healed each turn");
@@ -247,7 +249,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 		upgrades1[1] = regeneration;
 		upgrades1[2] = agility;
 	}
-	
+
 	public void addDescriptions2(List<Visible> viewObjects) {
 		createUpgradeList2();
 		costs2 = new int[9];
@@ -264,7 +266,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			}
 		}
 	}
-	
+
 	public void createUpgradeList2() {
 		attack = new Upgrade(20, 50, "POW");
 		defense = new Upgrade(10, 40, "DEF");
@@ -274,7 +276,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 		upgrades2[1] = defense;
 		upgrades2[2] = magic;
 	}
-	
+
 	public int getUpgradePoints() {
 		return upgradePoints;
 	}
@@ -282,7 +284,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 	public void setUpgradePoints(int upgradePoints) {
 		this.upgradePoints = upgradePoints;
 	}
-	
+
 	public void setOrbitron() {
 		try {
 			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
@@ -293,7 +295,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setBankGothic() {
 		try {
 			File fontFile = new File("resources//bankgothic_medium_bt.ttf");
