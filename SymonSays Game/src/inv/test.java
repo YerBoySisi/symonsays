@@ -33,6 +33,8 @@ public class test {
         int itemCount = countOccurences(itemL,new Items("Def"));
         System.out.println("Count of this item is : " +itemCount);
         System.out.println(itemL.get(3));
+
+
 	}
 	public static int countOccurences(ArrayList<Items> list, Items x) {
 		int count = 0;

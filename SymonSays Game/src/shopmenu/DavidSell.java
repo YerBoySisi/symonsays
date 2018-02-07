@@ -14,13 +14,17 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Inventory;
 import inv.Items;
+import mainMenuAndStartScreen.ButtonDavid;
 
 public class DavidSell extends FullFunctionScreen {
 	
 	private TextArea title;
+	private int def;
+	private Inventory inv;
 
 	public DavidSell(int width, int height) {
 		super(width, height);
+		inv = ShopMain.inventory;
 	}
 
 	@Override
@@ -28,13 +32,17 @@ public class DavidSell extends FullFunctionScreen {
 		//title.setTextColor(Color.WHITE);
 		title =  new TextArea(600,50,300,50,"MERCHANT");
 		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
-		TextArea quant1 = new TextArea(500,150,300,100,"x10");
+		TextArea quant1 = new TextArea(500,150,300,100,"-");
+		quant1.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Def"))));
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
-		TextArea quant2 = new TextArea(500,275,300,100,"x10");
+		TextArea quant2 = new TextArea(500,275,300,100,"-");
+		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Health"))));
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
-		TextArea quant3 = new TextArea(500,400,300,100,"x10");
+		TextArea quant3 = new TextArea(500,400,300,100,"-");
+		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Speed"))));
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
-		TextArea quant4 = new TextArea(500,525,300,100,"x10");
+		TextArea quant4 = new TextArea(500,525,300,100,"-");
+		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Revive"))));
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		viewObjects.add(new Graphic(420, 150, 100,100,"shopUpgradeResources/test.png"));
 		viewObjects.add(new Graphic(420, 250, 100,100,"shopUpgradeResources/health.png"));
@@ -43,21 +51,13 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(new Graphic(1325, 25, 50, 50,"shopUpgradeResources/coin.png"));
 		TextArea currency = new TextArea(1155,25,150,150,"1500");
 		currency.setCustomTextColor(Color.orange);
-		viewObjects.add(title);
-		viewObjects.add(desc1);
-		viewObjects.add(quant1);
-		viewObjects.add(desc2);
-		viewObjects.add(quant2);
-		viewObjects.add(desc3);
-		viewObjects.add(quant3);
-		viewObjects.add(desc4);
-		viewObjects.add(quant4);
-		viewObjects.add(currency);
+		currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
+
 		//hahaha
 		//countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
 		//Integer.toString(count)
 		
-		Button back = new Button(0,20,125,50,"Back",new Action() {
+		ButtonDavid back = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 
 			
 			@Override
@@ -72,10 +72,11 @@ public class DavidSell extends FullFunctionScreen {
 		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.add(new Items("Def"));
+				iteml.remove(new Items("Def"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant1.setText("x"+Integer.toString(count));
+				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Def: " +count);
 			  
@@ -86,10 +87,11 @@ public class DavidSell extends FullFunctionScreen {
 		Button buyS = new Button(900, 300, 100, 100, "Sell", new Action() {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.add(new Items("Health"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Health"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
+				iteml.remove(new Items("Health"));
+				int count = countOccurences(iteml,new Items("Health"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant2.setText("x"+Integer.toString(count));
+				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Health: " +count);
 			}
@@ -99,10 +101,11 @@ public class DavidSell extends FullFunctionScreen {
 		Button buyR = new Button(900, 425, 100, 100, "Sell", new Action() {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.add(new Items("Speed"));
+				iteml.remove(new Items("Speed"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant3.setText("x"+Integer.toString(count));
+				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Speed: " +count);
 			}
@@ -112,16 +115,29 @@ public class DavidSell extends FullFunctionScreen {
 		Button buyHM = new Button(900, 525, 100, 100, "Sell", new Action() {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.add(new Items("Revive"));
+				iteml.remove(new Items("Revive"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Revive"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-100);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant4.setText(Integer.toString(count));
+				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Revive: " +count);
 			}
 		});
 		buyHM.setForeground(Color.GRAY);
 		viewObjects.add(buyHM);
+		
+		
+		viewObjects.add(title);
+		viewObjects.add(desc1);
+		viewObjects.add(quant1);
+		viewObjects.add(desc2);
+		viewObjects.add(quant2);
+		viewObjects.add(desc3);
+		viewObjects.add(quant3);
+		viewObjects.add(desc4);
+		viewObjects.add(quant4);
+		viewObjects.add(currency);
 		
 	}
 	
@@ -134,6 +150,7 @@ public class DavidSell extends FullFunctionScreen {
 	      }
 		return count;
 		}
+	
 		
 	
 }

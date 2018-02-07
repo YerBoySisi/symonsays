@@ -12,7 +12,7 @@ public class ShopMain extends GUIApplication {
 	static RickyBuy s3;
 	static DavidSell s4;
 	static UpgradeScreen s5;
-	public static Inventory inventory;
+    public static Inventory inventory;
 	
 
 	public ShopMain(int width, int height) {
@@ -20,8 +20,9 @@ public class ShopMain extends GUIApplication {
 		setVisible(true);
 	}
 	public static void main(String[] args) {
-		s1 = new ShopMain(1400, 780);
 		inventory = new Inventory();
+		inventory.setCurrency(1000);
+		s1 = new ShopMain(1400, 780);
 		Thread runner = new Thread(s1);
 		runner.start();
 	}
