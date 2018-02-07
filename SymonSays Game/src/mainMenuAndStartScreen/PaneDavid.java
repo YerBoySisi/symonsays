@@ -18,7 +18,7 @@ public abstract class PaneDavid extends Pane{
 	}
 	
 	
-	public abstract ArrayList<DavidButton> getButtons();
+	public abstract ArrayList<ButtonDavid> getButtons();
 
 
 	public void formatButtons() {
