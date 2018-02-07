@@ -36,13 +36,13 @@ public class DavidSell extends FullFunctionScreen {
 		quant1.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Def"))));
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 		TextArea quant2 = new TextArea(500,275,300,100,"-");
-		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Health"))));
+		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
 		TextArea quant3 = new TextArea(500,400,300,100,"-");
-		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Speed"))));
+		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
 		TextArea quant4 = new TextArea(500,525,300,100,"-");
-		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Revive"))));
+		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		viewObjects.add(new Graphic(420, 150, 100,100,"shopUpgradeResources/test.png"));
 		viewObjects.add(new Graphic(420, 250, 100,100,"shopUpgradeResources/health.png"));
@@ -73,7 +73,7 @@ public class DavidSell extends FullFunctionScreen {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Def"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("def"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant1.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
@@ -88,7 +88,7 @@ public class DavidSell extends FullFunctionScreen {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Health"));
-				int count = countOccurences(iteml,new Items("Health"));
+				int count = countOccurences(iteml,new Items("hp"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant2.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
@@ -102,7 +102,7 @@ public class DavidSell extends FullFunctionScreen {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Speed"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("dodge"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant3.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
@@ -116,7 +116,7 @@ public class DavidSell extends FullFunctionScreen {
 			public void act() {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Revive"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Revive"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("atk"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
 				quant4.setText(Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));

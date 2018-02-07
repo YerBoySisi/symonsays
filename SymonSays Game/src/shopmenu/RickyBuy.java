@@ -12,6 +12,7 @@ import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
+import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
 
 public class RickyBuy extends ClickableScreen {
@@ -34,14 +35,7 @@ public class RickyBuy extends ClickableScreen {
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
-	}
-	
-	public int getCoins() {
-		return coins;
-	}
-
-	public void setCoins(int coins) {
-		this.coins = coins;
+		System.out.println(coins);
 	}
 	
 	@Override
@@ -64,20 +58,25 @@ public class RickyBuy extends ClickableScreen {
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
 		
-		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
+		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE 100 Defense"
+				+ "");
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
-		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
-		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
+		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE by 5%");
+		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 10");
 		
+		def = DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def"));
 		TextArea multiplierDef = new TextArea(500,150,300,100,"x"+Integer.toString(def));
 		viewObjects.add(multiplierDef);
 		
+		hp = DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp"));
 		TextArea multiplierHP = new TextArea(500,275,300,100,"x"+Integer.toString(hp));
 		viewObjects.add(multiplierHP);
 		
+		dodge = DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge"));
 		TextArea multiplierDodge = new TextArea(500,400,300,100,"x"+Integer.toString(dodge));
 		viewObjects.add(multiplierDodge);
 		
+		atk = DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk"));
 		TextArea multiplierAtk = new TextArea(500,525,300,100,"x"+Integer.toString(atk));
 		viewObjects.add(multiplierAtk);
 		
@@ -95,6 +94,8 @@ public class RickyBuy extends ClickableScreen {
 						coins -= COST;
 						def++;
 						numOfCoins.setText(Integer.toString(coins));
+						//setCoins(coins);
+						ShopMain.inventory.itemlist.add(new Items("def"));
 						inBetween();
 						multiplierDef.setText("x"+Integer.toString(def));
 					if(def == 10) {
@@ -117,6 +118,7 @@ public class RickyBuy extends ClickableScreen {
 						coins -= COST;
 						hp++;
 						numOfCoins.setText(Integer.toString(coins));
+						ShopMain.inventory.itemlist.add(new Items("hp"));
 						inBetween();
 						multiplierHP.setText("x"+Integer.toString(hp));
 					if(hp == 10) {
@@ -135,12 +137,14 @@ public class RickyBuy extends ClickableScreen {
 			
 			@Override
 			public void act() {
-				buyDodge.setEnabled(true);
+				buyDodge
+				.setEnabled(true);
 				if (coins >= COST && dodge < 10) {
 						coins -= COST;
 						dodge++;
 						//System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString(coins));
+						ShopMain.inventory.itemlist.add(new Items("dodge"));
 						inBetween();
 						multiplierDodge.setText("x"+Integer.toString(dodge));
 					if(dodge== 10) {
@@ -162,6 +166,7 @@ public class RickyBuy extends ClickableScreen {
 				if (coins >= COST && atk < 10) {
 						coins -= COST;
 						atk++;
+						ShopMain.inventory.itemlist.add(new Items("Attack"));
 						//System.out.println(atk + ". Attack");
 						numOfCoins.setText(Integer.toString(coins));
 						inBetween();
@@ -181,7 +186,7 @@ public class RickyBuy extends ClickableScreen {
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		
-		coins = 10001;
+		coins = ShopMain.inventory.getCurrency();
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		viewObjects.add(numOfCoins);
@@ -238,5 +243,13 @@ public class RickyBuy extends ClickableScreen {
 			else if(coins >= 10000 && coins < 100000) {
 				numOfCoins.setX(1200);
 			}
+		}
+
+		public int getCoins() {
+			return coins;
+		}
+
+		public void setCoins(int coins) {
+			this.coins = coins;
 		}
 }
