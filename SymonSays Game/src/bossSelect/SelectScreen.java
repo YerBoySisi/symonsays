@@ -57,7 +57,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss2Button = new Button(140, y, wh, wh, "Boss 2", new Action() {
 			public void act() {
 				name = "Boss 2";
-				link = "resources/Xeno.jpg";
+				link = "resources/Soldier.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -69,7 +69,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss3Button = new Button(260, y, wh, wh, "Boss 3", new Action() {
 			public void act() {
 				name = "Boss 3";
-				link = "resources/Ghaul.jpg";
+				link = "resources/Turtle.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -122,7 +122,7 @@ public class SelectScreen extends FullFunctionScreen {
 			}
 		});
 		initGothicFont(30f);
-		background = new Graphic(0, 0, 1400, 780, link);
+		background = new Graphic(0, 0, getWidth(), getHeight(), link);
 		txt = new TextArea(20, 250, 300, 300,"Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
 		viewObjects.add(background);
 		addIcons(viewObjects);
