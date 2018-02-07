@@ -2,9 +2,6 @@ package inv;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
-import shopmenu.ShopMain;
 
 public class test {
 	public static void main(String[] args) {
