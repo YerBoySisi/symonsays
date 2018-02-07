@@ -17,12 +17,6 @@ public class Inventory {
 	}
 
 	public Inventory() {
-		itemlist =  new ArrayList<Items>();
-
-
-
-		
+		itemlist =  new ArrayList<Items>();		
 	}
-
-	
 }

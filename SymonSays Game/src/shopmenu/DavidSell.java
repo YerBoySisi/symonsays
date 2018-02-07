@@ -8,6 +8,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
+import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Inventory;
@@ -16,7 +17,6 @@ import mainMenuAndStartScreen.ButtonDavid;
 
 public class DavidSell extends FullFunctionScreen {
 	
-	private static final long serialVersionUID = 6577268248251558487L;
 	private TextArea title;
 	private int def;
 	private Inventory inv;
