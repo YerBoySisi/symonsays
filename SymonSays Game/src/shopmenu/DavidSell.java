@@ -2,14 +2,12 @@ package shopmenu;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Inventory;
@@ -18,6 +16,7 @@ import mainMenuAndStartScreen.ButtonDavid;
 
 public class DavidSell extends FullFunctionScreen {
 	
+	private static final long serialVersionUID = 6577268248251558487L;
 	private TextArea title;
 	private int def;
 	private Inventory inv;
@@ -57,8 +56,9 @@ public class DavidSell extends FullFunctionScreen {
 		//countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
 		//Integer.toString(count)
 		
-		ButtonDavid back = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
+		ButtonDavid back = new ButtonDavid(50,680,100,Color.LIGHT_GRAY,"Back",new Action() {
 
+			
 			
 			@Override
 			public void act() {
@@ -74,7 +74,7 @@ public class DavidSell extends FullFunctionScreen {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Def"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
 				quant1.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
@@ -89,7 +89,7 @@ public class DavidSell extends FullFunctionScreen {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Health"));
 				int count = countOccurences(iteml,new Items("Health"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
 				quant2.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
@@ -103,7 +103,7 @@ public class DavidSell extends FullFunctionScreen {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Speed"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
 				quant3.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
@@ -117,7 +117,7 @@ public class DavidSell extends FullFunctionScreen {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
 				iteml.remove(new Items("Revive"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Revive"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-200);
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
 				quant4.setText(Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());

@@ -7,6 +7,7 @@ import inv.Items;
 
 public class ShopMain extends GUIApplication {
 	
+	private static final long serialVersionUID = -2687172633720501579L;
 	public static ShopMain s1;
 	public static ShopScreen s2;
 	static RickyBuy s3;

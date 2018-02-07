@@ -1,11 +1,5 @@
 package inv;
 
-import java.awt.Graphics2D;
-
-import guiTeacher.components.Action;
-import guiTeacher.components.Component;
-import guiTeacher.interfaces.Clickable;
-
 public class Items  {
 	
 	private String itemN;
@@ -14,7 +8,7 @@ public class Items  {
 
 	public Items(String name) {
 		this.itemN = name;
-	    this.cost = cost;
+	    //this.cost = cost;
 	}
 	public Items() {
 	}
@@ -27,8 +21,4 @@ public class Items  {
 	public void setItemN(String itemN) {
 		this.itemN = itemN;
 	}
-	
-
-
-
 }
