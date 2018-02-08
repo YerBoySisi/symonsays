@@ -6,20 +6,17 @@ import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
-import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
-import guiTeacher.components.TextField;
-import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.ClickableScreen;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
 
 public class ShopScreen extends FullFunctionScreen {
-	
+
+	private static final long serialVersionUID = 4047527092551155043L;
 	private TextArea title;
 
 	public ShopScreen(int width, int height) {

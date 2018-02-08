@@ -1,10 +1,7 @@
-
-
 package shopmenu;
 
 import guiTeacher.GUIApplication;
 import inv.Inventory;
-import inv.Items;
 
 public class ShopMain extends GUIApplication {
 	
@@ -14,13 +11,13 @@ public class ShopMain extends GUIApplication {
 	static RickyBuy s3;
 	static DavidSell s4;
 	static UpgradeScreen s5;
-    public static Inventory inventory;
-	
+    public static Inventory inventory;	
 
 	public ShopMain(int width, int height) {
 		super(width, height);
 		setVisible(true);
 	}
+	
 	public static void main(String[] args) {
 		inventory = new Inventory();
 		inventory.setCurrency(1000);
@@ -37,5 +34,4 @@ public class ShopMain extends GUIApplication {
 		s4 = new DavidSell(getWidth(),getHeight());
 		s5 = new UpgradeScreen(getWidth(),getHeight());
 	}
-
 }

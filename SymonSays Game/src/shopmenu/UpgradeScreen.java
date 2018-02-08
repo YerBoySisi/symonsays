@@ -18,6 +18,7 @@ import mainMenuAndStartScreen.ButtonDavid;
 
 public class UpgradeScreen extends FullFunctionScreen {
 
+	private static final long serialVersionUID = 7962370587108943493L;
 	private ButtonDavid backButton;
 	private ButtonDavid nextButton;
 	private TextLabel upgradeName1;

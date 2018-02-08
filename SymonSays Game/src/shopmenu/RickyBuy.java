@@ -63,8 +63,7 @@ public class RickyBuy extends ClickableScreen {
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
 		
-		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE 25 Defense"
-				+ "");
+		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE 25 Defense");
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE by 5%");
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 10");
@@ -96,7 +95,7 @@ public class RickyBuy extends ClickableScreen {
 			public void act() {
 				buyDef.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.COST);
 						//def++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						//setCoins(coins);
@@ -120,7 +119,7 @@ public class RickyBuy extends ClickableScreen {
 			public void act() {
 				buyHP.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.COST);
 						//hp++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("hp"));
@@ -168,8 +167,7 @@ public class RickyBuy extends ClickableScreen {
 			public void act() {
 				buyAtk.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-COST);
-						//atk++;
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - COST);
 						inBetween();
 						ShopMain.inventory.itemlist.add(new Items("atk"));
 						//System.out.println(atk + ". Attack");
