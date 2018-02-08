@@ -201,14 +201,19 @@ public class BattleScreen extends FullFunctionScreen {
 		
 	}
 	
-	public void setBarWidth(Bar bar, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
+	public void setBarWidth(Bar bar, TextArea txt, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
 		
 		viewObjects.remove(bar);
+		viewObjects.remove(txt);
 		
 		int newWidth = (int)Math.round((currentHP / maxHP) * maxBarWidth);
 		playerHPBar = new Bar(300,560,newWidth,30, "HP", Color.green, Color.green);
 		playerHPBar.setVisible(true);
 		viewObjects.add(playerHPBar);
+		
+		playerHP = new TextArea(425,553,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
+		playerHP.setVisible(true);
+		viewObjects.add(playerHP);
 		
 	}
 	
