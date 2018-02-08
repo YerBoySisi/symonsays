@@ -121,11 +121,21 @@ public class SelectScreen extends FullFunctionScreen {
 				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		});
+		ButtonDavid startButton = new ButtonDavid(1020,680,300,Color.lightGray,"Start Battle",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+			}
+		});
 		initGothicFont(30f);
 		background = new Graphic(0, 0, getWidth(), getHeight(), link);
 		txt = new TextArea(20, 250, 300, 300,"Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
+		initOrbitronFont(40f);
+		TextArea title = new TextArea(20, 20, 300, 150,"Boss Select");
+		initGothicFont(30f);
 		viewObjects.add(background);
 		addIcons(viewObjects);
+		viewObjects.add(title);
 		viewObjects.add(boss1Button);
 		viewObjects.add(boss2Button);
 		viewObjects.add(boss3Button);
@@ -133,6 +143,7 @@ public class SelectScreen extends FullFunctionScreen {
 		viewObjects.add(boss5Button);
 		viewObjects.add(boss6Button);
 		viewObjects.add(backButton);
+		viewObjects.add(startButton);
 		viewObjects.add(txt);
 		boss1Button.setForeground(Color.white);
 		boss2Button.setForeground(Color.white);
@@ -156,9 +167,21 @@ public class SelectScreen extends FullFunctionScreen {
 	}
 
 
+	public void initOrbitronFont(float f) {
+		try {
+		File fontFile = new File("resources/orbitron-bold.otf");
+		Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+		Font baseFont=font.deriveFont(f);
+		StyledComponent.setBaseFont(baseFont);
+	} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+
+
 	public void initValues() {
 		wh = 100;
-		y = getHeight() / 15;
+		y = getHeight() / 10;
 		name = "Boss 1";
 		link = "resources/Ridley.png";
 		level = 5;
