@@ -18,7 +18,6 @@ import mainMenuAndStartScreen.ButtonDavid;
 
 public class UpgradeScreen extends FullFunctionScreen {
 
-	private static final long serialVersionUID = 7962370587108943493L;
 	private ButtonDavid backButton;
 	private ButtonDavid nextButton;
 	private TextLabel upgradeName1;
@@ -35,9 +34,15 @@ public class UpgradeScreen extends FullFunctionScreen {
 	private Upgrade riposte;
 	private Upgrade regeneration;
 	private Upgrade agility;
-	private Upgrade defense;
 	private Upgrade attack;
+	private Upgrade defense;
 	private Upgrade magic;
+	private int riposteLevel = 0;
+	private int regenerationLevel = 0;
+	private int agilityLevel = 0;
+	private int attackLevel = 0;
+	private int defenseLevel = 0;
+	private int magicLevel = 0;
 	private Upgrade[] upgrades1;
 	private Upgrade[] upgrades2;
 	private int[] costs1;
@@ -95,8 +100,6 @@ public class UpgradeScreen extends FullFunctionScreen {
 		viewObjects.add(backButton);
 		addbuttons1();
 		setButton1Actions();
-		addbuttons2();
-		setButton2Actions();
 		for(Button b: buttons1) {
 			viewObjects.add(b);
 		}
@@ -118,6 +121,12 @@ public class UpgradeScreen extends FullFunctionScreen {
 					viewObjects.add(pointsDisplay);
 					addBackgrounds(viewObjects);
 					addDescriptions2(viewObjects);
+					for(Button b: buttons1) {
+						viewObjects.remove(b);
+						b.setEnabled(false);
+					}
+					addbuttons2();
+					setButton2Actions();
 					for(Button b: buttons2) {
 						viewObjects.add(b);
 					}
@@ -209,6 +218,15 @@ public class UpgradeScreen extends FullFunctionScreen {
 							nextButton.setBackground(Color.GREEN);
 							nextButton.update();
 						}
+						if(buttons1.indexOf(b) >= 0 && buttons1.indexOf(b) <= 2) {
+							riposteLevel++;
+						}
+						if(buttons1.indexOf(b) >= 3 && buttons1.indexOf(b) <= 5) {
+							regenerationLevel++;
+						}
+						if(buttons1.indexOf(b) >= 6 && buttons1.indexOf(b) <= 8) {
+							agilityLevel++;
+						}
 					}
 				}
 			});
@@ -234,6 +252,16 @@ public class UpgradeScreen extends FullFunctionScreen {
 							nextButton.setBackground(Color.GREEN);
 							nextButton.update();
 						}
+						if(buttons2.indexOf(b) >= 0 && buttons2.indexOf(b) <= 2) {
+							attackLevel++;
+						}
+						if(buttons2.indexOf(b) >= 3 && buttons2.indexOf(b) <= 5) {
+							defenseLevel++;
+						}
+						if(buttons2.indexOf(b) >= 6 && buttons2.indexOf(b) <= 8) {
+							magicLevel++;
+						}
+						System.out.println(riposteLevel + " " + regenerationLevel + " " + agilityLevel);
 					}
 				}
 			});
