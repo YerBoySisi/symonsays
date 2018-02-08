@@ -87,7 +87,7 @@ public class SelectScreen extends FullFunctionScreen {
 			public void act() {
 				name = "Boss 4";
 				bossNumber = 3;
-				link = "";
+				link = "resources/Shark.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -200,7 +200,7 @@ public class SelectScreen extends FullFunctionScreen {
 
 
 	public void addIcons(List<Visible> viewObjects) {
-		String[] links = {"resources/Dragon Icon.png","resources/Xeno Icon.png","resources/Ghaul Icon.png"};
+		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png","resources/Soldier Icon.png"};
 		int x = 20;
 		for(int i = 0; i < links.length; i++) {
 			Graphic icon = new Graphic(x, y, wh, wh, links[i]);
