@@ -9,6 +9,7 @@ import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
+import sisiKneeBattle.BattleScreen;
 
 public class GameStarter extends GUIApplication{
 	
@@ -19,6 +20,7 @@ public class GameStarter extends GUIApplication{
 	public static ShopScreen shopScreen;
 	public static UpgradeScreen upgradeScreen;
 	public static CreditsScreen creditsScreen;
+	public static BattleScreen battleScreen;
 	
 	
 	public GameStarter(int width, int height) {
@@ -39,6 +41,7 @@ public class GameStarter extends GUIApplication{
 		shopScreen = new ShopScreen(getWidth(),getHeight());
 		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
 		creditsScreen = new CreditsScreen(getWidth(),getHeight());
+		battleScreen = new BattleScreen(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 
