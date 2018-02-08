@@ -63,7 +63,7 @@ public class RickyBuy extends ClickableScreen {
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
 		
-		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE 100 Defense"
+		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE 25 Defense"
 				+ "");
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE by 5%");
