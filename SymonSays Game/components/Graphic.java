@@ -90,7 +90,6 @@ public class Graphic implements Visible {
 		AffineTransformOp scaleOp = new AffineTransformOp(scaleT, AffineTransformOp.TYPE_BILINEAR);
 		this.image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*scale), (int)(image.getHeight()*scale), BufferedImage.TYPE_INT_ARGB));
 		
-
 		loadedImages = true;
 		
 		
@@ -194,6 +193,7 @@ public class Graphic implements Visible {
 				image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*smallerOfTwo), (int)(image.getHeight()*smallerOfTwo), BufferedImage.TYPE_INT_ARGB));
 //				g.drawImage(icon.getImage(), 0, 0, w, h, 0,0,icon.getIconWidth(), icon.getIconHeight(), null);
 			}
+			loadedImages = true;
 		}catch(Exception e){
 			e.printStackTrace();
 		}
