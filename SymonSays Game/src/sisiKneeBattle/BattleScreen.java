@@ -8,6 +8,7 @@ import java.util.List;
 
 import guiTeacher.components.TextColoredLabel;
 import guiTeacher.components.ButtonDavid;
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -45,6 +46,8 @@ public class BattleScreen extends FullFunctionScreen {
 		{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
 		 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
 	
+	//Background
+	private Graphic bg;
 	
 	//HUD
 	private TextColoredLabel playerHP;
@@ -103,6 +106,7 @@ public class BattleScreen extends FullFunctionScreen {
 		viewObjects.add(bossHP);
 		
 		turnInfo = new TextArea(200,100,1200,60,"Dymon just used a piercing slash! It's a critical hit!");
+		//turnInfo.setBackgroundColor(Color.white);
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
 		
@@ -115,6 +119,9 @@ public class BattleScreen extends FullFunctionScreen {
 			fleeMenu[i].setVisible(false);
 			viewObjects.add(fleeMenu[i]);
 		}
+		
+		bg = new Graphic(0, 0, 1400, 780, "resources/bg.png");
+		viewObjects.add(0, bg);
 		
 		/*for(int i = 0; i < spellMenu.size(); i++) {
 			itemMenu.get(i).setVisible(false);
@@ -142,5 +149,13 @@ public class BattleScreen extends FullFunctionScreen {
 		boss = bossList[stage];
 		
 	}
-
+	
+	//input the desired bar, and the maximum value that can fill that bar,
+	//and then the amount of the bar you want filled
+	//EXAMPLE: for a half filled bar, put the max as 400 and num as 200
+	//public void scaleBar(TextColoredLabel bar, int max, int num) {
+	//	span = bar.getWidth();
+		
+	//}
+	
 }
