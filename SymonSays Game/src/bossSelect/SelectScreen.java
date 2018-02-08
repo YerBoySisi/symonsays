@@ -26,6 +26,7 @@ public class SelectScreen extends FullFunctionScreen {
 	private String name;
 	private int wh;
 	private int y;
+	private int bossNumber;
 	private Graphic background;
 	private String link;
 	private TextArea txt;
@@ -46,6 +47,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss1Button = new Button(20, y, wh, wh, "Boss 1", new Action() {
 			public void act() {
 				name = "Boss 1";
+				bossNumber = 0;
 				link = "resources/Ridley.png";
 				level = 5;
 				levelRec = 1;
@@ -58,6 +60,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss2Button = new Button(140, y, wh, wh, "Boss 2", new Action() {
 			public void act() {
 				name = "Boss 2";
+				bossNumber = 1;
 				link = "resources/Soldier.jpg";
 				level = 5;
 				levelRec = 1;
@@ -70,6 +73,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss3Button = new Button(260, y, wh, wh, "Boss 3", new Action() {
 			public void act() {
 				name = "Boss 3";
+				bossNumber = 2;
 				link = "resources/Turtle.jpg";
 				level = 5;
 				levelRec = 1;
@@ -82,6 +86,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss4Button = new Button(380, y, wh, wh, "Boss 4", new Action() {
 			public void act() {
 				name = "Boss 4";
+				bossNumber = 3;
 				link = "";
 				level = 5;
 				levelRec = 1;
@@ -94,6 +99,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss5Button = new Button(500, y, wh, wh, "Boss 5", new Action() {
 			public void act() {
 				name = "Boss 5";
+				bossNumber = 4;
 				link = "";
 				level = 5;
 				levelRec = 1;
@@ -106,6 +112,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss6Button = new Button(620, y, wh, wh, "Boss 6", new Action() {
 			public void act() {
 				name = "Boss 6";
+				bossNumber = 5;
 				link = "";
 				level = 5;
 				levelRec = 1;
@@ -125,7 +132,7 @@ public class SelectScreen extends FullFunctionScreen {
 		ButtonDavid startButton = new ButtonDavid(1020,680,300,Color.lightGray,"Start Battle",new Action() {
 			
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				GameStarter.start.setScreen(GameStarter.battleScreen);
 			}
 		});
 		initGothicFont(30f);
@@ -184,6 +191,7 @@ public class SelectScreen extends FullFunctionScreen {
 		wh = 100;
 		y = getHeight() / 10;
 		name = "Boss 1";
+		bossNumber = 0;
 		link = "resources/Ridley.png";
 		level = 5;
 		levelRec = 1;
