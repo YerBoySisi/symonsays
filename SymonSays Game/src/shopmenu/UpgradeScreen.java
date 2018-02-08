@@ -60,17 +60,22 @@ public class UpgradeScreen extends FullFunctionScreen {
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
 		upgradeName1 = new TextLabel(150, 100, 200, 50, "Riposte");
-		viewObjects.add(upgradeName1);
 		Graphic icon = new Graphic(110, 105, 40, 40,"shopUpgradeResources/riposte.png");
-		viewObjects.add(icon);
 		upgradeName2 = new TextLabel(550, 100, 270, 50, "Regeneration");
-		upgradeName2.setForeground(Color.GREEN);
-		viewObjects.add(upgradeName2);
 		Graphic icon2 = new Graphic(515, 110, 30, 30,"shopUpgradeResources/heal.png");
-		viewObjects.add(icon2);
 		upgradeName3 = new TextLabel(1100, 100, 150, 50, "Agility");
-		viewObjects.add(upgradeName3);
 		Graphic icon3 = new Graphic(1070, 110, 30, 30,"shopUpgradeResources/agility.png");
+		upgradeName4 = new TextLabel(150, 100, 200, 50, "Power Up");
+		Graphic icon4 = new Graphic(110, 105, 40, 40,"shopUpgradeResources/sword.png");
+		upgradeName5 = new TextLabel(620, 100, 270, 50, "Harden");
+		Graphic icon5 = new Graphic(575, 105, 40, 40,"shopUpgradeResources/shield.png");
+		upgradeName6 = new TextLabel(1050, 100, 250, 50, "Magic Boost");
+		Graphic icon6 = new Graphic(1000, 100, 40, 40,"shopUpgradeResources/staff.png");
+		viewObjects.add(upgradeName1);
+		viewObjects.add(upgradeName2);
+		viewObjects.add(upgradeName3);
+		viewObjects.add(icon);
+		viewObjects.add(icon2);
 		viewObjects.add(icon3);
 		setBankGothic();
 		addBackgrounds(viewObjects);
@@ -100,6 +105,17 @@ public class UpgradeScreen extends FullFunctionScreen {
 			@Override
 			public void act() {
 				if(front){
+					viewObjects.add(background);
+					viewObjects.add(title);
+					viewObjects.add(upgradeName4);
+					viewObjects.add(upgradeName5);
+					viewObjects.add(upgradeName6);
+					viewObjects.add(icon4);
+					viewObjects.add(icon5);
+					viewObjects.add(icon6);
+					setBankGothic();
+					viewObjects.add(backButton);
+					viewObjects.add(pointsDisplay);
 					addBackgrounds(viewObjects);
 					addDescriptions2(viewObjects);
 					for(Button b: buttons2) {
@@ -269,9 +285,9 @@ public class UpgradeScreen extends FullFunctionScreen {
 	}
 
 	public void createUpgradeList2() {
-		attack = new Upgrade(20, 50, "POW");
-		defense = new Upgrade(10, 40, "DEF");
-		magic = new Upgrade(20, 30, "MP");
+		attack = new Upgrade(20, 50, " POW");
+		defense = new Upgrade(10, 40, " DEF");
+		magic = new Upgrade(20, 30, " MP");
 		upgrades2 = new Upgrade[3];
 		upgrades2[0] = attack;
 		upgrades2[1] = defense;
