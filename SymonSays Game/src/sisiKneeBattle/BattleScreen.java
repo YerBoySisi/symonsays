@@ -1,15 +1,17 @@
 package sisiKneeBattle;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import guiTeacher.components.AnimatedComponent;
-import guiTeacher.components.ImageTextButton;
-import guiTeacher.components.ProgressBar;
+import guiTeacher.components.TextColoredLabel;
+import guiTeacher.components.ButtonDavid;
+import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.ClickableScreen;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
 import sisiKneeBosses.GundamShark;
@@ -18,7 +20,7 @@ import sisiKneeBosses.SimonBelmont;
 import sisiKneeBosses.SuperSoldier;
 import sisiKneeBosses.Symon;
 
-public class BattleScreen extends ClickableScreen {
+public class BattleScreen extends FullFunctionScreen {
 	
 	private static final long serialVersionUID = 9151939983030157712L;
 	
@@ -30,25 +32,30 @@ public class BattleScreen extends ClickableScreen {
 	
 	
 	//menu buttons
-	private static final ImageTextButton[] battleMenu = 
-		{new ImageTextButton("Attack", null, 0, 0, 0, 0, null), 
-		 new ImageTextButton("Item", null, 0, 0, 0, 0, null),
-		 new ImageTextButton("Flee", null, 0, 0, 0, 0, null)};
+	private static final ButtonDavid[] battleMenu = 
+		{new ButtonDavid("Attack", null, 300, 615, 350, 130, null),
+		 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
+		 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
+		 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
 	
-	private ArrayList<ImageTextButton> attackMenu;
+	private ArrayList<ButtonDavid> spellMenu;
 	
-	private ArrayList<ImageTextButton> itemMenu;
+	private ArrayList<ButtonDavid> itemMenu;
 	
-	private static final ImageTextButton[] fleeMenu =
-		{new ImageTextButton("Run Away", null, 0, 0, 0, 0, null), 
-		 new ImageTextButton("Stay and Fight", null, 0, 0, 0, 0, null)};
+	private static final ButtonDavid[] fleeMenu =
+		{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
+		 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
 	
+	//Background
+	private Graphic bg;
 	
 	//HUD
-	private ProgressBar playerHP;
-	private ProgressBar mp;
-	private ProgressBar xp;
-	private ProgressBar bossHP;
+	private TextColoredLabel playerHP;
+	private TextColoredLabel mp;
+	private TextColoredLabel xp;
+	private TextColoredLabel bossHP;
+	private TextColoredLabel playerDisplay;
+	private TextColoredLabel bossDisplay;
 	private TextArea turnInfo;
 	
 	//Entities
@@ -61,7 +68,8 @@ public class BattleScreen extends ClickableScreen {
 	private SimonBelmont sbelm;
 	private Symon symon;
 	
-	private final Boss[] boss = {ssold, gshark, dmech, stort, sbelm, symon};
+	private final Boss[] bossList = {ssold, gshark, dmech, stort, sbelm, symon};
+	private Boss boss;
 
 	public BattleScreen(int width, int height) {
 		
@@ -72,42 +80,82 @@ public class BattleScreen extends ClickableScreen {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		
-		playerHP = new ProgressBar(10,100,200,50);
-		playerHP.setBarColor(Color.GREEN);
-		playerHP.setIncompleteColor(Color.BLACK);
+		try {
+			File fontFile = new File("resources/orbitron-medium.otf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(32f);
+			TextColoredLabel.setBaseFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		playerHP = new TextColoredLabel(300,560,350,30, "HP", Color.green, Color.green);
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
-		mp = new ProgressBar(10,160,200,50);
-		mp.setBarColor(Color.CYAN);
-		mp.setIncompleteColor(Color.BLACK);
+		mp = new TextColoredLabel(800,560,350,30, "MP", Color.cyan, Color.cyan);
 		mp.setVisible(true);
 		viewObjects.add(mp);
 		
-		xp = new ProgressBar(10,220,200,50);
-		xp.setBarColor(Color.GRAY);
-		xp.setIncompleteColor(Color.BLACK);
+		xp = new TextColoredLabel(20,600,5,150, "XP", Color.yellow, Color.yellow);
 		xp.setVisible(true);
 		viewObjects.add(xp);
 		
-		bossHP = new ProgressBar(510,100,200,50);
-		bossHP.setBarColor(Color.RED);
-		bossHP.setIncompleteColor(Color.BLACK);
+		bossHP = new TextColoredLabel(200,50,1000,30, "BOSS HP", Color.red, Color.red);
 		bossHP.setVisible(true);
 		viewObjects.add(bossHP);
 		
-		turnInfo = new TextArea(400,100,400,60,"Test");
+		turnInfo = new TextArea(200,100,1200,60,"Dymon just used a piercing slash! It's a critical hit!");
+		//turnInfo.setBackgroundColor(Color.white);
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
 		
-		//player = Player.getSprite();
-		//player.setVisible(true);
-		//viewObjects.add(player);
+		for(int i = 0; i < battleMenu.length; i++) {
+			battleMenu[i].setVisible(true);
+			viewObjects.add(battleMenu[i]);
+		}
 		
-		//boss = DragonMech.getSprite();
-		//boss.setVisible(true);
-		//viewObjects.add(boss);
+		for(int i = 0; i < fleeMenu.length; i++) {
+			fleeMenu[i].setVisible(false);
+			viewObjects.add(fleeMenu[i]);
+		}
+		
+		bg = new Graphic(0, 0, 1400, 780, "resources/bg.png");
+		viewObjects.add(0, bg);
+		
+		/*for(int i = 0; i < spellMenu.size(); i++) {
+			itemMenu.get(i).setVisible(false);
+			viewObjects.add(itemMenu.get(i));
+		}
+		
+		for(int i = 0; i < itemMenu.size(); i++) {
+			itemMenu.get(i).setVisible(false);
+			viewObjects.add(itemMenu.get(i));
+		}
+		
+		playerDisplay = player.getIdleSprite();
+		playerDisplay.setVisible(true);
+		viewObjects.add(playerDisplay);
+		
+		setBoss(0);
+		bossDisplay = boss.getIdleSprite();
+		bossDisplay.setVisible(true);
+		viewObjects.add(bossDisplay);*/
 		
 	}
-
+	
+	public void setBoss(int stage) {
+		
+		boss = bossList[stage];
+		
+	}
+	
+	//input the desired bar, and the maximum value that can fill that bar,
+	//and then the amount of the bar you want filled
+	//EXAMPLE: for a half filled bar, put the max as 400 and num as 200
+	//public void scaleBar(TextColoredLabel bar, int max, int num) {
+	//	span = bar.getWidth();
+		
+	//}
+	
 }
