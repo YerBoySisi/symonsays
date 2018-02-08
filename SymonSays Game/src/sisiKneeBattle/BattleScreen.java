@@ -120,9 +120,11 @@ public class BattleScreen extends FullFunctionScreen {
 		playerHPBar.setVisible(true);
 		viewObjects.add(playerHPBar);
 		
-		playerHP = new TextArea(425,553,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
+		playerHP = new TextArea(300,560,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
+		
+		updatePlayerHP(viewObjects);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -134,9 +136,11 @@ public class BattleScreen extends FullFunctionScreen {
 		mpBar.setVisible(true);
 		viewObjects.add(mpBar);
 		
-		mp = new TextArea(925,553,PLAYER_BAR_WIDTH, 100, player.getMP()+ " / " + player.getMaxMP());
+		mp = new TextArea(800,560,PLAYER_BAR_WIDTH, 100, player.getMP()+ " / " + player.getMaxMP());
 		mp.setVisible(true);
 		viewObjects.add(mp);
+		
+		updatePlayerMP(viewObjects);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -157,6 +161,8 @@ public class BattleScreen extends FullFunctionScreen {
 		bossName = new TextArea(200,32,BOSS_BAR_WIDTH, 100, "Dragon Mech");
 		bossName.setVisible(true);
 		viewObjects.add(bossName);
+		
+		updateBossHP(viewObjects);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -201,20 +207,52 @@ public class BattleScreen extends FullFunctionScreen {
 		
 	}
 	
-	public void setBarWidth(Bar bar, TextArea txt, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
+	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
 		
 		viewObjects.remove(bar);
 		viewObjects.remove(txt);
 		
 		int newWidth = (int)Math.round((currentHP / maxHP) * maxBarWidth);
-		playerHPBar = new Bar(300,560,newWidth,30, "HP", Color.green, Color.green);
-		playerHPBar.setVisible(true);
-		viewObjects.add(playerHPBar);
+		bar = new Bar(x,y,newWidth,30, "", clr, clr);
+		bar.setVisible(true);
+		viewObjects.add(bar);
 		
-		playerHP = new TextArea(425,553,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
-		playerHP.setVisible(true);
-		viewObjects.add(playerHP);
+		txt = new TextArea(x,y + txtOffset,width, 100, text);
+		txt.setVisible(true);
+		viewObjects.add(txt);
 		
 	}
+	
+	public void updatePlayerHP(List<Visible> viewObjects) {
+		
+		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH, viewObjects);
+		
+	}
+	
+	public void updatePlayerMP(List<Visible> viewObjects) {
+		
+		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH, viewObjects);
+		
+	}
+	
+	public void updateBossHP(List<Visible> viewObjects) {
+		
+		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, "Dragon Mech", BOSS_BAR_WIDTH, 286, 600, BOSS_BAR_WIDTH, viewObjects);
+		
+	}
+	
+	/* TO DO SIDEEQ:
+	 * Place character sprites on the stage
+	 * Create functions for changing sprites
+	 * E.G. a function that calls getAttackSprite() when a player attacks
+	 * The above function can take the attack type (it's an integer, physical or special) or any other
+	 * constants you make as an input.
+	 * Create the game flow class (so like the turn by turn system, where the player can choose
+	 * an attack and the boss uses his)
+	 * Create the player spell list and item list (don't initialize it or put a placeholder item if
+	 * it's empty)
+	 * NOTE: I made updatePlayerHP, updatePlayeRMP, updateBossHP so it's a LOT simpler and easier 
+	 * for you.
+	 */
 	
 }

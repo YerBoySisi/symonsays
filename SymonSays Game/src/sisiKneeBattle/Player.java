@@ -8,13 +8,15 @@ public class Player extends Entity {
 	
 	public Player() {
 		
-		super("Dymon", 5, 5, 5, 5, 5, 5);
+		super("Dymon", 0, 0, 0, 0, 0, 0);
+		setStats(10, 5, 5, 5, 5);
 		
 	}
 	
 	public void setStats(int hp, int mp, int pow, int def, int weak) {
 		
 		this.hp = hp;
+		this.maxHP = hp;
 		this.mp = mp;
 		this.maxMP = mp;
 		power = pow;
