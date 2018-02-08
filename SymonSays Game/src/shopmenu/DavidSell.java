@@ -2,6 +2,7 @@ package shopmenu;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import guiTeacher.components.Action;
@@ -18,12 +19,18 @@ import mainMenuAndStartScreen.ButtonDavid;
 public class DavidSell extends FullFunctionScreen {
 	
 	private TextArea title;
-	private int def;
-	private Inventory inv;
+	private Button buyD;
+	private Button buyHP;
+	private Button buyA;
+	private Button buyDd;	
+	static TextArea quant1;
+	static TextArea quant2;
+	static TextArea quant3;
+	static TextArea quant4;
+	static TextArea currency;
 
 	public DavidSell(int width, int height) {
 		super(width, height);
-		inv = ShopMain.inventory;
 	}
 
 	@Override
@@ -31,24 +38,28 @@ public class DavidSell extends FullFunctionScreen {
 		//title.setTextColor(Color.WHITE);
 		title =  new TextArea(600,50,300,50,"MERCHANT");
 		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
-		TextArea quant1 = new TextArea(500,150,300,100,"-");
-		quant1.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Def"))));
+		quant1 = new TextArea(500,150,300,100,"-");
+		quant1.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+		
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
-		TextArea quant2 = new TextArea(500,275,300,100,"-");
-		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Health"))));
+	    quant2 = new TextArea(500,275,300,100,"-");
+		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+		
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
-		TextArea quant3 = new TextArea(500,400,300,100,"-");
-		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Speed"))));
+        quant3 = new TextArea(500,400,300,100,"-");
+		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+		
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
-		TextArea quant4 = new TextArea(500,525,300,100,"-");
-		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("Revive"))));
+        quant4 = new TextArea(500,525,300,100,"-");
+		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
-		viewObjects.add(new Graphic(420, 150, 100,100,"shopUpgradeResources/test.png"));
-		viewObjects.add(new Graphic(420, 250, 100,100,"shopUpgradeResources/health.png"));
-		viewObjects.add(new Graphic(420, 400, 100,100,"shopUpgradeResources/speed.png"));
-		viewObjects.add(new Graphic(420, 500, 100,100,"shopUpgradeResources/strength.png"));
-		viewObjects.add(new Graphic(1325, 25, 50, 50,"shopUpgradeResources/coin.png"));
-		TextArea currency = new TextArea(1155,25,150,150,"1500");
+		viewObjects.add(new Graphic(400, 150, 100, 100,"shopUpgradeResources/test.png"));
+		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
+		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
+		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
+		
+	     currency = new TextArea(1155,25,150,150,"-");
 		currency.setCustomTextColor(Color.orange);
 		currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 
@@ -69,63 +80,141 @@ public class DavidSell extends FullFunctionScreen {
 		back.setForeground(Color.WHITE);
 		viewObjects.add(back);
 		
-		Button buyH = new Button(900, 175, 100, 100, "Sell", new Action() {
+		   buyD = new Button(900,200,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
-				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.remove(new Items("Def"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Def"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
-				quant1.setText("x"+Integer.toString(count));
-				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println("Def: " +count);
+				buyD.setEnabled(true);
+				if (countOccurences(ShopMain.inventory.itemlist,new Items("def")) >0) {
+					ArrayList<Items>iteml = ShopMain.inventory.itemlist;
+					removeItem(ShopMain.inventory.itemlist,new Items("def"));
+					int count = countOccurences(ShopMain.inventory.itemlist,new Items("def"));
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+					quant1.setText("x"+Integer.toString(count));
+					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
+					System.out.println(ShopMain.inventory.getCurrency());
+					 printList(ShopMain.inventory.itemlist);
+					   
+					System.out.println("Def: " +count);
+					/*
+					if(count == 0) {
+						buyD.setEnabled(false);
+						buyD.setBackground(Color.RED);
+						buyD.update();
+					}
+					*/
+				}
+				
 			  
 			}
 		});
-		buyH.setForeground(Color.GRAY);
-		viewObjects.add(buyH);
-		Button buyS = new Button(900, 300, 100, 100, "Sell", new Action() {
+		   /*
+		   if(countOccurences(ShopMain.inventory.itemlist,new Items("def")) == 0) {
+				buyD.setEnabled(false);
+				buyD.setBackground(Color.RED);
+				buyD.update();
+			}
+			*/
+		buyD.setForeground(Color.GRAY);
+		viewObjects.add(buyD);
+		
+		
+		 buyHP = new Button(900,325,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
+				buyHP.setEnabled(true);
+				if (countOccurences(ShopMain.inventory.itemlist,new Items("hp")) >0) {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.remove(new Items("Health"));
-				int count = countOccurences(iteml,new Items("Health"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+				removeItem(ShopMain.inventory.itemlist,new Items("hp"));
+				int count = countOccurences(iteml,new Items("hp"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
 				quant2.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Health: " +count);
+				/*
+				if(count == 0) {
+					buyHP.setEnabled(false);
+					buyHP.setBackground(Color.RED);
+					buyHP.update();
+				}
+				*/
+				
+				}
 			}
 		});
-		buyS.setForeground(Color.GRAY);
-		viewObjects.add(buyS);
-		Button buyR = new Button(900, 425, 100, 100, "Sell", new Action() {
+		 /*
+		if(countOccurences(ShopMain.inventory.itemlist,new Items("hp")) == 0) {
+				buyHP.setEnabled(false);
+				buyHP.setBackground(Color.RED);
+				buyHP.update();
+			}
+			*/
+		buyHP.setForeground(Color.GRAY);
+		viewObjects.add(buyHP);
+		
+		
+		  buyDd = new Button(900,450,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
+				buyDd.setEnabled(true);
+				if (countOccurences(ShopMain.inventory.itemlist,new Items("dodge")) >0) {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.remove(new Items("Speed"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+				removeItem(ShopMain.inventory.itemlist,new Items("dodge"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("dodge"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
 				quant3.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
 				System.out.println("Speed: " +count);
+				/*
+				if(count == 0) {
+					buyDd.setEnabled(false);
+					buyDd.setBackground(Color.RED);
+					buyDd.update();
+				}
+				*/
+				}
 			}
 		});
-		buyR.setForeground(Color.GRAY);
-		viewObjects.add(buyR);
-		Button buyHM = new Button(900, 525, 100, 100, "Sell", new Action() {
+		  /*
+		  if(countOccurences(ShopMain.inventory.itemlist,new Items("dodge")) == 0) {
+				buyDd.setEnabled(false);
+				buyDd.setBackground(Color.RED);
+				buyDd.update();
+			}
+			*/
+		buyDd.setForeground(Color.GRAY);
+		viewObjects.add(buyDd);
+		
+		
+		 buyA = new Button(900,575,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
+				buyA.setEnabled(true);
+				if (countOccurences(ShopMain.inventory.itemlist,new Items("atk"))>0) {
 				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				iteml.remove(new Items("Revive"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("Revive"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+				removeItem(ShopMain.inventory.itemlist,new Items("atk"));
+				int count = countOccurences(ShopMain.inventory.itemlist,new Items("atk"));
+				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
 				quant4.setText(Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println("Revive: " +count);
+				System.out.println("x"+ShopMain.inventory.getCurrency());
+				System.out.println("Atk: " +count);
+				/*
+				if(count == 0) {
+					buyA.setEnabled(false);
+					buyA.setBackground(Color.RED);
+					buyA.update();
+				}
+				*/
+				}
 			}
 		});
-		buyHM.setForeground(Color.GRAY);
-		viewObjects.add(buyHM);
+		 /*
+		 if(countOccurences(ShopMain.inventory.itemlist,new Items("atk")) == 0) {
+				buyA.setEnabled(false);
+				buyA.setBackground(Color.RED);
+				buyA.update();
+			}
+		 */
+		buyA.setForeground(Color.GRAY);
+		viewObjects.add(buyA);
 		
 		
 		viewObjects.add(title);
@@ -150,6 +239,21 @@ public class DavidSell extends FullFunctionScreen {
 	      }
 		return count;
 		}
+	
+	public void printList(ArrayList<Items> list){
+	    for(Items elem : list){
+	        System.out.println(elem+"  ");
+	    }
+	}
+	
+	public void removeItem(ArrayList<Items> list,Items x) {
+		for (int i = 0; i < list.size(); i++) { 		      
+          	if(x.getItemN() ==(list.get(i).getItemN())) {
+          		list.remove(i);
+          		return;
+          	}
+      }
+	}
 	
 		
 	
