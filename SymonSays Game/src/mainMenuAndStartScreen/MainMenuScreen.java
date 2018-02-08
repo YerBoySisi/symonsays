@@ -17,7 +17,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		TestPane pane = new TestPane(this,0,0,300,200);
+	//	TestPane pane = new TestPane(this,0,0,300,200);
 		try {
 			File fontFile = new File("resources/orbitron-medium.otf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
@@ -65,9 +65,9 @@ public class MainMenuScreen extends FullFunctionScreen{
 				GameStarter.start.setScreen(GameStarter.selectScreen);
 			}
 		}); 
-		pane.setBackground(Color.blue);
-		pane.update();
-		viewObjects.add(pane);
+	//	pane.setBackground(Color.blue);
+	//	pane.update();
+	//	viewObjects.add(pane);
 		viewObjects.add(upgradeButton);
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
