@@ -1,4 +1,5 @@
 
+
 package shopmenu;
 
 import guiTeacher.GUIApplication;
@@ -13,7 +14,6 @@ public class ShopMain extends GUIApplication {
 	static RickyBuy s3;
 	static DavidSell s4;
 	static UpgradeScreen s5;
-	static buyTest s6;
     public static Inventory inventory;
 	
 
@@ -36,7 +36,6 @@ public class ShopMain extends GUIApplication {
 		s3 = new RickyBuy(getWidth(),getHeight());
 		s4 = new DavidSell(getWidth(),getHeight());
 		s5 = new UpgradeScreen(getWidth(),getHeight());
-		s6 =  new buyTest(getWidth(),getHeight());
 	}
 
 }

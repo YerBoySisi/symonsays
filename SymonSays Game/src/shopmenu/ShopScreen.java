@@ -64,18 +64,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 		upgrade.setForeground(Color.white);
 		viewObjects.add(upgrade);
-		
-		ButtonDavid test= new ButtonDavid(1000,650,200,Color.LIGHT_GRAY,"test",new Action() {
 			
-			@Override
-			public void act() {
-				 ShopMain.s1.setScreen(ShopMain.s6);
-				 updateQuant();
-			}
-		});
-			
-		upgrade.setForeground(Color.white);
-		viewObjects.add(test);
 		ButtonDavid back = new ButtonDavid(750,650,200,Color.LIGHT_GRAY,"Back",new Action() {
 
 			
@@ -87,9 +76,6 @@ public class ShopScreen extends FullFunctionScreen {
 
 		back.setForeground(Color.white);
 		viewObjects.add(back);
-
-
-		
 		}
 	private void setCustomFont(){
 		
@@ -111,21 +97,10 @@ public class ShopScreen extends FullFunctionScreen {
 		DavidSell.currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 		
 		
-		buyTest.multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
-		buyTest.multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
-		buyTest.multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
-		buyTest.multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
-		buyTest.numOfCoins.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-		
-		
-		
-	}
-	
-		
+		RickyBuy.multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+		RickyBuy.multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+		RickyBuy.multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+		RickyBuy.multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		RickyBuy.numOfCoins.setText(Integer.toString(ShopMain.inventory.getCurrency()));		
+	}	
 }
-	
-	
-
-		
-
-

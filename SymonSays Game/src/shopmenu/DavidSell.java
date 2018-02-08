@@ -89,6 +89,7 @@ public class DavidSell extends FullFunctionScreen {
 					removeItem(ShopMain.inventory.itemlist,new Items("def"));
 					int count = countOccurences(ShopMain.inventory.itemlist,new Items("def"));
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+					inBetween();
 					quant1.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 					System.out.println(ShopMain.inventory.getCurrency());
@@ -126,6 +127,7 @@ public class DavidSell extends FullFunctionScreen {
 				removeItem(ShopMain.inventory.itemlist,new Items("hp"));
 				int count = countOccurences(iteml,new Items("hp"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				inBetween();
 				quant2.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
@@ -160,6 +162,7 @@ public class DavidSell extends FullFunctionScreen {
 				removeItem(ShopMain.inventory.itemlist,new Items("dodge"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("dodge"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				inBetween();
 				quant3.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(ShopMain.inventory.getCurrency());
@@ -193,6 +196,7 @@ public class DavidSell extends FullFunctionScreen {
 				removeItem(ShopMain.inventory.itemlist,new Items("atk"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("atk"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				inBetween();
 				quant4.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 				System.out.println(+ShopMain.inventory.getCurrency());
@@ -253,9 +257,36 @@ public class DavidSell extends FullFunctionScreen {
           		list.remove(i);
           		return;
           	}
-      }
+		}
 	}
 	
-		
-	
+	public void inBetween() {
+		if(ShopMain.inventory.getCurrency() >= 0 && ShopMain.inventory.getCurrency() < 10) {
+			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+				currency.setX(1300);
+			}
+			else currency.setX(1310);
+		}
+		else if(ShopMain.inventory.getCurrency() >= 10 && ShopMain.inventory.getCurrency() < 100) {
+			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+				currency.setX(1275);
+			}
+			else currency.setX(1285);
+		}
+		else if(ShopMain.inventory.getCurrency() >= 100 && ShopMain.inventory.getCurrency() < 1000) {
+			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+				currency.setX(1250);
+			}
+			else currency.setX(1260);
+		}
+		else if(ShopMain.inventory.getCurrency() >= 1000 && ShopMain.inventory.getCurrency() < 10000) {
+			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+				currency.setX(1225);
+			}
+			else currency.setX(1235);
+		}
+		else if(ShopMain.inventory.getCurrency() >= 10000 && ShopMain.inventory.getCurrency() < 100000) {
+			currency.setX(1200);
+		}
+	}
 }
