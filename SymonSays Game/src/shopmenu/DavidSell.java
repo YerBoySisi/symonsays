@@ -58,6 +58,7 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
+		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 		
 	     currency = new TextArea(1155,25,150,150,"-");
 		currency.setCustomTextColor(Color.orange);
@@ -192,9 +193,9 @@ public class DavidSell extends FullFunctionScreen {
 				removeItem(ShopMain.inventory.itemlist,new Items("atk"));
 				int count = countOccurences(ShopMain.inventory.itemlist,new Items("atk"));
 				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
-				quant4.setText(Integer.toString(count));
+				quant4.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println("x"+ShopMain.inventory.getCurrency());
+				System.out.println(+ShopMain.inventory.getCurrency());
 				System.out.println("Atk: " +count);
 				/*
 				if(count == 0) {
