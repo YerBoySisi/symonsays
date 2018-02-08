@@ -1,6 +1,8 @@
 package shopmenu;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,6 +10,7 @@ import java.util.List;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextColoredLabel;
 import guiTeacher.interfaces.Visible;
@@ -60,14 +63,11 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 		
-	     currency = new TextArea(1155,25,150,150,"-");
+	     currency = new TextArea(1200,20,150,50,"-");
 		currency.setCustomTextColor(Color.orange);
 		currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 
-		//hahaha
-		//countOccurences(ShopMain.inventory.itemlist,new Items("Speed"));
-		//Integer.toString(count)
-		
+		setbankG();
 		ButtonDavid back = new ButtonDavid(50,680,100,Color.LIGHT_GRAY,"Back",new Action() {
 
 			
@@ -80,7 +80,7 @@ public class DavidSell extends FullFunctionScreen {
 		
 		back.setForeground(Color.WHITE);
 		viewObjects.add(back);
-		
+		setOrbitron();
 		   buyD = new Button(900,200,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
 				buyD.setEnabled(true);
@@ -92,8 +92,8 @@ public class DavidSell extends FullFunctionScreen {
 					inBetween();
 					quant1.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-					System.out.println(ShopMain.inventory.getCurrency());
-					 printList(ShopMain.inventory.itemlist);
+					//System.out.println(ShopMain.inventory.getCurrency());
+					 //printList(ShopMain.inventory.itemlist);
 					   
 					System.out.println("Def: " +count);
 					/*
@@ -130,8 +130,8 @@ public class DavidSell extends FullFunctionScreen {
 				inBetween();
 				quant2.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println("Health: " +count);
+				//System.out.println(ShopMain.inventory.getCurrency());
+				//System.out.println("Health: " +count);
 				/*
 				if(count == 0) {
 					buyHP.setEnabled(false);
@@ -165,8 +165,8 @@ public class DavidSell extends FullFunctionScreen {
 				inBetween();
 				quant3.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println(ShopMain.inventory.getCurrency());
-				System.out.println("Speed: " +count);
+				//System.out.println(ShopMain.inventory.getCurrency());
+				//System.out.println("Speed: " +count);
 				/*
 				if(count == 0) {
 					buyDd.setEnabled(false);
@@ -199,8 +199,8 @@ public class DavidSell extends FullFunctionScreen {
 				inBetween();
 				quant4.setText("x"+Integer.toString(count));
 				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				System.out.println(+ShopMain.inventory.getCurrency());
-				System.out.println("Atk: " +count);
+				//System.out.println(+ShopMain.inventory.getCurrency());
+				//System.out.println("Atk: " +count);
 				/*
 				if(count == 0) {
 					buyA.setEnabled(false);
@@ -287,6 +287,27 @@ public class DavidSell extends FullFunctionScreen {
 		}
 		else if(ShopMain.inventory.getCurrency() >= 10000 && ShopMain.inventory.getCurrency() < 100000) {
 			currency.setX(1200);
+		}
+	}
+	
+	private void setOrbitron() {
+		try {
+			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+			StyledComponent.setBaseFont(font);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}		
+		}
+private void setbankG(){
+		
+		try {
+			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
+			StyledComponent.setBaseFont(font);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }
