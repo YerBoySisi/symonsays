@@ -23,11 +23,11 @@ import java.awt.Image;
 
 
 
-public class ImageTextButton extends Button{
+public class ButtonDavid extends Button{
 
 	Image icon;
 	
-	public ImageTextButton(String text, Image icon, int x, int y, int width, int height, Action action) {
+	public ButtonDavid(String text, Image icon, int x, int y, int width, int height, Action action) {
 		super(x, y, width, height,"    "+text, getAccentColor(),action);
 		String adjustedTitle = icon == null ? text:"    "+text;
 		setText(adjustedTitle);
