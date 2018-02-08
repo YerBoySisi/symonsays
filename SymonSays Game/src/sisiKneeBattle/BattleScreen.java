@@ -60,6 +60,7 @@ public class BattleScreen extends FullFunctionScreen {
 	private TextArea mp;
 	private Bar xp;
 	private Bar bossHP;
+	private TextArea bossName;
 	private Bar blackBarHP;
 	private Bar blackBarMP;
 	private Bar blackBarBoss;
@@ -145,9 +146,17 @@ public class BattleScreen extends FullFunctionScreen {
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
+		blackBarBoss = new Bar(200,50,BOSS_BAR_WIDTH,30, "HP", Color.black, Color.black);
+		blackBarBoss.setVisible(true);
+		viewObjects.add(blackBarBoss);
+		
 		bossHP = new Bar(200,50,BOSS_BAR_WIDTH,30, "BOSS HP", Color.red, Color.red);
 		bossHP.setVisible(true);
 		viewObjects.add(bossHP);
+		
+		bossName = new TextArea(200,32,BOSS_BAR_WIDTH, 100, "Dragon Mech");
+		bossName.setVisible(true);
+		viewObjects.add(bossName);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
