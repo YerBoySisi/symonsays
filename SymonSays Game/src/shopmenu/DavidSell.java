@@ -34,6 +34,7 @@ public class DavidSell extends FullFunctionScreen {
 
 	public DavidSell(int width, int height) {
 		super(width, height);
+		inBetween();
 	}
 
 	@Override
