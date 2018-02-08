@@ -32,7 +32,7 @@ public class GameStarter extends GUIApplication{
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
 		selectScreen = new SelectScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
-		setScreen(startScreen);
+		setScreen(battleScreen);
 	}
 
 }

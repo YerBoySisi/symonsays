@@ -43,6 +43,7 @@ public abstract class Entity {
 		
 		name = nam;
 		this.hp = hp;
+		this.maxHP = hp;
 		maxHP = hp;
 		power = pow;
 		defense = def;

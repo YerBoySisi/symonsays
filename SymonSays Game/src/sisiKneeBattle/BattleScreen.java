@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import guiTeacher.components.TextColoredLabel;
+import guiTeacher.components.Bar;
 import guiTeacher.components.ButtonDavid;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
@@ -49,13 +49,22 @@ public class BattleScreen extends FullFunctionScreen {
 	//Background
 	private Graphic bg;
 	
+	//HUD CONSTANTS
+	private static final int PLAYER_BAR_WIDTH = 350;
+	private static final int BOSS_BAR_WIDTH = 1000;
+	
 	//HUD
-	private TextColoredLabel playerHP;
-	private TextColoredLabel mp;
-	private TextColoredLabel xp;
-	private TextColoredLabel bossHP;
-	private TextColoredLabel playerDisplay;
-	private TextColoredLabel bossDisplay;
+	private Bar playerHPBar;
+	private TextArea playerHP;
+	private Bar mpBar;
+	private TextArea mp;
+	private Bar xp;
+	private Bar bossHP;
+	private Bar blackBarHP;
+	private Bar blackBarMP;
+	private Bar blackBarBoss;
+	private Bar playerDisplay;
+	private Bar bossDisplay;
 	private TextArea turnInfo;
 	
 	//Entities
@@ -79,34 +88,70 @@ public class BattleScreen extends FullFunctionScreen {
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+
+		TextArea.setTextColor(Color.white);
 		
 		try {
 			File fontFile = new File("resources/orbitron-medium.otf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 			Font baseFont=font.deriveFont(32f);
-			TextColoredLabel.setBaseFont(baseFont);
+			Bar.setBaseFont(baseFont);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		playerHP = new TextColoredLabel(300,560,350,30, "HP", Color.green, Color.green);
+////////////////////////////////////////////////////////////////////////////////////
+		
+		bg = new Graphic(0, 0, 1400, 780, "resources/bg.png");
+		viewObjects.add(0, bg);
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		player = new Player();
+		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		blackBarHP = new Bar(300,560,PLAYER_BAR_WIDTH,30, "HP", Color.black, Color.black);
+		blackBarHP.setVisible(true);
+		viewObjects.add(blackBarHP);
+		
+		playerHPBar = new Bar(300,560,PLAYER_BAR_WIDTH,30, "HP", Color.green, Color.green);
+		playerHPBar.setVisible(true);
+		viewObjects.add(playerHPBar);
+		
+		playerHP = new TextArea(425,553,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
-		mp = new TextColoredLabel(800,560,350,30, "MP", Color.cyan, Color.cyan);
+////////////////////////////////////////////////////////////////////////////////////
+		
+		blackBarMP = new Bar(800,560,PLAYER_BAR_WIDTH,30, "HP", Color.black, Color.black);
+		blackBarMP.setVisible(true);
+		viewObjects.add(blackBarMP);
+		
+		mpBar = new Bar(800,560,PLAYER_BAR_WIDTH,30, "MP", Color.cyan, Color.cyan);
+		mpBar.setVisible(true);
+		viewObjects.add(mpBar);
+		
+		mp = new TextArea(925,553,PLAYER_BAR_WIDTH, 100, player.getMP()+ " / " + player.getMaxMP());
 		mp.setVisible(true);
 		viewObjects.add(mp);
 		
-		xp = new TextColoredLabel(20,600,5,150, "XP", Color.yellow, Color.yellow);
+////////////////////////////////////////////////////////////////////////////////////
+		
+		xp = new Bar(20,600,5,150, "XP", Color.yellow, Color.yellow);
 		xp.setVisible(true);
 		viewObjects.add(xp);
 		
-		bossHP = new TextColoredLabel(200,50,1000,30, "BOSS HP", Color.red, Color.red);
+////////////////////////////////////////////////////////////////////////////////////
+		
+		bossHP = new Bar(200,50,BOSS_BAR_WIDTH,30, "BOSS HP", Color.red, Color.red);
 		bossHP.setVisible(true);
 		viewObjects.add(bossHP);
 		
+////////////////////////////////////////////////////////////////////////////////////
+		
 		turnInfo = new TextArea(200,100,1200,60,"Dymon just used a piercing slash! It's a critical hit!");
-		//turnInfo.setBackgroundColor(Color.white);
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
 		
@@ -119,9 +164,6 @@ public class BattleScreen extends FullFunctionScreen {
 			fleeMenu[i].setVisible(false);
 			viewObjects.add(fleeMenu[i]);
 		}
-		
-		bg = new Graphic(0, 0, 1400, 780, "resources/bg.png");
-		viewObjects.add(0, bg);
 		
 		/*for(int i = 0; i < spellMenu.size(); i++) {
 			itemMenu.get(i).setVisible(false);
@@ -150,12 +192,15 @@ public class BattleScreen extends FullFunctionScreen {
 		
 	}
 	
-	//input the desired bar, and the maximum value that can fill that bar,
-	//and then the amount of the bar you want filled
-	//EXAMPLE: for a half filled bar, put the max as 400 and num as 200
-	//public void scaleBar(TextColoredLabel bar, int max, int num) {
-	//	span = bar.getWidth();
+	public void setBarWidth(Bar bar, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
 		
-	//}
+		viewObjects.remove(bar);
+		
+		int newWidth = (int)Math.round((currentHP / maxHP) * maxBarWidth);
+		playerHPBar = new Bar(300,560,newWidth,30, "HP", Color.green, Color.green);
+		playerHPBar.setVisible(true);
+		viewObjects.add(playerHPBar);
+		
+	}
 	
 }
