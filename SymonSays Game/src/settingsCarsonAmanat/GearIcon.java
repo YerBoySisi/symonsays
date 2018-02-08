@@ -15,6 +15,7 @@ public class GearIcon extends JFrame{
 	 public static void main(String args[]) throws IOException {
 	        GearIcon ob = new GearIcon();
 	        ob.setVisible(true);
+	        
 	    }
 
 	private JPanel p;

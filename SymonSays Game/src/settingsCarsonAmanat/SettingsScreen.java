@@ -9,14 +9,12 @@ import java.io.File;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JSlider;
-
 import creditsCarsonAmanat.Credits;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
+import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
-import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -49,7 +47,6 @@ public class SettingsScreen extends FullFunctionScreen{
 				Settings.symon.setScreen(Credits.credits);
 			}
 		});
-		ImageIcon gearIcon = createImageIcon("resources/gear.png");
 		Button exit = new Button(300,250,100,50,"Exit",Color.GRAY,new Action() {
 
 			@Override
@@ -65,7 +62,7 @@ public class SettingsScreen extends FullFunctionScreen{
 
 			e.printStackTrace();
 		}
-
+		ClickableGraphic gearIcon = new ClickableGraphic(500, 400, 128, 128, "resources/gear.png");
 		TextLabel title = new TextLabel(getWidth()/2-100,getHeight()-750,300,200,"Settings");
 		title.setCustomTextColor(Color.lightGray);
 		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
@@ -78,13 +75,11 @@ public class SettingsScreen extends FullFunctionScreen{
 			}
 
 		});
-		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 120, 120, gearIcon);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
-		viewObjects.add(settingGear);
-
+		viewObjects.add(gearIcon);
 	}
 
 	public static ImageIcon createImageIcon(String path) {
