@@ -20,11 +20,13 @@ import mainMenuAndStartScreen.ButtonDavid;
 import mainMenuAndStartScreen.GameStarter;
 
 public class SelectScreen extends FullFunctionScreen {
+	//Fahad
 	
 	
 	private String name;
 	private int wh;
 	private int y;
+	private int bossNumber;
 	private Graphic background;
 	private String link;
 	private TextArea txt;
@@ -45,7 +47,8 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss1Button = new Button(20, y, wh, wh, "Boss 1", new Action() {
 			public void act() {
 				name = "Boss 1";
-				link = "resources/Dragon.jpg";
+				bossNumber = 0;
+				link = "resources/Ridley.png";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -57,7 +60,8 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss2Button = new Button(140, y, wh, wh, "Boss 2", new Action() {
 			public void act() {
 				name = "Boss 2";
-				link = "resources/Xeno.jpg";
+				bossNumber = 1;
+				link = "resources/Soldier.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -69,7 +73,8 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss3Button = new Button(260, y, wh, wh, "Boss 3", new Action() {
 			public void act() {
 				name = "Boss 3";
-				link = "resources/Ghaul.jpg";
+				bossNumber = 2;
+				link = "resources/Turtle.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -81,7 +86,8 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss4Button = new Button(380, y, wh, wh, "Boss 4", new Action() {
 			public void act() {
 				name = "Boss 4";
-				link = "";
+				bossNumber = 3;
+				link = "resources/Shark.jpg";
 				level = 5;
 				levelRec = 1;
 				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
@@ -93,6 +99,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss5Button = new Button(500, y, wh, wh, "Boss 5", new Action() {
 			public void act() {
 				name = "Boss 5";
+				bossNumber = 4;
 				link = "";
 				level = 5;
 				levelRec = 1;
@@ -105,6 +112,7 @@ public class SelectScreen extends FullFunctionScreen {
 		Button boss6Button = new Button(620, y, wh, wh, "Boss 6", new Action() {
 			public void act() {
 				name = "Boss 6";
+				bossNumber = 5;
 				link = "";
 				level = 5;
 				levelRec = 1;
@@ -121,11 +129,21 @@ public class SelectScreen extends FullFunctionScreen {
 				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		});
+		ButtonDavid startButton = new ButtonDavid(1020,680,300,Color.lightGray,"Start Battle",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.battleScreen);
+			}
+		});
 		initGothicFont(30f);
-		background = new Graphic(0, 0, 1400, 780, link);
+		background = new Graphic(0, 0, getWidth(), getHeight(), link);
 		txt = new TextArea(20, 250, 300, 300,"Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
+		initOrbitronFont(40f);
+		TextArea title = new TextArea(20, 20, 300, 150,"Boss Select");
+		initGothicFont(30f);
 		viewObjects.add(background);
 		addIcons(viewObjects);
+		viewObjects.add(title);
 		viewObjects.add(boss1Button);
 		viewObjects.add(boss2Button);
 		viewObjects.add(boss3Button);
@@ -133,6 +151,7 @@ public class SelectScreen extends FullFunctionScreen {
 		viewObjects.add(boss5Button);
 		viewObjects.add(boss6Button);
 		viewObjects.add(backButton);
+		viewObjects.add(startButton);
 		viewObjects.add(txt);
 		boss1Button.setForeground(Color.white);
 		boss2Button.setForeground(Color.white);
@@ -156,11 +175,24 @@ public class SelectScreen extends FullFunctionScreen {
 	}
 
 
+	public void initOrbitronFont(float f) {
+		try {
+		File fontFile = new File("resources/orbitron-bold.otf");
+		Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+		Font baseFont=font.deriveFont(f);
+		StyledComponent.setBaseFont(baseFont);
+	} catch (Exception e) {
+		e.printStackTrace();
+		}
+	}
+
+
 	public void initValues() {
 		wh = 100;
-		y = getHeight() / 15;
+		y = getHeight() / 10;
 		name = "Boss 1";
-		link = "resources/Dragon.jpg";
+		bossNumber = 0;
+		link = "resources/Ridley.png";
 		level = 5;
 		levelRec = 1;
 		
@@ -168,7 +200,7 @@ public class SelectScreen extends FullFunctionScreen {
 
 
 	public void addIcons(List<Visible> viewObjects) {
-		String[] links = {"resources/Dragon Icon.png","resources/Xeno Icon.png","resources/Ghaul Icon.png"};
+		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png","resources/Soldier Icon.png"};
 		int x = 20;
 		for(int i = 0; i < links.length; i++) {
 			Graphic icon = new Graphic(x, y, wh, wh, links[i]);

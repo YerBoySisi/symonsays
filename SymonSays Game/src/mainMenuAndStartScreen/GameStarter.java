@@ -4,8 +4,11 @@ import java.awt.Font;
 import java.io.File;
 
 import bossSelect.SelectScreen;
+import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import shopmenu.ShopScreen;
+import shopmenu.UpgradeScreen;
 import sisiKneeBattle.BattleScreen;
 
 public class GameStarter extends GUIApplication{
@@ -14,7 +17,11 @@ public class GameStarter extends GUIApplication{
 	public static MainMenuScreen mainMenuScreen;
 	public static GameStarter start;
 	public static SelectScreen selectScreen;
+	public static ShopScreen shopScreen;
+	public static UpgradeScreen upgradeScreen;
+	public static CreditsScreen creditsScreen;
 	public static BattleScreen battleScreen;
+	
 	
 	public GameStarter(int width, int height) {
 		super(width, height);
@@ -31,6 +38,9 @@ public class GameStarter extends GUIApplication{
 		startScreen = new StartScreen(getWidth(),getHeight());
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
 		selectScreen = new SelectScreen(getWidth(),getHeight());
+		shopScreen = new ShopScreen(getWidth(),getHeight());
+		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
+		creditsScreen = new CreditsScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
 		setScreen(battleScreen);
 	}

@@ -50,7 +50,7 @@ public class StartScreen extends FullFunctionScreen{
 	ButtonDavid creditsButton = new ButtonDavid(350,680,160,Color.lightGray,"Credits",new Action() {
 		
 		public void act() {
-			GameStarter.start.setScreen(GameStarter.selectScreen);
+			GameStarter.start.setScreen(GameStarter.creditsScreen);
 		}
 	}); 
 	viewObjects.add(creditsButton);
