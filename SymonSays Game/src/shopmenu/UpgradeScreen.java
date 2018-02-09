@@ -15,6 +15,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class UpgradeScreen extends FullFunctionScreen {
 
@@ -93,7 +94,7 @@ public class UpgradeScreen extends FullFunctionScreen {
 
 			@Override
 			public void act() {
-				ShopMain.s1.setScreen(ShopMain.s2);
+				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 
 		});
