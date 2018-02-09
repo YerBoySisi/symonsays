@@ -3,12 +3,19 @@
 import java.awt.Color;
 import java.util.List;
 
+import guiTeacher.components.Action;
+import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import guiTeacher.userInterfaces.Screen;
+import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.ButtonInterfaceDavid;
+import mainMenuAndStartScreen.GameStarter;
+import guiTeacher.GUIApplication;
 
-public class ResultScreen extends FullFunctionScreen{
+public class ResultScreen extends FullFunctionScreen {
 	public String bossName;
 	public boolean outcome;
 	
@@ -40,7 +47,15 @@ public class ResultScreen extends FullFunctionScreen{
 			resultL.setSize(50);
 			viewObjects.add(resultL);
 		//}
-		mainCharacter
+		AnimatedComponent main = new Main(100, 450, 150, 150);
+		viewObjects.add(main);
+		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.WHITE, "Boss Select", new Action(){
+			
+			@Override
+			public void act() {
+				GUIApplication.setScreen(GameStarter.selectScreen);
+			}
+		}) ;
+		viewObjects.add(bossSelect);
 	}
-
 }
