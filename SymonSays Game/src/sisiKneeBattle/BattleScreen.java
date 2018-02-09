@@ -6,12 +6,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Bar;
 import guiTeacher.components.ButtonDavid;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import resultScreen.ShareableInfoNabeel;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
 import sisiKneeBosses.GundamShark;
@@ -20,7 +22,7 @@ import sisiKneeBosses.SimonBelmont;
 import sisiKneeBosses.SuperSoldier;
 import sisiKneeBosses.Symon;
 
-public class BattleScreen extends FullFunctionScreen {
+public class BattleScreen extends FullFunctionScreen implements ShareableInfoNabeel {
 	
 	private static final long serialVersionUID = 9151939983030157712L;
 	
@@ -71,11 +73,23 @@ public class BattleScreen extends FullFunctionScreen {
 	//Entities
 	private Player player;
 	
-	private final Boss[] bossList = {new SuperSoldier(), new GundamShark(), new DragonMech(), 
-									 new ShmarseTortoise(), new SimonBelmont(), new Symon()};
-	private Boss boss;
+	private final Boss[] bossList = {new SuperSoldier(), new GundamShark(), new DragonMech(),
+			 						 new ShmarseTortoise(), new SimonBelmont(), new Symon()};
 
-	public BattleScreen(int width, int height) {
+	private Boss boss;
+	
+	//Sprites
+	private AnimatedComponent soraSprite;
+	private AnimatedComponent soraAttack;
+	private AnimatedComponent soraCast;
+	private AnimatedComponent soraDamage;
+	private AnimatedComponent[] soraArray = {soraSprite,soraAttack,soraCast,soraDamage};
+	private AnimatedComponent dragonMechSprite;
+	private AnimatedComponent dragonMechAttack;
+	private AnimatedComponent dragonMechDamage;
+	private AnimatedComponent[] dragonMechArray = {dragonMechSprite, dragonMechAttack, dragonMechDamage};
+
+	public BattleScreen(int width, int height) { 
 		
 		super(width, height);
 		
@@ -175,6 +189,63 @@ public class BattleScreen extends FullFunctionScreen {
 			viewObjects.add(fleeMenu[i]);
 		}
 		
+////////////////////////////////////////////////////////////////////////////////////
+		
+		soraSprite = new AnimatedComponent(300,300,200,200);
+		soraSprite.addSequence("resources/soraflipped.png", 150, 396, 201, 49, 41, 4);
+		Thread soraIdle = new Thread(soraSprite);
+		soraIdle.start();
+		soraSprite.setVisible(true);
+		viewObjects.add(soraSprite);
+		
+		soraAttack = new AnimatedComponent(330,250,275,275);
+		soraAttack.addSequence("resources/soraattack.png", 150, 0, 0, 75, 50, 8);
+		Thread soraAtk = new Thread(soraAttack);
+		soraAtk.start();
+		soraAttack.setVisible(false);
+		viewObjects.add(soraAttack);
+			
+		soraCast = new AnimatedComponent(270,220,275,275);
+		soraCast.addSequence("resources/soramagic.png", 150, 0, 0, 50, 82, 7);
+		Thread soraCst = new Thread(soraCast);
+		soraCst.start();
+		soraCast.setVisible(false);
+		viewObjects.add(soraCast);
+		
+		soraDamage = new AnimatedComponent(300,300,200,200);
+		soraDamage.addSequence("resources/soraflipped.png", 1000, 548, 411, 45, 45, 1);
+		Thread soraDmg = new Thread(soraDamage);
+		soraDmg.start();
+		soraDamage.setVisible(false);
+		viewObjects.add(soraDamage);
+		
+////////////////////////////////////////////////////////////////////////////////////
+
+		dragonMechSprite = new AnimatedComponent(900,150,400,400);
+		dragonMechSprite.addSequence("resources/dragonmechattack.png", 150, 0, 0, 150, 105, 2);
+		Thread dragonmechIdle = new Thread(dragonMechSprite);
+		dragonmechIdle.start();
+		dragonMechSprite.setVisible(true);
+		viewObjects.add(dragonMechSprite);
+		
+		dragonMechAttack = new AnimatedComponent(900,150,400,400);
+		dragonMechAttack.addSequence("resources/dragonmechattack.png", 150, 0, 0, 150, 105, 14);
+		Thread dragonmechAtk = new Thread(dragonMechAttack);
+		dragonmechAtk.start();
+		dragonMechAttack.setVisible(false);
+		viewObjects.add(dragonMechAttack);
+		
+		dragonMechDamage = new AnimatedComponent(900,150,400,400);
+		dragonMechDamage.addSequence("resources/dragonmechdamage.png", 150, 36, 333, 135, 95, 3);
+		Thread dragonmechDmg = new Thread(dragonMechDamage);
+		dragonmechDmg.start();
+		dragonMechDamage.setVisible(false);
+		viewObjects.add(dragonMechDamage);
+		
+////////////////////////////////////////////////////////////////////////////////////
+
+		
+		
 		/*for(int i = 0; i < spellMenu.size(); i++) {
 			itemMenu.get(i).setVisible(false);
 			viewObjects.add(itemMenu.get(i));
@@ -193,6 +264,8 @@ public class BattleScreen extends FullFunctionScreen {
 		bossDisplay = boss.getIdleSprite();
 		bossDisplay.setVisible(true);
 		viewObjects.add(bossDisplay);*/
+		
+		
 		
 	}
 	
@@ -235,6 +308,48 @@ public class BattleScreen extends FullFunctionScreen {
 		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH, viewObjects);
 		
 	}
+	
+	public void setPlayerSprite(int num) {
+		/*
+		 * 0 - idle
+		 * 1 - attack
+		 * 2 - magic
+		 * 3 - damage
+		 */
+		soraSprite.setVisible(false);
+		soraAttack.setVisible(false);
+		soraCast.setVisible(false);
+		soraDamage.setVisible(false);
+		
+		soraArray[num].setVisible(true);
+	}
+	
+	public void setBossSprite(int num) {
+		/*
+		 * 0 - idle
+		 * 1 - attack
+		 * 2 - damage
+		 */
+		
+		dragonMechSprite.setVisible(false);
+		dragonMechAttack.setVisible(false);
+		dragonMechDamage.setVisible(false);
+		
+		dragonMechArray[num].setVisible(true);
+
+	}
+
+	@Override
+	public int bossLevel() {
+		return 40;
+	}
+
+	@Override
+	public boolean determineWinner() {
+		//return true if player won, false is boss won
+		return false;
+	}
+
 	
 	/* TO DO SIDEEQ:
 	 * Place character sprites on the stage
