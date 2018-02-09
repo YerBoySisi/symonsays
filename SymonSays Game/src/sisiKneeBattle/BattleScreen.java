@@ -13,6 +13,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import resultScreen.ShareableInfoNabeel;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
 import sisiKneeBosses.GundamShark;
@@ -21,7 +22,7 @@ import sisiKneeBosses.SimonBelmont;
 import sisiKneeBosses.SuperSoldier;
 import sisiKneeBosses.Symon;
 
-public class BattleScreen extends FullFunctionScreen {
+public class BattleScreen extends FullFunctionScreen implements ShareableInfoNabeel {
 	
 	private static final long serialVersionUID = 9151939983030157712L;
 	
@@ -79,7 +80,9 @@ public class BattleScreen extends FullFunctionScreen {
 	private SimonBelmont sbelm;
 	private Symon symon;
 	
-	private final Boss[] bossList = {ssold, gshark, dmech, stort, sbelm, symon};
+	private final Boss[] bossList = {new SuperSoldier(), new GundamShark(), new DragonMech(),
+			 new ShmarseTortoise(), new SimonBelmont(), new Symon()};
+}
 	private Boss boss;
 	
 	//Sprites
@@ -121,6 +124,8 @@ public class BattleScreen extends FullFunctionScreen {
 ////////////////////////////////////////////////////////////////////////////////////
 		
 		player = new Player();
+		boss = new DragonMech();
+		
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -340,6 +345,17 @@ public class BattleScreen extends FullFunctionScreen {
 		
 		dragonMechArray[num].setVisible(true);
 
+	}
+
+	@Override
+	public int bossLevel() {
+		return 40;
+	}
+
+	@Override
+	public boolean determineWinner() {
+		//return true if player won, false is boss won
+		return false;
 	}
 
 	
