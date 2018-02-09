@@ -15,8 +15,11 @@ import mainMenuAndStartScreen.GameStarter;
 import guiTeacher.GUIApplication;
 
 public class ResultScreen extends FullFunctionScreen {
-	public String bossName;
+	public int bossLevel;
 	public boolean outcome;
+	//values
+	public int goldValue;
+	public int upPoints;
 	
 	public ResultScreen(int width, int height) {
 		super(width, height);
@@ -24,9 +27,12 @@ public class ResultScreen extends FullFunctionScreen {
 		// TODO Auto-generated constructor stub
 	}
 	public void defineValues() {
-		//bossName = sisi.bossName();
-		//outcome =  sisi.determineWinner();
+		//bossLevel = GameStarter.battleScreen.bossLevel();
+		//outcome =  GameStarter.battleScreen.determineWinner();
+		goldValue= (int) (100*(Math.random()*3)+100);
+		upPoints = (int) (10*(Math.random()*10)+50);
 	}
+	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/black.jpg");
@@ -38,7 +44,20 @@ public class ResultScreen extends FullFunctionScreen {
 			result.setCustomTextColor(Color.WHITE);
 			result.setSize(50);
 			viewObjects.add(result);
-			
+			TextLabel loot = new TextLabel(1150, 250, 150, 150, "Loot");
+			loot.setCustomTextColor(Color.WHITE);
+			loot.setSize(40);
+			viewObjects.add(loot);
+			//up points
+			TextLabel up = new TextLabel(1150, 250, 150, 150, "UP Points: "+ );
+			loot.setCustomTextColor(Color.WHITE);
+			loot.setSize(20);
+			viewObjects.add(up);
+			//gold
+			TextLabel gold = new TextLabel(1150, 250, 150, 150, "Gold: "+ goldValue);
+			loot.setCustomTextColor(Color.WHITE);
+			loot.setSize(40);
+			viewObjects.add(gold);
 		}
 		//else {
 			TextLabel resultL = new TextLabel(570, 20, 250, 200, "You Lose");
@@ -66,5 +85,6 @@ public class ResultScreen extends FullFunctionScreen {
 			}
 		}) ;
 		viewObjects.add(Shop);
+		
 	}
 }
