@@ -171,7 +171,7 @@ public class RickyBuy extends ClickableScreen {
 					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency() - COST);
 						inBetween();
 						GameStarter.inventory.itemlist.add(new Items("atk"));
-						//System.out.println(atk + ". Attack");
+						//System.out.println(atk + ". Attack");x
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("atk")) ));
 						if(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("atk")) == 10) {
