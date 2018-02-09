@@ -7,6 +7,9 @@ import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import inv.Inventory;
+import shopmenu.DavidSell;
+import shopmenu.RickyBuy;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
 import sisiKneeBattle.BattleScreen;
@@ -18,9 +21,12 @@ public class GameStarter extends GUIApplication{
 	public static GameStarter start;
 	public static SelectScreen selectScreen;
 	public static ShopScreen shopScreen;
+	public static RickyBuy buyScreen;
+	public static DavidSell sellScreen;
 	public static UpgradeScreen upgradeScreen;
 	public static CreditsScreen creditsScreen;
 	public static BattleScreen battleScreen;
+	public static Inventory inventory;
 	
 	
 	public GameStarter(int width, int height) {
