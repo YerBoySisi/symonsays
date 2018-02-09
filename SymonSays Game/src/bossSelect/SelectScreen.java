@@ -200,7 +200,7 @@ public class SelectScreen extends FullFunctionScreen {
 
 
 	public void addIcons(List<Visible> viewObjects) {
-		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png","resources/Soldier Icon.png"};
+		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png"};
 		int x = 20;
 		for(int i = 0; i < links.length; i++) {
 			Graphic icon = new Graphic(x, y, wh, wh, links[i]);
