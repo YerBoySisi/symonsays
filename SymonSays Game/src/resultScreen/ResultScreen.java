@@ -11,7 +11,6 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.ButtonInterfaceDavid;
 import mainMenuAndStartScreen.GameStarter;
 import guiTeacher.GUIApplication;
 
@@ -53,9 +52,19 @@ public class ResultScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.selectScreen);
+				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		}) ;
 		viewObjects.add(bossSelect);
+		
+		ButtonDavid Shop = new ButtonDavid(1000, 680, 150, Color.WHITE, "Shop", new Action(){
+			
+			@Override
+			public void act() {
+				
+				GameStarter.start.setScreen(GameStarter.shopScreen);
+			}
+		}) ;
+		viewObjects.add(Shop);
 	}
 }
