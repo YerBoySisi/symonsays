@@ -73,12 +73,6 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	//Entities
 	private Player player;
 	
-	private SuperSoldier ssold;
-	private GundamShark gshark;
-	private DragonMech dmech;
-	private ShmarseTortoise stort;
-	private SimonBelmont sbelm;
-	private Symon symon;
 	
 	private final Boss[] bossList = {new SuperSoldier(), new GundamShark(), new DragonMech(),
 			 new ShmarseTortoise(), new SimonBelmont(), new Symon()};
