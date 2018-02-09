@@ -18,6 +18,7 @@ public class Attack {
 		damage = dmg;
 		type = typ;
 		element = ele;
+		manaCost = 0;
 		
 	}	
 	
@@ -52,6 +53,12 @@ public class Attack {
 	public int getElement() {
 		
 		return element;
+		
+	}
+	
+	public int getCost() {
+		
+		return manaCost;
 		
 	}
 	

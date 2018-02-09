@@ -38,6 +38,12 @@ public class Player extends Entity {
 
 	}
 
+	public void changeMP(int n) {
+		
+		mp += n;
+		
+	}
+
 	public int getMP() {
 		
 		return mp;

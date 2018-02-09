@@ -14,6 +14,8 @@ public class BattleSequence {
 	private boolean selectionMade = false;
 	private int selection;
 	
+	private boolean running = false;
+	
 	public BattleSequence(Player p, Boss b) {
 		
 		player = p;
@@ -33,13 +35,26 @@ public class BattleSequence {
 			bossAttackChances[i] = n;
 		}
 		
+		running = true;
+		
 	}
 	
-	public void playerTurn(int action) {
+	public void playerTurn(int action, Attack a) {
 		
 		while(!selectionMade) {};
 		
+		switch(selection) {
+		case ATTACK:
+			player.attack(boss, a);
+		case ITEM:
+			if(player.getHP() < player.getMaxHP()) {
+				player.changeHP(10);
+			}
+		case RUN:
+			running = false;
+		}
 		
+		selectionMade = false;
 		
 	}
 	
@@ -65,26 +80,30 @@ public class BattleSequence {
 		
 	}
 	
-	public void runBattleSequence(int action) {
+	public void runBattleSequence(int action, Attack a) {
 		
-		new Thread(() -> {
-			playerTurn(action);
-		}).start();
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		new Thread(() -> {
-			bossTurn();
-		}).start();
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		while(running) {
+			
+			new Thread(() -> {
+				playerTurn(action, a);
+			}).start();
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			new Thread(() -> {
+				bossTurn();
+			}).start();
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}
