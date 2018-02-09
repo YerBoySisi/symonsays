@@ -46,6 +46,7 @@ public class BattleSequence {
 		switch(selection) {
 		case ATTACK:
 			player.attack(boss, a);
+			player.changeMP(a.getCost());
 		case ITEM:
 			if(player.getHP() < player.getMaxHP()) {
 				player.changeHP(10);
