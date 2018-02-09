@@ -54,7 +54,7 @@ public class RickyBuy extends ClickableScreen {
 		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.LIGHT_GRAY,"Back",new Action() {
 			
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				GameStarter.start.setScreen(GameStarter.shopScreen);
 			}
 		});
 			

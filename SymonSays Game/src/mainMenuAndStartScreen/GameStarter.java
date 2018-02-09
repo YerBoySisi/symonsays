@@ -35,6 +35,8 @@ public class GameStarter extends GUIApplication{
 	}
 	
 	public static void main(String[] args) {
+		inventory = new Inventory();
+		inventory.setCurrency(1000);
 		start = new GameStarter(1400,780);
 		Thread go = new Thread(start);
 		go.start();
@@ -48,6 +50,8 @@ public class GameStarter extends GUIApplication{
 		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
 		creditsScreen = new CreditsScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
+		buyScreen = new RickyBuy(getWidth(),getHeight());
+		sellScreen = new DavidSell(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 
