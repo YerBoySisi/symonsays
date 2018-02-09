@@ -71,14 +71,8 @@ public class BattleScreen extends FullFunctionScreen {
 	//Entities
 	private Player player;
 	
-	private SuperSoldier ssold;
-	private GundamShark gshark;
-	private DragonMech dmech;
-	private ShmarseTortoise stort;
-	private SimonBelmont sbelm;
-	private Symon symon;
-	
-	private final Boss[] bossList = {ssold, gshark, dmech, stort, sbelm, symon};
+	private final Boss[] bossList = {new SuperSoldier(), new GundamShark(), new DragonMech(), 
+									 new ShmarseTortoise(), new SimonBelmont(), new Symon()};
 	private Boss boss;
 
 	public BattleScreen(int width, int height) {
@@ -109,6 +103,7 @@ public class BattleScreen extends FullFunctionScreen {
 ////////////////////////////////////////////////////////////////////////////////////
 		
 		player = new Player();
+		boss = new DragonMech();
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -237,7 +232,7 @@ public class BattleScreen extends FullFunctionScreen {
 	
 	public void updateBossHP(List<Visible> viewObjects) {
 		
-		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, "Dragon Mech", BOSS_BAR_WIDTH, 286, 600, BOSS_BAR_WIDTH, viewObjects);
+		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH, viewObjects);
 		
 	}
 	

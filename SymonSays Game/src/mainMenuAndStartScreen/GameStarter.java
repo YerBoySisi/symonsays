@@ -1,17 +1,15 @@
 package mainMenuAndStartScreen;
 
-import java.awt.Font;
-import java.io.File;
-
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
-import guiTeacher.components.StyledComponent;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
 import sisiKneeBattle.BattleScreen;
 
 public class GameStarter extends GUIApplication{
+	
+	private static final long serialVersionUID = 1L;
 	
 	public static StartScreen startScreen;
 	public static MainMenuScreen mainMenuScreen;

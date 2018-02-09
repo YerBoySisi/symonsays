@@ -26,11 +26,15 @@ public abstract class Boss extends Entity {
 		
 	}
 
-	
-	
 	public void addAttack(Attack a) {
 		
 		attacks.add(a);
+		
+	}
+	
+	public ArrayList<Attack> getAttacks() {
+		
+		return attacks;
 		
 	}
 	

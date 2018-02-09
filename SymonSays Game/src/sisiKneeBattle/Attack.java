@@ -8,6 +8,7 @@ public class Attack {
 	protected int damage;
 	protected int type;
 	protected int element;
+	protected int manaCost;
 	
 	protected AnimatedComponent[] sprite;
 
@@ -17,6 +18,16 @@ public class Attack {
 		damage = dmg;
 		type = typ;
 		element = ele;
+		
+	}	
+	
+	public Attack(String nam, int dmg, int typ, int ele, int mc) {
+		
+		name = nam;
+		damage = dmg;
+		type = typ;
+		element = ele;
+		manaCost = mc;
 		
 	}
 	

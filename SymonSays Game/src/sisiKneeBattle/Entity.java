@@ -70,7 +70,7 @@ public abstract class Entity {
 		int dmg = 0;
 		double mult = dmgMultipliers.get((int)(Math.random() * dmgMultipliers.size()));
 		
-		dmg = a.damage - (int)Math.round((e.defense-1) / atkr.power);
+		dmg = (int)(a.damage * ((double)atkr.power / ((double)e.defense + 7)));
 		
 		if(a.getType() == e.weakness) {
 			return (int)(Math.round(dmg * mult) * WEAKNESS_MULTIPLIER);
