@@ -18,6 +18,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Inventory;
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class DavidSell extends FullFunctionScreen {
 	
@@ -43,19 +44,19 @@ public class DavidSell extends FullFunctionScreen {
 		title =  new TextArea(600,50,300,50,"MERCHANT");
 		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
 		quant1 = new TextArea(500,150,300,100,"-");
-		quant1.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+		quant1.setText("x"+Integer.toString(countOccurences(GameStarter.inventory.itemlist,new Items("def"))));
 		
 		TextArea desc2 = new TextArea(600,275,400,100,"HEALS PLAYER FOR 100HP");
 	    quant2 = new TextArea(500,275,300,100,"-");
-		quant2.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+		quant2.setText("x"+Integer.toString(countOccurences(GameStarter.inventory.itemlist,new Items("hp"))));
 		
 		TextArea desc3 = new TextArea(600,400,450,100,"INCREASES DODGE RATE");
         quant3 = new TextArea(500,400,300,100,"-");
-		quant3.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+		quant3.setText("x"+Integer.toString(countOccurences(GameStarter.inventory.itemlist,new Items("dodge"))));
 		
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
         quant4 = new TextArea(500,525,300,100,"-");
-		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		quant4.setText("x"+Integer.toString(countOccurences(GameStarter.inventory.itemlist,new Items("atk"))));
 		
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		viewObjects.add(new Graphic(400, 150, 100, 100,"shopUpgradeResources/test.png"));
@@ -66,7 +67,7 @@ public class DavidSell extends FullFunctionScreen {
 		
 	     currency = new TextArea(1200,20,150,50,"-");
 		currency.setCustomTextColor(Color.orange);
-		currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
+		currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
 
 		setbankG();
 		ButtonDavid back = new ButtonDavid(50,680,100,Color.LIGHT_GRAY,"Back",new Action() {
@@ -75,7 +76,7 @@ public class DavidSell extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				 ShopMain.s1.setScreen(ShopMain.s2);
+				GameStarter.start.setScreen(GameStarter.shopScreen);
 			}
 		});
 		
@@ -85,16 +86,16 @@ public class DavidSell extends FullFunctionScreen {
 		   buyD = new Button(900,200,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
 				buyD.setEnabled(true);
-				if (countOccurences(ShopMain.inventory.itemlist,new Items("def")) >0) {
-					ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-					removeItem(ShopMain.inventory.itemlist,new Items("def"));
-					int count = countOccurences(ShopMain.inventory.itemlist,new Items("def"));
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				if (countOccurences(GameStarter.inventory.itemlist,new Items("def")) >0) {
+					ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+					removeItem(GameStarter.inventory.itemlist,new Items("def"));
+					int count = countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+RickyBuy.COST);
 					inBetween();
 					quant1.setText("x"+Integer.toString(count));
-					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-					//System.out.println(ShopMain.inventory.getCurrency());
-					 //printList(ShopMain.inventory.itemlist);
+					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+					//System.out.println(GameStarter.inventory.getCurrency());
+					 //printList(GameStarter.inventory.itemlist);
 					   
 					System.out.println("Def: " +count);
 					/*
@@ -110,7 +111,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		   /*
-		   if(countOccurences(ShopMain.inventory.itemlist,new Items("def")) == 0) {
+		   if(countOccurences(GameStarter.inventory.itemlist,new Items("def")) == 0) {
 				buyD.setEnabled(false);
 				buyD.setBackground(Color.RED);
 				buyD.update();
@@ -123,15 +124,15 @@ public class DavidSell extends FullFunctionScreen {
 		 buyHP = new Button(900,325,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
 				buyHP.setEnabled(true);
-				if (countOccurences(ShopMain.inventory.itemlist,new Items("hp")) >0) {
-				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				removeItem(ShopMain.inventory.itemlist,new Items("hp"));
+				if (countOccurences(GameStarter.inventory.itemlist,new Items("hp")) >0) {
+				ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+				removeItem(GameStarter.inventory.itemlist,new Items("hp"));
 				int count = countOccurences(iteml,new Items("hp"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+RickyBuy.COST);
 				inBetween();
 				quant2.setText("x"+Integer.toString(count));
-				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				//System.out.println(ShopMain.inventory.getCurrency());
+				currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+				//System.out.println(GameStarter.inventory.getCurrency());
 				//System.out.println("Health: " +count);
 				/*
 				if(count == 0) {
@@ -145,7 +146,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		 /*
-		if(countOccurences(ShopMain.inventory.itemlist,new Items("hp")) == 0) {
+		if(countOccurences(GameStarter.inventory.itemlist,new Items("hp")) == 0) {
 				buyHP.setEnabled(false);
 				buyHP.setBackground(Color.RED);
 				buyHP.update();
@@ -158,15 +159,15 @@ public class DavidSell extends FullFunctionScreen {
 		  buyDd = new Button(900,450,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
 				buyDd.setEnabled(true);
-				if (countOccurences(ShopMain.inventory.itemlist,new Items("dodge")) >0) {
-				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				removeItem(ShopMain.inventory.itemlist,new Items("dodge"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("dodge"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				if (countOccurences(GameStarter.inventory.itemlist,new Items("dodge")) >0) {
+				ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+				removeItem(GameStarter.inventory.itemlist,new Items("dodge"));
+				int count = countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+				GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+RickyBuy.COST);
 				inBetween();
 				quant3.setText("x"+Integer.toString(count));
-				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				//System.out.println(ShopMain.inventory.getCurrency());
+				currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+				//System.out.println(GameStarter.inventory.getCurrency());
 				//System.out.println("Speed: " +count);
 				/*
 				if(count == 0) {
@@ -179,7 +180,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		  /*
-		  if(countOccurences(ShopMain.inventory.itemlist,new Items("dodge")) == 0) {
+		  if(countOccurences(GameStarter.inventory.itemlist,new Items("dodge")) == 0) {
 				buyDd.setEnabled(false);
 				buyDd.setBackground(Color.RED);
 				buyDd.update();
@@ -192,15 +193,15 @@ public class DavidSell extends FullFunctionScreen {
 		 buyA = new Button(900,575,100,50,"Sell",Color.GREEN, new Action() {
 			public void act() {
 				buyA.setEnabled(true);
-				if (countOccurences(ShopMain.inventory.itemlist,new Items("atk"))>0) {
-				ArrayList<Items>iteml = ShopMain.inventory.itemlist;
-				removeItem(ShopMain.inventory.itemlist,new Items("atk"));
-				int count = countOccurences(ShopMain.inventory.itemlist,new Items("atk"));
-				ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+RickyBuy.COST);
+				if (countOccurences(GameStarter.inventory.itemlist,new Items("atk"))>0) {
+				ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+				removeItem(GameStarter.inventory.itemlist,new Items("atk"));
+				int count = countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+				GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+RickyBuy.COST);
 				inBetween();
 				quant4.setText("x"+Integer.toString(count));
-				currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
-				//System.out.println(+ShopMain.inventory.getCurrency());
+				currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+				//System.out.println(+GameStarter.inventory.getCurrency());
 				//System.out.println("Atk: " +count);
 				/*
 				if(count == 0) {
@@ -213,7 +214,7 @@ public class DavidSell extends FullFunctionScreen {
 			}
 		});
 		 /*
-		 if(countOccurences(ShopMain.inventory.itemlist,new Items("atk")) == 0) {
+		 if(countOccurences(GameStarter.inventory.itemlist,new Items("atk")) == 0) {
 				buyA.setEnabled(false);
 				buyA.setBackground(Color.RED);
 				buyA.update();
@@ -262,31 +263,31 @@ public class DavidSell extends FullFunctionScreen {
 	}
 	
 	public void inBetween() {
-		if(ShopMain.inventory.getCurrency() >= 0 && ShopMain.inventory.getCurrency() < 10) {
-			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+		if(GameStarter.inventory.getCurrency() >= 0 && GameStarter.inventory.getCurrency() < 10) {
+			if(GameStarter.inventory.getCurrency() % 10 != 1) {
 				currency.setX(1300);
 			}
 			else currency.setX(1310);
 		}
-		else if(ShopMain.inventory.getCurrency() >= 10 && ShopMain.inventory.getCurrency() < 100) {
-			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+		else if(GameStarter.inventory.getCurrency() >= 10 && GameStarter.inventory.getCurrency() < 100) {
+			if(GameStarter.inventory.getCurrency() % 10 != 1) {
 				currency.setX(1275);
 			}
 			else currency.setX(1285);
 		}
-		else if(ShopMain.inventory.getCurrency() >= 100 && ShopMain.inventory.getCurrency() < 1000) {
-			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+		else if(GameStarter.inventory.getCurrency() >= 100 && GameStarter.inventory.getCurrency() < 1000) {
+			if(GameStarter.inventory.getCurrency() % 10 != 1) {
 				currency.setX(1250);
 			}
 			else currency.setX(1260);
 		}
-		else if(ShopMain.inventory.getCurrency() >= 1000 && ShopMain.inventory.getCurrency() < 10000) {
-			if(ShopMain.inventory.getCurrency() % 10 != 1) {
+		else if(GameStarter.inventory.getCurrency() >= 1000 && GameStarter.inventory.getCurrency() < 10000) {
+			if(GameStarter.inventory.getCurrency() % 10 != 1) {
 				currency.setX(1225);
 			}
 			else currency.setX(1235);
 		}
-		else if(ShopMain.inventory.getCurrency() >= 10000 && ShopMain.inventory.getCurrency() < 100000) {
+		else if(GameStarter.inventory.getCurrency() >= 10000 && GameStarter.inventory.getCurrency() < 100000) {
 			currency.setX(1200);
 		}
 	}

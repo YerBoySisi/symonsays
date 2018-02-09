@@ -13,6 +13,7 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class ShopScreen extends FullFunctionScreen {
 
@@ -36,7 +37,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-			 ShopMain.s1.setScreen(ShopMain.s3);
+				GameStarter.start.setScreen(GameStarter.buyScreen);
 			}
 		});
 		buy.setForeground(Color.white);		viewObjects.add(buy);
@@ -45,7 +46,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				 ShopMain.s1.setScreen(ShopMain.s4);
+				GameStarter.start.setScreen(GameStarter.sellScreen);
 				 updateQuant();
 			}
 		});
@@ -55,7 +56,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				 ShopMain.s1.setScreen(ShopMain.s5);
+				GameStarter.start.setScreen(GameStarter.upgradeScreen);
 			}
 		});
 			
@@ -67,7 +68,7 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				 ShopMain.s1.setScreen(ShopMain.s2);
+				 GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		});
 
