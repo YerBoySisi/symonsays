@@ -53,7 +53,7 @@ public class ResultScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GUIApplication.setScreen(GameStarter.selectScreen);
+				GameStarter.start.setScreen(GameStarter.selectScreen);
 			}
 		}) ;
 		viewObjects.add(bossSelect);
