@@ -23,7 +23,7 @@ public class ResultScreen extends FullFunctionScreen {
 	
 	public ResultScreen(int width, int height) {
 		super(width, height);
-		
+		defineValues();
 		// TODO Auto-generated constructor stub
 	}
 	public void defineValues() {
@@ -49,7 +49,7 @@ public class ResultScreen extends FullFunctionScreen {
 			loot.setSize(40);
 			viewObjects.add(loot);
 			//up points
-			TextLabel up = new TextLabel(1150, 250, 150, 150, "UP Points: "+ );
+			TextLabel up = new TextLabel(1150, 250, 150, 150, "UP Points: "+ upPoints);
 			loot.setCustomTextColor(Color.WHITE);
 			loot.setSize(20);
 			viewObjects.add(up);
@@ -67,21 +67,21 @@ public class ResultScreen extends FullFunctionScreen {
 		//}
 		AnimatedComponent main = new Main(100, 450, 150, 150);
 		viewObjects.add(main);
-		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.WHITE, "Boss Select", new Action(){
+		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.WHITE, "Shop", new Action(){
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				ResultGui.main.setScreen(ResultGui.shopScreen);
 			}
 		}) ;
 		viewObjects.add(bossSelect);
 		
-		ButtonDavid Shop = new ButtonDavid(1000, 680, 150, Color.WHITE, "Shop", new Action(){
+		ButtonDavid Shop = new ButtonDavid(1000, 680, 150, Color.WHITE, "Boss Select", new Action(){
 			
 			@Override
 			public void act() {
 				
-				GameStarter.start.setScreen(GameStarter.shopScreen);
+				ResultGui.main.setScreen(ResultGui.selectScreen);
 			}
 		}) ;
 		viewObjects.add(Shop);
