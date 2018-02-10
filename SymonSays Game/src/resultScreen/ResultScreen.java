@@ -23,7 +23,7 @@ public class ResultScreen extends FullFunctionScreen {
 	
 	public ResultScreen(int width, int height) {
 		super(width, height);
-		defineValues();
+		
 		// TODO Auto-generated constructor stub
 	}
 	public void defineValues() {
@@ -35,12 +35,14 @@ public class ResultScreen extends FullFunctionScreen {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/black.jpg");
+		goldValue= (int) (100*(Math.random()*3)+100);
+		upPoints = (int) (10*(Math.random()*10)+50);
+		Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/Black.jpg");
 		viewObjects.add(backGround);
 		//Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/"+bossName+".jpg");
 		//viewObjects.add(backGround);
-		if(outcome) {
-			TextLabel result = new TextLabel(570, 20, 200, 200, "You Win");
+		//if(outcome) {
+			TextLabel result = new TextLabel(570, 20, 200, 200, "Victory");
 			result.setCustomTextColor(Color.WHITE);
 			result.setSize(50);
 			viewObjects.add(result);
@@ -49,23 +51,23 @@ public class ResultScreen extends FullFunctionScreen {
 			loot.setSize(40);
 			viewObjects.add(loot);
 			//up points
-			TextLabel up = new TextLabel(1150, 250, 150, 150, "UP Points: "+ upPoints);
+			TextLabel up = new TextLabel(1150, 350, 150, 150, "UP Points: "+ upPoints);
 			loot.setCustomTextColor(Color.WHITE);
 			loot.setSize(20);
 			viewObjects.add(up);
 			//gold
-			TextLabel gold = new TextLabel(1150, 250, 150, 150, "Gold: "+ goldValue);
+			TextLabel gold = new TextLabel(1150, 450, 150, 150, "Gold: "+ goldValue);
 			loot.setCustomTextColor(Color.WHITE);
 			loot.setSize(40);
 			viewObjects.add(gold);
-		}
-		//else {
-			TextLabel resultL = new TextLabel(570, 20, 250, 200, "You Lose");
-			resultL.setCustomTextColor(Color.WHITE);
-			resultL.setSize(50);
-			viewObjects.add(resultL);
 		//}
-		AnimatedComponent main = new Main(100, 450, 150, 150);
+		//else {
+//			TextLabel resultL = new TextLabel(570, 20, 250, 200, "Defeat");
+//			resultL.setCustomTextColor(Color.WHITE);
+//			resultL.setSize(50);
+//			viewObjects.add(resultL);
+		//}
+		AnimatedComponent main = new MainCharacterAnimated(100, 450, 150, 150);
 		viewObjects.add(main);
 		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.WHITE, "Shop", new Action(){
 			
@@ -85,6 +87,23 @@ public class ResultScreen extends FullFunctionScreen {
 			}
 		}) ;
 		viewObjects.add(Shop);
-		
+		ButtonDavid UpG = new ButtonDavid(800, 680, 150, Color.WHITE, "Upgrade Menu", new Action(){
+			
+			@Override
+			public void act() {
+				
+				ResultGui.main.setScreen(ResultGui.upgradeScreen);
+			}
+		}) ;
+		viewObjects.add(UpG);
+		ButtonDavid mainMe = new ButtonDavid(600, 680, 150, Color.WHITE, "Main Menu", new Action(){
+			
+			@Override
+			public void act() {
+				
+				ResultGui.main.setScreen(ResultGui.mainMenuScreen);
+			}
+		}) ;
+		viewObjects.add(mainMe);
 	}
 }

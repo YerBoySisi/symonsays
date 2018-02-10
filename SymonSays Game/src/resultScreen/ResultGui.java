@@ -36,7 +36,6 @@ public class ResultGui extends GUIApplication {
 	@Override
 	public void initScreen() {
 		screen = new ResultScreen(getWidth(), getHeight());
-		setScreen(screen);
 		startScreen = new StartScreen(getWidth(),getHeight());
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
 		selectScreen = new SelectScreen(getWidth(),getHeight());
@@ -44,6 +43,7 @@ public class ResultGui extends GUIApplication {
 		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
 		creditsScreen = new CreditsScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
+		setScreen(screen);
 	}
 	
 	

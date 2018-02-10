@@ -4,9 +4,9 @@ import java.awt.Graphics2D;
 
 import guiTeacher.components.AnimatedComponent;
 
-public class Main extends AnimatedComponent {
+public class MainCharacterAnimated extends AnimatedComponent {
 
-	public Main(int x, int y, int w, int h) {
+	public MainCharacterAnimated(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		addSequence("resources/Ness.png", 450,0, 0, 47, 60, 8);
 		Thread animation = new Thread(this);

@@ -198,12 +198,12 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraSprite.setVisible(true);
 		viewObjects.add(soraSprite);
 		
-		soraAttack = new AnimatedComponent(330,250,275,275);
-		soraAttack.addSequence("resources/soraattack.png", 150, 0, 0, 75, 50, 8);
-		Thread soraAtk = new Thread(soraAttack);
-		soraAtk.start();
-		soraAttack.setVisible(false);
-		viewObjects.add(soraAttack);
+//		soraAttack = new AnimatedComponent(330,250,275,275);
+//		soraAttack.addSequence("resources/soraattack.png", 150, 0, 0, 75, 50, 8);
+//		Thread soraAtk = new Thread(soraAttack);
+//		soraAtk.start();
+//		soraAttack.setVisible(false);
+//		viewObjects.add(soraAttack);
 			
 		soraCast = new AnimatedComponent(270,220,275,275);
 		soraCast.addSequence("resources/soramagic.png", 150, 0, 0, 50, 82, 7);
