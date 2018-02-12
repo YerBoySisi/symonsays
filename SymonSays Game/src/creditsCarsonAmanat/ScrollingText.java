@@ -54,7 +54,11 @@ public class ScrollingText extends MovingComponent{
 	public void checkBehaviors() {
 		if(getY() > 750) {
 			setY(-750);
-			
+			if(contributors.get(0) == "Symon Says") {
+				setList(contributors, rrr);
+			}else {
+				setList(contributors, contributorsArr);
+			}
 		}
 	}
 
