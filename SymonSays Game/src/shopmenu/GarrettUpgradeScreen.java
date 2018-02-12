@@ -34,7 +34,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	private int regenerationLevel = 0;
 	private int agilityLevel = 0;
 	private Upgrade[] upgrades;
-	private int[] costs1;
+	private int[] costs;
 
 	public GarrettUpgradeScreen(int width, int height) {
 		super(width, height);
@@ -141,8 +141,8 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 
 				@Override
 				public void act() {
-					if(getUpgradePoints() >= costs1[buttons.indexOf(b)]) {
-						setUpgradePoints(getUpgradePoints() - costs1[buttons.indexOf(b)]);
+					if(getUpgradePoints() >= costs[buttons.indexOf(b)]) {
+						setUpgradePoints(getUpgradePoints() - costs[buttons.indexOf(b)]);
 						pointsDisplay.setText("UP: " + getUpgradePoints());
 						b.setEnabled(false);
 						b.setBackground(Color.WHITE);
@@ -171,7 +171,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 
 	public void addDescriptions(List<Visible> viewObjects) {
 		createUpgradeList();
-		costs1 = new int[9];
+		costs = new int[9];
 		for(int i = 0; i < 3; i++) {
 			for(int j = 1; j <= 3; j++) {
 				String desc = upgrades[i].getDesc();
@@ -181,7 +181,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 				TextLabel upgradeCost = new TextLabel(50 + 450 * i, 100 + 175 * j, 300, 50, cost * j + "UP");
 				upgradeCost.setCustomTextColor(Color.CYAN);
 				viewObjects.add(upgradeCost);
-				costs1[i * 3 + (j - 1)] = cost * j;
+				costs[i * 3 + (j - 1)] = cost * j;
 			}
 		}
 	}
