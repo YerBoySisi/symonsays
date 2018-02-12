@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Bar;
 import guiTeacher.components.ButtonDavid;
@@ -13,6 +14,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import mainMenuAndStartScreen.GameStarter;
 import resultScreen.ShareableInfoNabeel;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
@@ -70,6 +72,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private Bar playerDisplay;
 	private Bar bossDisplay;
 	private TextArea turnInfo;
+	
+	private ButtonDavid cheat;
 	
 	//Entities
 	private Player player;
@@ -196,7 +200,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraSprite.addSequence("resources/soraflipped.png", 150, 396, 201, 49, 41, 4);
 		Thread soraIdle = new Thread(soraSprite);
 		soraIdle.start();
-		soraSprite.setVisible(false);
+		soraSprite.setVisible(true);
 		viewObjects.add(soraSprite);
 		
 //		soraAttack = new AnimatedComponent(330,250,275,275);
@@ -210,7 +214,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraCast.addSequence("resources/soramagic.png", 150, 0, 0, 50, 82, 7);
 		Thread soraCst = new Thread(soraCast);
 		soraCst.start();
-		soraCast.setVisible(true);
+		soraCast.setVisible(false);
 		viewObjects.add(soraCast);
 		
 		soraDamage = new AnimatedComponent(300,300,200,200);
@@ -244,6 +248,20 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		viewObjects.add(dragonMechDamage);
 		
 ////////////////////////////////////////////////////////////////////////////////////
+
+		cheat = new ButtonDavid("Cheat", null, 50, 50, 50, 50, new Action() {
+			
+			@Override
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.resultScreen);
+				
+			}
+		});
+		cheat.setCustomTextColor(Color.WHITE);
+		cheat.setVisible(true);
+		viewObjects.add(cheat);
+////////////////////////////////////////////////////////////////////////////////////
+
 
 		
 		

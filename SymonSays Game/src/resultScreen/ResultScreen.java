@@ -66,7 +66,7 @@ public class ResultScreen extends FullFunctionScreen {
 			viewObjects.add(result);
 			//loot
 			TextLabel loot = new TextLabel(1100, 150, 150, 150, "Loot");
-			loot.setCustomTextColor(Color.lightGray);
+			loot.setCustomTextColor(Color.WHITE);
 			loot.setSize(40);
 			viewObjects.add(loot);
 			try {
@@ -108,8 +108,15 @@ public class ResultScreen extends FullFunctionScreen {
 		//}
 		AnimatedComponent main = new MainCharacterAnimated(100, 170, 250, 250);
 		viewObjects.add(main);
-		
-		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.WHITE, "Shop", new Action(){
+		try {
+			File fontFile = new File("resources/orbitron-medium.otf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(48f);
+			StyledComponent.setBaseFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.lightGray, "Shop", new Action(){
 			
 			@Override
 			public void act() {
@@ -118,7 +125,7 @@ public class ResultScreen extends FullFunctionScreen {
 		}) ;
 		viewObjects.add(bossSelect);
 		
-		ButtonDavid Shop = new ButtonDavid(1000, 680, 150, Color.WHITE, "Boss Select", new Action(){
+		ButtonDavid Shop = new ButtonDavid(950, 680, 200, Color.lightGray, "Boss Select", new Action(){
 			
 			@Override
 			public void act() {
@@ -127,7 +134,7 @@ public class ResultScreen extends FullFunctionScreen {
 			}
 		}) ;
 		viewObjects.add(Shop);
-		ButtonDavid UpG = new ButtonDavid(800, 680, 150, Color.WHITE, "Upgrade Menu", new Action(){
+		ButtonDavid UpG = new ButtonDavid(700, 680, 200, Color.lightGray, "Upgrade Menu", new Action(){
 			
 			@Override
 			public void act() {
@@ -136,14 +143,5 @@ public class ResultScreen extends FullFunctionScreen {
 			}
 		}) ;
 		viewObjects.add(UpG);
-		ButtonDavid mainMe = new ButtonDavid(600, 680, 150, Color.WHITE, "Main Menu", new Action(){
-			
-			@Override
-			public void act() {
-				
-				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
-			}
-		}) ;
-		viewObjects.add(mainMe);
-	}
-}
+		
+}}
