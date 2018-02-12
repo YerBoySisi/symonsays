@@ -69,7 +69,7 @@ public class ShopScreen extends FullFunctionScreen {
 		back.setForeground(Color.white);
 		viewObjects.add(back);
 		
-		ButtonDavid upgrade = new ButtonDavid(650,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
+		ButtonDavid upgrade = new ButtonDavid(750,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
 
 			
 			@Override

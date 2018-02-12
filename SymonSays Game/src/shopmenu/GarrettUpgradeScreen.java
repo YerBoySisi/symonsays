@@ -26,14 +26,14 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	private TextLabel title;
 	private TextLabel pointsDisplay;
 	private int upgradePoints;
-	private ArrayList<Button> buttons1;
+	private ArrayList<Button> buttons;
 	private Upgrade riposte;
 	private Upgrade regeneration;
 	private Upgrade agility;
 	private int riposteLevel = 0;
 	private int regenerationLevel = 0;
 	private int agilityLevel = 0;
-	private Upgrade[] upgrades1;
+	private Upgrade[] upgrades;
 	private int[] costs1;
 
 	public GarrettUpgradeScreen(int width, int height) {
@@ -65,7 +65,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		viewObjects.add(icon3);
 		setBankGothic();
 		addBackgrounds(viewObjects);
-		addDescriptions1(viewObjects);
+		addDescriptions(viewObjects);
 		setUpgradePoints(300);
 		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + getUpgradePoints());
 		pointsDisplay.setCustomTextColor(Color.CYAN);
@@ -79,9 +79,9 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 
 		});
 		viewObjects.add(backButton);
-		addbuttons1();
-		setButton1Actions();
-		for(Button b: buttons1) {
+		addbuttons();
+		setButtonActions();
+		for(Button b: buttons) {
 			viewObjects.add(b);
 		}
 		nextButton = new ButtonDavid(1200, 700, 100, Color.LIGHT_GRAY, "Next", new Action() {
@@ -113,8 +113,8 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		};
 	}
 
-	public void addbuttons1() {
-		buttons1 = new ArrayList<Button>();
+	public void addbuttons() {
+		buttons = new ArrayList<Button>();
 		for(int i = 1; i <= 3; i++) {
 			for(int j = 1; j <= 3; j++) {
 				Button b = new Button(200 + 450 * (i - 1), 100 + 175 * j, 200, 50, "Upgrade", Color.GREEN, new Action() {
@@ -130,37 +130,37 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 					b.setBackground(Color.RED);
 					b.update();
 				}
-				buttons1.add(b);
+				buttons.add(b);
 			}
 		}
 	}
 
-	public void setButton1Actions() {
-		for(Button b: buttons1) {
+	public void setButtonActions() {
+		for(Button b: buttons) {
 			b.setAction(new Action() {
 
 				@Override
 				public void act() {
-					if(getUpgradePoints() >= costs1[buttons1.indexOf(b)]) {
-						setUpgradePoints(getUpgradePoints() - costs1[buttons1.indexOf(b)]);
+					if(getUpgradePoints() >= costs1[buttons.indexOf(b)]) {
+						setUpgradePoints(getUpgradePoints() - costs1[buttons.indexOf(b)]);
 						pointsDisplay.setText("UP: " + getUpgradePoints());
 						b.setEnabled(false);
 						b.setBackground(Color.WHITE);
 						b.setText("Upgraded");
 						b.update();
-						if((buttons1.indexOf(b) + 1) % 3 != 0) {
-							Button nextButton = buttons1.get(buttons1.indexOf(b) + 1);
+						if((buttons.indexOf(b) + 1) % 3 != 0) {
+							Button nextButton = buttons.get(buttons.indexOf(b) + 1);
 							nextButton.setEnabled(true);
 							nextButton.setBackground(Color.GREEN);
 							nextButton.update();
 						}
-						if(buttons1.indexOf(b) >= 0 && buttons1.indexOf(b) <= 2) {
+						if(buttons.indexOf(b) >= 0 && buttons.indexOf(b) <= 2) {
 							riposteLevel++;
 						}
-						if(buttons1.indexOf(b) >= 3 && buttons1.indexOf(b) <= 5) {
+						if(buttons.indexOf(b) >= 3 && buttons.indexOf(b) <= 5) {
 							regenerationLevel++;
 						}
-						if(buttons1.indexOf(b) >= 6 && buttons1.indexOf(b) <= 8) {
+						if(buttons.indexOf(b) >= 6 && buttons.indexOf(b) <= 8) {
 							agilityLevel++;
 						}
 					}
@@ -169,14 +169,14 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		}
 	}
 
-	public void addDescriptions1(List<Visible> viewObjects) {
-		createUpgradeList1();
+	public void addDescriptions(List<Visible> viewObjects) {
+		createUpgradeList();
 		costs1 = new int[9];
 		for(int i = 0; i < 3; i++) {
 			for(int j = 1; j <= 3; j++) {
-				String desc = upgrades1[i].getDesc();
-				int cost = upgrades1[i].getCost();
-				TextArea upgradeDescription = new TextArea(50 + 450 * i, 175 * j, 350, 300, "+" + upgrades1[i].getMultiple() * j + desc);
+				String desc = upgrades[i].getDesc();
+				int cost = upgrades[i].getCost();
+				TextArea upgradeDescription = new TextArea(50 + 450 * i, 175 * j, 350, 300, "+" + upgrades[i].getMultiple() * j + desc);
 				viewObjects.add(upgradeDescription);
 				TextLabel upgradeCost = new TextLabel(50 + 450 * i, 100 + 175 * j, 300, 50, cost * j + "UP");
 				upgradeCost.setCustomTextColor(Color.CYAN);
@@ -186,14 +186,14 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		}
 	}
 
-	public void createUpgradeList1() {
+	public void createUpgradeList() {
 		riposte = new Upgrade(5, 50, "% chance to attack again");
 		regeneration = new Upgrade(50, 40, "HP healed each turn");
-		agility = new Upgrade(2, 30, "% chance to dodge an attack");
-		upgrades1 = new Upgrade[3];
-		upgrades1[0] = riposte;
-		upgrades1[1] = regeneration;
-		upgrades1[2] = agility;
+		agility = new Upgrade(2, 25, "% chance to dodge an attack");
+		upgrades = new Upgrade[3];
+		upgrades[0] = riposte;
+		upgrades[1] = regeneration;
+		upgrades[2] = agility;
 	}
 
 	public int getUpgradePoints() {
