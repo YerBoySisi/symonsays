@@ -187,9 +187,9 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	}
 
 	public void createUpgradeList1() {
-		attack = new Upgrade(5, 50, " ATK");
-		defense = new Upgrade(50, 40, " DEF");
-		magic = new Upgrade(2, 30, " MAG");
+		attack = new Upgrade(25, 50, " ATK");
+		defense = new Upgrade(20, 40, " DEF");
+		magic = new Upgrade(30, 30, " MAG");
 		upgrades1 = new Upgrade[3];
 		upgrades1[0] = attack;
 		upgrades1[1] = defense;
