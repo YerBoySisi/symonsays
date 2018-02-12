@@ -11,14 +11,14 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
-import guiTeacher.userInterfaces.ClickableScreen;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
 
-public class RickyBuy extends ClickableScreen {
+public class RickyBuy extends FullFunctionScreen {
 
 	private static final long serialVersionUID = 1777676794745848898L;
-	public static final int COST = 200;
+	public static final int BUYING_COST = 200;
 	
 	private Button buyDef;
 	private Button buyHP;
@@ -40,11 +40,12 @@ public class RickyBuy extends ClickableScreen {
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
-		System.out.println((ShopMain.inventory.getCurrency()));
+		//System.out.println((ShopMain.inventory.getCurrency()));
 	}
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		update();
 		setOrbitron();
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
 		viewObjects.add(background);
@@ -94,15 +95,15 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyDef.setEnabled(true);
-				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.COST);
+				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) < 10) {
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
 						//def++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						//setCoins(coins);
 						ShopMain.inventory.itemlist.add(new Items("def"));
 						inBetween();
 						multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def"))));
-					if(def == 10) {
+					if(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) == 10) {
 						buyDef.setEnabled(false);
 						buyDef.setBackground(Color.RED);
 						buyDef.update();
@@ -118,8 +119,8 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyHP.setEnabled(true);
-				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.COST);
+				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) < 10) {
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
 						//hp++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("hp"));
@@ -142,8 +143,8 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyDodge.setEnabled(true);
-				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.COST);
+				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge")) < 10) {
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.BUYING_COST);
 						//dodge++;
 						//System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
@@ -166,8 +167,8 @@ public class RickyBuy extends ClickableScreen {
 			@Override
 			public void act() {
 				buyAtk.setEnabled(true);
-				if (ShopMain.inventory.getCurrency() >= COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) < 10) {
-					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - COST);
+				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) < 10) {
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - BUYING_COST);
 						inBetween();
 						ShopMain.inventory.itemlist.add(new Items("atk"));
 						//System.out.println(atk + ". Attack");
@@ -193,6 +194,7 @@ public class RickyBuy extends ClickableScreen {
 		coins = ShopMain.inventory.getCurrency();
 		numOfCoins = new TextArea(1200,20,150,50, Integer.toString(coins));
 		numOfCoins.setCustomTextColor(Color.ORANGE);
+		numOfCoins.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 		viewObjects.add(numOfCoins);
 		inBetween();
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
