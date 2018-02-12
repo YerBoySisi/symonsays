@@ -31,6 +31,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private static final int ATTACK_MENU = 1;
 	private static final int ITEM_MENU = 2;
 	private static final int FLEE_MENU = 3;
+	private Player play = new Player();
 	
 	
 	//menu buttons
@@ -195,7 +196,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraSprite.addSequence("resources/soraflipped.png", 150, 396, 201, 49, 41, 4);
 		Thread soraIdle = new Thread(soraSprite);
 		soraIdle.start();
-		soraSprite.setVisible(true);
+		soraSprite.setVisible(false);
 		viewObjects.add(soraSprite);
 		
 //		soraAttack = new AnimatedComponent(330,250,275,275);
@@ -209,7 +210,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraCast.addSequence("resources/soramagic.png", 150, 0, 0, 50, 82, 7);
 		Thread soraCst = new Thread(soraCast);
 		soraCst.start();
-		soraCast.setVisible(false);
+		soraCast.setVisible(true);
 		viewObjects.add(soraCast);
 		
 		soraDamage = new AnimatedComponent(300,300,200,200);
@@ -222,7 +223,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 ////////////////////////////////////////////////////////////////////////////////////
 
 		dragonMechSprite = new AnimatedComponent(900,150,400,400);
-		dragonMechSprite.addSequence("resources/dragonmechattack.png", 150, 0, 0, 150, 105, 2);
+		dragonMechSprite.addSequence("resources/dragonmechattack.png", 850, 0, 0, 150, 105, 2);
 		Thread dragonmechIdle = new Thread(dragonMechSprite);
 		dragonmechIdle.start();
 		dragonMechSprite.setVisible(true);
@@ -348,6 +349,30 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public boolean determineWinner() {
 		//return true if player won, false is boss won
 		return false;
+	}
+
+	@Override
+	public int remainingHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int totalHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int playerLevel() {
+		
+		return play.getHP();
+	}
+
+	@Override
+	public int playerXp() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

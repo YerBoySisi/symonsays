@@ -113,7 +113,7 @@ public class ResultScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				ResultGui.main.setScreen(ResultGui.shopScreen);
+				GameStarter.start.setScreen(GameStarter.shopScreen);
 			}
 		}) ;
 		viewObjects.add(bossSelect);
@@ -123,7 +123,7 @@ public class ResultScreen extends FullFunctionScreen {
 			@Override
 			public void act() {
 				
-				ResultGui.main.setScreen(ResultGui.selectScreen);
+				GameStarter.start.setScreen(GameStarter.selectScreen);
 			}
 		}) ;
 		viewObjects.add(Shop);
@@ -132,7 +132,7 @@ public class ResultScreen extends FullFunctionScreen {
 			@Override
 			public void act() {
 				
-				ResultGui.main.setScreen(ResultGui.upgradeScreen);
+				GameStarter.start.setScreen(GameStarter.upgradeScreen);
 			}
 		}) ;
 		viewObjects.add(UpG);
@@ -141,7 +141,7 @@ public class ResultScreen extends FullFunctionScreen {
 			@Override
 			public void act() {
 				
-				ResultGui.main.setScreen(ResultGui.mainMenuScreen);
+				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		}) ;
 		viewObjects.add(mainMe);
