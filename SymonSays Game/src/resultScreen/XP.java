@@ -28,7 +28,7 @@ public class XP {
 			}
 			else {
 				if(monsterLVL*5 > 2*playerLvl) {
-					int lvlUp= (playerLvl+)*(playerLvl)*500;
+					int lvlUp= (playerLvl+1)*(playerLvl)*500;
 					if(lvlUp - playerXP > 1000) {
 						xp = lvlUp - playerXP - 500; 
 					}
