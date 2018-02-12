@@ -1,11 +1,14 @@
  package resultScreen;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
 import java.util.List;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -34,6 +37,14 @@ public class ResultScreen extends FullFunctionScreen {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		try {
+			File fontFile = new File("resources/orbitron-medium.otf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(48f);
+			StyledComponent.setBaseFont(baseFont);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		//bossLevel = ResultGui.battleScreen.bossLevel();
 		//outcome =  GameStarter.battleScreen.determineWinner();
 		goldValue= (int) (100*(Math.random()*3)+100);
@@ -55,9 +66,17 @@ public class ResultScreen extends FullFunctionScreen {
 			viewObjects.add(result);
 			//loot
 			TextLabel loot = new TextLabel(1100, 150, 150, 150, "Loot");
-			loot.setCustomTextColor(Color.WHITE);
+			loot.setCustomTextColor(Color.lightGray);
 			loot.setSize(40);
 			viewObjects.add(loot);
+			try {
+				File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+				Font baseFont=font.deriveFont(36f);
+				StyledComponent.setBaseFont(baseFont);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			//up points
 			TextLabel up = new TextLabel(1100, 250, 150, 150, "UP Points: "+ upPoints);
 			up.setCustomTextColor(Color.WHITE);

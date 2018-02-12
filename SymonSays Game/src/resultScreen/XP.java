@@ -11,12 +11,12 @@ public class XP {
 	public static int determineXP() {
 		
 		if(playerRem>health/2 && monsterLVL*5 > 2*playerLvl) {
-			int lvlUp= (playerLvl)*(playerLvl-1)*500;
+			int lvlUp= (playerLvl+1)*(playerLvl)*500;
 			xp = lvlUp - playerXP +100; 
 		}
 		else {
 			if(playerRem<health/2 && monsterLVL*5 > 2*playerLvl ) {
-				int lvlUp= (playerLvl)*(playerLvl-1)*500;
+				int lvlUp= (playerLvl+1)*(playerLvl)*500;
 				if(lvlUp - playerXP > 1000) {
 					xp = lvlUp - playerXP - 300; 
 				
@@ -28,7 +28,7 @@ public class XP {
 			}
 			else {
 				if(monsterLVL*5 > 2*playerLvl) {
-					int lvlUp= (playerLvl)*(playerLvl-1)*500;
+					int lvlUp= (playerLvl+)*(playerLvl)*500;
 					if(lvlUp - playerXP > 1000) {
 						xp = lvlUp - playerXP - 500; 
 					}
