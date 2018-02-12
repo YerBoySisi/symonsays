@@ -215,7 +215,7 @@ public class RickyBuy extends FullFunctionScreen {
 				File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 				Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(35f);
 				StyledComponent.setBaseFont(font);
-					} catch (Exception e) {
+	 				} catch (Exception e) {
 						e.printStackTrace();
 					}
 			}

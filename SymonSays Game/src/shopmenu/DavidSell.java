@@ -235,7 +235,7 @@ public class DavidSell extends FullFunctionScreen {
 		viewObjects.add(desc4);
 		viewObjects.add(quant4);
 		viewObjects.add(currency);
-
+ 
 	}
 
 	public static int countOccurences(ArrayList<Items> list, Items x) {

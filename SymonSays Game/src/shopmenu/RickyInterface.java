@@ -2,6 +2,6 @@ package shopmenu;
 
 public interface RickyInterface {
 	
-	void inBetween();
+	void inBetween(); 
 	
 }
