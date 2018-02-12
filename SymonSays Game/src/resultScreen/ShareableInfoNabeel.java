@@ -6,6 +6,7 @@ public interface ShareableInfoNabeel {
 	int remainingHealth();//gives the health of the player after victory
 	int totalHealth();//players starting health
 	int playerLevel();//the players xp level
+	int playerXp(); //xp before the player reaches next level
 	
 	
 	
