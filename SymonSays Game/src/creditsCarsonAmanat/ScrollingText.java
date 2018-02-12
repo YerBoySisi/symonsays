@@ -13,11 +13,12 @@ public class ScrollingText extends MovingComponent{
 	public int x = 325;
 	public ArrayList<String> contributors = new ArrayList<String>();
 	String[] contributorsArr = {"Symon Says", "Fahadullah Asif -- Boss Select", "David Yashayev -- Startup Screen + Main Menu", "Sisiame B. Sakasamo -- Mechanics", "Siddeeq Rasheed -- HUD & Battle Screen Layout", "Nabeel Amin -- Results Screen", "Ricky Pong -- Buy Menu", "David Li -- Sell Menu", "Garrett Chen -- Upgrade Menu", "Amanat Hossain -- Settings", "Carson Custodio -- Credits"};
+	String[] rrr = {"a", "b", "c", "d", "e"};
 
 	public ScrollingText(int spanHeight) {
 		super(0, spanHeight, 1400, 780);
 		this.setSpanHeight(getHeight());
-		setVy(4);
+		setVy(10);
 		Thread go = new Thread(this);
 		go.start();
 	}
@@ -53,6 +54,7 @@ public class ScrollingText extends MovingComponent{
 	public void checkBehaviors() {
 		if(getY() > 750) {
 			setY(-750);
+			
 		}
 	}
 
@@ -67,6 +69,21 @@ public class ScrollingText extends MovingComponent{
 	public void setList(ArrayList<String> list, String[] arr) {
 		for(int i = 0; i < arr.length; i++) {
 			list.add(arr[i]);
+		}
+	}
+	
+	public void removeList(ArrayList<String> list) {
+		for(int i = 0; i < list.size(); i++) {
+			list.remove(i);
+		}
+	}
+	
+	public void swapList(ArrayList<String> list, String[] arr, String[] arr2) {
+		removeList(list);
+		if(contributors.get(0) == "Symon Says") {
+			setList(list, arr);
+		}else {
+			setList(list, arr2);
 		}
 	}
 }
