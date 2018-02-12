@@ -2,9 +2,9 @@ package sisiKneeBosses;
 
 public class GundamShark extends Boss {
 
-	public GundamShark(String nam, int hp, int pow, int def, int weak, int lvl, int xp) {
+	public GundamShark() {
 		
-		super(nam, hp, pow, def, weak, lvl, xp);
+		super(null, 0, 0, 0, 0, 0, 0);
 		
 	}
 

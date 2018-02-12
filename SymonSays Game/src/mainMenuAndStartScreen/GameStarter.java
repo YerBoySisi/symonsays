@@ -1,26 +1,31 @@
 package mainMenuAndStartScreen;
 
-import java.awt.Font;
-import java.io.File;
-
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import inv.Inventory;
+import shopmenu.DavidSell;
+import shopmenu.RickyBuy;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
 import sisiKneeBattle.BattleScreen;
 
 public class GameStarter extends GUIApplication{
 	
+	private static final long serialVersionUID = 1L;
+	
 	public static StartScreen startScreen;
 	public static MainMenuScreen mainMenuScreen;
 	public static GameStarter start;
 	public static SelectScreen selectScreen;
 	public static ShopScreen shopScreen;
+	public static RickyBuy buyScreen;
+	public static DavidSell sellScreen;
 	public static UpgradeScreen upgradeScreen;
 	public static CreditsScreen creditsScreen;
 	public static BattleScreen battleScreen;
+	public static Inventory inventory;
 	
 	
 	public GameStarter(int width, int height) {
@@ -29,6 +34,8 @@ public class GameStarter extends GUIApplication{
 	}
 	
 	public static void main(String[] args) {
+		inventory = new Inventory();
+		inventory.setCurrency(1000);
 		start = new GameStarter(1400,780);
 		Thread go = new Thread(start);
 		go.start();
@@ -42,6 +49,8 @@ public class GameStarter extends GUIApplication{
 		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
 		creditsScreen = new CreditsScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
+		buyScreen = new RickyBuy(getWidth(),getHeight());
+		sellScreen = new DavidSell(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 

@@ -17,13 +17,6 @@ public class Inventory {
 	}
 
 	public Inventory() {
-		itemlist =  new ArrayList<Items>();
-		itemlist.add(new Items("Def"));
-		itemlist.add(new Items("Def"));
-		this.currency = 1000;
-
-		
+		itemlist =  new ArrayList<Items>();		
 	}
-
-	
 }
