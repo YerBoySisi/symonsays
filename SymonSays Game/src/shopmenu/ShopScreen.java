@@ -63,7 +63,25 @@ public class ShopScreen extends FullFunctionScreen {
 
 		back.setForeground(Color.white);
 		viewObjects.add(back);
+		
+		
+
+		back.setForeground(Color.white);
+		viewObjects.add(back);
+		
+		ButtonDavid upgrade = new ButtonDavid(650,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
+
+			
+			@Override
+			public void act() {
+				 ShopMain.s1.setScreen(ShopMain.s5);
+			}
+		});
+		upgrade.setForeground(Color.white);
+		viewObjects.add(upgrade);
 		}
+	
+	
 	private void setCustomFont(){
 		
 		try {
