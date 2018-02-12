@@ -46,80 +46,32 @@ public class SelectScreen extends FullFunctionScreen {
 		StyledComponent.setActiveBorderColor(Color.white);
 		Button boss1Button = new Button(20, y, wh, wh, "Boss 1", new Action() {
 			public void act() {
-				name = "Boss 1";
-				bossNumber = 0;
-				link = "resources/Ridley.png";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 1",1,"resources/Ridley.png",5,1);
 			}
 		});
 		Button boss2Button = new Button(140, y, wh, wh, "Boss 2", new Action() {
 			public void act() {
-				name = "Boss 2";
-				bossNumber = 1;
-				link = "resources/Soldier.jpg";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 2",1,"resources/Soldier.jpg",5,1);
 			}
 		});
 		Button boss3Button = new Button(260, y, wh, wh, "Boss 3", new Action() {
 			public void act() {
-				name = "Boss 3";
-				bossNumber = 2;
-				link = "resources/Turtle.jpg";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 3",1,"resources/Turtle.jpg",5,1);
 			}
 		});
 		Button boss4Button = new Button(380, y, wh, wh, "Boss 4", new Action() {
 			public void act() {
-				name = "Boss 4";
-				bossNumber = 3;
-				link = "resources/Shark.jpg";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 4",1,"resources/Shark.jpg",5,1);
 			}
 		});
 		Button boss5Button = new Button(500, y, wh, wh, "Boss 5", new Action() {
 			public void act() {
-				name = "Boss 5";
-				bossNumber = 4;
-				link = "";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 5",1,"resources/Shark.jpg",5,1);
 			}
 		});
 		Button boss6Button = new Button(620, y, wh, wh, "Boss 6", new Action() {
 			public void act() {
-				name = "Boss 6";
-				bossNumber = 5;
-				link = "";
-				level = 5;
-				levelRec = 1;
-				txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-				background = new Graphic(0, 0, getWidth(), getHeight(), link);
-				viewObjects.add(0, background);
-				viewObjects.remove(1);
+				changeText(viewObjects,"Boss 6",1,"resources/Shark.jpg",5,1);
 			}
 		});
 		initGothicFont(36f);
@@ -196,6 +148,18 @@ public class SelectScreen extends FullFunctionScreen {
 		level = 5;
 		levelRec = 1;
 		
+	}
+
+	public void changeText(List<Visible> viewObjects, String string, int i, String string2, int j, int k) {
+		name = string;
+		bossNumber = i;
+		link = string2;
+		level = j;
+		levelRec = k;
+		txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
+		background = new Graphic(0, 0, getWidth(), getHeight(), link);
+		viewObjects.add(0, background);
+		viewObjects.remove(1);
 	}
 
 
