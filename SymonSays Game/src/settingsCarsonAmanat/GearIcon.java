@@ -1,39 +1,22 @@
-
 package settingsCarsonAmanat;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.io.IOException;
+import guiTeacher.components.ClickableGraphic;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+public class GearIcon extends ClickableGraphic{
 
-public class GearIcon extends JFrame{
+	public GearIcon(int x, int y, int w, int h, String imageLocation) {
+		super(x, y, w, h, imageLocation);
 
-	 public static void main(String args[]) throws IOException {
-	        GearIcon ob = new GearIcon();
-	        ob.setVisible(true);
-	        
-	    }
+	}
 
-	private JPanel p;
-	public  JButton b;
-	 
-	 GearIcon() {
-	        p = new JPanel(new BorderLayout());
-	        b = new JButton();
-	        b.setBackground(Color.black);
-	        ImageIcon img = new ImageIcon("resources/gear.png");
-	        b.setIcon(img);
+	public void act() {
+		Settings.symon.setScreen(Settings.screen);
+	}
 
-	        setDefaultCloseOperation(EXIT_ON_CLOSE);
-	        setSize(100, 100);
-	        p.add(b);
-	        add(p);
-	       validate();
-
-	   }
+	public void setGraphic(String location,int w, int h) {
+		//graphic = new Graphic(0,0,1.0,location);
+		loadImages(location, w, h);
+		update();
+	}
 
 }

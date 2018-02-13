@@ -2,6 +2,7 @@ package settingsCarsonAmanat;
 
 import java.util.ArrayList;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -31,6 +32,8 @@ public class SettingsScreen extends FullFunctionScreen{
 
 	public TextLabel displayRound;
 	private Graphics g;
+	private GearIcon gearIcon;
+	
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
@@ -40,7 +43,7 @@ public class SettingsScreen extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
-		Button creditt = new Button(100,250,100,50,"Credits",Color.GRAY,new Action() {
+		Button creditt = new Button(500,250,100,50,"Credits",Color.GRAY,new Action() {
 
 			@Override
 			public void act() {
@@ -62,7 +65,7 @@ public class SettingsScreen extends FullFunctionScreen{
 
 			e.printStackTrace();
 		}
-		ClickableGraphic gearIcon = new ClickableGraphic(500, 400, 128, 128, "resources/gear.png");
+		 gearIcon = new GearIcon(500, 400, 128, 128, "resources/gear.png");
 		TextLabel title = new TextLabel(getWidth()/2-100,getHeight()-750,300,200,"Settings");
 		title.setCustomTextColor(Color.lightGray);
 		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
@@ -82,14 +85,13 @@ public class SettingsScreen extends FullFunctionScreen{
 		viewObjects.add(gearIcon);
 	}
 
-	public static ImageIcon createImageIcon(String path) {
-		return new ImageIcon("resources/gear.png");
-	}
-
 	public void mouseDragged(MouseEvent m) {
 		super.mouseDragged(m);
-		super.mouseClicked(m);
 		if(m.getY() >95 && m.getY()<150) {
+			System.out.println(gearIcon.getX());
+			System.out.println(gearIcon.getY());
+			System.out.println(m.getX());
+			System.out.println(m.getY());
 			if(volumeSlider.getX()>99) 
 				volumeSlider.setX(m.getX());
 			if(volumeSlider.getX()<100)
