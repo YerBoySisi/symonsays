@@ -32,6 +32,14 @@ public class DavidSell extends FullFunctionScreen {
 	static TextArea quant3;
 	static TextArea quant4;
 	static TextArea currency;
+	
+	/*THESE ARE THE ITEMS WE'RE USING
+	 * new Items("def")
+	 * new Items("hp")
+	 * new Items("dodge")
+	 * new Items("atk")
+	 * */
+	 
 
 	public DavidSell(int width, int height) {
 		super(width, height);
