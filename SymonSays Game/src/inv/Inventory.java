@@ -7,7 +7,16 @@ public class Inventory {
 	
 	public ArrayList<Items> itemlist;
 	private int currency;
+	private int up;
    
+	public int getUp() {
+		return up;
+	}
+
+	public void setUp(int up) {
+		this.up = up;
+	}
+
 	public int getCurrency() {
 		return currency;
 	}
