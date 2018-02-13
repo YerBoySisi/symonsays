@@ -12,10 +12,11 @@ import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
 
-public class RickyBuy extends FullFunctionScreen {
+public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 
 	private static final long serialVersionUID = 1777676794745848898L;
 	public static final int BUYING_COST = 200;
@@ -55,6 +56,9 @@ public class RickyBuy extends FullFunctionScreen {
 			
 			public void act() {
 				ShopMain.s1.setScreen(ShopMain.s2);
+				inBetween();
+				updateQuant();
+
 			}
 		});
 			
@@ -96,6 +100,7 @@ public class RickyBuy extends FullFunctionScreen {
 			public void act() {
 				buyDef.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) < 10) {
+					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
 						//def++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
@@ -107,6 +112,7 @@ public class RickyBuy extends FullFunctionScreen {
 						buyDef.setEnabled(false);
 						buyDef.setBackground(Color.RED);
 						buyDef.update();
+						inBetween();
 					}
 				}
 			}
@@ -120,6 +126,7 @@ public class RickyBuy extends FullFunctionScreen {
 			public void act() {
 				buyHP.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) < 10) {
+					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
 						//hp++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
@@ -130,6 +137,7 @@ public class RickyBuy extends FullFunctionScreen {
 						buyHP.setEnabled(false);
 						buyHP.setBackground(Color.RED);
 						buyHP.update();
+						inBetween();
 					}
 				}
 			}
@@ -144,9 +152,8 @@ public class RickyBuy extends FullFunctionScreen {
 			public void act() {
 				buyDodge.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge")) < 10) {
+					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()-RickyBuy.BUYING_COST);
-						//dodge++;
-						//System.out.println(dodge + ". Dodge");
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("dodge"));
 						inBetween();
@@ -155,6 +162,7 @@ public class RickyBuy extends FullFunctionScreen {
 						buyDodge.setEnabled(false);
 						buyDodge.setBackground(Color.RED);
 						buyDodge.update();
+						inBetween();
 					}
 				}
 			}
@@ -168,10 +176,10 @@ public class RickyBuy extends FullFunctionScreen {
 			public void act() {
 				buyAtk.setEnabled(true);
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) < 10) {
+					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - BUYING_COST);
 						inBetween();
 						ShopMain.inventory.itemlist.add(new Items("atk"));
-						//System.out.println(atk + ". Attack");
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) ));
 						if(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) == 10) {
@@ -224,29 +232,75 @@ public class RickyBuy extends FullFunctionScreen {
 			if(ShopMain.inventory.getCurrency() >= 0 && ShopMain.inventory.getCurrency() < 10) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1300);
+					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1310);
+				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 10 && ShopMain.inventory.getCurrency() < 100) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1275);
+					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1285);
+				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 100 && ShopMain.inventory.getCurrency() < 1000) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1250);
+					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1260);
+				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 1000 && ShopMain.inventory.getCurrency() < 10000) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1225);
+					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1235);
+				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 10000 && ShopMain.inventory.getCurrency() < 100000) {
 				numOfCoins.setX(1200);
+				System.out.println(numOfCoins.getX());
 			}
+		}
+		public void updateQuant() {
+			RickyBuy.multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+			RickyBuy.multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+			RickyBuy.multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+			RickyBuy.multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+			RickyBuy.numOfCoins.setText(Integer.toString(ShopMain.inventory.getCurrency()));
+			
+			DavidSell.quant1.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+			DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+			DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+			DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+			DavidSell.currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));	
+		}	
+		
+		public void updateDefBuy() {
+			buyDef.setEnabled(true);
+			buyDef.setBackground(Color.GREEN);
+			buyDef.update();
+		}
+		
+		public void updateHPBuy() {
+			buyHP.setEnabled(true);
+			buyHP.setBackground(Color.GREEN);
+			buyHP.update();
+		}
+		
+		public void updateAtkBuy() {
+			buyAtk.setEnabled(true);
+			buyAtk.setBackground(Color.GREEN);
+			buyAtk.update();
+		}
+		
+		public void updateDodgeBuy() {
+			buyDodge.setEnabled(true);
+			buyDodge.setBackground(Color.GREEN);
+			buyDodge.update();
 		}
 }
