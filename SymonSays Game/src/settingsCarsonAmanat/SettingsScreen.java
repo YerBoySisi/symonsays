@@ -2,18 +2,14 @@ package settingsCarsonAmanat;
 
 import java.util.ArrayList;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import creditsCarsonAmanat.Credits;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
-import guiTeacher.components.ClickableGraphic;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextLabel;
@@ -31,7 +27,6 @@ public class SettingsScreen extends FullFunctionScreen{
 	Color[] colors;
 
 	public TextLabel displayRound;
-	private Graphics g;
 	private GearIcon gearIcon;
 	
 
@@ -88,10 +83,6 @@ public class SettingsScreen extends FullFunctionScreen{
 	public void mouseDragged(MouseEvent m) {
 		super.mouseDragged(m);
 		if(m.getY() >95 && m.getY()<150) {
-			System.out.println(gearIcon.getX());
-			System.out.println(gearIcon.getY());
-			System.out.println(m.getX());
-			System.out.println(m.getY());
 			if(volumeSlider.getX()>99) 
 				volumeSlider.setX(m.getX());
 			if(volumeSlider.getX()<100)
