@@ -51,10 +51,10 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		title = new TextLabel(550, 50, 250, 50, "UPGRADES");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
-		upgradeName1 = new TextLabel(150, 100, 200, 50, "Riposte");
-		Graphic icon = new Graphic(110, 105, 40, 40,"shopUpgradeResources/riposte.png");
-		upgradeName2 = new TextLabel(550, 100, 270, 50, "Regeneration");
-		Graphic icon2 = new Graphic(515, 110, 30, 30,"shopUpgradeResources/heal.png");
+		upgradeName1 = new TextLabel(175, 100, 200, 50, "Riposte");
+		Graphic icon = new Graphic(125, 105, 40, 40,"shopUpgradeResources/riposte.png");
+		upgradeName2 = new TextLabel(575, 100, 270, 50, "Regeneration");
+		Graphic icon2 = new Graphic(540, 110, 30, 30,"shopUpgradeResources/heal.png");
 		upgradeName3 = new TextLabel(1100, 100, 150, 50, "Agility");
 		Graphic icon3 = new Graphic(1070, 110, 30, 30,"shopUpgradeResources/agility.png");
 		viewObjects.add(upgradeName1);
