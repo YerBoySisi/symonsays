@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import inv.Items;
 
-public class DavidInterface {
+public interface DavidInterface {
 
-	void countOccurences(ArrayList<Items> list, Items x);
+	int countOccurences(ArrayList<Items> i,Items x);
 	 void removeItem(ArrayList<Items> list,Items x);
 	
 }
