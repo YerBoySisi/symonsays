@@ -33,23 +33,17 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private static final int ATTACK_MENU = 1;
 	private static final int ITEM_MENU = 2;
 	private static final int FLEE_MENU = 3;
-	private Player play = new Player();
+	
+	//Battle constants
+	public static final int ATTACK = 0; public static final int ITEM = 1; public static final int RUN = 2;
 	
 	
 	//menu buttons
-	private static final ButtonDavid[] battleMenu = 
-		{new ButtonDavid("Attack", null, 300, 615, 350, 130, null),
-		 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
-		 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
-		 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
+	
 	
 	private ArrayList<ButtonDavid> spellMenu;
 	
 	private ArrayList<ButtonDavid> itemMenu;
-	
-	private static final ButtonDavid[] fleeMenu =
-		{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
-		 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
 	
 	//Background
 	private Graphic bg;
@@ -102,7 +96,23 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		
+		ButtonDavid[] battleMenu = 
+			{new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
+				
+				@Override
+				public void act() {
+					makeSelection(ATTACK, player.getAttack(0));
+				}
+			}),
+			 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
+			 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
+			 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
+		
+		ButtonDavid[] fleeMenu =
+			{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
+			 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
+		
 		TextArea.setTextColor(Color.white);
 		
 		try {
@@ -298,7 +308,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		viewObjects.remove(bar);
 		viewObjects.remove(txt);
-		
+
 		int newWidth = (int)Math.round((currentHP / maxHP) * maxBarWidth);
 		bar = new Bar(x,y,newWidth,30, "", clr, clr);
 		bar.setVisible(true);
@@ -357,55 +367,121 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		dragonMechArray[num].setVisible(true);
 
 	}
-
+	
+	public void runBattleSequence(int selection, Attack a) {
+		
+		new Thread(() -> {
+			
+			playerTurn(selection, a);
+				
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+				
+			bossTurn();
+				
+		}).start();
+		
+		//updatePlayerHP(viewObjects);
+		//updateBossHP(viewObjects);
+		update();
+		
+	}
+	
+	public void playerTurn(int selection, Attack a) {
+		
+		switch(selection) {
+		case ATTACK:
+			player.attack(boss, a);
+			player.changeMP(a.getCost());
+		case ITEM:
+			if(player.getHP() < player.getMaxHP()) {
+				player.changeHP(10);
+			}
+		case RUN:
+			player.changeHP(-player.getHP());
+		}
+		
+	}
+	
+	public void makeSelection(int selection, Attack a) {
+		
+		runBattleSequence(selection, a);
+		
+	}
+	
+	public void bossTurn() {
+		
+		int totalDmgBoss = 0;
+		double[] bossAttackChances;
+		
+		for(int i = 0; i < boss.attacks.size(); i++) {
+			totalDmgBoss += boss.attacks.get(i).getDamage();
+		}
+		
+		double n = 0;
+		
+		bossAttackChances = new double[boss.attacks.size()];
+		
+		for(int i = boss.attacks.size() - 1; i >= 0; i--) {
+			n += (boss.attacks.get(i).getDamage() / totalDmgBoss);
+			bossAttackChances[i] = n;
+		}
+		
+		double rand = Math.random();
+		
+		for(int i = 0; i < bossAttackChances.length; i++) {
+			
+			if(rand <= bossAttackChances[i]) {
+				boss.attack(player, boss.getAttack(i));
+				break;
+			}
+			
+		}
+		
+	}
+	
 	@Override
 	public int bossLevel() {
-		return 40;
+		
+		return bossList[0].getLevel();
+		
 	}
 
 	@Override
 	public boolean determineWinner() {
-		//return true if player won, false is boss won
+		
 		return false;
+		
 	}
 
 	@Override
 	public int remainingHealth() {
-		// TODO Auto-generated method stub
+		
 		return 0;
+		
 	}
 
 	@Override
 	public int totalHealth() {
-		// TODO Auto-generated method stub
+		
 		return 0;
+		
 	}
 
 	@Override
 	public int playerLevel() {
 		
-		return play.getHP();
+		return player.getHP();
 	}
 
 	@Override
 	public int playerXp() {
-		// TODO Auto-generated method stub
+		
 		return 0;
+		
 	}
-
-	
-	/* TO DO SIDEEQ:
-	 * Place character sprites on the stage
-	 * Create functions for changing sprites
-	 * E.G. a function that calls getAttackSprite() when a player attacks
-	 * The above function can take the attack type (it's an integer, physical or special) or any other
-	 * constants you make as an input.
-	 * Create the game flow class (so like the turn by turn system, where the player can choose
-	 * an attack and the boss uses his)
-	 * Create the player spell list and item list (don't initialize it or put a placeholder item if
-	 * it's empty)
-	 * NOTE: I made updatePlayerHP, updatePlayeRMP, updateBossHP so it's a LOT simpler and easier 
-	 * for you.
-	 */
 	
 }

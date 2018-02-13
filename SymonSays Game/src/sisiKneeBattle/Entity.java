@@ -67,6 +67,8 @@ public abstract class Entity {
 	
 	public int calculateDamage(Entity atkr, Attack a, Entity e) {
 		
+		setMultipliers(atkr, a);
+		
 		int dmg = 0;
 		double mult = dmgMultipliers.get((int)(Math.random() * dmgMultipliers.size()));
 		
@@ -151,6 +153,18 @@ public abstract class Entity {
 	public int getMaxHP() {
 		
 		return maxHP;
+		
+	}
+	
+	public ArrayList<Attack> getAttacks() {
+		
+		return attacks;
+		
+	}
+	
+	public Attack getAttack(int n) {
+		
+		return attacks.get(n);
 		
 	}
 	
