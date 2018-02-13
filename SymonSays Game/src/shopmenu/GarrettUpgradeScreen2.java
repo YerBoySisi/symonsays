@@ -25,7 +25,6 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	private TextLabel upgradeName3;
 	private TextLabel title;
 	private TextLabel pointsDisplay;
-	private int upgradePoints;
 	private ArrayList<Button> buttons;
 	private Upgrade attack;
 	private Upgrade defense;
@@ -66,8 +65,7 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 		setBankGothic();
 		addBackgrounds(viewObjects);
 		addDescriptions(viewObjects);
-		setUpgradePoints(300);
-		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + getUpgradePoints());
+		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + ShopMain.inventory.getUp());
 		pointsDisplay.setCustomTextColor(Color.CYAN);
 		viewObjects.add(pointsDisplay);
 		backButton = new ButtonDavid(30, 700, 100, Color.LIGHT_GRAY, "Back", new Action() {
@@ -141,9 +139,10 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 
 				@Override
 				public void act() {
-					if(getUpgradePoints() >= costs[buttons.indexOf(b)]) {
-						setUpgradePoints(getUpgradePoints() - costs[buttons.indexOf(b)]);
-						pointsDisplay.setText("UP: " + getUpgradePoints());
+					if(ShopMain.inventory.getUp() >= costs[buttons.indexOf(b)]) {
+						ShopMain.inventory.setUp(ShopMain.inventory.getUp() - costs[buttons.indexOf(b)]);
+						pointsDisplay.setText("UP: " + ShopMain.inventory.getUp());
+						ShopMain.s5.updatePoints();
 						b.setEnabled(false);
 						b.setBackground(Color.WHITE);
 						b.setText("Upgraded");
@@ -196,14 +195,6 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 		upgrades[2] = magic;
 	}
 
-	public int getUpgradePoints() {
-		return upgradePoints;
-	}
-
-	public void setUpgradePoints(int upgradePoints) {
-		this.upgradePoints = upgradePoints;
-	}
-
 	public void setOrbitron() {
 		try {
 			File fontFile = new File("shopUpgradeResources//Orbitron-Black.ttf");
@@ -224,6 +215,10 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void updatePoints() {
+		pointsDisplay.setText("UP: " + ShopMain.inventory.getUp());
 	}
 
 }
