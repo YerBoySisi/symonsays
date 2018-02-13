@@ -37,6 +37,7 @@ public class ShopScreen extends FullFunctionScreen {
 			@Override
 			public void act() {
 			 ShopMain.s1.setScreen(ShopMain.s3);
+			 updateQuant();
 			}
 		});
 		buy.setForeground(Color.white);		viewObjects.add(buy);

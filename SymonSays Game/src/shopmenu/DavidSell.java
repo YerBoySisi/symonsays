@@ -38,7 +38,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		update();
-		//title.setTextColor(Color.WHITE);
+		//title.setTextColor(Color.WHITE);z
 		title =  new TextArea(600,50,300,50,"MERCHANT");
 		TextArea desc1 = new TextArea(600,150,400,100,"USED TO INCREASE DEFENSE");
 		quant1 = new TextArea(500,150,300,100,"-");
