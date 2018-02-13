@@ -42,36 +42,45 @@ public class SelectScreen extends FullFunctionScreen {
 	public void initAllObjects(List<Visible> viewObjects) {
 		initGothicFont(24f);
 		initValues();
-		StyledComponent.setButtonOutline(true);
-		StyledComponent.setActiveBorderColor(Color.white);
-		Button boss1Button = new Button(20, y, wh, wh, "Boss 1", new Action() {
+		//StyledComponent.setButtonOutline(true);
+		//StyledComponent.setActiveBorderColor(Color.white);
+		initOrbitronFont(40f);
+		TextArea title = new TextArea(20, 20, 300, 150,"Boss Select");
+		initGothicFont(30f);
+		Button boss1Button = new Button(20, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 1",1,"resources/Ridley.png",5,1);
+				changeText(viewObjects,"Ridley",1,"resources/Ridley.png",5,1,0);
+				changeColor(title,txt,Color.MAGENTA);
 			}
 		});
-		Button boss2Button = new Button(140, y, wh, wh, "Boss 2", new Action() {
+		Button boss2Button = new Button(140, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 2",1,"resources/Soldier.jpg",5,1);
+				changeText(viewObjects,"Rambo Lun",1,"resources/Soldier.jpg",5,1,1);
+				changeColor(title,txt,Color.black);
 			}
 		});
-		Button boss3Button = new Button(260, y, wh, wh, "Boss 3", new Action() {
+		Button boss3Button = new Button(260, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 3",1,"resources/Turtle.jpg",5,1);
+				changeText(viewObjects,"Boss 3",1,"resources/Turtle.jpg",5,1,2);
+				changeColor(title,txt,Color.white);
 			}
 		});
-		Button boss4Button = new Button(380, y, wh, wh, "Boss 4", new Action() {
+		Button boss4Button = new Button(380, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 4",1,"resources/Shark.jpg",5,1);
+				changeText(viewObjects,"Boss 4",1,"resources/Shark.jpg",5,1,3);
+				changeColor(title,txt,Color.white);
 			}
 		});
-		Button boss5Button = new Button(500, y, wh, wh, "Boss 5", new Action() {
+		Button boss5Button = new Button(500, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 5",1,"resources/Shark.jpg",5,1);
+				changeText(viewObjects,"Boss 5",1,"resources/Shark.jpg",5,1,4);
+				changeColor(title,txt,Color.white);
 			}
 		});
-		Button boss6Button = new Button(620, y, wh, wh, "Boss 6", new Action() {
+		Button boss6Button = new Button(620, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 6",1,"resources/Shark.jpg",5,1);
+				changeText(viewObjects,"Boss 6",1,"resources/Shark.jpg",5,1,5);
+				changeColor(title,txt,Color.white);
 			}
 		});
 		initGothicFont(36f);
@@ -81,18 +90,15 @@ public class SelectScreen extends FullFunctionScreen {
 				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 		});
-		ButtonDavid startButton = new ButtonDavid(1020,680,300,Color.lightGray,"Start Battle",new Action() {
+		ButtonDavid startButton = new ButtonDavid(1060,680,260,Color.lightGray,"Start Battle",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.battleScreen);
 			}
 		});
-		initGothicFont(30f);
+		initGothicFont(36f);
 		background = new Graphic(0, 0, getWidth(), getHeight(), link);
-		txt = new TextArea(20, 250, 300, 300,"Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
-		initOrbitronFont(40f);
-		TextArea title = new TextArea(20, 20, 300, 150,"Boss Select");
-		initGothicFont(30f);
+		txt = new TextArea(20, 250, 500, 300,"Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
 		viewObjects.add(background);
 		addIcons(viewObjects);
 		viewObjects.add(title);
@@ -105,13 +111,14 @@ public class SelectScreen extends FullFunctionScreen {
 		viewObjects.add(backButton);
 		viewObjects.add(startButton);
 		viewObjects.add(txt);
-		boss1Button.setForeground(Color.white);
-		boss2Button.setForeground(Color.white);
-		boss3Button.setForeground(Color.white);
-		boss4Button.setForeground(Color.white);
-		boss5Button.setForeground(Color.white);
-		boss6Button.setForeground(Color.white);
-		txt.setCustomTextColor(Color.white);
+		//boss1Button.setForeground(Color.white);
+		//boss2Button.setForeground(Color.white);
+		//boss3Button.setForeground(Color.white);
+		//boss4Button.setForeground(Color.white);
+		//boss5Button.setForeground(Color.white);
+		//boss6Button.setForeground(Color.white);
+		txt.setCustomTextColor(Color.MAGENTA);
+		title.setCustomTextColor(Color.MAGENTA);
 	}
 
 
@@ -147,15 +154,15 @@ public class SelectScreen extends FullFunctionScreen {
 		link = "resources/Ridley.png";
 		level = 5;
 		levelRec = 1;
-		
 	}
 
-	public void changeText(List<Visible> viewObjects, String string, int i, String string2, int j, int k) {
+	public void changeText(List<Visible> viewObjects, String string, int i, String string2, int j, int k, int l) {
 		name = string;
 		bossNumber = i;
 		link = string2;
 		level = j;
 		levelRec = k;
+		bossNumber=l;
 		txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
 		background = new Graphic(0, 0, getWidth(), getHeight(), link);
 		viewObjects.add(0, background);
@@ -171,6 +178,11 @@ public class SelectScreen extends FullFunctionScreen {
 			x = x + 120;
 			viewObjects.add(icon);
 		}
+	}
+
+	public void changeColor(TextArea title, TextArea txt, Color textColor) {
+		title.setCustomTextColor(textColor);
+		txt.setCustomTextColor(textColor);
 	}
 
 }
