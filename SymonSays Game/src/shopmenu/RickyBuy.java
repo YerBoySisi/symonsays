@@ -46,6 +46,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 	
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+		StyledComponent.setButtonOutline(false);
 		update();
 		setOrbitron();
 		Graphic background = new Graphic(0, 0, getWidth() * 2, getHeight() * 2,"shopUpgradeResources/bgrnd.jpg");
@@ -107,6 +108,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						//setCoins(coins);
 						ShopMain.inventory.itemlist.add(new Items("def"));
 						inBetween();
+						ShopMain.s4.inBetween();
 						multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def"))));
 					if(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) == 10) {
 						buyDef.setEnabled(false);
@@ -132,6 +134,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("hp"));
 						inBetween();
+						ShopMain.s4.inBetween();
 						multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp"))));
 					if(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) == 10) {
 						buyHP.setEnabled(false);
@@ -157,6 +160,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("dodge"));
 						inBetween();
+						ShopMain.s4.inBetween();
 						multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge"))));
 					if(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("dodge"))== 10) {
 						buyDodge.setEnabled(false);
@@ -179,6 +183,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - BUYING_COST);
 						inBetween();
+						ShopMain.s4.inBetween();
 						ShopMain.inventory.itemlist.add(new Items("atk"));
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("atk")) ));

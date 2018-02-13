@@ -94,6 +94,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+ SELLING_COST);
 					ShopMain.s3.updateDefBuy();
 					inBetween();
+					ShopMain.s3.inBetween();
 					quant1.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 					//System.out.println(ShopMain.inventory.getCurrency());
@@ -133,6 +134,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+ SELLING_COST);
 					ShopMain.s3.updateHPBuy();
 					inBetween();
+					ShopMain.s3.inBetween();
 					quant2.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 					//System.out.println(ShopMain.inventory.getCurrency());
@@ -169,6 +171,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+ SELLING_COST);
 					ShopMain.s3.updateDodgeBuy();
 					inBetween();
+					ShopMain.s3.inBetween();
 					quant3.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 					//System.out.println(ShopMain.inventory.getCurrency());
@@ -204,6 +207,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+ SELLING_COST);
 					ShopMain.s3.updateAtkBuy();
 					inBetween();
+					ShopMain.s3.inBetween();
 					quant4.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 					//System.out.println(+ShopMain.inventory.getCurrency());
