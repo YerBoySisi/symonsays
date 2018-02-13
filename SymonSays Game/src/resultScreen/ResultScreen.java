@@ -9,6 +9,7 @@ import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -51,16 +52,19 @@ public class ResultScreen extends FullFunctionScreen {
 		upPoints = (int) (10*(Math.random()*10)+50);
 		Xp =100;
 		//XP.determineXP();
-//		Inventory inv =  new Inventory();
-//		int gold1 = inv.getCurrency();
-//		inv.setCurrency(gold1+goldValue);
-		Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/Black.jpg");
+		int gold1 = GameStarter.inventory.getCurrency();
+		GameStarter.inventory.setCurrency(gold1+goldValue);
+		Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/space.jpg");
 		viewObjects.add(backGround);
 		//Graphic backGround = new Graphic(0 , 0, getWidth(), getHeight(), "resources/"+bossName+".jpg");
 		//viewObjects.add(backGround);
 		//if(outcome) {
+			//button background
+//			TextArea backGroundLabel = new TextArea(900, 100, 400, 500, null);
+//			backGroundLabel.setBackground(Color.WHITE);
+//			viewObjects.add(backGroundLabel);
 			//Result
-			TextLabel result = new TextLabel(570, 20, 200, 200, "Victory");
+			TextLabel result = new TextLabel(570, 20, 250, 200, "Victory");
 			result.setCustomTextColor(Color.WHITE);
 			result.setSize(50);
 			viewObjects.add(result);
@@ -78,7 +82,7 @@ public class ResultScreen extends FullFunctionScreen {
 				e.printStackTrace();
 			}
 			//up points
-			TextLabel up = new TextLabel(1100, 250, 150, 150, "UP Points: "+ upPoints);
+			TextLabel up = new TextLabel(1100, 250, 200, 150, "UP Points: "+ upPoints);
 			up.setCustomTextColor(Color.WHITE);
 			up.setSize(20);
 			viewObjects.add(up);
@@ -109,23 +113,22 @@ public class ResultScreen extends FullFunctionScreen {
 		AnimatedComponent main = new MainCharacterAnimated(100, 170, 250, 250);
 		viewObjects.add(main);
 		try {
-			File fontFile = new File("resources/orbitron-medium.otf");
+			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-			Font baseFont=font.deriveFont(48f);
+			Font baseFont=font.deriveFont(36f);
 			StyledComponent.setBaseFont(baseFont);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 150, Color.lightGray, "Shop", new Action(){
+		ButtonDavid bossSelect = new ButtonDavid(1200, 680, 100, Color.lightGray, "Shop", new Action(){
 			
 			@Override
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.shopScreen);
-			}
-		}) ;
+		}}) ;
 		viewObjects.add(bossSelect);
 		
-		ButtonDavid Shop = new ButtonDavid(950, 680, 200, Color.lightGray, "Boss Select", new Action(){
+		ButtonDavid Shop = new ButtonDavid(900, 680, 250, Color.lightGray, "Boss Select", new Action(){
 			
 			@Override
 			public void act() {
@@ -134,7 +137,7 @@ public class ResultScreen extends FullFunctionScreen {
 			}
 		}) ;
 		viewObjects.add(Shop);
-		ButtonDavid UpG = new ButtonDavid(700, 680, 200, Color.lightGray, "Upgrade Menu", new Action(){
+		ButtonDavid UpG = new ButtonDavid(650, 680, 200, Color.lightGray, "Upgrades", new Action(){
 			
 			@Override
 			public void act() {
