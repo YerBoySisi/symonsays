@@ -73,7 +73,7 @@ public class SelectScreen extends FullFunctionScreen {
 		});
 		Button boss5Button = new Button(500, y, wh, wh, "", new Action() {
 			public void act() {
-				changeText(viewObjects,"Boss 5",1,"resources/Shark.jpg",5,1,4);
+				changeText(viewObjects,"Boss 5",1,"resources/Simon.jpg",5,1,4);
 				changeColor(title,txt,Color.white);
 			}
 		});
@@ -171,7 +171,7 @@ public class SelectScreen extends FullFunctionScreen {
 
 
 	public void addIcons(List<Visible> viewObjects) {
-		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png"};
+		String[] links = {"resources/Ridley Icon.png","resources/Soldier Icon.png","resources/Turtle Icon.png","resources/Shark Icon.png","resources/Simon Icon.png"};
 		int x = 20;
 		for(int i = 0; i < links.length; i++) {
 			Graphic icon = new Graphic(x, y, wh, wh, links[i]);
