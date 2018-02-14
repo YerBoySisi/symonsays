@@ -30,9 +30,6 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	private Upgrade riposte;
 	private Upgrade regeneration;
 	private Upgrade agility;
-	private int riposteLevel = 0;
-	private int regenerationLevel = 0;
-	private int agilityLevel = 0;
 	private Upgrade[] upgrades;
 	private int[] costs;
 
@@ -156,13 +153,13 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 							nextButton.update();
 						}
 						if(buttons.indexOf(b) >= 0 && buttons.indexOf(b) <= 2) {
-							riposteLevel++;
+							riposte.setLevel(riposte.getLevel() + 1);
 						}
 						if(buttons.indexOf(b) >= 3 && buttons.indexOf(b) <= 5) {
-							regenerationLevel++;
+							regeneration.setLevel(regeneration.getLevel() + 1);
 						}
 						if(buttons.indexOf(b) >= 6 && buttons.indexOf(b) <= 8) {
-							agilityLevel++;
+							agility.setLevel(agility.getLevel() + 1);
 						}
 					}
 				}
@@ -188,9 +185,9 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	}
 
 	public void createUpgradeList() {
-		riposte = new Upgrade(5, 50, "% chance to attack again");
-		regeneration = new Upgrade(50, 40, "HP healed each turn");
-		agility = new Upgrade(2, 25, "% chance to dodge an attack");
+		riposte = new Upgrade(5, 50, 0, "% chance to attack again");
+		regeneration = new Upgrade(50, 40, 0, "HP healed each turn");
+		agility = new Upgrade(2, 25, 0, "% chance to dodge an attack");
 		upgrades = new Upgrade[3];
 		upgrades[0] = riposte;
 		upgrades[1] = regeneration;
@@ -224,15 +221,14 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	}
 	
 	public int getRiposteLevel() {
-		return riposteLevel;
-	}
-
-	public int getRegenerationLevel() {
-		return regenerationLevel;
-	}
-
-	public int getAgilityLevel() {
-		return agilityLevel;
+		return riposte.getLevel();
 	}
 	
+	public int getRegenerationLevel() {
+		return regeneration.getLevel();
+	}
+	
+	public int getAgilityLevel() {
+		return agility.getLevel();
+	}
 }
