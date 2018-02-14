@@ -13,7 +13,6 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
 
 public class ShopScreen extends FullFunctionScreen {
 
@@ -37,7 +36,8 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.buyScreen);
+			 ShopMain.s1.setScreen(ShopMain.s3);
+			 updateQuant();
 			}
 		});
 		buy.setForeground(Color.white);		viewObjects.add(buy);
@@ -46,26 +46,43 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.sellScreen);
+				 ShopMain.s1.setScreen(ShopMain.s4);
 				 updateQuant();
 			}
 		});
 		sell.setForeground(Color.white);
 		viewObjects.add(sell);
-
 			
 		ButtonDavid back = new ButtonDavid(450,650,200,Color.LIGHT_GRAY,"Back",new Action() {
 
 			
 			@Override
 			public void act() {
-				 GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				 ShopMain.s1.setScreen(ShopMain.s2);
 			}
 		});
 
 		back.setForeground(Color.white);
 		viewObjects.add(back);
+		
+		
+
+		back.setForeground(Color.white);
+		viewObjects.add(back);
+		
+		ButtonDavid upgrade = new ButtonDavid(750,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
+
+			
+			@Override
+			public void act() {
+				 ShopMain.s1.setScreen(ShopMain.s5);
+			}
+		});
+		upgrade.setForeground(Color.white);
+		viewObjects.add(upgrade);
 		}
+	
+	
 	private void setCustomFont(){
 		
 		try {
@@ -79,17 +96,18 @@ public class ShopScreen extends FullFunctionScreen {
 	}
 	
 	public void updateQuant() {
-		DavidSell.quant1.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"))));
-		DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"))));
-		DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"))));
-		DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"))));
-		DavidSell.currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+		DavidSell.quant1.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+		DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+		DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+		DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		DavidSell.quant5.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("revive"))));
+		DavidSell.currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 		
 		
-		RickyBuy.multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"))));
-		RickyBuy.multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"))));
-		RickyBuy.multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"))));
-		RickyBuy.multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"))));
-		RickyBuy.numOfCoins.setText(Integer.toString(GameStarter.inventory.getCurrency()));		
+		RickyBuy.multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("def"))));
+		RickyBuy.multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
+		RickyBuy.multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
+		RickyBuy.multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		RickyBuy.numOfCoins.setText(Integer.toString(ShopMain.inventory.getCurrency()));		
 	}	
 }
