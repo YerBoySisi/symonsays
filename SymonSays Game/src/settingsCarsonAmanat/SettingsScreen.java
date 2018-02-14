@@ -42,7 +42,6 @@ public class SettingsScreen extends FullFunctionScreen{
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 		TextArea title = new TextArea(getWidth()/2-50, getHeight() - 300, 200, 200, "Settings");
 		ButtonDavid creditt = new ButtonDavid(100,250,100, Color.lightGray, "Credits",new Action() {
-			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.creditsScreen);
 			}
