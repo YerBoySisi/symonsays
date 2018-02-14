@@ -106,7 +106,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						GameStarter.inventory.itemlist.add(new Items("def"));
 						inBetween();
-						GameStarter.sellScreen.inBetween();
+						GameStarter.sellScreen.inBetween(); 
 						multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("def"))));
 					if(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("def")) == 10) {
 						buyDef.setEnabled(false);

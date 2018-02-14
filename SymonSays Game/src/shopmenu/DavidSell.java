@@ -154,7 +154,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					buyHP.update();
 				}
 					 */
-
+ 
 				}
 			}
 		});
