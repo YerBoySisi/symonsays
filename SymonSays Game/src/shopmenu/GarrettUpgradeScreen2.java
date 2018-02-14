@@ -221,5 +221,17 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	public void updatePoints() {
 		pointsDisplay.setText("UP: " + GameStarter.inventory.getUp());
 	}
+	
+	public int getAttackLevel() {
+		return attackLevel;
+	}
+
+	public int getDefenseLevel() {
+		return defenseLevel;
+	}
+
+	public int getMagicLevel() {
+		return magicLevel;
+	}
 
 }

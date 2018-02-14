@@ -223,4 +223,16 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		pointsDisplay.setText("UP: " + GameStarter.inventory.getUp());
 	}
 	
+	public int getRiposteLevel() {
+		return riposteLevel;
+	}
+
+	public int getRegenerationLevel() {
+		return regenerationLevel;
+	}
+
+	public int getAgilityLevel() {
+		return agilityLevel;
+	}
+	
 }
