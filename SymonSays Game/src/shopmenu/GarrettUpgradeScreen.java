@@ -15,6 +15,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class GarrettUpgradeScreen extends FullFunctionScreen {
 
@@ -65,15 +66,15 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		setBankGothic();
 		addBackgrounds(viewObjects);
 		addDescriptions(viewObjects);
-		ShopMain.inventory.setUp(300);
-		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + ShopMain.inventory.getUp());
+		GameStarter.inventory.setUp(300);
+		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + GameStarter.inventory.getUp());
 		pointsDisplay.setCustomTextColor(Color.CYAN);
 		viewObjects.add(pointsDisplay);
 		backButton = new ButtonDavid(30, 700, 100, Color.LIGHT_GRAY, "Back", new Action() {
 
 			@Override
 			public void act() {
-				ShopMain.s1.setScreen(ShopMain.s2);
+				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
 			}
 
 		});
@@ -87,7 +88,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 
 			@Override
 			public void act() {
-				ShopMain.s1.setScreen(ShopMain.s6);
+				GameStarter.start.setScreen(GameStarter.upgradeScreen2);
 				}
 
 		});
@@ -140,10 +141,10 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 
 				@Override
 				public void act() {
-					if(ShopMain.inventory.getUp() >= costs[buttons.indexOf(b)]) {
-						ShopMain.inventory.setUp(ShopMain.inventory.getUp() - costs[buttons.indexOf(b)]);
-						pointsDisplay.setText("UP: " + ShopMain.inventory.getUp());
-						ShopMain.s6.updatePoints();
+					if(GameStarter.inventory.getUp() >= costs[buttons.indexOf(b)]) {
+						GameStarter.inventory.setUp(GameStarter.inventory.getUp() - costs[buttons.indexOf(b)]);
+						pointsDisplay.setText("UP: " + GameStarter.inventory.getUp());
+						GameStarter.upgradeScreen2.updatePoints();
 						b.setEnabled(false);
 						b.setBackground(Color.WHITE);
 						b.setText("Upgraded");
@@ -219,7 +220,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 	}
 
 	public void updatePoints() {
-		pointsDisplay.setText("UP: " + ShopMain.inventory.getUp());
+		pointsDisplay.setText("UP: " + GameStarter.inventory.getUp());
 	}
 	
 }
