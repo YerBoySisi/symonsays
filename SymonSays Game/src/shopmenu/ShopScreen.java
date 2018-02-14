@@ -70,17 +70,6 @@ public class ShopScreen extends FullFunctionScreen {
 
 		back.setForeground(Color.white);
 		viewObjects.add(back);
-		
-		ButtonDavid upgrade = new ButtonDavid(750,650,200,Color.LIGHT_GRAY,"Upgrade",new Action() {
-
-			
-			@Override
-			public void act() {
-				 GameStarter.start.setScreen(GameStarter.upgradeScreen);
-			}
-		});
-		upgrade.setForeground(Color.white);
-		viewObjects.add(upgrade);
 		}
 	
 	
