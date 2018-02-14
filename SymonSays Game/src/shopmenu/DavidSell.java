@@ -24,10 +24,12 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 	private Button buyHP;
 	private Button buyA;
 	private Button buyDd;	
+	private Button buyR;
 	static TextArea quant1;
 	static TextArea quant2;
 	static TextArea quant3;
 	static TextArea quant4;
+	static TextArea quant5;
 	static TextArea currency;
 
 	public DavidSell(int width, int height) {
@@ -55,12 +57,17 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		TextArea desc4 = new TextArea(600,525,300,100,"INCREASES ATK BY 50Pts");
 		quant4 = new TextArea(500,525,300,100,"-");
 		quant4.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		
+		TextArea desc5 = new TextArea(600,655,450,100,"REVIVES PLAYER WITH FULL HP");
+		quant5 = new TextArea(500,650,300,100,"-");
+		quant5.setText("x"+Integer.toString(countOccurences(ShopMain.inventory.itemlist,new Items("revive"))));
 
 		viewObjects.add(new Graphic(0, 0, getWidth()*2,getHeight()*2,"shopUpgradeResources/bgrnd.jpg"));
 		viewObjects.add(new Graphic(400, 150, 100, 100,"shopUpgradeResources/test.png"));
 		viewObjects.add(new Graphic(400, 250, 100 , 100,"shopUpgradeResources/health.png"));
 		viewObjects.add(new Graphic(400, 400, 100 , 100,"shopUpgradeResources/speed.png"));
 		viewObjects.add(new Graphic(400, 500, 100 , 100,"shopUpgradeResources/strength.png"));
+		viewObjects.add(new Graphic(400, 630, 100 , 100,"shopUpgradeResources/revive.png"));
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 
 		currency = new TextArea(1200,20,150,50,Integer.toString(ShopMain.inventory.getCurrency()));
@@ -231,6 +238,40 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		 */
 		buyA.setForeground(Color.GRAY);
 		viewObjects.add(buyA);
+		
+		buyR = new Button(900,700,100,50,"Sell",Color.GREEN, new Action() {
+			public void act() {
+				buyR.setEnabled(true);
+				if (countOccurences(ShopMain.inventory.itemlist,new Items("revive"))>0) {
+					ArrayList<Items>iteml = ShopMain.inventory.itemlist;
+					removeItem(ShopMain.inventory.itemlist,new Items("revive"));
+					int count = countOccurences(ShopMain.inventory.itemlist,new Items("revive"));
+					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency()+ 2500);
+					inBetween();
+					ShopMain.s3.inBetween();
+					quant5.setText("x"+Integer.toString(count));
+					currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
+					//System.out.println(+ShopMain.inventory.getCurrency());
+					//System.out.println("Atk: " +count);
+					/*
+				if(count == 0) {
+					buyA.setEnabled(false);
+					buyA.setBackground(Color.RED);
+					buyA.update();
+				}
+					 */
+				}
+			}
+		});
+		/*
+		 if(countOccurences(ShopMain.inventory.itemlist,new Items("atk")) == 0) {
+				buyA.setEnabled(false);
+				buyA.setBackground(Color.RED);
+				buyA.update();
+			}
+		 */
+		buyR.setForeground(Color.GRAY);
+		viewObjects.add(buyR);
 
 
 		viewObjects.add(title);
@@ -242,6 +283,8 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		viewObjects.add(quant3);
 		viewObjects.add(desc4);
 		viewObjects.add(quant4);
+		viewObjects.add(desc5);
+		viewObjects.add(quant5);
 		viewObjects.add(currency);
  
 	}
@@ -331,6 +374,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
 		DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
 		DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		DavidSell.quant5.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("revive"))));
 		DavidSell.currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));	
 	}	
 }

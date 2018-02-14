@@ -100,6 +100,7 @@ public class ShopScreen extends FullFunctionScreen {
 		DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("hp"))));
 		DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("dodge"))));
 		DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("atk"))));
+		DavidSell.quant5.setText("x"+Integer.toString(DavidSell.countOccurences(ShopMain.inventory.itemlist,new Items("revive"))));
 		DavidSell.currency.setText(Integer.toString(ShopMain.inventory.getCurrency()));
 		
 		
