@@ -5,6 +5,7 @@ import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import inv.Inventory;
+import resultScreen.ResultScreen;
 import settingsCarsonAmanat.SettingsScreen;
 import shopmenu.DavidSell;
 import shopmenu.RickyBuy;
@@ -28,6 +29,7 @@ public class GameStarter extends GUIApplication{
 	public static BattleScreen battleScreen;
 	public static Inventory inventory;
 	public static SettingsScreen settingsScreen;
+	public static ResultScreen resultScreen;
 	
 	
 	public GameStarter(int width, int height) {
@@ -54,6 +56,7 @@ public class GameStarter extends GUIApplication{
 		buyScreen = new RickyBuy(getWidth(),getHeight());
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		settingsScreen = new SettingsScreen(getWidth(),getHeight());
+		resultScreen = new ResultScreen(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 
