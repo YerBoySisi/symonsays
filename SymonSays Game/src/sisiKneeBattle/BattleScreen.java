@@ -40,6 +40,9 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	
 	//menu buttons
 	
+	private ButtonDavid[] battleMenu;
+	
+	private ButtonDavid[] fleeMenu;
 	
 	private ArrayList<ButtonDavid> spellMenu;
 	
@@ -83,10 +86,38 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private AnimatedComponent soraCast;
 	private AnimatedComponent soraDamage;
 	private AnimatedComponent[] soraArray = {soraSprite,soraAttack,soraCast,soraDamage};
+	
 	private AnimatedComponent dragonMechSprite;
 	private AnimatedComponent dragonMechAttack;
 	private AnimatedComponent dragonMechDamage;
 	private AnimatedComponent[] dragonMechArray = {dragonMechSprite, dragonMechAttack, dragonMechDamage};
+	
+	private AnimatedComponent sharkSprite;
+	private AnimatedComponent sharkAttack;
+	private AnimatedComponent sharkDamage;
+	private AnimatedComponent[] sharkArray = {sharkSprite, sharkAttack, sharkDamage};
+	
+	private AnimatedComponent turtleSprite;
+	private AnimatedComponent turtleAttack;
+	private AnimatedComponent turtleDamage;
+	private AnimatedComponent[] turtleArray = {turtleSprite, turtleAttack, turtleDamage};
+	
+	private AnimatedComponent belmontSprite;
+	private AnimatedComponent belmontAttack;
+	private AnimatedComponent belmontDamage;
+	private AnimatedComponent[] belmontArray = {belmontSprite, belmontAttack, belmontDamage};
+	
+	private AnimatedComponent soldierSprite;
+	private AnimatedComponent soldierAttack;
+	private AnimatedComponent soldierDamage;
+	private AnimatedComponent[] soldierArray = {soldierSprite, soldierAttack, soldierDamage};
+	
+	private AnimatedComponent symonSprite;
+	private AnimatedComponent symonAttack;
+	private AnimatedComponent symonDamage;
+	private AnimatedComponent[] symonArray = {symonSprite, symonAttack, symonDamage};
+	
+	private AnimatedComponent[][] BossSpriteArray = {dragonMechArray, sharkArray, turtleArray, belmontArray, soldierArray, symonArray};
 	
 	File fontFile;
 	Font font;
@@ -185,12 +216,12 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraSprite.setVisible(true);
 		viewObjects.add(soraSprite);
 		
-//		soraAttack = new AnimatedComponent(330,250,275,275);
-//		soraAttack.addSequence("resources/soraattack.png", 150, 0, 0, 75, 50, 8);
-//		Thread soraAtk = new Thread(soraAttack);
-//		soraAtk.start();
-//		soraAttack.setVisible(false);
-//		viewObjects.add(soraAttack);
+		soraAttack = new AnimatedComponent(330,250,275,275);
+		soraAttack.addSequence("resources/soraattack.png", 150, 0, 0, 75, 50, 8);
+		Thread soraAtk = new Thread(soraAttack);
+		soraAtk.start();
+		soraAttack.setVisible(false);
+		viewObjects.add(soraAttack);
 			
 		soraCast = new AnimatedComponent(270,220,275,275);
 		soraCast.addSequence("resources/soramagic.png", 150, 0, 0, 50, 82, 7);
@@ -212,7 +243,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		dragonMechSprite.addSequence("resources/dragonmechattack.png", 850, 0, 0, 150, 105, 2);
 		Thread dragonmechIdle = new Thread(dragonMechSprite);
 		dragonmechIdle.start();
-		dragonMechSprite.setVisible(true);
+		dragonMechSprite.setVisible(false);
 		viewObjects.add(dragonMechSprite);
 		
 		dragonMechAttack = new AnimatedComponent(900,150,400,400);
@@ -229,8 +260,99 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		dragonMechDamage.setVisible(false);
 		viewObjects.add(dragonMechDamage);
 		
+		
+		
+		belmontSprite = new AnimatedComponent(950, 275, 100, 200);
+		belmontSprite.addSequence("resources/belmont.png", 1000, 574, 0, 25, 50, 1);
+		Thread belmontIdle = new Thread(belmontSprite);
+		belmontIdle.start();
+		belmontSprite.setVisible(false);
+		viewObjects.add(belmontSprite);
+		
+		belmontAttack = new AnimatedComponent(900, 200, 300, 300);
+		belmontAttack.addSequence("resources/belmontAttack.png", 150, 0, 0, 85, 70, 3);
+		Thread belmontAtk = new Thread(belmontAttack);
+		belmontAtk.start();
+		belmontAttack.setVisible(false);
+		viewObjects.add(belmontAttack);
+		
+		belmontDamage = new AnimatedComponent(950, 275, 100, 200);
+		belmontDamage.addSequence("resources/belmont.png", 1000, 285, 0, 25, 50, 1);
+		Thread belmontDmg = new Thread(belmontDamage);
+		belmontDmg.start();
+		belmontDamage.setVisible(false);
+		viewObjects.add(belmontDamage);
+		
 
 		
+		sharkSprite = new AnimatedComponent(950, 275, 200, 200);
+		sharkSprite.addSequence("resources/sharkBoss.png", 1000, 510, 10, 55, 55, 1);
+		Thread sharkIdle = new Thread(sharkSprite);
+		sharkIdle.start();
+		sharkSprite.setVisible(false);
+		viewObjects.add(sharkSprite);
+		
+		sharkAttack = new AnimatedComponent(950, 275, 200, 200);
+		sharkAttack.addSequence("resources/sharkBoss.png", 1000, 763, 9, 55, 55, 1);
+		Thread sharkAtk = new Thread(sharkAttack);
+		sharkAtk.start();
+		sharkAttack.setVisible(false);
+		viewObjects.add(sharkAttack);
+		
+		sharkDamage = new AnimatedComponent(950, 275, 200, 200);
+		sharkDamage.addSequence("resources/sharkBoss.png", 1000, 634, 9, 57, 55, 1);
+		Thread sharkDmg = new Thread(sharkDamage);
+		sharkDmg.start();
+		sharkDamage.setVisible(false);
+		viewObjects.add(sharkDamage);
+		
+		
+		
+		turtleSprite = new AnimatedComponent(750, 200, 500, 320);
+		turtleSprite.addSequence("resources/turtle1.png", 1000, 50, 75, 300, 200, 1);
+		Thread turtleIdle = new Thread(turtleSprite);
+		turtleIdle.start();
+		turtleSprite.setVisible(false);
+		viewObjects.add(turtleSprite);
+		
+		turtleAttack = new AnimatedComponent(750, 200, 500, 320);
+		turtleAttack.addSequence("resources/turtle2.png", 1000, 50, 75, 300, 200, 1);
+		Thread turtleAtk = new Thread(turtleAttack);
+		turtleAtk.start();
+		turtleAttack.setVisible(false);
+		viewObjects.add(turtleAttack);
+		
+		turtleDamage = new AnimatedComponent(750, 200, 500, 320);
+		turtleDamage.addSequence("resources/turtle3.png", 1000, 50, 75, 300, 200, 1);
+		Thread turtleDmg = new Thread(turtleDamage);
+		turtleDmg.start();
+		turtleDamage.setVisible(false);
+		viewObjects.add(turtleDamage);
+		
+		
+		
+		soldierSprite = new AnimatedComponent(875, 250, 150, 300);
+		soldierSprite.addSequence("resources/supersoldier.png", 150, 385, 15, 40, 50, 5);
+		Thread soldierIdle = new Thread(soldierSprite);
+		soldierIdle.start();
+		soldierSprite.setVisible(false);
+		viewObjects.add(soldierSprite);
+		
+		soldierAttack = new AnimatedComponent(800, 300, 350, 170);
+		soldierAttack.addSequence("resources/soldierAttack.png", 100, 0, 0, 80, 50, 5);
+		Thread soldierAtk = new Thread(soldierAttack);
+		soldierAtk.start();
+		soldierAttack.setVisible(false);
+		viewObjects.add(soldierAttack);
+		
+		soldierDamage = new AnimatedComponent(875, 250, 150, 300);
+		soldierDamage.addSequence("resources/supersoldier.png", 1000, 549, 211, 35, 47, 1);
+		Thread soldierDmg = new Thread(soldierDamage);
+		soldierDmg.start();
+		soldierDamage.setVisible(false);
+		viewObjects.add(soldierDamage);
+		
+////////////////////////////////////////////////////////////////////////////////////
 		ButtonDavid[] battleMenu = 
 			{new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
 				
@@ -241,11 +363,19 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 			}),
 			 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
 			 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
-			 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
+			 new ButtonDavid("Flee", null, 800, 709, 350, 45, new Action() {
+				
+				@Override
+				public void act() {
+					switchMenu(FLEE_MENU);
+					
+				}
+			})};
 		
 		ButtonDavid[] fleeMenu =
 			{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
 			 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
+		
 		
 		for(int i = 0; i < battleMenu.length; i++) {
 			battleMenu[i].setVisible(true);
@@ -357,18 +487,29 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		soraArray[num].setVisible(true);
 	}
 	
-	public void setBossSprite(int num) {
+	public void setBossSprite(int boss, int num) {
 		/*
+		 * FIRST INT (selects which boss to display)
+		 * 0 - dragon mech
+		 * 1 - gundam shark
+		 * 2 - sharse tortoise
+		 * 3 - simon belmont
+		 * 4 - super soldier
+		 * 5 - symon
+		 * 
+		 * SECOND INT (selects which animation to play)
 		 * 0 - idle
 		 * 1 - attack
 		 * 2 - damage
 		 */
 		
-		dragonMechSprite.setVisible(false);
-		dragonMechAttack.setVisible(false);
-		dragonMechDamage.setVisible(false);
+		for (int i = 0; i < BossSpriteArray.length; i++) {
+			for (int e = 0; e < BossSpriteArray[i].length; i++) {
+				BossSpriteArray[i][e].setVisible(false);
+			}
+		}
 		
-		dragonMechArray[num].setVisible(true);
+		BossSpriteArray[boss][num].setVisible(true);
 
 	}
 	
@@ -489,4 +630,11 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
+	public void switchMenu(int menu) {
+			
+		for(int i = 0; i < fleeMenu.length; i++) {
+			fleeMenu[i].setVisible(true);
+		}
+	}
 }
+	
