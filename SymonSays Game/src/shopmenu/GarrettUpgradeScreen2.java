@@ -30,9 +30,6 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	private Upgrade attack;
 	private Upgrade defense;
 	private Upgrade magic;
-	private int attackLevel = 0;
-	private int defenseLevel = 0;
-	private int magicLevel = 0;
 	private Upgrade[] upgrades;
 	private int[] costs;
 	
@@ -155,13 +152,13 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 							nextButton.update();
 						}
 						if(buttons.indexOf(b) >= 0 && buttons.indexOf(b) <= 2) {
-							attackLevel++;
+							attack.setLevel(attack.getLevel() + 1);
 						}
 						if(buttons.indexOf(b) >= 3 && buttons.indexOf(b) <= 5) {
-							defenseLevel++;
+							defense.setLevel(defense.getLevel() + 1);
 						}
 						if(buttons.indexOf(b) >= 6 && buttons.indexOf(b) <= 8) {
-							magicLevel++;
+							magic.setLevel(magic.getLevel() + 1);
 						}
 					}
 				}
@@ -187,9 +184,9 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	}
 
 	public void createUpgradeList() {
-		attack = new Upgrade(5, 35, " ATK");
-		defense = new Upgrade(10, 25, " DEF");
-		magic = new Upgrade(15, 15, " MAG");
+		attack = new Upgrade(5, 35, 0, " ATK");
+		defense = new Upgrade(10, 25, 0, " DEF");
+		magic = new Upgrade(15, 15, 0, " MAG");
 		upgrades = new Upgrade[3];
 		upgrades[0] = attack;
 		upgrades[1] = defense;
@@ -223,15 +220,14 @@ public class GarrettUpgradeScreen2 extends FullFunctionScreen {
 	}
 	
 	public int getAttackLevel() {
-		return attackLevel;
+		return attack.getLevel();
 	}
-
+	
 	public int getDefenseLevel() {
-		return defenseLevel;
+		return defense.getLevel();
 	}
-
+	
 	public int getMagicLevel() {
-		return magicLevel;
+		return magic.getLevel();
 	}
-
 }
