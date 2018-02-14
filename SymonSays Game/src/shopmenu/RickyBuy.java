@@ -41,7 +41,6 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 	
 	public RickyBuy(int width, int height) {
 		super(width, height);
-		//System.out.println((ShopMain.inventory.getCurrency()));
 	}
 	
 	@Override
@@ -65,7 +64,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 			
 		viewObjects.add(backButton);
 		setOrbitron();
-		TextArea title =  new TextArea(600,50,300,50,"MERCHANT");
+		TextArea title =  new TextArea(600,50,400,50,"MERCHANT - BUY");
 		title.setCustomTextColor(Color.MAGENTA);
 		viewObjects.add(title);
 		
@@ -95,7 +94,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		viewObjects.add(desc3);
 		viewObjects.add(desc4);
 		
-		buyDef = new Button(900,200,100,50,"Buy",Color.GREEN, new Action() {
+		buyDef = new Button(900,200,175,50,Integer.toString(BUYING_COST),Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -103,9 +102,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("def")) < 10) {
 					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
-						//def++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
-						//setCoins(coins);
 						ShopMain.inventory.itemlist.add(new Items("def"));
 						inBetween();
 						ShopMain.s4.inBetween();
@@ -121,8 +118,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		});
 		viewObjects.add(buyDef);
 		buyDef.setForeground(Color.GRAY);
-		
-		buyHP = new Button(900,325,100,50,"Buy",Color.GREEN, new Action() {
+		buyHP = new Button(900,325,175,50,Integer.toString(BUYING_COST),Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -130,7 +126,6 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 				if (ShopMain.inventory.getCurrency() >= BUYING_COST && DavidSell.countOccurences(ShopMain.inventory.itemlist, new Items("hp")) < 10) {
 					buyDef.setBackground(Color.GREEN);
 					ShopMain.inventory.setCurrency(ShopMain.inventory.getCurrency() - RickyBuy.BUYING_COST);
-						//hp++;
 						numOfCoins.setText(Integer.toString((ShopMain.inventory.getCurrency())));
 						ShopMain.inventory.itemlist.add(new Items("hp"));
 						inBetween();
@@ -149,7 +144,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		viewObjects.add(buyHP);
 		buyHP.setForeground(Color.GRAY);
 		
-		buyDodge = new Button(900,450,100,50,"Buy",Color.GREEN, new Action() {
+		buyDodge = new Button(900,450,175,50,Integer.toString(BUYING_COST),Color.GREEN, new Action() {
 			
 			@Override
 			public void act() {
@@ -174,7 +169,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		viewObjects.add(buyDodge);
 		buyDodge.setForeground(Color.GRAY);
 		
-		buyAtk = new Button(900,575,100,50,"Buy", Color.GREEN, new Action() {
+		buyAtk = new Button(900,575,175,50,Integer.toString(BUYING_COST), Color.GREEN, new Action() {
 
 			@Override
 			public void act() {
@@ -212,6 +207,11 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		inBetween();
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,"shopUpgradeResources/coin.png"));
 		
+		viewObjects.add(new Graphic(1030, 210, 35 , 35,"shopUpgradeResources/coin.png"));
+		viewObjects.add(new Graphic(1030, 335, 35 , 35,"shopUpgradeResources/coin.png"));
+		viewObjects.add(new Graphic(1030, 460, 35 , 35,"shopUpgradeResources/coin.png"));
+		viewObjects.add(new Graphic(1030, 585, 35 , 35,"shopUpgradeResources/coin.png"));
+		
 		}
 	
 		private void setOrbitron() {
@@ -237,38 +237,29 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 			if(ShopMain.inventory.getCurrency() >= 0 && ShopMain.inventory.getCurrency() < 10) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1300);
-					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1310);
-				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 10 && ShopMain.inventory.getCurrency() < 100) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1275);
-					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1285);
-				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 100 && ShopMain.inventory.getCurrency() < 1000) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1250);
-					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1260);
-				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 1000 && ShopMain.inventory.getCurrency() < 10000) {
 				if(ShopMain.inventory.getCurrency() % 10 != 1) {
 					numOfCoins.setX(1225);
-					System.out.println(numOfCoins.getX());
 				}
 				else numOfCoins.setX(1235);
-				System.out.println(numOfCoins.getX());
 			}
 			else if(ShopMain.inventory.getCurrency() >= 10000 && ShopMain.inventory.getCurrency() < 100000) {
 				numOfCoins.setX(1200);
-				System.out.println(numOfCoins.getX());
 			}
 		}
 		public void updateQuant() {
