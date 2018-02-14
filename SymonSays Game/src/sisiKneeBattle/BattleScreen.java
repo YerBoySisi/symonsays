@@ -70,6 +70,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private Bar bossDisplay;
 	private TextArea turnInfo;
 	
+	private boolean flee2;
+	
 	private ButtonDavid cheat;
 	
 	//Entities
@@ -122,6 +124,18 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	File fontFile;
 	Font font;
 	Font baseFont;
+
+	private ButtonDavid escape;
+
+	private ButtonDavid spell;
+
+	private ButtonDavid item;
+
+	private ButtonDavid run;
+
+	private ButtonDavid attack;
+
+	private ButtonDavid stay;
 
 	public BattleScreen(int width, int height) { 
 		
@@ -353,39 +367,48 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		viewObjects.add(soldierDamage);
 		
 ////////////////////////////////////////////////////////////////////////////////////
-		ButtonDavid[] battleMenu = 
-			{new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
+		 attack = new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
 				
 				@Override
 				public void act() {
 					makeSelection(ATTACK, player.getAttack(0), viewObjects);
 				}
-			}),
-			 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
-			 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
-			 new ButtonDavid("Flee", null, 800, 709, 350, 45, new Action() {
-				
+			});
+		 run = new ButtonDavid("Run Away", null, 300, 615, 350, 130, new Action() {
+
+			@Override
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.resultScreen);
+			}
+		}); 
+		 stay = new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130,new Action() {
+
 				@Override
 				public void act() {
-					switchMenu(FLEE_MENU);
+					changeButtons2(viewObjects,attack,spell,item,escape,run,stay);
 					
 				}
-			})};
+			}); 
+		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, null);
+		 item =  new ButtonDavid("Item", null, 800, 661, 350, 45, null);
+		escape =  new ButtonDavid("Flee", null, 800, 709, 350, 45, new Action() {
+
+				@Override
+				public void act() {
+					changeButtons(viewObjects,attack,spell,item,escape,run,stay);
+					
+				}
+			});
+		viewObjects.add(attack);
+		viewObjects.add(spell);
+		viewObjects.add(item);
+		viewObjects.add(escape);
+//		''
 		
-		ButtonDavid[] fleeMenu =
-			{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
-			 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
-		
-		
-		for(int i = 0; i < battleMenu.length; i++) {
-			battleMenu[i].setVisible(true);
-			viewObjects.add(battleMenu[i]);
-		}
-		
-		for(int i = 0; i < fleeMenu.length; i++) {
-			fleeMenu[i].setVisible(false);
-			viewObjects.add(fleeMenu[i]);
-		}
+//		for(int i = 0; i < fleeMenu.length; i++) {
+//			fleeMenu[i].setVisible(false);
+//			
+//		}
 		
 ////////////////////////////////////////////////////////////////////////////////////
 
@@ -630,11 +653,33 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void switchMenu(int menu) {
+	public void switchMenu(int menu, List<Visible> viewObjects) {
 			
 		for(int i = 0; i < fleeMenu.length; i++) {
 			fleeMenu[i].setVisible(true);
+			viewObjects.add(fleeMenu[i]);
 		}
+		
+	}
+	
+	public void changeButtons(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+
+			viewObjects.remove(attack);
+			viewObjects.remove(spell);
+			viewObjects.remove(item);
+			viewObjects.remove(escape);
+			viewObjects.add(run);
+			viewObjects.add(stay);
+	
+	}
+	
+	public void changeButtons2(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+			viewObjects.remove(run);
+			viewObjects.remove(stay);
+			viewObjects.add(attack);
+			viewObjects.add(spell);
+			viewObjects.add(item);
+			viewObjects.add(escape);
 	}
 }
 	
