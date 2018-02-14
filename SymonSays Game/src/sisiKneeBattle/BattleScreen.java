@@ -87,6 +87,10 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private AnimatedComponent dragonMechAttack;
 	private AnimatedComponent dragonMechDamage;
 	private AnimatedComponent[] dragonMechArray = {dragonMechSprite, dragonMechAttack, dragonMechDamage};
+	
+	File fontFile;
+	Font font;
+	Font baseFont;
 
 	public BattleScreen(int width, int height) { 
 		
@@ -98,9 +102,9 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public void initAllObjects(List<Visible> viewObjects) {
 		
 		try {
-			File fontFile = new File("resources/orbitron-medium.otf");
-			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-			Font baseFont=font.deriveFont(32f);
+			fontFile = new File("resources/orbitron-medium.otf");
+			font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			baseFont = font.deriveFont(32f);
 			TextArea.setBaseFont(baseFont);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -309,6 +313,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		txt = new TextArea(x,y + txtOffset,width, 100, text);
 		txt.setVisible(true);
+		txt.setFont(font);
 		viewObjects.add(txt);
 		
 	}
