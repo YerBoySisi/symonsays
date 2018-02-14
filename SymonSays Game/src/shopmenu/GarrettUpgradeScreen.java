@@ -63,7 +63,7 @@ public class GarrettUpgradeScreen extends FullFunctionScreen {
 		setBankGothic();
 		addBackgrounds(viewObjects);
 		addDescriptions(viewObjects);
-		GameStarter.inventory.setUp(300);
+		//GameStarter.inventory.setUp(300);
 		pointsDisplay = new TextLabel(1200, 20, 200, 50, "UP: " + GameStarter.inventory.getUp());
 		pointsDisplay.setCustomTextColor(Color.CYAN);
 		viewObjects.add(pointsDisplay);
