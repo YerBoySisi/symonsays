@@ -97,32 +97,16 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
 		
-		ButtonDavid[] battleMenu = 
-			{new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
-				
-				@Override
-				public void act() {
-					makeSelection(ATTACK, player.getAttack(0));
-				}
-			}),
-			 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
-			 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
-			 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
-		
-		ButtonDavid[] fleeMenu =
-			{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
-			 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
-		
-		TextArea.setTextColor(Color.white);
-		
 		try {
 			File fontFile = new File("resources/orbitron-medium.otf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 			Font baseFont=font.deriveFont(32f);
-			Bar.setBaseFont(baseFont);
+			TextArea.setBaseFont(baseFont);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		TextArea.setTextColor(Color.white);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -148,8 +132,6 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
-		updatePlayerHP(viewObjects);
-		
 ////////////////////////////////////////////////////////////////////////////////////
 		
 		blackBarMP = new Bar(800,560,PLAYER_BAR_WIDTH,30, "HP", Color.black, Color.black);
@@ -163,8 +145,6 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		mp = new TextArea(800,560,PLAYER_BAR_WIDTH, 100, player.getMP()+ " / " + player.getMaxMP());
 		mp.setVisible(true);
 		viewObjects.add(mp);
-		
-		updatePlayerMP(viewObjects);
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -186,23 +166,11 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		bossName.setVisible(true);
 		viewObjects.add(bossName);
 		
-		updateBossHP(viewObjects);
-		
 ////////////////////////////////////////////////////////////////////////////////////
 		
 		turnInfo = new TextArea(200,100,1200,60,"Dymon just used a piercing slash! It's a critical hit!");
 		turnInfo.setVisible(true);
 		viewObjects.add(turnInfo);
-		
-		for(int i = 0; i < battleMenu.length; i++) {
-			battleMenu[i].setVisible(true);
-			viewObjects.add(battleMenu[i]);
-		}
-		
-		for(int i = 0; i < fleeMenu.length; i++) {
-			fleeMenu[i].setVisible(false);
-			viewObjects.add(fleeMenu[i]);
-		}
 		
 ////////////////////////////////////////////////////////////////////////////////////
 		
@@ -257,6 +225,34 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		dragonMechDamage.setVisible(false);
 		viewObjects.add(dragonMechDamage);
 		
+
+		
+		ButtonDavid[] battleMenu = 
+			{new ButtonDavid("Attack", null, 300, 615, 350, 130, new Action() {
+				
+				@Override
+				public void act() {
+					makeSelection(ATTACK, player.getAttack(0), viewObjects);
+				}
+			}),
+			 new ButtonDavid("Spell", null, 800, 610, 350, 45, null),
+			 new ButtonDavid("Item", null, 800, 661, 350, 45, null),
+			 new ButtonDavid("Flee", null, 800, 709, 350, 45, null)};
+		
+		ButtonDavid[] fleeMenu =
+			{new ButtonDavid("Run Away", null, 300, 615, 350, 130, null), 
+			 new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130, null)};
+		
+		for(int i = 0; i < battleMenu.length; i++) {
+			battleMenu[i].setVisible(true);
+			viewObjects.add(battleMenu[i]);
+		}
+		
+		for(int i = 0; i < fleeMenu.length; i++) {
+			fleeMenu[i].setVisible(false);
+			viewObjects.add(fleeMenu[i]);
+		}
+		
 ////////////////////////////////////////////////////////////////////////////////////
 
 		cheat = new ButtonDavid("Cheat", null, 50, 50, 50, 50, new Action() {
@@ -306,10 +302,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	
 	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
 		
-		viewObjects.remove(bar);
-		viewObjects.remove(txt);
-
-		int newWidth = (int)Math.round((currentHP / maxHP) * maxBarWidth);
+		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
 		bar = new Bar(x,y,newWidth,30, "", clr, clr);
 		bar.setVisible(true);
 		viewObjects.add(bar);
@@ -322,18 +315,24 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	
 	public void updatePlayerHP(List<Visible> viewObjects) {
 		
+		viewObjects.remove(playerHPBar);
+		viewObjects.remove(playerHP);
 		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH, viewObjects);
 		
 	}
 	
 	public void updatePlayerMP(List<Visible> viewObjects) {
 		
+		viewObjects.remove(mpBar);
+		viewObjects.remove(mp);
 		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH, viewObjects);
 		
 	}
 	
 	public void updateBossHP(List<Visible> viewObjects) {
 		
+		viewObjects.remove(bossHP);
+		viewObjects.remove(bossName);
 		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH, viewObjects);
 		
 	}
@@ -406,9 +405,10 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void makeSelection(int selection, Attack a) {
+	public void makeSelection(int selection, Attack a, List<Visible> vo) {
 		
 		runBattleSequence(selection, a);
+		updatePlayerHP(vo);
 		
 	}
 	
