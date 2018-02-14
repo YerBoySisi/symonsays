@@ -108,7 +108,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					//System.out.println(GameStarter.inventory.getCurrency());
 					//printList(GameStarter.inventory.itemlist);
 
-					System.out.println("Def: " +count);
+					//System.out.println("Def: " +count);
 					/*
 					if(count == 0) {
 						buyD.setEnabled(false);
@@ -140,7 +140,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					removeItem(GameStarter.inventory.itemlist,new Items("hp"));
 					int count = countOccurences(iteml,new Items("hp"));
 					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ SELLING_COST);
-
+					GameStarter.buyScreen.inBetween();
 					inBetween();
 
 					quant2.setText("x"+Integer.toString(count));
@@ -177,7 +177,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					removeItem(GameStarter.inventory.itemlist,new Items("dodge"));
 					int count = countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
 					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ SELLING_COST);
-
+					GameStarter.buyScreen.inBetween();
 					inBetween();
 
 					quant3.setText("x"+Integer.toString(count));
@@ -213,7 +213,7 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					removeItem(GameStarter.inventory.itemlist,new Items("atk"));
 					int count = countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
 					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ SELLING_COST);
-
+					GameStarter.buyScreen.inBetween();
 					inBetween();
 					quant4.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
@@ -246,8 +246,9 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					ArrayList<Items>iteml = GameStarter.inventory.itemlist;
 					removeItem(GameStarter.inventory.itemlist,new Items("revive"));
 					int count = countOccurences(GameStarter.inventory.itemlist,new Items("revive"));
-					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ 2500);
+					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ 2000);
 					inBetween();
+					GameStarter.buyScreen.inBetween();
 
 					quant5.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
@@ -305,11 +306,12 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		return count;
 	}
 
-	public void printList(ArrayList<Items> list){
+	
+	/* public void printList(ArrayList<Items> list){
 		for(Items elem : list){
 			System.out.println(elem+"  ");
 		}
-	}
+	} */
 
 	public void removeItem(ArrayList<Items> list,Items x) {
 		for (int i = 0; i < list.size(); i++) { 		      

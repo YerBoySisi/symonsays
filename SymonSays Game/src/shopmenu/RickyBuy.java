@@ -106,7 +106,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						GameStarter.inventory.itemlist.add(new Items("def"));
 						inBetween();
-						//GameStarter.s4.inBetween();
+						GameStarter.sellScreen.inBetween();
 						multiplierDef.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("def"))));
 					if(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("def")) == 10) {
 						buyDef.setEnabled(false);
@@ -130,7 +130,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						GameStarter.inventory.itemlist.add(new Items("hp"));
 						inBetween();
-						//GameStarter.s4.inBetween();
+						GameStarter.sellScreen.inBetween();
 						multiplierHP.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("hp"))));
 					if(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("hp")) == 10) {
 						buyHP.setEnabled(false);
@@ -156,7 +156,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						GameStarter.inventory.itemlist.add(new Items("dodge"));
 						inBetween();
-						//GameStarter.s4.inBetween();
+						GameStarter.sellScreen.inBetween();
 						multiplierDodge.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("dodge"))));
 					if(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("dodge"))== 10) {
 						buyDodge.setEnabled(false);
@@ -179,7 +179,7 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 					buyDef.setBackground(Color.GREEN);
 					GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency() - BUYING_COST);
 						inBetween();
-						//GameStarter.s4.inBetween();
+						GameStarter.sellScreen.inBetween();
 						GameStarter.inventory.itemlist.add(new Items("atk"));
 						numOfCoins.setText(Integer.toString((GameStarter.inventory.getCurrency())));
 						multiplierAtk.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("atk")) ));
