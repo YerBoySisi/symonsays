@@ -7,6 +7,8 @@ import guiTeacher.components.StyledComponent;
 import inv.Inventory;
 import resultScreen.ResultScreen;
 import shopmenu.DavidSell;
+import shopmenu.GarrettUpgradeScreen;
+import shopmenu.GarrettUpgradeScreen2;
 import shopmenu.RickyBuy;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
@@ -23,7 +25,8 @@ public class GameStarter extends GUIApplication{
 	public static ShopScreen shopScreen;
 	public static RickyBuy buyScreen;
 	public static DavidSell sellScreen;
-	public static UpgradeScreen upgradeScreen;
+	public static GarrettUpgradeScreen upgradeScreen;
+	public static GarrettUpgradeScreen2 upgradeScreen2;
 	public static CreditsScreen creditsScreen;
 	public static BattleScreen battleScreen;
 	public static Inventory inventory;
@@ -48,7 +51,8 @@ public class GameStarter extends GUIApplication{
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
 		selectScreen = new SelectScreen(getWidth(),getHeight());
 		shopScreen = new ShopScreen(getWidth(),getHeight());
-		upgradeScreen = new UpgradeScreen(getWidth(),getHeight());
+		upgradeScreen = new GarrettUpgradeScreen(getWidth(),getHeight());
+		upgradeScreen2 = new GarrettUpgradeScreen2(getWidth(),getHeight());
 		creditsScreen = new CreditsScreen(getWidth(),getHeight());
 		battleScreen = new BattleScreen(getWidth(),getHeight());
 		buyScreen = new RickyBuy(getWidth(),getHeight());

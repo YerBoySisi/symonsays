@@ -10,7 +10,8 @@ public class ShopMain extends GUIApplication {
 	public static ShopScreen s2;
 	static RickyBuy s3;
 	static DavidSell s4;
-	static UpgradeScreen s5;
+	static GarrettUpgradeScreen s5;
+	static GarrettUpgradeScreen2 s6;
     public static Inventory inventory;	
 
 	public ShopMain(int width, int height) {
@@ -32,6 +33,7 @@ public class ShopMain extends GUIApplication {
 		setScreen(s2);
 		s3 = new RickyBuy(getWidth(),getHeight());
 		s4 = new DavidSell(getWidth(),getHeight());
-		s5 = new UpgradeScreen(getWidth(),getHeight());
+		s5 = new GarrettUpgradeScreen(getWidth(),getHeight());
+		s6 = new GarrettUpgradeScreen2(getWidth(),getHeight());
 	}
 }
