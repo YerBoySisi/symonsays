@@ -214,9 +214,10 @@ public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 		numOfCoins.setCustomTextColor(Color.ORANGE);
 		numOfCoins.setText(Integer.toString(GameStarter.inventory.getCurrency()));
 		viewObjects.add(numOfCoins);
+		
 		inBetween();
+		
 		viewObjects.add(new Graphic(1340, 25, 50 , 50,address.get(4)));
-
 		viewObjects.add(new Graphic(1030, 210, 35 , 35,address.get(4)));
 		viewObjects.add(new Graphic(1030, 335, 35 , 35,address.get(4)));
 		viewObjects.add(new Graphic(1030, 460, 35 , 35,address.get(4)));
