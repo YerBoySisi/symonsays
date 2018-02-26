@@ -10,7 +10,7 @@ public class Settings extends GUIApplication{
 	public static Settings symon;
 	public static SettingsScreen screen;
 	public static Credits credits;
-	public static StartScreen startScreen;
+	public static GameStarter startScreen;
 	
 	public Settings(int width, int height) {
 		super(width, height);
@@ -27,7 +27,7 @@ public class Settings extends GUIApplication{
 	public void initScreen() {
 		screen = new SettingsScreen(getWidth(), getHeight());
 		credits = new Credits(1400, 780);
-		startScreen = new StartScreen(getWidth(),getHeight());
+		startScreen = new GameStarter(getWidth(),getHeight());
 		setScreen(screen);		
 	}
 
