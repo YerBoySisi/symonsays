@@ -30,6 +30,7 @@ import guiTeacher.interfaces.Visible;
 public class Graphic implements Visible {
 
 	private BufferedImage image;
+	private boolean loadedImages;
 	private float alpha;
 	private int x;
 	private int y;
@@ -41,6 +42,7 @@ public class Graphic implements Visible {
 		this.y = y;
 		this.alpha = 1.0f;
 		visible = true;
+		loadedImages = false;
 		this.address = imageLocation;
 		loadImages(imageLocation, w, h);
 	}
@@ -50,6 +52,7 @@ public class Graphic implements Visible {
 		this.y = y;
 		this.alpha = 1.0f;
 		visible = true;
+		loadedImages = false;
 		this.address = imageLocation;
 		loadImages(imageLocation, scale);
 	}
@@ -59,6 +62,7 @@ public class Graphic implements Visible {
 		this.y = y;
 		visible = true;
 		this.alpha = 1.0f;
+		loadedImages = false;
 		this.address = imageLocation;
 		loadImages(imageLocation, 0,0);
 	}
@@ -68,6 +72,7 @@ public class Graphic implements Visible {
 		this.y = y;
 		this.alpha = 1.0f;
 		visible = true;
+		loadedImages = true;
 		this.image = new BufferedImage(image.getWidth(),image.getHeight(),BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g = this.image.createGraphics();
 		g.drawImage(image, 0, 0, null);
@@ -78,12 +83,15 @@ public class Graphic implements Visible {
 		this.y = y;
 		this.alpha = 1.0f;
 		visible = true;
+		loadedImages = true;
 		
 		AffineTransform scaleT = new AffineTransform();
 		scaleT.scale(scale, scale);
 		AffineTransformOp scaleOp = new AffineTransformOp(scaleT, AffineTransformOp.TYPE_BILINEAR);
 		this.image = scaleOp.filter(image,new BufferedImage((int)(image.getWidth()*scale), (int)(image.getHeight()*scale), BufferedImage.TYPE_INT_ARGB));
 		
+
+		loadedImages = true;
 		
 		
 
@@ -96,6 +104,7 @@ public class Graphic implements Visible {
 		this.y = y;
 		this.alpha = 1.0f;
 		visible = true;
+		loadedImages = true;
 		AffineTransform scale = new AffineTransform();
 		
 		//make it fit to the smaller of the two
@@ -149,6 +158,7 @@ public class Graphic implements Visible {
 			AffineTransformOp scaleOp = new AffineTransformOp(scaleT, AffineTransformOp.TYPE_BILINEAR);
 			image = scaleOp.filter(image,new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB));
 			
+			loadedImages = true;
 		}catch(Exception e){
 			e.printStackTrace();
 		}

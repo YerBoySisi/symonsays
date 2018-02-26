@@ -12,9 +12,12 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
+import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+
+import mainMenuAndStartScreen.ButtonDavid;
 import mainMenuAndStartScreen.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
@@ -38,21 +41,21 @@ public class SettingsScreen extends FullFunctionScreen{
 
 			e.printStackTrace();
 		}
-		Button creditt = new Button(800,600,250,100,"Credits",Color.GRAY,new Action() {
+
+		TextArea title = new TextArea(getWidth()/2-100,getHeight()-750,300,200,"Settings");
+		ButtonDavid creditt = new ButtonDavid(800,600,250, Color.lightGray, "Credits",new Action() {
+
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.creditsScreen);
+			}
+		});
+		ButtonDavid exit = new ButtonDavid(400,600,250,Color.lightGray,"Exit",new Action() {
 
 			@Override
 			public void act() {
-				Settings.symon.setScreen(Credits.credits);
+				GameStarter.start.setScreen(GameStarter.startScreen);
 			}
 		});
-		Button exit = new Button(400,600,250,100,"Exit",Color.GRAY,new Action() {
-
-			@Override
-			public void act() {
-				Settings.symon.setScreen(GameStarter.startScreen);
-			}
-		});
-		TextLabel title = new TextLabel(getWidth()/2-100,getHeight()-750,300,200,"Settings");
 		TextLabel volumeTitle = new TextLabel(250,250,200,100,"Volume");
 		title.setCustomTextColor(Color.lightGray);
 		volumeTitle.setCustomTextColor(Color.lightGray);

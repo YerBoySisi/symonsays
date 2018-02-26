@@ -1,7 +1,7 @@
 package settingsCarsonAmanat;
 
-import creditsCarsonAmanat.Credits;
 import guiTeacher.components.ClickableGraphic;
+import mainMenuAndStartScreen.GameStarter;
 
 public class GearIcon extends ClickableGraphic{
 
@@ -11,7 +11,7 @@ public class GearIcon extends ClickableGraphic{
 	}
 
 	public void act() {
-		Settings.symon.setScreen(Credits.credits);
+		GameStarter.start.setScreen(GameStarter.settingsScreen);
 	}
 
 	public void setGraphic(String location,int w, int h) {

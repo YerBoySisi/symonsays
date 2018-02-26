@@ -1,6 +1,8 @@
 package guiTeacher.components;
 
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
 import guiTeacher.interfaces.FileRequester;
 import guiTeacher.userInterfaces.FileLoader;
@@ -12,7 +14,7 @@ import guiTeacher.userInterfaces.FileLoader;
  * @author bnockles
  *
  */
-public class FileOpenButton extends ImageTextButton {
+public class FileOpenButton extends ButtonDavid {
 
 	/**
 	 * 

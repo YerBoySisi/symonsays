@@ -7,6 +7,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class CreditsScreen extends ClickableScreen implements Runnable{
 
@@ -27,11 +28,13 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 		viewObjects.add(background);
 		ScrollingText s = new ScrollingText(-800);
 		viewObjects.add(s);
-		ButtonDavid mainMenuButton = new ButtonDavid(50, 680, 100, Color.lightGray, "Back", new Action() {
+
+		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
+			
 			public void act() {
-				Credits.sample.setScreen(Credits.mainMenu);
+				GameStarter.start.setScreen(GameStarter.startScreen);
 			}
 		});
-		viewObjects.add(mainMenuButton);
+		viewObjects.add(backButton);
 	}
 }

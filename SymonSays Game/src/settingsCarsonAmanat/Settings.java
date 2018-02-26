@@ -27,7 +27,6 @@ public class Settings extends GUIApplication{
 	public void initScreen() {
 		screen = new SettingsScreen(getWidth(), getHeight());
 		credits = new Credits(1400, 780);
-		startScreen = new GameStarter(getWidth(),getHeight());
 		setScreen(screen);		
 	}
 
