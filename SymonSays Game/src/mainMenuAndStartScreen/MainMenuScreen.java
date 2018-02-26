@@ -70,11 +70,11 @@ public class MainMenuScreen extends FullFunctionScreen{
 	//	pane.setBackground(Color.blue);
 	//	pane.update();
 	//	viewObjects.add(pane);
-	//	AudioTest.playSound("resources/MainMenuMusic.wav");
 		viewObjects.add(upgradeButton);
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
 		viewObjects.add(backButton);
+		AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
 
 }
