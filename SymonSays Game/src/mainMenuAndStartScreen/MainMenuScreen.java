@@ -6,6 +6,7 @@ import java.io.File;
 import java.util.List;
 
 import audioPlayer.AudioPlayer;
+import audioPlayer.AudioTest;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -69,7 +70,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 	//	pane.setBackground(Color.blue);
 	//	pane.update();
 	//	viewObjects.add(pane);
-		AudioPlayer.play("resources/MainMenuMusic.wav");
+	//	AudioTest.playSound("resources/MainMenuMusic.wav");
 		viewObjects.add(upgradeButton);
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
