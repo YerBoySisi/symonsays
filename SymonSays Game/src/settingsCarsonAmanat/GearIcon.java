@@ -1,5 +1,6 @@
 package settingsCarsonAmanat;
 
+import creditsCarsonAmanat.Credits;
 import guiTeacher.components.ClickableGraphic;
 
 public class GearIcon extends ClickableGraphic{
@@ -10,11 +11,10 @@ public class GearIcon extends ClickableGraphic{
 	}
 
 	public void act() {
-		Settings.symon.setScreen(Settings.screen);
+		Settings.symon.setScreen(Credits.credits);
 	}
 
 	public void setGraphic(String location,int w, int h) {
-		//graphic = new Graphic(0,0,1.0,location);
 		loadImages(location, w, h);
 		update();
 	}

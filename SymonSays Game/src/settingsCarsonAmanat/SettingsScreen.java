@@ -15,11 +15,11 @@ import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import mainMenuAndStartScreen.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public ArrayList<MoveInterfaceAmanat> array;
 	public Button volumeSlider;
-	public Button volumeRect;
 
 	public ButtonInterfaceAmanat[] allButtons;
 
@@ -49,6 +49,7 @@ public class SettingsScreen extends FullFunctionScreen{
 
 			@Override
 			public void act() {
+				Settings.symon.setScreen(GameStarter.startScreen);
 			}
 		});
 		try {
@@ -64,15 +65,6 @@ public class SettingsScreen extends FullFunctionScreen{
 		TextLabel title = new TextLabel(getWidth()/2-100,getHeight()-750,300,200,"Settings");
 		title.setCustomTextColor(Color.lightGray);
 		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
-		volumeRect = new Button(80, 80, 200, 100, "", Color.BLACK, new Action() {
-
-			@Override
-			public void act() {
-
-
-			}
-
-		});
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);

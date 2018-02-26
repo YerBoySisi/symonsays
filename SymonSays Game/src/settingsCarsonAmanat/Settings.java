@@ -2,12 +2,15 @@ package settingsCarsonAmanat;
 
 import creditsCarsonAmanat.Credits;
 import guiTeacher.GUIApplication;
+import mainMenuAndStartScreen.GameStarter;
+import mainMenuAndStartScreen.StartScreen;
 
 public class Settings extends GUIApplication{
 
 	public static Settings symon;
 	public static SettingsScreen screen;
 	public static Credits credits;
+	public static StartScreen startScreen;
 	
 	public Settings(int width, int height) {
 		super(width, height);
@@ -24,6 +27,7 @@ public class Settings extends GUIApplication{
 	public void initScreen() {
 		screen = new SettingsScreen(getWidth(), getHeight());
 		credits = new Credits(1400, 780);
+		startScreen = new StartScreen(getWidth(),getHeight());
 		setScreen(screen);		
 	}
 
