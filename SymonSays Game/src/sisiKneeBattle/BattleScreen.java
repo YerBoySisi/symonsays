@@ -350,6 +350,30 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		return false;
 	}
 
+	@Override
+	public int remainingHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int totalHealth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int playerLevel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int playerXp() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	/* TO DO SIDEEQ:
 	 * Place character sprites on the stage
