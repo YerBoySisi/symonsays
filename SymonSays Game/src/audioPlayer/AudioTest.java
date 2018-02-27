@@ -5,6 +5,7 @@ import javax.sound.sampled.*;
 public class AudioTest {
 
 	private static int songSize;
+	private static Clip sound;
 	public static void main(String[] args) {
 	}
 	
@@ -13,18 +14,20 @@ public class AudioTest {
 			   File song = new File(file);
 			   Clip clip = AudioSystem.getClip();
 			   clip.open(AudioSystem.getAudioInputStream(song));
+			   sound = clip;
 			   clip.start();
 			  songSize = (int) (clip.getMicrosecondLength()/1000);
 		  } catch (Exception e) {
 			   System.err.println(e.getMessage());
 			  }
 	}
-	public static void stopSound() {
-		try {
-			Thread.sleep(songSize);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+	public static Clip getClip() {
+		return sound;
+	}
+	
+	
+	public static void stopSound(Clip clip) {
+		clip.stop();
 	}
 }

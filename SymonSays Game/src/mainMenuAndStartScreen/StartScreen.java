@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.io.File;
 import java.util.List;
 
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
@@ -55,6 +56,7 @@ public class StartScreen extends FullFunctionScreen{
 	}); 
 	viewObjects.add(creditsButton);
 	viewObjects.add(startButton);
+	AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
 	
 }

@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.io.File;
 import java.util.List;
 
-
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Component;
@@ -95,6 +95,8 @@ public class SelectScreen extends FullFunctionScreen {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.battleScreen);
+				AudioTest.stopSound(AudioTest.getClip());
+				AudioTest.playSound("resources/BattleMusic.wav");
 			}
 		});
 		initGothicFont(36f);

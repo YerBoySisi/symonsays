@@ -74,7 +74,6 @@ public class MainMenuScreen extends FullFunctionScreen{
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
 		viewObjects.add(backButton);
-		AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
 
 }
