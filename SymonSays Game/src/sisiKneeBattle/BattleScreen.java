@@ -139,7 +139,10 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private ButtonDavid attack;
 
 	private ButtonDavid stay;
-
+	
+	private ButtonDavid cancelItem;
+	
+	
 	public BattleScreen(int width, int height) { 
 		
 		super(width, height);
@@ -180,11 +183,25 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		remove(spell);
 		remove(item);
 		remove(escape);
+		addObject(cancelItem);
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
-			itemMenu = new ArrayList<ButtonDavid>();
+			itemMenu = new ArrayList<ButtonDavid>(GameStarter.inventory.itemlist.size());
 			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
+		}
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
 			addObject(itemMenu.get(i));
 		}
+	}
+	
+	public void hideItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
+			remove(itemMenu.get(i));
+		}
+		remove(cancelItem);
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
 	}
 
 	@Override
@@ -422,6 +439,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 
 			@Override
 			public void act() {
+				hideFlee(attack,spell,item,escape,run,stay);				
 				GameStarter.start.setScreen(GameStarter.resultScreen);
 			}
 		}); 
@@ -430,6 +448,14 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 				@Override
 				public void act() {
 					hideFlee(attack,spell,item,escape,run,stay);
+					
+				}
+			}); 
+		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 350, 130,new Action() {
+
+				@Override
+				public void act() {
+					hideItem(attack,spell,item,escape,run,stay);
 					
 				}
 			}); 
@@ -448,7 +474,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					showFlee(attack,spell,item,escape,run,stay);
 					
 				}
-			});
+			});	
 		viewObjects.add(attack);
 		viewObjects.add(spell);
 		viewObjects.add(item);
@@ -701,25 +727,5 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		return 0;
 		
-	}
-	
-	public void changeButtons(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-
-			viewObjects.remove(attack);
-			viewObjects.remove(spell);
-			viewObjects.remove(item);
-			viewObjects.remove(escape);
-			viewObjects.add(run);
-			viewObjects.add(stay);
-	
-	}
-	
-	public void changeButtons2(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-			viewObjects.remove(run);
-			viewObjects.remove(stay);
-			viewObjects.add(attack);
-			viewObjects.add(spell);
-			viewObjects.add(item);
-			viewObjects.add(escape);
 	}
 }
