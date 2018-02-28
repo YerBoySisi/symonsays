@@ -10,6 +10,7 @@ import audioPlayer.AudioTest;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import startGame.GameStarter;
 
 public class MainMenuScreen extends FullFunctionScreen{
 

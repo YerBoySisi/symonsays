@@ -8,7 +8,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.ClickableScreen;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class CreditsScreen extends ClickableScreen implements Runnable{
 

@@ -17,7 +17,7 @@ import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class SelectScreen extends FullFunctionScreen {
 	//Fahad
