@@ -14,6 +14,7 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+
 import inv.Inventory;
 import inv.Items;
 import mainMenuAndStartScreen.GameStarter;
