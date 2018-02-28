@@ -702,5 +702,23 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-}
+	public void changeButtons(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+
+			viewObjects.remove(attack);
+			viewObjects.remove(spell);
+			viewObjects.remove(item);
+			viewObjects.remove(escape);
+			viewObjects.add(run);
+			viewObjects.add(stay);
 	
+	}
+	
+	public void changeButtons2(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+			viewObjects.remove(run);
+			viewObjects.remove(stay);
+			viewObjects.add(attack);
+			viewObjects.add(spell);
+			viewObjects.add(item);
+			viewObjects.add(escape);
+	}
+}

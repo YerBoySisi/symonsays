@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.io.File;
 import java.util.List;
 
+import audioPlayer.AudioPlayer;
+import audioPlayer.AudioTest;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;

@@ -2,8 +2,10 @@ package inv;
 
 import java.util.ArrayList;
 
+import shopmenu.GarrettInterface;
 
-public class Inventory {
+
+public class Inventory implements GarrettInterface{
 	
 	public ArrayList<Items> itemlist;
 	private int currency;
