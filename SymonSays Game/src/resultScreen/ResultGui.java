@@ -20,7 +20,7 @@ public class ResultGui extends GUIApplication {
 	public static UpgradeScreen upgradeScreen;
 	public static CreditsScreen creditsScreen;
 	public static BattleScreen battleScreen;
-	public static ResultGui main;
+	public static ResultGui resultScreen;
 	public static ResultScreen screen;
 	public ResultGui(int width, int height) {
 		super(width, height);
@@ -28,9 +28,9 @@ public class ResultGui extends GUIApplication {
 		
 	}
 	public static void main(String[] args) {
-		main = new ResultGui(1400, 780);
+		resultScreen = new ResultGui(1400, 780);
 		screen = new ResultScreen(1400, 780);
-		Thread go = new Thread(main);
+		Thread go = new Thread(resultScreen);
 		go.start();
 	}
 	@Override

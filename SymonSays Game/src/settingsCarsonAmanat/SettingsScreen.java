@@ -17,6 +17,8 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import mainMenuAndStartScreen.ButtonDavid;
+import mainMenuAndStartScreen.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public ArrayList<MoveInterfaceAmanat> array;
@@ -39,11 +41,9 @@ public class SettingsScreen extends FullFunctionScreen{
 	public void initAllObjects(List<Visible> viewObjects) {
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 		TextArea title = new TextArea(getWidth()/2-50, getHeight() - 300, 200, 200, "Settings");
-		Button creditt = new Button(100,250,100,50,"Credits",Color.GRAY,new Action() {
-
-			@Override
+		ButtonDavid creditt = new ButtonDavid(100,250,100, Color.lightGray, "Credits",new Action() {
 			public void act() {
-				Settings.symon.setScreen(Credits.credits);
+				GameStarter.start.setScreen(GameStarter.creditsScreen);
 			}
 		});
 		ImageIcon gearIcon = createImageIcon("resources/gear.png");

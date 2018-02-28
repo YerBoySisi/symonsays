@@ -2,6 +2,8 @@ package shopmenu;
 
 public interface GarrettInterface {
 	
-	int getUP();
+	void setUp(int up);
+	
+	int getUp();
 
 }

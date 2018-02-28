@@ -18,7 +18,7 @@ public abstract class Boss extends Entity {
 	public static final int HOLY = 5; public static final int UNHOLY = 6;
 	public static final int SYMON = 777;
 	
-	protected ArrayList<Attack> attacks;
+	public ArrayList<Attack> attacks;
 	
 	public Boss(String nam, int hp, int pow, int def, int weak, int lvl, int xp) {
 		
@@ -29,12 +29,6 @@ public abstract class Boss extends Entity {
 	public void addAttack(Attack a) {
 		
 		attacks.add(a);
-		
-	}
-	
-	public ArrayList<Attack> getAttacks() {
-		
-		return attacks;
 		
 	}
 	

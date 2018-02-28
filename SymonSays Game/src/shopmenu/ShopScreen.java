@@ -37,7 +37,8 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.buyScreen);
+			 GameStarter.start.setScreen(GameStarter.buyScreen);
+			 updateQuant();
 			}
 		});
 		buy.setForeground(Color.white);		viewObjects.add(buy);
@@ -46,13 +47,12 @@ public class ShopScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.sellScreen);
+				 GameStarter.start.setScreen(GameStarter.sellScreen);
 				 updateQuant();
 			}
 		});
 		sell.setForeground(Color.white);
 		viewObjects.add(sell);
-
 			
 		ButtonDavid back = new ButtonDavid(450,650,200,Color.LIGHT_GRAY,"Back",new Action() {
 
@@ -65,7 +65,14 @@ public class ShopScreen extends FullFunctionScreen {
 
 		back.setForeground(Color.white);
 		viewObjects.add(back);
+		
+		
+
+		back.setForeground(Color.white);
+		viewObjects.add(back);
 		}
+	
+	
 	private void setCustomFont(){
 		
 		try {
@@ -83,6 +90,7 @@ public class ShopScreen extends FullFunctionScreen {
 		DavidSell.quant2.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"))));
 		DavidSell.quant3.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"))));
 		DavidSell.quant4.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"))));
+		DavidSell.quant5.setText("x"+Integer.toString(DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("revive"))));
 		DavidSell.currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
 		
 		
