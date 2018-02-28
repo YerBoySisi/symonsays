@@ -144,6 +144,47 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		super(width, height);
 		
 	}
+	
+	public void switchMenu(int menu, List<Visible> viewObjects) {
+		
+		for(int i = 0; i < fleeMenu.length; i++) {
+			fleeMenu[i].setVisible(true);
+			viewObjects.add(fleeMenu[i]);
+		}
+		
+	}
+	
+	public void showFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		addObject(run);
+		addObject(stay);
+	
+	}
+	
+	public void hideFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+	    remove(run);
+		remove(stay);
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
+	}
+	
+	public void showItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
+			itemMenu = new ArrayList<ButtonDavid>();
+			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
+			addObject(itemMenu.get(i));
+		}
+	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
@@ -661,43 +702,5 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void switchMenu(int menu, List<Visible> viewObjects) {
-			
-		for(int i = 0; i < fleeMenu.length; i++) {
-			fleeMenu[i].setVisible(true);
-			viewObjects.add(fleeMenu[i]);
-		}
-		
-	}
-	
-	public void showFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-
-		remove(attack);
-		remove(spell);
-		remove(item);
-		remove(escape);
-		addObject(run);
-		addObject(stay);
-	
-	}
-	
-	public void hideFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-	    remove(run);
-		remove(stay);
-		addObject(attack);
-		addObject(spell);
-		addObject(item);
-		addObject(escape);
-	}
-	
-	public void showItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-		remove(attack);
-		remove(spell);
-		remove(item);
-		remove(escape);
-		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
-			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
-		}
-	}
 }
 	
