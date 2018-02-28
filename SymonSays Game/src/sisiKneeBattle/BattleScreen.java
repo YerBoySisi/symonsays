@@ -14,10 +14,9 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-
 import inv.Inventory;
 import inv.Items;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 import resultScreen.ShareableInfoNabeel;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
@@ -26,6 +25,7 @@ import sisiKneeBosses.ShmarseTortoise;
 import sisiKneeBosses.SimonBelmont;
 import sisiKneeBosses.SuperSoldier;
 import sisiKneeBosses.Symon;
+import startGame.GameStarter;
 
 public class BattleScreen extends FullFunctionScreen implements ShareableInfoNabeel {
 	

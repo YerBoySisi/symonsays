@@ -16,7 +16,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 
 import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class RickyBuy extends FullFunctionScreen implements RickyShopText {
 

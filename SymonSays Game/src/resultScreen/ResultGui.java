@@ -3,12 +3,12 @@ package resultScreen;
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
-import mainMenuAndStartScreen.GameStarter;
 import mainMenuAndStartScreen.MainMenuScreen;
 import mainMenuAndStartScreen.StartScreen;
 import shopmenu.ShopScreen;
 import shopmenu.UpgradeScreen;
 import sisiKneeBattle.BattleScreen;
+import startGame.GameStarter;
 
 public class ResultGui extends GUIApplication {
 	

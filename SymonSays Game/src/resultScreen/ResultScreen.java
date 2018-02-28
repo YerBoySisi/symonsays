@@ -16,7 +16,7 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import guiTeacher.userInterfaces.Screen;
 import inv.Inventory;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 import guiTeacher.GUIApplication;
 
 public class ResultScreen extends FullFunctionScreen {

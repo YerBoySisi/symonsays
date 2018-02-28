@@ -1,10 +1,12 @@
-package mainMenuAndStartScreen;
+package startGame;
 
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
 import inv.Inventory;
+import mainMenuAndStartScreen.MainMenuScreen;
+import mainMenuAndStartScreen.StartScreen;
 import resultScreen.ResultScreen;
 import shopmenu.DavidSell;
 import shopmenu.GarrettUpgradeScreen;
