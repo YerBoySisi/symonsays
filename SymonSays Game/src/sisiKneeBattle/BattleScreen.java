@@ -14,6 +14,10 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+
+import inv.Inventory;
+import inv.Items;
+import startGame.GameStarter;
 import resultScreen.ShareableInfoNabeel;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
@@ -141,6 +145,47 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		super(width, height);
 		
+	}
+	
+	public void switchMenu(int menu, List<Visible> viewObjects) {
+		
+		for(int i = 0; i < fleeMenu.length; i++) {
+			fleeMenu[i].setVisible(true);
+			viewObjects.add(fleeMenu[i]);
+		}
+		
+	}
+	
+	public void showFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		addObject(run);
+		addObject(stay);
+	
+	}
+	
+	public void hideFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+	    remove(run);
+		remove(stay);
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
+	}
+	
+	public void showItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
+			itemMenu = new ArrayList<ButtonDavid>();
+			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
+			addObject(itemMenu.get(i));
+		}
 	}
 
 	@Override
@@ -385,17 +430,23 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 
 				@Override
 				public void act() {
-					changeButtons2(viewObjects,attack,spell,item,escape,run,stay);
+					hideFlee(attack,spell,item,escape,run,stay);
 					
 				}
 			}); 
 		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, null);
-		 item =  new ButtonDavid("Item", null, 800, 661, 350, 45, null);
+		 item =  new ButtonDavid("Item", null, 800, 661, 350, 45, new Action() {
+			
+			@Override
+			public void act() {
+				showItem(attack,spell,item,escape,run,stay);
+			}
+		});
 		escape =  new ButtonDavid("Flee", null, 800, 709, 350, 45, new Action() {
 
 				@Override
 				public void act() {
-					changeButtons(viewObjects,attack,spell,item,escape,run,stay);
+					showFlee(attack,spell,item,escape,run,stay);
 					
 				}
 			});
@@ -422,7 +473,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		});
 		cheat.setCustomTextColor(Color.WHITE);
 		cheat.setVisible(true);
-		viewObjects.add(cheat);
+		//viewObjects.add(cheat);
 ////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -650,15 +701,6 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public int playerXp() {
 		
 		return 0;
-		
-	}
-	
-	public void switchMenu(int menu, List<Visible> viewObjects) {
-			
-		for(int i = 0; i < fleeMenu.length; i++) {
-			fleeMenu[i].setVisible(true);
-			viewObjects.add(fleeMenu[i]);
-		}
 		
 	}
 	
