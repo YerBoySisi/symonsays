@@ -89,6 +89,7 @@ public class SelectScreen extends FullFunctionScreen {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		});
 		ButtonDavid startButton = new ButtonDavid(1060,680,260,Color.lightGray,"Start Battle",new Action() {
@@ -96,6 +97,8 @@ public class SelectScreen extends FullFunctionScreen {
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.battleScreen);
 				AudioTest.stopSound(AudioTest.getClip());
+				AudioTest.playSound("resources/ButtonSound.wav");
+				AudioTest.changeVolume(.01);
 				AudioTest.playSound("resources/BattleMusic.wav");
 			}
 		});

@@ -46,6 +46,7 @@ public class StartScreen extends FullFunctionScreen{
 		
 		public void act() {
 			GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+			AudioTest.playSound("resources/ButtonSound.wav");
 		}
 	});
 	
@@ -53,6 +54,7 @@ public class StartScreen extends FullFunctionScreen{
 		
 		public void act() {
 			GameStarter.start.setScreen(GameStarter.creditsScreen);
+			AudioTest.playSound("resources/ButtonSound.wav");
 		}
 	}); 
 	viewObjects.add(creditsButton);

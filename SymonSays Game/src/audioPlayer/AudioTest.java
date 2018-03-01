@@ -26,6 +26,12 @@ public class AudioTest {
 		return sound;
 	}
 	
+	public static void changeVolume(double num) {
+		FloatControl gainControl = (FloatControl) getClip().getControl(FloatControl.Type.MASTER_GAIN);
+		 double gain = num; // number between 0 and 1 (loudest)
+		    float dB = (float) (Math.log(gain) / Math.log(10.0) * 20.0);
+		    gainControl.setValue(dB);
+	}
 	
 	public static void stopSound(Clip clip) {
 		clip.stop();

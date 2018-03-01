@@ -1,5 +1,6 @@
 package startGame;
 
+import audioPlayer.AudioTest;
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
@@ -46,6 +47,7 @@ public class GameStarter extends GUIApplication{
 		start = new GameStarter(1400,780);
 		Thread go = new Thread(start);
 		go.start();
+		AudioTest.changeVolume(.6);
 	}
 
 	public void initScreen() {

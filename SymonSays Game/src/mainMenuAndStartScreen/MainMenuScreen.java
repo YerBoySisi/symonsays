@@ -46,6 +46,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.startScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		});
 		
@@ -53,6 +54,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.shopScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		});
 		
@@ -60,12 +62,14 @@ public class MainMenuScreen extends FullFunctionScreen{
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.upgradeScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		});
 		ButtonDavid startGameButton = new ButtonDavid(200,680,250,Color.lightGray,"Select Boss",new Action() {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.selectScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		}); 
 	//	pane.setBackground(Color.blue);
