@@ -142,6 +142,11 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	
 	private ButtonDavid cancelItem;
 	
+	private ButtonDavid itemHP;
+	private ButtonDavid itemDodge;
+	private ButtonDavid itemDef;
+	private ButtonDavid itemAtk;
+	
 	
 	public BattleScreen(int width, int height) { 
 		
@@ -184,20 +189,31 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		remove(item);
 		remove(escape);
 		addObject(cancelItem);
+		/*
+		itemMenu = new ArrayList<ButtonDavid>(GameStarter.inventory.itemlist.size());
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
-			itemMenu = new ArrayList<ButtonDavid>(GameStarter.inventory.itemlist.size());
 			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
 		}
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
 			addObject(itemMenu.get(i));
-		}
+		*/
+		addObject(itemHP);
+		addObject(itemDef);
+		addObject(itemDodge);
+		addObject(itemAtk);
+
 	}
 	
 	public void hideItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+		/*
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
 			remove(itemMenu.get(i));
-		}
+		*/
 		remove(cancelItem);
+		remove(itemHP);
+		remove(itemDef);
+		remove(itemDodge);
+		remove(itemAtk);
 		addObject(attack);
 		addObject(spell);
 		addObject(item);
@@ -451,11 +467,43 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 350, 130,new Action() {
+		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
 
 				@Override
 				public void act() {
 					hideItem(attack,spell,item,escape,run,stay);
+					
+				}
+			}); 
+		 itemHP = new ButtonDavid("HP Up", null, 610, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemDef = new ButtonDavid("Defense Up", null, 750, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemAtk = new ButtonDavid("Attack Up", null, 890, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemDodge = new ButtonDavid("Dodge Up", null, 1030, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
 					
 				}
 			}); 
