@@ -16,13 +16,15 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import javax.sound.sampled.*;
+
 
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public Button volumeSlider;
-	private int volume;
+	public static int volume;
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
@@ -30,7 +32,7 @@ public class SettingsScreen extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
@@ -43,13 +45,13 @@ public class SettingsScreen extends FullFunctionScreen{
 		}
 
 		TextArea title = new TextArea(getWidth()/2-100,getHeight()-750,300,200,"Settings");
-		ButtonDavid creditt = new ButtonDavid(800,600,250, Color.lightGray, "Credits",new Action() {
+		ButtonDavid creditt = new ButtonDavid(900,680,250, Color.lightGray, "Credits",new Action() {
 
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.creditsScreen);
 			}
 		});
-		ButtonDavid exit = new ButtonDavid(400,600,250,Color.lightGray,"Exit",new Action() {
+		ButtonDavid exit = new ButtonDavid(300,680,250,Color.lightGray,"Exit",new Action() {
 
 			@Override
 			public void act() {
@@ -61,14 +63,14 @@ public class SettingsScreen extends FullFunctionScreen{
 		volumeTitle.setCustomTextColor(Color.lightGray);
 		
 
-		volumeSlider = new Button(450, 275, 15, 15, "",Color.WHITE, null);
+		volumeSlider = new Button(1100, 275, 15, 15, "",Color.WHITE, null);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
 		viewObjects.add(volumeTitle);
 	}
-
+		
 	public void mouseDragged(MouseEvent m) {
 		super.mouseDragged(m);
 		if(m.getY() >270 && m.getY()<325) {

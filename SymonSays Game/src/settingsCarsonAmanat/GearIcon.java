@@ -1,7 +1,7 @@
 package settingsCarsonAmanat;
 
 import guiTeacher.components.ClickableGraphic;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class GearIcon extends ClickableGraphic{
 

@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.io.File;
 import java.util.List;
 
-
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Component;
@@ -17,7 +17,7 @@ import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class SelectScreen extends FullFunctionScreen {
 	//Fahad
@@ -95,6 +95,8 @@ public class SelectScreen extends FullFunctionScreen {
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.battleScreen);
+				AudioTest.stopSound(AudioTest.getClip());
+				AudioTest.playSound("resources/BattleMusic.wav");
 			}
 		});
 		initGothicFont(36f);
