@@ -148,6 +148,12 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private ButtonDavid itemDef;
 	private ButtonDavid itemAtk;
 	
+	private ButtonDavid cancelSpell;
+	private ButtonDavid prevSpell;
+	private ButtonDavid currentSpell;
+	private ButtonDavid nextSpell;
+	ArrayList<Attack> spells;
+	
 	
 	public BattleScreen(int width, int height) { 
 		
@@ -155,7 +161,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void switchMenu(int menu, List<Visible> viewObjects) {
+	/*public void switchMenu(int menu, List<Visible> viewObjects) {
 		
 		for(int i = 0; i < fleeMenu.length; i++) {
 			fleeMenu[i].setVisible(true);
@@ -163,6 +169,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		}
 		
 	}
+	*/
+	
 	
 	public void showFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
 
@@ -207,14 +215,43 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	}
 	
 	public void calcAmount() {
-		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));;
-		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));;
-		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));;
+		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
 		int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
 		itemHP.setText(itemHP.getText()+" x"+HPcount);
 		itemDef.setText(itemDef.getText()+" x"+Defcount);
 		itemDodge.setText(itemDodge.getText()+" x"+Dodgecount);
 		itemAtk.setText(itemAtk.getText()+" x"+Attackcount);
+	}
+	
+	public void showSpell() {
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		addObject(cancelSpell);
+		addObject(prevSpell);
+		addObject(nextSpell);
+		addObject(currentSpell);
+		fetchSpells();
+	}
+	
+	public void fetchSpells() {
+		for (int i = 1; i < Player.attacks.size(); i++) {
+			
+		}
+	}
+	
+	public void hideSpell() {
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
+		remove(cancelSpell);
+		remove(prevSpell);
+		remove(nextSpell);
+		remove(currentSpell);
 	}
 	
 	public void hideItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
@@ -464,7 +501,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					makeSelection(ATTACK, player.getAttack(0), viewObjects);
 				}
 			});
-		 run = new ButtonDavid("Run Away", null, 300, 615, 350, 130, new Action() {
+		 run = new ButtonDavid("Run Away", null, 800, 615, 350, 130, new Action() {
 
 			@Override
 			public void act() {
@@ -472,7 +509,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 				GameStarter.start.setScreen(GameStarter.resultScreen);
 			}
 		}); 
-		 stay = new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130,new Action() {
+		 stay = new ButtonDavid("Stay and Fight", null, 300, 615, 350, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -480,6 +517,31 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
+		 cancelSpell = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
+
+				@Override
+				public void act() {
+					hideSpell();
+					
+				}
+			});
+		 prevSpell = new ButtonDavid("prev", null, 610, 655, 100, 50, new Action() {
+			
+			@Override
+			public void act() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		 nextSpell = new ButtonDavid("next", null, 1110, 655, 100, 50, new Action() {
+				
+				@Override
+				public void act() {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+		 currentSpell = new ButtonDavid(" ", null, 720, 615, 380, 130, null);
 		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
 
 				@Override
@@ -520,7 +582,14 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, null);
+		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, new Action() {
+			
+			@Override
+			public void act() {
+				showSpell();
+				
+			}
+		});
 		 item =  new ButtonDavid("Item", null, 800, 661, 350, 45, new Action() {
 			
 			@Override
