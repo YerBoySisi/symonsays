@@ -18,6 +18,7 @@ import inv.Inventory;
 import inv.Items;
 import startGame.GameStarter;
 import resultScreen.ShareableInfoNabeel;
+import shopmenu.DavidSell;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
 import sisiKneeBosses.GundamShark;
@@ -197,11 +198,23 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
 			addObject(itemMenu.get(i));
 		*/
+		calcAmount();
 		addObject(itemHP);
 		addObject(itemDef);
 		addObject(itemDodge);
 		addObject(itemAtk);
 
+	}
+	
+	public void calcAmount() {
+		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));;
+		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));;
+		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));;
+		int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+		itemHP.setText(itemHP.getText()+" x"+HPcount);
+		itemDef.setText(itemDef.getText()+" x"+Defcount);
+		itemDodge.setText(itemDodge.getText()+" x"+Dodgecount);
+		itemAtk.setText(itemAtk.getText()+" x"+Attackcount);
 	}
 	
 	public void hideItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
@@ -475,7 +488,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 itemHP = new ButtonDavid("HP Up", null, 610, 615, 130, 130,new Action() {
+		 itemHP = new ButtonDavid("HP", null, 610, 615, 130, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -483,7 +496,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 itemDef = new ButtonDavid("Defense Up", null, 750, 615, 130, 130,new Action() {
+		 itemDef = new ButtonDavid("Def", null, 750, 615, 130, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -491,7 +504,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 itemAtk = new ButtonDavid("Attack Up", null, 890, 615, 130, 130,new Action() {
+		 itemAtk = new ButtonDavid("Atk", null, 890, 615, 130, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -499,7 +512,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 itemDodge = new ButtonDavid("Dodge Up", null, 1030, 615, 130, 130,new Action() {
+		 itemDodge = new ButtonDavid("Dodge", null, 1030, 615, 130, 130,new Action() {
 
 				@Override
 				public void act() {
