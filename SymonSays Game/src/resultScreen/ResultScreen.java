@@ -110,8 +110,24 @@ public class ResultScreen extends FullFunctionScreen {
 //			resultL.setSize(50);
 //			viewObjects.add(resultL);
 		//}
-		AnimatedComponent main = new MainCharacterAnimated(100, 170, 250, 250);
-		viewObjects.add(main);
+//		AnimatedComponent main = new MainCharacterAnimated(100, 170, 250, 250);
+//		viewObjects.add(main);
+		
+		Graphic still = new Graphic(100 , 170, 250, 250, "resources/Slot.png");
+		viewObjects.add(still);
+		ButtonDavid lootAttempt = new ButtonDavid(500,300, 100, Color.lightGray, "Spin", new Action(){
+			
+			@Override
+			public void act() {
+				AnimatedComponent main = new slotMachine(100, 170,250, 250);
+				viewObjects.add(main);
+				main.setRunning(false);
+				int firstNumber = (int) ((Math.random()*9));
+				ButtonDavid first = new ButtonDavid(100,170, 100, Color.RED,String.valueOf(firstNumber) ,null);
+				viewObjects.add(first);
+				first.setCustomTextColor(Color.lightGray);
+		}}) ;
+		viewObjects.add(lootAttempt);
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
 			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);

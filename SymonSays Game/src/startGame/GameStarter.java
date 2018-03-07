@@ -60,7 +60,7 @@ public class GameStarter extends GUIApplication{
 		buyScreen = new RickyBuy(getWidth(),getHeight());
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		resultScreen = new ResultScreen(getWidth(), getHeight());
-		setScreen(startScreen);
+		setScreen(resultScreen);
 	}
 
 }
