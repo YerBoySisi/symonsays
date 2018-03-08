@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import guiTeacher.components.Action;
 import guiTeacher.components.AnimatedComponent;
+import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
@@ -21,7 +23,7 @@ import guiTeacher.GUIApplication;
 
 public class ResultScreen extends FullFunctionScreen {
 	public int Xp;
-	
+	public ButtonDavid lootAttempt;
 	public int bossLevel;
 	public boolean outcome;
 	//values
@@ -115,17 +117,26 @@ public class ResultScreen extends FullFunctionScreen {
 		
 		Graphic still = new Graphic(100 , 170, 250, 250, "resources/Slot.png");
 		viewObjects.add(still);
-		ButtonDavid lootAttempt = new ButtonDavid(500,300, 100, Color.lightGray, "Spin", new Action(){
+		lootAttempt = new ButtonDavid(400,250, 100, Color.BLUE, "Spin", new Action(){
 			
 			@Override
 			public void act() {
-				AnimatedComponent main = new slotMachine(100, 170,250, 250);
-				viewObjects.add(main);
-				main.setRunning(false);
+				
 				int firstNumber = (int) ((Math.random()*9));
-				ButtonDavid first = new ButtonDavid(100,170, 100, Color.RED,String.valueOf(firstNumber) ,null);
-				viewObjects.add(first);
-				first.setCustomTextColor(Color.lightGray);
+				int secondNumber = (int) ((Math.random()*10)-1);
+				int thirdNumber = (int) ((Math.random()*10)-1);
+				Button button1 = new Button(130, 200, 40, 120, String.valueOf(firstNumber), Color.WHITE, null);
+				viewObjects.add(button1);
+				Button button2 = new Button(210, 200, 40, 120, String.valueOf(secondNumber), Color.WHITE, null);
+				viewObjects.add(button2);
+				Button button3 = new Button(290, 200, 40, 120, String.valueOf(thirdNumber), Color.WHITE, null);
+				viewObjects.add(button3);
+				int gold2 = GameStarter.inventory.getCurrency();
+				GameStarter.inventory.setCurrency(gold2+goldValue);
+				button1.setCustomTextColor(Color.RED);
+				lootAttempt.setVisible(false);
+				button2.setCustomTextColor(Color.RED);
+				button3.setCustomTextColor(Color.RED);
 		}}) ;
 		viewObjects.add(lootAttempt);
 		try {
