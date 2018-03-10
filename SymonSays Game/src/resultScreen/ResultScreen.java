@@ -21,7 +21,7 @@ import mainMenuAndStartScreen.ButtonDavid;
 import startGame.GameStarter;
 import guiTeacher.GUIApplication;
 
-public class ResultScreen extends FullFunctionScreen {
+public class ResultScreen extends FullFunctionScreen implements Runnable {
 	public int Xp;
 	public ButtonDavid lootAttempt;
 	public int bossLevel;
@@ -121,23 +121,13 @@ public class ResultScreen extends FullFunctionScreen {
 			
 			@Override
 			public void act() {
+				Thread thread = new Thread(ResultScreen.this);
+				thread.start();
 				
-				int firstNumber = (int) ((Math.random()*9));
-				int secondNumber = (int) ((Math.random()*10)-1);
-				int thirdNumber = (int) ((Math.random()*10)-1);
-				Button button1 = new Button(130, 200, 40, 120, String.valueOf(firstNumber), Color.WHITE, null);
-				viewObjects.add(button1);
-				Button button2 = new Button(210, 200, 40, 120, String.valueOf(secondNumber), Color.WHITE, null);
-				viewObjects.add(button2);
-				Button button3 = new Button(290, 200, 40, 120, String.valueOf(thirdNumber), Color.WHITE, null);
-				viewObjects.add(button3);
-				int gold2 = GameStarter.inventory.getCurrency();
-				GameStarter.inventory.setCurrency(gold2+goldValue);
-				button1.setCustomTextColor(Color.RED);
-				lootAttempt.setVisible(false);
-				button2.setCustomTextColor(Color.RED);
-				button3.setCustomTextColor(Color.RED);
-		}}) ;
+				
+		}
+
+			}) ;
 		viewObjects.add(lootAttempt);
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
@@ -174,4 +164,43 @@ public class ResultScreen extends FullFunctionScreen {
 		}) ;
 		viewObjects.add(UpG);
 		
-}}
+}
+
+
+
+	@Override
+	public void run() {
+		int a =0;
+		while( a  !=20) {
+			try {
+				Thread.sleep(time(a));
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			int firstNumber = (int) ((Math.random()*9));
+			int secondNumber = (int) ((Math.random()*10)-1);
+			int thirdNumber = (int) ((Math.random()*10)-1);
+			Button button1 = new Button(130, 200, 40, 120, String.valueOf(firstNumber), Color.WHITE, null);
+			getViewObjects().add(button1);
+			Button button2 = new Button(210, 200, 40, 120, String.valueOf(secondNumber), Color.WHITE, null);
+			getViewObjects().add(button2);
+			Button button3 = new Button(290, 200, 40, 120, String.valueOf(thirdNumber), Color.WHITE, null);
+			getViewObjects().add(button3);
+			int gold2 = GameStarter.inventory.getCurrency();
+			GameStarter.inventory.setCurrency(gold2+goldValue);
+			button1.setCustomTextColor(Color.RED);
+			lootAttempt.setVisible(false);
+			button2.setCustomTextColor(Color.RED);
+			button3.setCustomTextColor(Color.RED);
+			a++;
+			}
+	}
+
+
+
+	public int time(int a) {
+		int x =0;
+		x = (int) Math.pow(0.99999999999999999, a);
+		return x*1000;
+	}}
