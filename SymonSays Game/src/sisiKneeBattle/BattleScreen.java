@@ -152,8 +152,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private ButtonDavid prevSpell;
 	private ButtonDavid currentSpell;
 	private ButtonDavid nextSpell;
-	ArrayList<Attack> spells;
-	
+	private ArrayList<Attack> spells;
+	private int spellIndex;
 	
 	public BattleScreen(int width, int height) { 
 		
@@ -235,12 +235,27 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		addObject(nextSpell);
 		addObject(currentSpell);
 		fetchSpells();
+		updateSpell();
 	}
 	
 	public void fetchSpells() {
-		for (int i = 1; i < Player.attacks.size(); i++) {
-			
+		spells = new ArrayList<Attack>();
+		for (int i = 1; i < player.attacks.size(); i++) {
+			spells.add(player.attacks.get(i));
 		}
+		spellIndex = 0;
+	}
+	
+	public void scrollSpellList(int direction) {
+		if (spellIndex + direction == -1 || spellIndex + direction == spells.size()) {
+			return;
+		}
+		spellIndex = spellIndex + direction;
+		updateSpell();
+	}
+	
+	public void updateSpell() {
+		currentSpell.setText(spells.get(spellIndex).getName() + " (MP"+spells.get(spellIndex).getCost()+")");
 	}
 	
 	public void hideSpell() {
@@ -430,7 +445,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		sharkSprite.addSequence("resources/sharkBoss.png", 1000, 510, 10, 55, 55, 1);
 		Thread sharkIdle = new Thread(sharkSprite);
 		sharkIdle.start();
-		sharkSprite.setVisible(false);
+		sharkSprite.setVisible(true);
 		viewObjects.add(sharkSprite);
 		
 		sharkAttack = new AnimatedComponent(950, 275, 200, 200);
@@ -529,19 +544,26 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 			
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
+				scrollSpellList(-1);
 				
 			}
 		});
-		 nextSpell = new ButtonDavid("next", null, 1110, 655, 100, 50, new Action() {
+		 nextSpell = new ButtonDavid("next", null, 1210, 655, 100, 50, new Action() {
 				
 				@Override
 				public void act() {
-					// TODO Auto-generated method stub
+					scrollSpellList(1);
 					
 				}
 			});
-		 currentSpell = new ButtonDavid(" ", null, 720, 615, 380, 130, null);
+		 currentSpell = new ButtonDavid(" ", null, 720, 615, 480, 130, new Action() {
+			
+			@Override
+			public void act() {
+				makeSelection(ATTACK, spells.get(spellIndex), viewObjects);
+				
+			}
+		});
 		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
 
 				@Override
@@ -574,7 +596,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 itemDodge = new ButtonDavid("Dodge", null, 1030, 615, 130, 130,new Action() {
+		 itemDodge = new ButtonDavid("Dg", null, 1030, 615, 130, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -663,41 +685,48 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
+	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
 		
 		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
-		bar = new Bar(x,y,newWidth,30, "", clr, clr);
-		bar.setVisible(true);
-		viewObjects.add(bar);
-		
-		txt = new TextArea(x,y + txtOffset,width, 100, text);
-		txt.setVisible(true);
-		txt.setFont(font);
-		viewObjects.add(txt);
-		
-	}
-	
-	public void updatePlayerHP(List<Visible> viewObjects) {
-		
-		viewObjects.remove(playerHPBar);
-		viewObjects.remove(playerHP);
-		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH, viewObjects);
-		
-	}
-	
-	public void updatePlayerMP(List<Visible> viewObjects) {
-		
-		viewObjects.remove(mpBar);
-		viewObjects.remove(mp);
-		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH, viewObjects);
+		if (newWidth==0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			bar.setVisible(true);
+			addObject(bar);
+			
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
 		
 	}
 	
-	public void updateBossHP(List<Visible> viewObjects) {
+	public void updatePlayerHP() {
 		
-		viewObjects.remove(bossHP);
-		viewObjects.remove(bossName);
-		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH, viewObjects);
+		remove(playerHPBar);
+		remove(playerHP);
+		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH);
+		
+	}
+	
+	public void updatePlayerMP() {
+		
+		remove(mpBar);
+		remove(mp);
+		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH);
+	}
+	
+	public void updateBossHP() {
+		
+		remove(bossHP);
+		remove(bossName);
+		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH);
 		
 	}
 	
@@ -732,12 +761,9 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		 * 2 - damage
 		 */
 		
-		for (int i = 0; i < BossSpriteArray.length; i++) {
-			for (int e = 0; e < BossSpriteArray[i].length; i++) {
-				BossSpriteArray[i][e].setVisible(false);
-			}
-		}
-		
+		BossSpriteArray[boss][0].setVisible(false);
+		BossSpriteArray[boss][1].setVisible(false);
+		BossSpriteArray[boss][2].setVisible(false);
 		BossSpriteArray[boss][num].setVisible(true);
 
 	}
@@ -749,17 +775,21 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 			playerTurn(selection, a);
 				
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-				
+			setBossSprite(1,1);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			bossTurn();
+			setBossSprite(1,0);
 				
 		}).start();
 		
-		//updatePlayerHP(viewObjects);
-		//updateBossHP(viewObjects);
 		update();
 		
 	}
@@ -768,8 +798,13 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		switch(selection) {
 		case ATTACK:
+			if (a.equals(player.attacks.get(0)))
+			setPlayerSprite(1);
+			else {
+			setPlayerSprite(2);	
+			}
 			player.attack(boss, a);
-			player.changeMP(a.getCost());
+			player.changeMP(-a.getCost());
 		case ITEM:
 			if(player.getHP() < player.getMaxHP()) {
 				player.changeHP(10);
@@ -783,12 +818,22 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public void makeSelection(int selection, Attack a, List<Visible> vo) {
 		
 		runBattleSequence(selection, a);
-		updatePlayerHP(vo);
+		updatePlayerHP();
+		updateBossHP();
+		updatePlayerMP();
+		if (player.hp==0) {
+			turnInfo.setText("You died!!");
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
+		}
+		if (boss.hp==0) {
+			turnInfo.setText("You won!!");
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
+		}
 		
 	}
 	
 	public void bossTurn() {
-		
+		setPlayerSprite(0);
 		int totalDmgBoss = 0;
 		double[] bossAttackChances;
 		
