@@ -18,12 +18,12 @@ public class DragonMech extends Boss {
 	public void initializeAttacks() {
 
 		attacks = new ArrayList<Attack>();
-		attacks.add(new Attack("Jet Swoop", 1, BLUNT, PLAIN));
-		attacks.add(new Attack("Drill Peck", 1, PIERCE, PLAIN));
-		attacks.add(new Attack("Charge Tackle", 2, SLASH, PLAIN));
-		attacks.add(new Attack("Missile Launch", 2, SPECIAL, PLAIN));
-		attacks.add(new Attack("Rocket Slam", 2, BLUNT, PLAIN));
-		attacks.add(new Attack("Laser Beam", 4, SPECIAL, PLAIN));
+		attacks.add(new Attack("Jet Swoop", 15, BLUNT, PLAIN));
+		attacks.add(new Attack("Drill Peck", 17, PIERCE, PLAIN));
+		attacks.add(new Attack("Charge Tackle", 21, SLASH, PLAIN));
+		attacks.add(new Attack("Missile Launch", 22, SPECIAL, PLAIN));
+		attacks.add(new Attack("Rocket Slam", 25, BLUNT, PLAIN));
+		attacks.add(new Attack("Laser Beam", 40, SPECIAL, PLAIN));
 
 	}
 

@@ -48,6 +48,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	
 	private ButtonDavid[] fleeMenu;
 	
+	
 	private ArrayList<ButtonDavid> spellMenu;
 	
 	private ArrayList<ButtonDavid> itemMenu;
@@ -319,7 +320,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		playerHPBar.setVisible(true);
 		viewObjects.add(playerHPBar);
 		
-		playerHP = new TextArea(300,560,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
+		int newWidth = (int)Math.round(((double)player.getHP() / (double)player.getMaxHP()) * PLAYER_BAR_WIDTH);
+		playerHP = new TextArea(300,560,newWidth, 100, player.getHP()+ " / " + player.getMaxHP());
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
@@ -685,10 +687,10 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
+	public void setHPWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
 		
 		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
-		if (newWidth==0) {
+		if (newWidth<=0) {
 			txt = new TextArea(x,y + txtOffset,width, 100, text);
 			txt.setVisible(true);
 			txt.setFont(font);
@@ -696,6 +698,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		}
 		else {
 			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			playerHPBar = bar;
 			bar.setVisible(true);
 			addObject(bar);
 			
@@ -707,11 +710,57 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
+	public void setMPWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
+		
+		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
+		if (newWidth<=0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			mpBar = bar;
+			bar.setVisible(true);
+			addObject(bar);
+			
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		
+	}
+	
+	public void setBossWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
+	
+		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
+		if (newWidth<=0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			bossHP = bar;
+			bar.setVisible(true);
+			addObject(bar);
+		
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+	
+	}
+
 	public void updatePlayerHP() {
 		
 		remove(playerHPBar);
 		remove(playerHP);
-		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH);
+		setHPWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH);
 		
 	}
 	
@@ -719,14 +768,14 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		remove(mpBar);
 		remove(mp);
-		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH);
+		setMPWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH);
 	}
 	
 	public void updateBossHP() {
 		
 		remove(bossHP);
 		remove(bossName);
-		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH);
+		setBossWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH);
 		
 	}
 	
@@ -773,7 +822,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		new Thread(() -> {
 			
 			playerTurn(selection, a);
-				
+			System.out.println("Player turn, hp is "+player.hp);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -786,6 +835,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 				e.printStackTrace();
 			}
 			bossTurn();
+			System.out.println("Boss turn, hp is "+player.hp);
 			setBossSprite(1,0);
 				
 		}).start();
@@ -804,30 +854,37 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 			setPlayerSprite(2);	
 			}
 			player.attack(boss, a);
+			if (!a.equals(player.attacks.get(0))) {
+				player.attacks.remove(a);
+				fetchSpells();
+				updateSpell();
+			}
 			player.changeMP(-a.getCost());
+			break;
 		case ITEM:
 			if(player.getHP() < player.getMaxHP()) {
 				player.changeHP(10);
 			}
+			break;
 		case RUN:
 			player.changeHP(-player.getHP());
+			break;
 		}
 		
 	}
 	
 	public void makeSelection(int selection, Attack a, List<Visible> vo) {
-		
 		runBattleSequence(selection, a);
 		updatePlayerHP();
 		updateBossHP();
 		updatePlayerMP();
-		if (player.hp==0) {
+		if (player.hp<=0) {
 			turnInfo.setText("You died!!");
-			//GameStarter.start.setScreen(GameStarter.resultScreen);
+			GameStarter.start.setScreen(GameStarter.resultScreen);
 		}
-		if (boss.hp==0) {
+		if (boss.hp<=0) {
 			turnInfo.setText("You won!!");
-			//GameStarter.start.setScreen(GameStarter.resultScreen);
+			GameStarter.start.setScreen(GameStarter.resultScreen);
 		}
 		
 	}
@@ -843,23 +900,25 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		double n = 0;
 		
-		bossAttackChances = new double[boss.attacks.size()];
+//		bossAttackChances = new double[boss.attacks.size()];
 		
-		for(int i = boss.attacks.size() - 1; i >= 0; i--) {
-			n += (boss.attacks.get(i).getDamage() / totalDmgBoss);
-			bossAttackChances[i] = n;
-		}
-		
-		double rand = Math.random();
-		
-		for(int i = 0; i < bossAttackChances.length; i++) {
-			
-			if(rand <= bossAttackChances[i]) {
-				boss.attack(player, boss.getAttack(i));
-				break;
-			}
-			
-		}
+//		for(int i = boss.attacks.size() - 1; i >= 0; i--) {
+//			n += (boss.attacks.get(i).getDamage() / totalDmgBoss);
+//			bossAttackChances[i] = n;
+//		}
+//		
+//		double rand = Math.random();
+//		
+//		for(int i = 0; i < bossAttackChances.length; i++) {
+//			
+//			if(rand <= bossAttackChances[i]) {
+//				boss.attack(player, boss.getAttack(i));
+//				break;
+//			}
+//			
+//		}
+
+		boss.attack(player, boss.attacks.get((int) (boss.attacks.size()*Math.random())));
 		
 	}
 	
