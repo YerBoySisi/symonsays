@@ -822,7 +822,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		new Thread(() -> {
 			
 			playerTurn(selection, a);
-			System.out.println("Player turn, hp is "+player.hp);
+			turnInfo.setText("Player turn, hp is "+player.hp);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
@@ -835,7 +835,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 				e.printStackTrace();
 			}
 			bossTurn();
-			System.out.println("Boss turn, hp is "+player.hp);
+			turnInfo.setText("Boss turn, hp is "+player.hp);
 			setBossSprite(1,0);
 				
 		}).start();
@@ -847,6 +847,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public void playerTurn(int selection, Attack a) {
 		
 		switch(selection) {
+		
+		
 		case ATTACK:
 			if (a.equals(player.attacks.get(0)))
 			setPlayerSprite(1);
@@ -855,7 +857,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 			}
 			player.attack(boss, a);
 			if (!a.equals(player.attacks.get(0))) {
-				player.attacks.remove(a);
+				//player.attacks.remove(a);
 				fetchSpells();
 				updateSpell();
 			}
@@ -878,13 +880,14 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		updatePlayerHP();
 		updateBossHP();
 		updatePlayerMP();
+		
 		if (player.hp<=0) {
 			turnInfo.setText("You died!!");
-			GameStarter.start.setScreen(GameStarter.resultScreen);
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
 		}
 		if (boss.hp<=0) {
 			turnInfo.setText("You won!!");
-			GameStarter.start.setScreen(GameStarter.resultScreen);
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
 		}
 		
 	}
