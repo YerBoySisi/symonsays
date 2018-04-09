@@ -2,8 +2,7 @@ package settingsCarsonAmanat;
 
 import creditsCarsonAmanat.Credits;
 import guiTeacher.GUIApplication;
-import mainMenuAndStartScreen.GameStarter;
-import mainMenuAndStartScreen.StartScreen;
+import startGame.GameStarter;
 
 public class Settings extends GUIApplication{
 

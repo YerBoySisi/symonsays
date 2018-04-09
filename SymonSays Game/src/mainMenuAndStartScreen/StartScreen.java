@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.io.File;
 import java.util.List;
 
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Graphic;
 import guiTeacher.components.StyledComponent;
@@ -12,6 +13,7 @@ import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import settingsCarsonAmanat.GearIcon;
+import startGame.GameStarter;
 
 public class StartScreen extends FullFunctionScreen{
 
@@ -58,6 +60,7 @@ public class StartScreen extends FullFunctionScreen{
 	viewObjects.add(creditsButton);
 	viewObjects.add(startButton);
 	viewObjects.add(settings);
+	AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
 	
 }

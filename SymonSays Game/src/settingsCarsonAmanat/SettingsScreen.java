@@ -1,13 +1,12 @@
 package settingsCarsonAmanat;
 
-import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
 
-import creditsCarsonAmanat.Credits;
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
@@ -18,11 +17,11 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 
 import mainMenuAndStartScreen.ButtonDavid;
-import mainMenuAndStartScreen.GameStarter;
+import startGame.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public Button volumeSlider;
-	private int volume;
+	public static int volume = 100;
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
@@ -61,7 +60,7 @@ public class SettingsScreen extends FullFunctionScreen{
 		volumeTitle.setCustomTextColor(Color.lightGray);
 		
 
-		volumeSlider = new Button(450, 275, 15, 15, "",Color.WHITE, null);
+		volumeSlider = new Button(1100, 275, 15, 15, "",Color.WHITE, null);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
@@ -79,6 +78,8 @@ public class SettingsScreen extends FullFunctionScreen{
 			if(volumeSlider.getX()>1100)
 			volumeSlider.setX(1100);
 			volume = (int) ((volumeSlider.getX()-450)/6.5);
+			AudioTest.gain= volume/100D;
+			System.out.println(AudioTest.gain);
 			if(getY()==275) 
 				volumeSlider.setY(m.getY());
 		}
