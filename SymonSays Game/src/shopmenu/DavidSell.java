@@ -258,33 +258,7 @@ public class DavidSell extends FullFunctionScreen  implements RickyShopText {
 	//TextArea quant, TextArea currency, String itemN
 	
 	public void setButtonActions() {
-		/*
-		for(Button b: sellButtons) {
-			b.setAction(new Action() {
-            
-				@Override
-				public void act() {
-					b.setEnabled(true);
-					if (countOccurences(GameStarter.inventory.itemlist,new Items(itemName[y]))>0) {
-						ArrayList<Items>iteml = GameStarter.inventory.itemlist;
-						removeItem(GameStarter.inventory.itemlist,new Items(itemName[y]));
-						int count = countOccurences(GameStarter.inventory.itemlist,new Items(itemName[y]));
-						GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ 2000);
-						inBetween();
-						GameStarter.buyScreen.inBetween();
-						quant[y].setText("x"+Integer.toString(count));
-						currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
 
-					}
-					else {
-						System.out.println(itemName[y]);
-					}
-				}
-			});
-	
-			System.out.println(y);
-		}
-		*/
 		for(int i=0;i<=4;i++) {
 			int x =i;
 
