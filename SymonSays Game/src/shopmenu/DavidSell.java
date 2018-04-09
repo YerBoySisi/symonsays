@@ -17,7 +17,7 @@ import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
 import startGame.GameStarter;
 
-public class DavidSell extends FullFunctionScreen implements RickyShopText {
+public class DavidSell extends FullFunctionScreen  implements RickyShopText {
 
 	public static final int  SELLING_COST = 160;
 	private TextArea title;
@@ -32,10 +32,14 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 	static TextArea quant4;
 	static TextArea quant5;
 	static TextArea currency;
+	private String[] itemName = {"def","hp","dodge","atk","revive"};
+	private TextArea[] quant = {quant1,quant2,quant3,quant4,quant5};
+	private ArrayList<Button> sellButtons;
+	int y =0;
 
 	public DavidSell(int width, int height) {
 		super(width, height);
-		inBetween();
+
 	}
 
 	@Override
@@ -92,6 +96,9 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		back.setForeground(Color.WHITE);
 		viewObjects.add(back);
 		setOrbitron();
+		
+		
+		/*
 		buyD = new Button(900,200,175,50,Integer.toString(SELLING_COST),Color.GREEN, new Action() {
 			public void act() {
 				buyD.setEnabled(true);
@@ -105,29 +112,13 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 
 					quant1.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
-					//System.out.println(GameStarter.inventory.getCurrency());
-					//printList(GameStarter.inventory.itemlist);
-
-					//System.out.println("Def: " +count);
-					/*
-					if(count == 0) {
-						buyD.setEnabled(false);
-						buyD.setBackground(Color.RED);
-						buyD.update();
-					}
-					 */
+				
 				}
 
 
 			}
 		});
-		/*
-		   if(countOccurences(GameStarter.inventory.itemlist,new Items("def")) == 0) {
-				buyD.setEnabled(false);
-				buyD.setBackground(Color.RED);
-				buyD.update();
-			}
-		 */
+		
 		buyD.setForeground(Color.GRAY);
 		viewObjects.add(buyD);
 
@@ -145,26 +136,12 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 
 					quant2.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
-					//System.out.println(GameStarter.inventory.getCurrency());
-					//System.out.println("Health: " +count);
-					/*
-				if(count == 0) {
-					buyHP.setEnabled(false);
-					buyHP.setBackground(Color.RED);
-					buyHP.update();
-				}
-					 */
+					
  
 				}
 			}
 		});
-		/*
-		if(countOccurences(GameStarter.inventory.itemlist,new Items("hp")) == 0) {
-				buyHP.setEnabled(false);
-				buyHP.setBackground(Color.RED);
-				buyHP.update();
-			}
-		 */
+		
 		buyHP.setForeground(Color.GRAY);
 		viewObjects.add(buyHP);
 
@@ -182,25 +159,11 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 
 					quant3.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
-					//System.out.println(GameStarter.inventory.getCurrency());
-					//System.out.println("Speed: " +count);
-					/*
-				if(count == 0) {
-					buyDd.setEnabled(false);
-					buyDd.setBackground(Color.RED);
-					buyDd.update();
-				}
-					 */
+					
 				}
 			}
 		});
-		/*
-		  if(countOccurences(GameStarter.inventory.itemlist,new Items("dodge")) == 0) { 
-				buyDd.setEnabled(false);
-				buyDd.setBackground(Color.RED);
-				buyDd.update();
-			}
-		 */
+	
 		buyDd.setForeground(Color.GRAY);
 		viewObjects.add(buyDd);
 
@@ -217,25 +180,11 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 					inBetween();
 					quant4.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
-					//System.out.println(+GameStarter.inventory.getCurrency());
-					//System.out.println("Atk: " +count);
-					/*
-				if(count == 0) {
-					buyA.setEnabled(false);
-					buyA.setBackground(Color.RED);
-					buyA.update();
-				}
-					 */
+					
 				}
 			}
 		});
-		/*
-		 if(countOccurences(GameStarter.inventory.itemlist,new Items("atk")) == 0) {
-				buyA.setEnabled(false);
-				buyA.setBackground(Color.RED);
-				buyA.update();
-			}
-		 */
+	
 		buyA.setForeground(Color.GRAY);
 		viewObjects.add(buyA);
 		
@@ -252,27 +201,14 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 
 					quant5.setText("x"+Integer.toString(count));
 					currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
-					//System.out.println(+GameStarter.inventory.getCurrency());
-					//System.out.println("Atk: " +count);
-					/*
-				if(count == 0) {
-					buyA.setEnabled(false);
-					buyA.setBackground(Color.RED);
-					buyA.update();
-				}
-					 */
+					
 				}
 			}
 		});
-		/*
-		 if(countOccurences(GameStarter.inventory.itemlist,new Items("atk")) == 0) {
-				buyA.setEnabled(false);
-				buyA.setBackground(Color.RED);
-				buyA.update();
-			}
-		 */
+	
 		buyR.setForeground(Color.GRAY);
 		viewObjects.add(buyR);
+		*/
 
 
 		viewObjects.add(title);
@@ -288,11 +224,92 @@ public class DavidSell extends FullFunctionScreen implements RickyShopText {
 		viewObjects.add(quant5);
 		viewObjects.add(currency);
 		
+		
+		createButtons();
+		setButtonActions();
+		for(Button b: sellButtons) {
+			b.setForeground(Color.GRAY);
+			b.setEnabled(true);
+			viewObjects.add(b);
+		}
+
 		viewObjects.add(new Graphic(1030, 210, 35 , 35,"shopUpgradeResources/coin.png"));
 		viewObjects.add(new Graphic(1030, 335, 35 , 35,"shopUpgradeResources/coin.png"));
 		viewObjects.add(new Graphic(1030, 460, 35 , 35,"shopUpgradeResources/coin.png"));
 		viewObjects.add(new Graphic(1030, 585, 35 , 35,"shopUpgradeResources/coin.png"));
 		viewObjects.add(new Graphic(1060, 710, 35 , 35,"shopUpgradeResources/coin.png"));
+      
+	}
+	
+	public void createButtons() {
+		sellButtons = new ArrayList<Button>();
+		for(int i =0;i<=4;i++) {
+			Button b = new Button(900,200+(i*125),175,50,Integer.toString(SELLING_COST), Color.GREEN, new Action() {
+
+				@Override
+				public void act() {
+					
+				}
+
+			});
+			sellButtons.add(b);
+		}
+	}
+	//TextArea quant, TextArea currency, String itemN
+	
+	public void setButtonActions() {
+		/*
+		for(Button b: sellButtons) {
+			b.setAction(new Action() {
+            
+				@Override
+				public void act() {
+					b.setEnabled(true);
+					if (countOccurences(GameStarter.inventory.itemlist,new Items(itemName[y]))>0) {
+						ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+						removeItem(GameStarter.inventory.itemlist,new Items(itemName[y]));
+						int count = countOccurences(GameStarter.inventory.itemlist,new Items(itemName[y]));
+						GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ 2000);
+						inBetween();
+						GameStarter.buyScreen.inBetween();
+						quant[y].setText("x"+Integer.toString(count));
+						currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+
+					}
+					else {
+						System.out.println(itemName[y]);
+					}
+				}
+			});
+	
+			System.out.println(y);
+		}
+		*/
+		for(int i=0;i<=4;i++) {
+			int x =i;
+
+			sellButtons.get(i).setAction(new Action() {
+		
+				@Override
+				public void act() {
+					sellButtons.get(y).setEnabled(true);
+					if (countOccurences(GameStarter.inventory.itemlist,new Items(itemName[x]))>0) {
+						ArrayList<Items>iteml = GameStarter.inventory.itemlist;
+						removeItem(GameStarter.inventory.itemlist,new Items(itemName[x]));
+						int count = countOccurences(GameStarter.inventory.itemlist,new Items(itemName[x]));
+						GameStarter.inventory.setCurrency(GameStarter.inventory.getCurrency()+ SELLING_COST);
+						inBetween();
+						GameStarter.buyScreen.inBetween();
+						quant[x].setText("x"+Integer.toString(count));
+						currency.setText(Integer.toString(GameStarter.inventory.getCurrency()));
+
+					}
+
+					
+				}
+			});
+
+		}
 
 	}
 
