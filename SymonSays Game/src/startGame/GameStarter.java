@@ -1,6 +1,7 @@
 package startGame;
 
 import audioPlayer.AudioTest;
+import audioPlayer.MusicScreen;
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
@@ -34,6 +35,7 @@ public class GameStarter extends GUIApplication{
 	public static BattleScreen battleScreen;
 	public static Inventory inventory;
 	public static ResultScreen resultScreen;
+	public static MusicScreen musicScreen;
 	
 	
 	public GameStarter(int width, int height) {
@@ -62,6 +64,7 @@ public class GameStarter extends GUIApplication{
 		buyScreen = new RickyBuy(getWidth(),getHeight());
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		resultScreen = new ResultScreen(getWidth(), getHeight());
+		musicScreen = new MusicScreen(getWidth(), getHeight());
 		setScreen(startScreen);
 	}
 

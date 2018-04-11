@@ -2,6 +2,9 @@ package audioPlayer;
 
 import java.io.*;
 import javax.sound.sampled.*;
+
+//David Yashayev
+
 public class AudioTest {
 
 	private static int songSize;
