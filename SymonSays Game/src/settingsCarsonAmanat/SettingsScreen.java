@@ -58,7 +58,7 @@ public class SettingsScreen extends FullFunctionScreen{
 		TextLabel volumeTitle = new TextLabel(250,250,200,100,"Volume");
 		title.setCustomTextColor(Color.lightGray);
 		volumeTitle.setCustomTextColor(Color.lightGray);
-		
+
 
 		volumeSlider = new Button(1100, 275, 15, 15, "",Color.WHITE, null);
 		viewObjects.add(title);
@@ -76,10 +76,12 @@ public class SettingsScreen extends FullFunctionScreen{
 			if(volumeSlider.getX()<450)
 				volumeSlider.setX(450);
 			if(volumeSlider.getX()>1100)
-			volumeSlider.setX(1100);
+				volumeSlider.setX(1100);
 			volume = (int) ((volumeSlider.getX()-450)/6.5);
-			AudioTest.gain= volume/100D;
-			System.out.println(AudioTest.gain);
+			AudioTest.clip.stop();
+			AudioTest.playSound(AudioTest.song.toString());
+
+			System.out.println(AudioTest.gainControl);
 			if(getY()==275) 
 				volumeSlider.setY(m.getY());
 		}
