@@ -1,5 +1,7 @@
 package startGame;
 
+import audioPlayer.AudioTest;
+import audioPlayer.MusicScreen;
 import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
@@ -8,6 +10,7 @@ import inv.Inventory;
 import mainMenuAndStartScreen.MainMenuScreen;
 import mainMenuAndStartScreen.StartScreen;
 import resultScreen.ResultScreen;
+import settingsCarsonAmanat.SettingsScreen;
 import shopmenu.DavidSell;
 import shopmenu.GarrettUpgradeScreen;
 import shopmenu.GarrettUpgradeScreen2;
@@ -33,6 +36,9 @@ public class GameStarter extends GUIApplication{
 	public static BattleScreen battleScreen;
 	public static Inventory inventory;
 	public static ResultScreen resultScreen;
+	public static MusicScreen musicScreen;
+	public static SettingsScreen settingsScreen;
+
 	
 	
 	public GameStarter(int width, int height) {
@@ -46,6 +52,7 @@ public class GameStarter extends GUIApplication{
 		start = new GameStarter(1400,780);
 		Thread go = new Thread(start);
 		go.start();
+		AudioTest.changeVolume(.6);
 	}
 
 	public void initScreen() {
@@ -60,6 +67,8 @@ public class GameStarter extends GUIApplication{
 		buyScreen = new RickyBuy(getWidth(),getHeight());
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		resultScreen = new ResultScreen(getWidth(), getHeight());
+		musicScreen = new MusicScreen(getWidth(), getHeight());
+		settingsScreen = new SettingsScreen(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 

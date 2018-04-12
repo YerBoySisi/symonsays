@@ -14,11 +14,11 @@ import guiTeacher.components.Graphic;
 import guiTeacher.components.TextArea;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-
 import inv.Inventory;
 import inv.Items;
 import startGame.GameStarter;
 import resultScreen.ShareableInfoNabeel;
+import shopmenu.DavidSell;
 import sisiKneeBosses.Boss;
 import sisiKneeBosses.DragonMech;
 import sisiKneeBosses.GundamShark;
@@ -47,6 +47,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private ButtonDavid[] battleMenu;
 	
 	private ButtonDavid[] fleeMenu;
+	
 	
 	private ArrayList<ButtonDavid> spellMenu;
 	
@@ -140,14 +141,28 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	private ButtonDavid attack;
 
 	private ButtonDavid stay;
-
+	
+	private ButtonDavid cancelItem;
+	
+	private ButtonDavid itemHP;
+	private ButtonDavid itemDodge;
+	private ButtonDavid itemDef;
+	private ButtonDavid itemAtk;
+	
+	private ButtonDavid cancelSpell;
+	private ButtonDavid prevSpell;
+	private ButtonDavid currentSpell;
+	private ButtonDavid nextSpell;
+	private ArrayList<Attack> spells;
+	private int spellIndex;
+	
 	public BattleScreen(int width, int height) { 
 		
 		super(width, height);
 		
 	}
 	
-	public void switchMenu(int menu, List<Visible> viewObjects) {
+	/*public void switchMenu(int menu, List<Visible> viewObjects) {
 		
 		for(int i = 0; i < fleeMenu.length; i++) {
 			fleeMenu[i].setVisible(true);
@@ -155,6 +170,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		}
 		
 	}
+	*/
+	
 	
 	public void showFlee(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
 
@@ -181,11 +198,92 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		remove(spell);
 		remove(item);
 		remove(escape);
+		addObject(cancelItem);
+		/*
+		itemMenu = new ArrayList<ButtonDavid>(GameStarter.inventory.itemlist.size());
 		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
-			itemMenu = new ArrayList<ButtonDavid>();
 			itemMenu.add(new ButtonDavid(GameStarter.inventory.itemlist.get(i).getItemN(), null, 800, 564+46*(i+1), 350, 45, null));
-			addObject(itemMenu.get(i));
 		}
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
+			addObject(itemMenu.get(i));
+		*/
+		calcAmount();
+		addObject(itemHP);
+		addObject(itemDef);
+		addObject(itemDodge);
+		addObject(itemAtk);
+
+	}
+	
+	public void calcAmount() {
+		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+		int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+		itemHP.setText(itemHP.getText()+" x"+HPcount);
+		itemDef.setText(itemDef.getText()+" x"+Defcount);
+		itemDodge.setText(itemDodge.getText()+" x"+Dodgecount);
+		itemAtk.setText(itemAtk.getText()+" x"+Attackcount);
+	}
+	
+	public void showSpell() {
+		remove(attack);
+		remove(spell);
+		remove(item);
+		remove(escape);
+		addObject(cancelSpell);
+		addObject(prevSpell);
+		addObject(nextSpell);
+		addObject(currentSpell);
+		fetchSpells();
+		updateSpell();
+	}
+	
+	public void fetchSpells() {
+		spells = new ArrayList<Attack>();
+		for (int i = 1; i < player.attacks.size(); i++) {
+			spells.add(player.attacks.get(i));
+		}
+		spellIndex = 0;
+	}
+	
+	public void scrollSpellList(int direction) {
+		if (spellIndex + direction == -1 || spellIndex + direction == spells.size()) {
+			return;
+		}
+		spellIndex = spellIndex + direction;
+		updateSpell();
+	}
+	
+	public void updateSpell() {
+		currentSpell.setText(spells.get(spellIndex).getName() + " (MP"+spells.get(spellIndex).getCost()+")");
+	}
+	
+	public void hideSpell() {
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
+		remove(cancelSpell);
+		remove(prevSpell);
+		remove(nextSpell);
+		remove(currentSpell);
+	}
+	
+	public void hideItem(ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
+		/*
+		for (int i = 0; i < GameStarter.inventory.itemlist.size(); i++) {
+			remove(itemMenu.get(i));
+		*/
+		remove(cancelItem);
+		remove(itemHP);
+		remove(itemDef);
+		remove(itemDodge);
+		remove(itemAtk);
+		addObject(attack);
+		addObject(spell);
+		addObject(item);
+		addObject(escape);
 	}
 
 	@Override
@@ -222,7 +320,8 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		playerHPBar.setVisible(true);
 		viewObjects.add(playerHPBar);
 		
-		playerHP = new TextArea(300,560,PLAYER_BAR_WIDTH, 100, player.getHP()+ " / " + player.getMaxHP());
+		int newWidth = (int)Math.round(((double)player.getHP() / (double)player.getMaxHP()) * PLAYER_BAR_WIDTH);
+		playerHP = new TextArea(300,560,newWidth, 100, player.getHP()+ " / " + player.getMaxHP());
 		playerHP.setVisible(true);
 		viewObjects.add(playerHP);
 		
@@ -348,7 +447,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		sharkSprite.addSequence("resources/sharkBoss.png", 1000, 510, 10, 55, 55, 1);
 		Thread sharkIdle = new Thread(sharkSprite);
 		sharkIdle.start();
-		sharkSprite.setVisible(false);
+		sharkSprite.setVisible(true);
 		viewObjects.add(sharkSprite);
 		
 		sharkAttack = new AnimatedComponent(950, 275, 200, 200);
@@ -419,14 +518,15 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					makeSelection(ATTACK, player.getAttack(0), viewObjects);
 				}
 			});
-		 run = new ButtonDavid("Run Away", null, 300, 615, 350, 130, new Action() {
+		 run = new ButtonDavid("Run Away", null, 800, 615, 350, 130, new Action() {
 
 			@Override
 			public void act() {
+				hideFlee(attack,spell,item,escape,run,stay);				
 				GameStarter.start.setScreen(GameStarter.resultScreen);
 			}
 		}); 
-		 stay = new ButtonDavid("Stay and Fight", null, 800, 615, 350, 130,new Action() {
+		 stay = new ButtonDavid("Stay and Fight", null, 300, 615, 350, 130,new Action() {
 
 				@Override
 				public void act() {
@@ -434,7 +534,86 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					
 				}
 			}); 
-		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, null);
+		 cancelSpell = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
+
+				@Override
+				public void act() {
+					hideSpell();
+					
+				}
+			});
+		 prevSpell = new ButtonDavid("prev", null, 610, 655, 100, 50, new Action() {
+			
+			@Override
+			public void act() {
+				scrollSpellList(-1);
+				
+			}
+		});
+		 nextSpell = new ButtonDavid("next", null, 1210, 655, 100, 50, new Action() {
+				
+				@Override
+				public void act() {
+					scrollSpellList(1);
+					
+				}
+			});
+		 currentSpell = new ButtonDavid(" ", null, 720, 615, 480, 130, new Action() {
+			
+			@Override
+			public void act() {
+				makeSelection(ATTACK, spells.get(spellIndex), viewObjects);
+				
+			}
+		});
+		 cancelItem = new ButtonDavid("Cancel", null, 300, 615, 300, 130,new Action() {
+
+				@Override
+				public void act() {
+					hideItem(attack,spell,item,escape,run,stay);
+					
+				}
+			}); 
+		 itemHP = new ButtonDavid("HP", null, 610, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemDef = new ButtonDavid("Def", null, 750, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemAtk = new ButtonDavid("Atk", null, 890, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 itemDodge = new ButtonDavid("Dg", null, 1030, 615, 130, 130,new Action() {
+
+				@Override
+				public void act() {
+					
+					
+				}
+			}); 
+		 spell =  new ButtonDavid("Spell", null, 800, 610, 350, 45, new Action() {
+			
+			@Override
+			public void act() {
+				showSpell();
+				
+			}
+		});
 		 item =  new ButtonDavid("Item", null, 800, 661, 350, 45, new Action() {
 			
 			@Override
@@ -449,7 +628,7 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 					showFlee(attack,spell,item,escape,run,stay);
 					
 				}
-			});
+			});	
 		viewObjects.add(attack);
 		viewObjects.add(spell);
 		viewObjects.add(item);
@@ -508,41 +687,95 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 	}
 	
-	public void setBarWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth, List<Visible> viewObjects) {
+	public void setHPWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
 		
 		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
-		bar = new Bar(x,y,newWidth,30, "", clr, clr);
-		bar.setVisible(true);
-		viewObjects.add(bar);
-		
-		txt = new TextArea(x,y + txtOffset,width, 100, text);
-		txt.setVisible(true);
-		txt.setFont(font);
-		viewObjects.add(txt);
-		
-	}
-	
-	public void updatePlayerHP(List<Visible> viewObjects) {
-		
-		viewObjects.remove(playerHPBar);
-		viewObjects.remove(playerHP);
-		setBarWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH, viewObjects);
-		
-	}
-	
-	public void updatePlayerMP(List<Visible> viewObjects) {
-		
-		viewObjects.remove(mpBar);
-		viewObjects.remove(mp);
-		setBarWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH, viewObjects);
+		if (newWidth<=0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			playerHPBar = bar;
+			bar.setVisible(true);
+			addObject(bar);
+			
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
 		
 	}
 	
-	public void updateBossHP(List<Visible> viewObjects) {
+	public void setMPWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
 		
-		viewObjects.remove(bossHP);
-		viewObjects.remove(bossName);
-		setBarWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH, viewObjects);
+		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
+		if (newWidth<=0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			mpBar = bar;
+			bar.setVisible(true);
+			addObject(bar);
+			
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		
+	}
+	
+	public void setBossWidth(int x, int y, int txtOffset, Bar bar, TextArea txt, Color clr, String text, int width, double currentHP, double maxHP, int maxBarWidth) {
+	
+		int newWidth = (int)Math.round(((double)currentHP / (double)maxHP) * maxBarWidth);
+		if (newWidth<=0) {
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+		else {
+			bar = new Bar(x,y,newWidth,30, "", clr, clr);
+			bossHP = bar;
+			bar.setVisible(true);
+			addObject(bar);
+		
+			txt = new TextArea(x,y + txtOffset,width, 100, text);
+			txt.setVisible(true);
+			txt.setFont(font);
+			addObject(txt);
+		}
+	
+	}
+
+	public void updatePlayerHP() {
+		
+		remove(playerHPBar);
+		remove(playerHP);
+		setHPWidth(300, 560, 0, playerHPBar, playerHP, Color.green, player.getHP() + " / " + player.getMaxHP(), PLAYER_BAR_WIDTH, player.getHP(), player.getMaxHP(), PLAYER_BAR_WIDTH);
+		
+	}
+	
+	public void updatePlayerMP() {
+		
+		remove(mpBar);
+		remove(mp);
+		setMPWidth(800, 560, 0, mpBar, mp, Color.cyan, player.getMP() + " / " + player.getMaxMP(), PLAYER_BAR_WIDTH, player.getMP(), player.getMaxMP(), PLAYER_BAR_WIDTH);
+	}
+	
+	public void updateBossHP() {
+		
+		remove(bossHP);
+		remove(bossName);
+		setBossWidth(200, 50, -18, bossHP, bossName, Color.red, boss.getName(), BOSS_BAR_WIDTH, boss.getHP(), boss.getMaxHP(), BOSS_BAR_WIDTH);
 		
 	}
 	
@@ -577,12 +810,9 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		 * 2 - damage
 		 */
 		
-		for (int i = 0; i < BossSpriteArray.length; i++) {
-			for (int e = 0; e < BossSpriteArray[i].length; i++) {
-				BossSpriteArray[i][e].setVisible(false);
-			}
-		}
-		
+		BossSpriteArray[boss][0].setVisible(false);
+		BossSpriteArray[boss][1].setVisible(false);
+		BossSpriteArray[boss][2].setVisible(false);
 		BossSpriteArray[boss][num].setVisible(true);
 
 	}
@@ -592,19 +822,24 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		new Thread(() -> {
 			
 			playerTurn(selection, a);
-				
+			turnInfo.setText("Player turn, hp is "+player.hp);
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-				
+			setBossSprite(1,1);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			bossTurn();
+			turnInfo.setText("Boss turn, hp is "+player.hp);
+			setBossSprite(1,0);
 				
 		}).start();
 		
-		//updatePlayerHP(viewObjects);
-		//updateBossHP(viewObjects);
 		update();
 		
 	}
@@ -612,28 +847,53 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 	public void playerTurn(int selection, Attack a) {
 		
 		switch(selection) {
+		
+		
 		case ATTACK:
+			if (a.equals(player.attacks.get(0)))
+			setPlayerSprite(1);
+			else {
+			setPlayerSprite(2);	
+			}
 			player.attack(boss, a);
-			player.changeMP(a.getCost());
+			if (!a.equals(player.attacks.get(0))) {
+				//player.attacks.remove(a);
+				fetchSpells();
+				updateSpell();
+			}
+			player.changeMP(-a.getCost());
+			break;
 		case ITEM:
 			if(player.getHP() < player.getMaxHP()) {
 				player.changeHP(10);
 			}
+			break;
 		case RUN:
 			player.changeHP(-player.getHP());
+			break;
 		}
 		
 	}
 	
 	public void makeSelection(int selection, Attack a, List<Visible> vo) {
-		
 		runBattleSequence(selection, a);
-		updatePlayerHP(vo);
+		updatePlayerHP();
+		updateBossHP();
+		updatePlayerMP();
+		
+		if (player.hp<=0) {
+			turnInfo.setText("You died!!");
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
+		}
+		if (boss.hp<=0) {
+			turnInfo.setText("You won!!");
+			//GameStarter.start.setScreen(GameStarter.resultScreen);
+		}
 		
 	}
 	
 	public void bossTurn() {
-		
+		setPlayerSprite(0);
 		int totalDmgBoss = 0;
 		double[] bossAttackChances;
 		
@@ -643,23 +903,25 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		double n = 0;
 		
-		bossAttackChances = new double[boss.attacks.size()];
+//		bossAttackChances = new double[boss.attacks.size()];
 		
-		for(int i = boss.attacks.size() - 1; i >= 0; i--) {
-			n += (boss.attacks.get(i).getDamage() / totalDmgBoss);
-			bossAttackChances[i] = n;
-		}
-		
-		double rand = Math.random();
-		
-		for(int i = 0; i < bossAttackChances.length; i++) {
-			
-			if(rand <= bossAttackChances[i]) {
-				boss.attack(player, boss.getAttack(i));
-				break;
-			}
-			
-		}
+//		for(int i = boss.attacks.size() - 1; i >= 0; i--) {
+//			n += (boss.attacks.get(i).getDamage() / totalDmgBoss);
+//			bossAttackChances[i] = n;
+//		}
+//		
+//		double rand = Math.random();
+//		
+//		for(int i = 0; i < bossAttackChances.length; i++) {
+//			
+//			if(rand <= bossAttackChances[i]) {
+//				boss.attack(player, boss.getAttack(i));
+//				break;
+//			}
+//			
+//		}
+
+		boss.attack(player, boss.attacks.get((int) (boss.attacks.size()*Math.random())));
 		
 	}
 	
@@ -702,25 +964,5 @@ public class BattleScreen extends FullFunctionScreen implements ShareableInfoNab
 		
 		return 0;
 		
-	}
-	
-	public void changeButtons(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-
-			viewObjects.remove(attack);
-			viewObjects.remove(spell);
-			viewObjects.remove(item);
-			viewObjects.remove(escape);
-			viewObjects.add(run);
-			viewObjects.add(stay);
-	
-	}
-	
-	public void changeButtons2(List<Visible> viewObjects, ButtonDavid attack, ButtonDavid spell, ButtonDavid item, ButtonDavid escape, ButtonDavid run, ButtonDavid stay) {
-			viewObjects.remove(run);
-			viewObjects.remove(stay);
-			viewObjects.add(attack);
-			viewObjects.add(spell);
-			viewObjects.add(item);
-			viewObjects.add(escape);
 	}
 }

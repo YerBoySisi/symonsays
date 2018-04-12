@@ -12,6 +12,7 @@ import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+import settingsCarsonAmanat.GearIcon;
 import startGame.GameStarter;
 
 public class StartScreen extends FullFunctionScreen{
@@ -46,6 +47,7 @@ public class StartScreen extends FullFunctionScreen{
 		
 		public void act() {
 			GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+			AudioTest.playSound("resources/ButtonSound.wav");
 		}
 	});
 	
@@ -53,10 +55,13 @@ public class StartScreen extends FullFunctionScreen{
 		
 		public void act() {
 			GameStarter.start.setScreen(GameStarter.creditsScreen);
+			AudioTest.playSound("resources/ButtonSound.wav");
 		}
 	}); 
+	GearIcon settings = new GearIcon(1200, 100, 128, 128, "resources/gear.png");
 	viewObjects.add(creditsButton);
 	viewObjects.add(startButton);
+	viewObjects.add(settings);
 	AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
 	

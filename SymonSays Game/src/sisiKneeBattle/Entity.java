@@ -54,8 +54,9 @@ public abstract class Entity {
 	}
 	
 	public void attack(Entity e, Attack a) {
-		
-		e.changeHP(-calculateDamage(this, a, e));
+		int damage = -calculateDamage(this, a, e);
+		System.err.println(getName() + " deals "+damage +" points of damage to "+e.getName() +"!");
+		e.changeHP(damage);
 		
 	}
 	
