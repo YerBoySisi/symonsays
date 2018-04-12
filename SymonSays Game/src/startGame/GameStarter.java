@@ -10,6 +10,7 @@ import inv.Inventory;
 import mainMenuAndStartScreen.MainMenuScreen;
 import mainMenuAndStartScreen.StartScreen;
 import resultScreen.ResultScreen;
+import settingsCarsonAmanat.SettingsScreen;
 import shopmenu.DavidSell;
 import shopmenu.GarrettUpgradeScreen;
 import shopmenu.GarrettUpgradeScreen2;
@@ -36,6 +37,8 @@ public class GameStarter extends GUIApplication{
 	public static Inventory inventory;
 	public static ResultScreen resultScreen;
 	public static MusicScreen musicScreen;
+	public static SettingsScreen settingsScreen;
+
 	
 	
 	public GameStarter(int width, int height) {
@@ -65,6 +68,7 @@ public class GameStarter extends GUIApplication{
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		resultScreen = new ResultScreen(getWidth(), getHeight());
 		musicScreen = new MusicScreen(getWidth(), getHeight());
+		settingsScreen = new SettingsScreen(getWidth(),getHeight());
 		setScreen(startScreen);
 	}
 

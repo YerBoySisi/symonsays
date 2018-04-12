@@ -1,37 +1,27 @@
 package settingsCarsonAmanat;
 
-import java.util.ArrayList;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JSlider;
-
-import creditsCarsonAmanat.Credits;
+import audioPlayer.AudioTest;
 import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.Graphic;
+import guiTeacher.components.StyledComponent;
 import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
+
 import mainMenuAndStartScreen.ButtonDavid;
 import startGame.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
-	public ArrayList<MoveInterfaceAmanat> array;
 	public Button volumeSlider;
-	public Button volumeRect;
-
-	public ButtonInterfaceAmanat[] allButtons;
-
-	public int oldButton;
-	Color[] colors;
-
-	public TextLabel displayRound;
-	private Graphics g;
+	public static int volume = 100;
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
@@ -39,51 +29,65 @@ public class SettingsScreen extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
+
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
-		TextArea title = new TextArea(getWidth()/2-50, getHeight() - 300, 200, 200, "Settings");
-		ButtonDavid creditt = new ButtonDavid(100,250,100, Color.lightGray, "Credits",new Action() {
+		try {
+			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
+			Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+			Font baseFont=font.deriveFont(36f);
+			StyledComponent.setBaseFont(baseFont);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
+		TextArea title = new TextArea(getWidth()/2-100,getHeight()-750,300,200,"Settings");
+		ButtonDavid creditt = new ButtonDavid(800,600,250, Color.lightGray, "Credits",new Action() {
+
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.creditsScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
+
 			}
 		});
-		ImageIcon gearIcon = createImageIcon("resources/gear.png");
-		Button exit = new Button(300,250,100,50,"Exit",Color.GRAY,new Action() {
+		ButtonDavid exit = new ButtonDavid(400,600,250,Color.lightGray,"Exit",new Action() {
 
 			@Override
 			public void act() {
+				GameStarter.start.setScreen(GameStarter.startScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
+
 			}
 		});
-		volumeSlider = new Button(100, 100, 15, 15, "",Color.WHITE, null);
-		volumeRect = new Button(80, 80, 200, 100, "", Color.BLACK, new Action() {
-			
-			@Override
-			public void act() {
-					
-				
-			}
-			
-		});
-		ButtonAmanat settingGear = new ButtonAmanat(400, 400, 120, 120, gearIcon);
+		TextLabel volumeTitle = new TextLabel(250,250,200,100,"Volume");
+		title.setCustomTextColor(Color.lightGray);
+		volumeTitle.setCustomTextColor(Color.lightGray);
+
+
+		volumeSlider = new Button(1100, 275, 15, 15, "",Color.WHITE, null);
 		viewObjects.add(title);
 		viewObjects.add(creditt);
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
-		viewObjects.add(settingGear);
+		viewObjects.add(volumeTitle);
+	}
 
-	}
-	
-	public static ImageIcon createImageIcon(String path) {
-	    return new ImageIcon("resources/gear.png");
-	}
-	
 	public void mouseDragged(MouseEvent m) {
 		super.mouseDragged(m);
-		if(volumeSlider.getX()>99) 
-		volumeSlider.setX(m.getX());
-		if(volumeSlider.getX()<100)
-			volumeSlider.setX(100);
-		if(getY()==100) 
-		volumeSlider.setY(m.getY());
+		if(m.getY() >270 && m.getY()<325) {
+			if(volumeSlider.getX()>449) 
+				volumeSlider.setX(m.getX());
+			if(volumeSlider.getX()<450)
+				volumeSlider.setX(450);
+			if(volumeSlider.getX()>1100)
+				volumeSlider.setX(1100);
+			volume = (int) ((volumeSlider.getX()-450)/6.5);
+			AudioTest.changeVolume(volume/100D);
+
+			System.out.println(AudioTest.gainControl);
+			if(getY()==275) 
+				volumeSlider.setY(m.getY());
+		}
 	}
 
 }
