@@ -78,6 +78,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 			
 			public void act() {
 				GameStarter.start.setScreen(GameStarter.musicScreen);
+				AudioTest.stopSound(GameStarter.getStartSong());
 				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		}); 

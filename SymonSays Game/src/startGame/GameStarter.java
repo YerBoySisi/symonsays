@@ -1,5 +1,7 @@
 package startGame;
 
+import javax.sound.sampled.Clip;
+
 import audioPlayer.AudioTest;
 import audioPlayer.MusicScreen;
 import bossSelect.SelectScreen;
@@ -70,6 +72,10 @@ public class GameStarter extends GUIApplication{
 		musicScreen = new MusicScreen(getWidth(), getHeight());
 		settingsScreen = new SettingsScreen(getWidth(),getHeight());
 		setScreen(startScreen);
+		AudioTest.playSound("resources/MainMenuMusic.wav");
 	}
-
+	
+	public static Clip getStartSong() {
+		return AudioTest.getClip();
+	}
 }
