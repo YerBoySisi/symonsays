@@ -31,7 +31,8 @@ public class SelectScreen extends FullFunctionScreen {
 	private String link;
 	private TextArea txt;
 	private int level;
-	private int levelRec; 
+	private int levelRec;
+	private TextArea title; 
 
 	public SelectScreen(int width, int height) {
 		super(width, height);
@@ -45,45 +46,46 @@ public class SelectScreen extends FullFunctionScreen {
 		//StyledComponent.setButtonOutline(true);
 		//StyledComponent.setActiveBorderColor(Color.white);
 		initOrbitronFont(40f);
-		TextArea title = new TextArea(20, 20, 300, 150,"Boss Select");
+		title = new TextArea(20, 20, 300, 150,"Boss Select");
 		initGothicFont(30f);
-		Button boss1Button = new Button(20, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Ridley","resources/Ridley.png",5,1,0);
-				changeColor(title,txt,Color.MAGENTA);
-			}
-		});
-		Button boss2Button = new Button(140, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Rambo Lun","resources/Soldier.jpg",5,1,1);
-				changeColor(title,txt,new Color(139, 0, 0));
-			}
-		});
-		Button boss3Button = new Button(260, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Boss 3","resources/Turtle.jpg",5,1,2);
-				changeColor(title,txt,Color.green);
-			}
-		});
-		Button boss4Button = new Button(380, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Boss 4","resources/Shark.jpg",5,1,3);
-				changeColor(title,txt,Color.cyan);
-			}
-		});
-		Button boss5Button = new Button(500, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Boss 5","resources/Simon.jpg",5,1,4);
-				changeColor(title,txt,Color.white);
-			}
-		});
-		Button boss6Button = new Button(620, y, wh, wh, "", new Action() {
-			public void act() {
-				changeText(viewObjects,"Symon","resources/Void.jpg",5,1,5);
-				txt.setText("Name: " + name + "\n\nLevel: ???\n\nLevel Rec: ???");
-				changeColor(title,txt,Color.pink);
-			}
-		});
+//		createButtons(viewObjects);
+//		Button boss1Button = new Button(20, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Ridley","resources/Ridley.png",5,1,0);
+//				changeColor(title,txt,Color.MAGENTA);
+//			}
+//		});
+//		Button boss2Button = new Button(140, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Rambo Lun","resources/Soldier.jpg",5,1,1);
+//				changeColor(title,txt,new Color(139, 0, 0));
+//			}
+//		});
+//		Button boss3Button = new Button(260, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Boss 3","resources/Turtle.jpg",5,1,2);
+//				changeColor(title,txt,Color.green);
+//			}
+//		});
+//		Button boss4Button = new Button(380, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Boss 4","resources/Shark.jpg",5,1,3);
+//				changeColor(title,txt,Color.cyan);
+//			}
+//		});
+//		Button boss5Button = new Button(500, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Boss 5","resources/Simon.jpg",5,1,4);
+//				changeColor(title,txt,Color.white);
+//			}
+//		});
+//		Button boss6Button = new Button(620, y, wh, wh, "", new Action() {
+//			public void act() {
+//				changeText(viewObjects,"Symon","resources/Void.jpg",5,1,5);
+//				txt.setText("Name: " + name + "\n\nLevel: ???\n\nLevel Rec: ???");
+//				changeColor(title,txt,Color.pink);
+//			}
+//		});
 		initGothicFont(36f);
 		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
@@ -108,12 +110,13 @@ public class SelectScreen extends FullFunctionScreen {
 		viewObjects.add(background);
 		addIcons(viewObjects);
 		viewObjects.add(title);
-		viewObjects.add(boss1Button);
-		viewObjects.add(boss2Button);
-		viewObjects.add(boss3Button);
-		viewObjects.add(boss4Button);
-		viewObjects.add(boss5Button);
-		viewObjects.add(boss6Button);
+		createButtons(viewObjects);
+//		viewObjects.add(boss1Button);
+//		viewObjects.add(boss2Button);
+//		viewObjects.add(boss3Button);
+//		viewObjects.add(boss4Button);
+//		viewObjects.add(boss5Button);
+//		viewObjects.add(boss6Button);
 		viewObjects.add(backButton);
 		viewObjects.add(startButton);
 		viewObjects.add(txt);
@@ -161,13 +164,42 @@ public class SelectScreen extends FullFunctionScreen {
 		level = 5;
 		levelRec = 1;
 	}
+	
+	public void createButtons(List<Visible> viewObjects) {
+		String[] names = {"Ridley","Rambo Lun","Turtle","Shark","Simon","Symon"};
+		String[] links = {"resources/Ridley.png","resources/Soldier.jpg","resources/Turtle.jpg","resources/Shark.jpg","resources/Simon.jpg","resources/Void.jpg"};
+		Color[] colors= {Color.MAGENTA, new Color(139, 0, 0), Color.green,Color.cyan,Color.white,Color.pink};
+		int x = 20;
+		Button button;
+		for(int i = 0; i< names.length; i++) {
+			final int temp = i;
+			if(i<names.length-1) {
+				button = new Button(x, y, wh, wh, "", new Action() {
+					public void act() {
+						changeText(viewObjects,names[temp],links[temp],temp);
+						changeColor(title,txt,colors[temp]);
+					}
+				});
+			}
+			else {
+				button = new Button(x, y, wh, wh, "", new Action() {
+					public void act() {
+						changeText(viewObjects,names[temp],links[temp],temp);
+						changeColor(title,txt,colors[temp]);
+						txt.setText("Name: " + name + "\n\nLevel: ???\n\nLevel Rec: ???");
+					}
+				});
+			}
+			viewObjects.add(button);
+			x= x +120;
+			update();
+		}
+	}
 
-	public void changeText(List<Visible> viewObjects, String string, String string2, int j, int k, int l) {
+	public void changeText(List<Visible> viewObjects, String string, String string2, int j) {
 		name = string;
 		link = string2;
-		level = j;
-		levelRec = k;
-		bossNumber=l;
+		bossNumber=j;
 		txt.setText("Name: " + name + "\n\nLevel: " + level + "\n\nLevel Rec: " + levelRec);
 		background = new Graphic(0, 0, getWidth(), getHeight(), link);
 		viewObjects.add(0, background);
