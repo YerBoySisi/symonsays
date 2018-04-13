@@ -8,6 +8,8 @@ import bossSelect.SelectScreen;
 import creditsCarsonAmanat.CreditsScreen;
 import guiTeacher.GUIApplication;
 import guiTeacher.components.StyledComponent;
+import guiTeacher.userInterfaces.ClickableScreen;
+import guiTeacher.userInterfaces.FullFunctionScreen;
 import inv.Inventory;
 import mainMenuAndStartScreen.MainMenuScreen;
 import mainMenuAndStartScreen.StartScreen;
@@ -40,6 +42,7 @@ public class GameStarter extends GUIApplication{
 	public static ResultScreen resultScreen;
 	public static MusicScreen musicScreen;
 	public static SettingsScreen settingsScreen;
+	public static ClickableScreen source;
 
 	
 	
@@ -57,6 +60,10 @@ public class GameStarter extends GUIApplication{
 		AudioTest.changeVolume(.6);
 	}
 
+	public static void setSource(ClickableScreen clickableScreen) {
+		source = clickableScreen;
+	}
+	
 	public void initScreen() {
 		startScreen = new StartScreen(getWidth(),getHeight());
 		mainMenuScreen = new MainMenuScreen(getWidth(),getHeight());
@@ -69,8 +76,8 @@ public class GameStarter extends GUIApplication{
 		buyScreen = new RickyBuy(getWidth(),getHeight());
 		sellScreen = new DavidSell(getWidth(),getHeight());
 		resultScreen = new ResultScreen(getWidth(), getHeight());
-		musicScreen = new MusicScreen(getWidth(), getHeight());
 		settingsScreen = new SettingsScreen(getWidth(),getHeight());
+		GameStarter.musicScreen = new MusicScreen(getWidth(), getHeight(), source);
 		setScreen(startScreen);
 		AudioTest.playSound("resources/MainMenuMusic.wav");
 	}

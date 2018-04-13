@@ -7,6 +7,7 @@ import java.util.List;
 
 import audioPlayer.AudioPlayer;
 import audioPlayer.AudioTest;
+import audioPlayer.MusicScreen;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
@@ -74,14 +75,6 @@ public class MainMenuScreen extends FullFunctionScreen{
 				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		}); 
-		ButtonDavid MusicButton = new ButtonDavid(880,680,260,Color.lightGray,"Select Music",new Action() {
-			
-			public void act() {
-				GameStarter.start.setScreen(GameStarter.musicScreen);
-				AudioTest.stopSound(GameStarter.getStartSong());
-				AudioTest.playSound("resources/ButtonSound.wav");
-			}
-		}); 
 	//	pane.setBackground(Color.blue);
 	//	pane.update();
 	//	viewObjects.add(pane);
@@ -89,7 +82,6 @@ public class MainMenuScreen extends FullFunctionScreen{
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
 		viewObjects.add(backButton);
-		viewObjects.add(MusicButton);
 	}
 
 }

@@ -18,15 +18,21 @@
  *******************************************************************************/
 package guiTeacher.userInterfaces;
 
+import startGame.GameStarter;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import audioPlayer.AudioTest;
+import guiTeacher.components.Action;
 import guiTeacher.interfaces.Clickable;
 import guiTeacher.interfaces.Dragable;
 import guiTeacher.interfaces.Visible;
+import mainMenuAndStartScreen.ButtonDavid;
+import startGame.GameStarter;
 
 /**
  * A Screen that responds to MouseClicks
@@ -37,7 +43,8 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 
 	private ArrayList<Clickable> clickables;
 	private Dragable draggedItem;
-
+	public ButtonDavid MusicButton;
+	
 	public ClickableScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -48,6 +55,16 @@ public abstract class ClickableScreen extends Screen implements MouseListener, M
 	@Override
 	public void initObjects(List<Visible> viewObjects) {
 		initAllObjects(viewObjects);
+		MusicButton = new ButtonDavid(880,80,260,Color.lightGray,"Select Music",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.musicScreen);
+				GameStarter.setSource(ClickableScreen.this);
+				AudioTest.stopSound(GameStarter.getStartSong());
+				AudioTest.playSound("resources/ButtonSound.wav");
+			}
+		}); 
+		viewObjects.add(MusicButton);
 		clickables = new ArrayList<Clickable>();
 		for(Visible v: viewObjects){
 			if(v instanceof Clickable){

@@ -3,12 +3,14 @@ package audioPlayer;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import audioPlayer.AudioPlayer;
 import audioPlayer.AudioTest;
 import guiTeacher.components.*;
 import guiTeacher.interfaces.Visible;
+import guiTeacher.userInterfaces.ClickableScreen;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import mainMenuAndStartScreen.ButtonDavid;
 import startGame.GameStarter;
@@ -17,7 +19,9 @@ import startGame.GameStarter;
 
 public class MusicScreen extends FullFunctionScreen{
 
-	public MusicScreen(int width, int height) {
+	
+	private ArrayList<String> songs = new ArrayList<String>();
+	public MusicScreen(int width, int height, ClickableScreen source) {
 		super(width, height);
 	}
 
@@ -32,7 +36,7 @@ public class MusicScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		TextLabel title = new TextLabel((getWidth()/2)-200,20,500,100,"Song List");
+		TextLabel title = new TextLabel((getWidth()/2)-150,20,500,100,"Song List");
 		Graphic background = new Graphic(0,0, getWidth(),getHeight(),"resources/earth.jpg");
 		title.setCustomTextColor(Color.lightGray);
 		viewObjects.add(background);
@@ -45,21 +49,21 @@ public class MusicScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		ButtonDavid mainMenuMusicButton = new ButtonDavid(getWidth()/2-200,200,350,Color.lightGray,"Main Menu Song",new Action() {
+		ButtonDavid mainMenuMusicButton = new ButtonDavid(getWidth()/2-200,200,325,Color.lightGray,"Main Menu Song",new Action() {
 			
 			public void act() {
 				AudioTest.stopSound(AudioTest.getClip());
 				AudioTest.playSound("resources/MainMenuMusic.wav");
 			}
 		});
-		ButtonDavid battleMusicButton = new ButtonDavid(getWidth()/2-200,300,350,Color.lightGray,"Battle Song",new Action() {
+		ButtonDavid battleMusicButton = new ButtonDavid(getWidth()/2-200,300,300,Color.lightGray,"Battle Song",new Action() {
 			
 			public void act() {
 				AudioTest.stopSound(AudioTest.getClip());
 				AudioTest.playSound("resources/BattleMusic.wav");
 			}
 		});
-		ButtonDavid resultMusicButton = new ButtonDavid(getWidth()/2-200,400,350,Color.lightGray,"Results Song",new Action() {
+		ButtonDavid resultMusicButton = new ButtonDavid(getWidth()/2-200,400,300,Color.lightGray,"Results Song",new Action() {
 			
 			public void act() {
 				AudioTest.stopSound(AudioTest.getClip());
@@ -69,7 +73,7 @@ public class MusicScreen extends FullFunctionScreen{
 		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
 			public void act() {
-				GameStarter.start.setScreen(GameStarter.mainMenuScreen);
+				GameStarter.start.setScreen(GameStarter.source);
 				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		});
@@ -78,6 +82,7 @@ public class MusicScreen extends FullFunctionScreen{
 		viewObjects.add(mainMenuMusicButton);
 		viewObjects.add(battleMusicButton);
 		viewObjects.add(resultMusicButton);
+		viewObjects.remove(MusicButton);
 		
 		
 	}
