@@ -12,6 +12,8 @@ import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
 import startGame.GameStarter;
 
+//David Yashayev
+
 public class MainMenuScreen extends FullFunctionScreen{
 
 	public MainMenuScreen(int width, int height) {
@@ -72,6 +74,13 @@ public class MainMenuScreen extends FullFunctionScreen{
 				AudioTest.playSound("resources/ButtonSound.wav");
 			}
 		}); 
+		ButtonDavid MusicButton = new ButtonDavid(880,680,260,Color.lightGray,"Select Music",new Action() {
+			
+			public void act() {
+				GameStarter.start.setScreen(GameStarter.musicScreen);
+				AudioTest.playSound("resources/ButtonSound.wav");
+			}
+		}); 
 	//	pane.setBackground(Color.blue);
 	//	pane.update();
 	//	viewObjects.add(pane);
@@ -79,6 +88,7 @@ public class MainMenuScreen extends FullFunctionScreen{
 		viewObjects.add(shopButton);
 		viewObjects.add(startGameButton);
 		viewObjects.add(backButton);
+		viewObjects.add(MusicButton);
 	}
 
 }

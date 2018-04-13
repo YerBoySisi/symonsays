@@ -13,6 +13,8 @@ import guiTeacher.components.Action;
 import guiTeacher.components.Button;
 import guiTeacher.components.StyledComponent;
 
+//David Yashayev
+
 public class ButtonDavid extends Button{
 
 	private Color color;
