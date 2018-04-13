@@ -15,6 +15,8 @@ import guiTeacher.userInterfaces.FullFunctionScreen;
 import settingsCarsonAmanat.GearIcon;
 import startGame.GameStarter;
 
+//David Yashayev
+
 public class StartScreen extends FullFunctionScreen{
 
 	public StartScreen(int width, int height) {

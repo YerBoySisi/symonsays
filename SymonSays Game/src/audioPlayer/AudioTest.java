@@ -10,6 +10,8 @@ import javax.sound.sampled.Mixer.Info;
 import settingsCarsonAmanat.SettingsScreen;
 public class AudioTest {
 
+	//David Yashayev
+	
 	private static int songSize;
 	public static Clip sound;
 	public static double gain;
