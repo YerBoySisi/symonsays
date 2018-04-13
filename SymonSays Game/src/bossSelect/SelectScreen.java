@@ -30,9 +30,12 @@ public class SelectScreen extends FullFunctionScreen {
 	private Graphic background;
 	private String link;
 	private TextArea txt;
+	private int startingButton;
 	private int level;
 	private int levelRec;
 	private TextArea title; 
+	private static Boolean[] boolArr = new Boolean[6];
+	private static Button[] butArr = new Button[6];
 
 	public SelectScreen(int width, int height) {
 		super(width, height);
@@ -48,7 +51,6 @@ public class SelectScreen extends FullFunctionScreen {
 		initOrbitronFont(40f);
 		title = new TextArea(20, 20, 300, 150,"Boss Select");
 		initGothicFont(30f);
-//		createButtons(viewObjects);
 //		Button boss1Button = new Button(20, y, wh, wh, "", new Action() {
 //			public void act() {
 //				changeText(viewObjects,"Ridley","resources/Ridley.png",5,1,0);
@@ -86,6 +88,18 @@ public class SelectScreen extends FullFunctionScreen {
 //				changeColor(title,txt,Color.pink);
 //			}
 //		});
+		Button enableButtons = new Button(940, 600, 400, wh, "Clear next boss", new Action() {
+			public void act() {
+				for(int i = 0; i< boolArr.length-1;i++) {
+					if(boolArr[i] != boolArr[i+1]) {
+						boolArr[i+1] = !boolArr[i+1];
+						butArr[i+1].setEnabled(true);
+						update();
+						break;
+					}
+				}
+			}
+		});
 		initGothicFont(36f);
 		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
 			
@@ -111,6 +125,7 @@ public class SelectScreen extends FullFunctionScreen {
 		addIcons(viewObjects);
 		viewObjects.add(title);
 		createButtons(viewObjects);
+		//2-7
 //		viewObjects.add(boss1Button);
 //		viewObjects.add(boss2Button);
 //		viewObjects.add(boss3Button);
@@ -119,6 +134,7 @@ public class SelectScreen extends FullFunctionScreen {
 //		viewObjects.add(boss6Button);
 		viewObjects.add(backButton);
 		viewObjects.add(startButton);
+		viewObjects.add(enableButtons);
 		viewObjects.add(txt);
 		//boss1Button.setForeground(Color.white);
 		//boss2Button.setForeground(Color.white);
@@ -128,6 +144,8 @@ public class SelectScreen extends FullFunctionScreen {
 		//boss6Button.setForeground(Color.white);
 		txt.setCustomTextColor(Color.MAGENTA);
 		title.setCustomTextColor(Color.MAGENTA);
+		enableButtons.setForeground(Color.white);
+		
 	}
 
 
@@ -158,11 +176,16 @@ public class SelectScreen extends FullFunctionScreen {
 	public void initValues() {
 		wh = 100;
 		y = getHeight() / 10;
-		name = "Boss 1";
+		name = "Ridley";
 		bossNumber = 0;
 		link = "resources/Ridley.png";
 		level = 5;
 		levelRec = 1;
+		startingButton = 2;
+		boolArr[0] = true;
+		for(int i = 1; i < boolArr.length; i++) {
+			boolArr[i] = false;
+		}
 	}
 	
 	public void createButtons(List<Visible> viewObjects) {
@@ -174,7 +197,7 @@ public class SelectScreen extends FullFunctionScreen {
 		for(int i = 0; i< names.length; i++) {
 			final int temp = i;
 			if(i<names.length-1) {
-				button = new Button(x, y, wh, wh, "", new Action() {
+				butArr[i] = new Button(x, y, wh, wh, "", new Action() {
 					public void act() {
 						changeText(viewObjects,names[temp],links[temp],temp);
 						changeColor(title,txt,colors[temp]);
@@ -182,7 +205,7 @@ public class SelectScreen extends FullFunctionScreen {
 				});
 			}
 			else {
-				button = new Button(x, y, wh, wh, "", new Action() {
+				butArr[i] = new Button(x, y, wh, wh, "", new Action() {
 					public void act() {
 						changeText(viewObjects,names[temp],links[temp],temp);
 						changeColor(title,txt,colors[temp]);
@@ -190,10 +213,20 @@ public class SelectScreen extends FullFunctionScreen {
 					}
 				});
 			}
-			viewObjects.add(button);
+			if(i == 0) {
+				butArr[i].setEnabled(true);
+			}
+			else {
+				butArr[i].setEnabled(false);
+			}
+			viewObjects.add(butArr[i]);
 			x= x +120;
 			update();
 		}
+	}
+	
+	public void enableBosses(List<Visible> viewObjects) {
+		
 	}
 
 	public void changeText(List<Visible> viewObjects, String string, String string2, int j) {
