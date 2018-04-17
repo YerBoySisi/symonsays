@@ -61,7 +61,6 @@ public class StartScreen extends FullFunctionScreen{
 	viewObjects.add(startButton);
 	viewObjects.add(settings);
 	AudioTest.playSound("resources/MainMenuMusic.wav");
-	
 	}
 	
 }
