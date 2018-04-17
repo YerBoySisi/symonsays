@@ -15,10 +15,10 @@ public class ScrollingText extends MovingComponent{
 	String[] contributorsArr = {"Symon Says", "Fahadullah Asif -- Boss Select", "David Yashayev -- Startup Screen + Main Menu", "Sisiame B. Sakasamo -- Mechanics", "Siddeeq Rasheed -- HUD & Battle Screen Layout", "Nabeel Amin -- Results Screen", "Ricky Pong -- Buy Menu", "David Li -- Sell Menu", "Garrett Chen -- Upgrade Menu", "Amanat Hossain -- Settings", "Carson Custodio -- Credits"};
 	String[] rrr = {"a", "b", "c", "d", "e"};
 
-	public ScrollingText(int spanHeight) {
+	public ScrollingText(int spanHeight, int speed) {
 		super(0, spanHeight, 1400, 780);
 		this.setSpanHeight(getHeight());
-		setVy(10);
+		setVy(speed);
 		Thread go = new Thread(this);
 		go.start();
 	}

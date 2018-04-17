@@ -26,7 +26,7 @@ public class CreditsScreen extends ClickableScreen implements Runnable{
 	public void initAllObjects(List<Visible> viewObjects) {
 		Graphic background = new Graphic(0, 0, getWidth(), getHeight(), "resources/earth.jpg");
 		viewObjects.add(background);
-		ScrollingText s = new ScrollingText(-800);
+		ScrollingText s = new ScrollingText(-800, 10);
 		viewObjects.add(s);
 
 		ButtonDavid backButton = new ButtonDavid(50,680,100,Color.lightGray,"Back",new Action() {
