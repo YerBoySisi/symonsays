@@ -31,6 +31,12 @@ public class ButtonDavid extends Button{
 		this.action = action;
 	}
 	
+	public void setColor(Color c) {
+		color = c;
+		this.setBackground(c);
+		update();
+	} 
+	
 	public void drawButton(Graphics2D g, boolean hovered) {
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);

@@ -29,6 +29,13 @@ public class SettingsScreen extends FullFunctionScreen{
 	public String[] names;
 	private ButtonDavid[] buttons;
 	private TextArea[] nums;
+	private boolean[] ons;
+	private int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+	private int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+	private int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+	private int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+	private int Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
+	private int[] counts = {HPcount, Revivecount, Defcount, Dodgecount, Attackcount};
 
 
 	public SettingsScreen(int width, int height) {
@@ -42,14 +49,13 @@ public class SettingsScreen extends FullFunctionScreen{
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
-		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
-		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
-		int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
-		int Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
-		int[] counts = {HPcount, Revivecount, Defcount, Dodgecount, Attackcount};
+
+		
 		String[] images = {"shopUpgradeResources/health.png","shopUpgradeResources/revive.png","shopUpgradeResources/test.png","shopUpgradeResources/speed.png","shopUpgradeResources/strength.png"};
 		String[] names = {"Heal","Revive","Defense","Dodge","Attack"};
+		ons = new boolean[5];
+		counts = new int[5];
+		
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
@@ -63,14 +69,29 @@ public class SettingsScreen extends FullFunctionScreen{
 		buttons = new ButtonDavid[5];
 
 		for(int i=0;i<5;i++) {
+		     Integer innerMi = new Integer(i);
+
 			System.out.println(images[i]);
 			viewObjects.add(new Graphic((i*250)+50, 400, 200,200,images[i]));
 			buttons[i] = new ButtonDavid((i*250)+50, 400, 250, Color.cyan, names[i], new Action() {
 
 				@Override
 				public void act() {
-					for(int i=0;i<5;i++) {
-					buttons[i].color = Color.BLACK;
+					if(ons[innerMi] == true) {
+						ons[innerMi]=false;
+						buttons[innerMi].setColor(Color.cyan);
+
+					}
+					else if(ons[innerMi]==false) {
+						ons[innerMi]=true;
+						buttons[innerMi].setColor(Color.lightGray);
+
+						counts[innerMi]=2;
+						HPcount = 2;
+						System.out.println(counts[innerMi]);
+						System.out.println(HPcount);
+						System.out.println(Attackcount);
+
 					}
 					AudioTest.playSound("resources/ButtonSound.wav");
 
@@ -96,13 +117,17 @@ public class SettingsScreen extends FullFunctionScreen{
 		ButtonDavid update = new ButtonDavid(800,200,250, Color.lightGray, "Update",new Action() {
 
 			public void act() {
-				int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
-				int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
-				int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
-				int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
-				int Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
-				int[] counts = {HPcount, Revivecount, Defcount, Dodgecount, Attackcount};
-
+				 HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+				 Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+				 Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+				 Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+				 Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
+				 counts[0]=HPcount;
+				 counts[2]=Defcount;
+				 counts[3]=Dodgecount;
+				 counts[4]=Attackcount;
+				 counts[1]=Revivecount;
+ 
 
 				for(int i=0;i<5;i++) {
 					System.out.println(nums[i]);
