@@ -17,7 +17,7 @@ import guiTeacher.components.StyledComponent;
 
 public class ButtonDavid extends Button{
 
-	private Color color;
+	public Color color;
 	private Action action;
 	private static final int _THICKNESS = 5;
 	

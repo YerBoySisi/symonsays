@@ -15,21 +15,41 @@ import guiTeacher.components.TextArea;
 import guiTeacher.components.TextLabel;
 import guiTeacher.interfaces.Visible;
 import guiTeacher.userInterfaces.FullFunctionScreen;
-
+import inv.Inventory;
+import inv.Items;
 import mainMenuAndStartScreen.ButtonDavid;
+import shopmenu.DavidSell;
 import startGame.GameStarter;
 
 public class SettingsScreen extends FullFunctionScreen{
 	public Button volumeSlider;
 	public static int volume = 100;
+	public String[] images;
+
+	public String[] names;
+	private ButtonDavid[] buttons;
+	private TextArea[] nums;
+
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
+		String[] images = {"shopUpgradeResources/health.png","shopUpgradeResources/revive.png","shopUpgradeResources/test.png","shopUpgradeResources/speed.png","shopUpgradeResources/strength.png"};
+		this.images = images;
+		String[] names = {"Health","Revive","Defense","Dodge"};
+		this.names = names;
+
 	}
 
 	@Override
 	public void initAllObjects(List<Visible> viewObjects) {
-
+		int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+		int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+		int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+		int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+		int Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
+		int[] counts = {HPcount, Revivecount, Defcount, Dodgecount, Attackcount};
+		String[] images = {"shopUpgradeResources/health.png","shopUpgradeResources/revive.png","shopUpgradeResources/test.png","shopUpgradeResources/speed.png","shopUpgradeResources/strength.png"};
+		String[] names = {"Heal","Revive","Defense","Dodge","Attack"};
 		viewObjects.add(new Graphic(0, 0, getWidth(),getHeight(),"resources/earth.jpg"));
 		try {
 			File fontFile = new File("resources/bankgothic_medium_bt.ttf");
@@ -39,6 +59,28 @@ public class SettingsScreen extends FullFunctionScreen{
 		} catch (Exception e) {
 
 			e.printStackTrace();
+		}
+		buttons = new ButtonDavid[5];
+
+		for(int i=0;i<5;i++) {
+			System.out.println(images[i]);
+			viewObjects.add(new Graphic((i*250)+50, 400, 200,200,images[i]));
+			buttons[i] = new ButtonDavid((i*250)+50, 400, 250, Color.cyan, names[i], new Action() {
+
+				@Override
+				public void act() {
+					for(int i=0;i<5;i++) {
+					buttons[i].color = Color.BLACK;
+					}
+					AudioTest.playSound("resources/ButtonSound.wav");
+
+				}
+			});
+			viewObjects.add(buttons[i]);
+			nums= new TextArea[5];
+			nums[i] = new TextArea((i*250)+50,300, 150,200,"x " +counts[i]);
+			System.out.println(nums[i]);
+			viewObjects.add(nums[i]);
 		}
 
 		TextArea title = new TextArea(getWidth()/2-100,getHeight()-750,300,200,"Settings");
@@ -50,6 +92,35 @@ public class SettingsScreen extends FullFunctionScreen{
 
 			}
 		});
+
+		ButtonDavid update = new ButtonDavid(800,200,250, Color.lightGray, "Update",new Action() {
+
+			public void act() {
+				int HPcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("hp"));
+				int Defcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("def"));
+				int Dodgecount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("dodge"));
+				int Attackcount = DavidSell.countOccurences(GameStarter.inventory.itemlist,new Items("atk"));
+				int Revivecount = DavidSell.countOccurences(GameStarter.inventory.itemlist, new Items("revive"));
+				int[] counts = {HPcount, Revivecount, Defcount, Dodgecount, Attackcount};
+
+
+				for(int i=0;i<5;i++) {
+					System.out.println(nums[i]);
+					System.out.println(nums[i]);
+
+					nums[i] = new TextArea((i*250)+50,300, 150,200,"x " +counts[i]);
+
+					System.out.println(counts[i]);
+					System.out.println(nums[i]);
+
+					viewObjects.add(nums[i]);
+				}
+
+				AudioTest.playSound("resources/ButtonSound.wav");
+
+			}
+		});
+
 		ButtonDavid exit = new ButtonDavid(400,600,250,Color.lightGray,"Exit",new Action() {
 
 			@Override
@@ -70,6 +141,7 @@ public class SettingsScreen extends FullFunctionScreen{
 		viewObjects.add(exit);
 		viewObjects.add(volumeSlider);
 		viewObjects.add(volumeTitle);
+		viewObjects.add(update);
 	}
 
 	public void mouseDragged(MouseEvent m) {
@@ -83,8 +155,6 @@ public class SettingsScreen extends FullFunctionScreen{
 				volumeSlider.setX(1100);
 			volume = (int) ((volumeSlider.getX()-450)/6.5);
 			AudioTest.changeVolume(volume/100D);
-
-			System.out.println(AudioTest.gainControl);
 			if(getY()==275) 
 				volumeSlider.setY(m.getY());
 		}
