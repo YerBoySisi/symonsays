@@ -40,11 +40,7 @@ public class SettingsScreen extends FullFunctionScreen{
 
 	public SettingsScreen(int width, int height) {
 		super(width, height);
-		String[] images = {"shopUpgradeResources/health.png","shopUpgradeResources/revive.png","shopUpgradeResources/test.png","shopUpgradeResources/speed.png","shopUpgradeResources/strength.png"};
-		this.images = images;
-		String[] names = {"Health","Revive","Defense","Dodge"};
-		this.names = names;
-
+		
 	}
 
 	@Override
@@ -68,6 +64,7 @@ public class SettingsScreen extends FullFunctionScreen{
 		}
 		buttons = new ButtonDavid[5];
 
+		nums= new TextArea[5];
 		for(int i=0;i<5;i++) {
 		     Integer innerMi = new Integer(i);
 
@@ -98,7 +95,6 @@ public class SettingsScreen extends FullFunctionScreen{
 				}
 			});
 			viewObjects.add(buttons[i]);
-			nums= new TextArea[5];
 			nums[i] = new TextArea((i*250)+50,300, 150,200,"x " +counts[i]);
 			System.out.println(nums[i]);
 			viewObjects.add(nums[i]);
@@ -133,7 +129,9 @@ public class SettingsScreen extends FullFunctionScreen{
 					System.out.println(nums[i]);
 					System.out.println(nums[i]);
 
-					nums[i] = new TextArea((i*250)+50,300, 150,200,"x " +counts[i]);
+					
+					nums[i].setText(counts[i]+"");
+//					nums[i] = new TextArea((i*250)+50,300, 150,200,"x " +counts[i]);
 
 					System.out.println(counts[i]);
 					System.out.println(nums[i]);
